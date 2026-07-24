@@ -3,1528 +3,2935 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XL22 | منصة الأرباح</title>
+
+<title>XL22</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-:root {
-    --gold: #d4af37;
-    --gold-light: #f6df7b;
-    --gold-dark: #8d6b16;
-    --black: #070707;
-    --dark: #111111;
-    --card: #181818;
-    --text: #ffffff;
-    --muted: #a9a9a9;
-    --danger: #ff4d4d;
-    --success: #35d07f;
+:root{
+    --gold:#d4af37;
+    --gold2:#f5df7d;
+    --gold3:#8f6b17;
+    --bg:#070707;
+    --card:#151515;
+    --card2:#1b1b1b;
+    --border:rgba(212,175,55,.18);
+    --text:#fff;
+    --muted:#999;
+    --green:#35d07f;
+    --red:#ff5252;
 }
 
-body {
-    font-family: 'Cairo', sans-serif;
+body{
+    font-family:'Cairo',sans-serif;
     background:
-        radial-gradient(circle at top right, rgba(212,175,55,.12), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(212,175,55,.08), transparent 25%),
-        var(--black);
-    color: var(--text);
-    min-height: 100vh;
+    radial-gradient(circle at top right,rgba(212,175,55,.12),transparent 30%),
+    var(--bg);
+    color:var(--text);
+    min-height:100vh;
 }
-
-/* =========================
-   GENERAL
-========================= */
 
 button,
-input {
-    font-family: inherit;
+input{
+    font-family:inherit;
 }
 
-button {
-    cursor: pointer;
+button{
+    cursor:pointer;
 }
 
-.hidden {
-    display: none !important;
+.hidden{
+    display:none!important;
 }
 
-.logo {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    background: linear-gradient(
+/* ==============================
+   LOGO
+============================== */
+
+.logo{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:2px;
+
+    background:linear-gradient(
         135deg,
-        #8d6b16,
-        #f6df7b,
+        #8d6815,
+        #fff1a3,
         #d4af37,
-        #fff2a8,
-        #8d6b16
+        #fff3a9,
+        #8d6815
     );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
-/* =========================
+
+/* ==============================
    AUTH
-========================= */
+============================== */
 
-.auth-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
+.auth-screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-.auth-box {
-    width: 100%;
-    max-width: 460px;
-    background: rgba(20,20,20,.95);
-    border: 1px solid rgba(212,175,55,.35);
-    border-radius: 24px;
-    padding: 35px;
+.auth-box{
+    width:100%;
+    max-width:440px;
+
+    background:rgba(18,18,18,.96);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:35px;
+
     box-shadow:
-        0 0 50px rgba(212,175,55,.08),
-        inset 0 0 30px rgba(212,175,55,.02);
+    0 20px 80px rgba(0,0,0,.5),
+    0 0 40px rgba(212,175,55,.05);
 }
 
-.logo-box {
-    text-align: center;
-    margin-bottom: 30px;
+.auth-logo{
+    text-align:center;
+    margin-bottom:30px;
 }
 
-.logo-box p {
-    color: var(--muted);
-    margin-top: 5px;
-    font-size: 14px;
+.auth-logo p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:5px;
 }
 
-.form-title {
-    font-size: 22px;
-    margin-bottom: 20px;
+.form-title{
+    font-size:22px;
+    margin-bottom:20px;
 }
 
-.input-group {
-    margin-bottom: 16px;
+.input-group{
+    margin-bottom:16px;
 }
 
-.input-group label {
-    display: block;
-    color: #ddd;
-    font-size: 14px;
-    margin-bottom: 7px;
+.input-group label{
+    display:block;
+    color:#ddd;
+    font-size:13px;
+    margin-bottom:7px;
 }
 
-.input-group input {
-    width: 100%;
-    background: #0e0e0e;
-    border: 1px solid #333;
-    color: white;
-    padding: 14px 15px;
-    border-radius: 12px;
-    outline: none;
-    transition: .3s;
+.input-wrapper{
+    position:relative;
 }
 
-.input-group input:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 12px rgba(212,175,55,.12);
+.input-wrapper input{
+    width:100%;
+    padding:14px;
+
+    background:#0c0c0c;
+
+    border:1px solid #333;
+
+    color:#fff;
+
+    border-radius:12px;
+
+    outline:none;
+
+    transition:.3s;
 }
 
-.main-btn {
-    width: 100%;
-    border: none;
-    padding: 14px;
-    border-radius: 12px;
-    color: #111;
-    font-weight: 800;
-    font-size: 16px;
-    background: linear-gradient(
+.input-wrapper input:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 12px rgba(212,175,55,.12);
+}
+
+.password-toggle{
+    position:absolute;
+
+    left:12px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    border:none;
+    background:none;
+
+    color:#aaa;
+
+    font-size:18px;
+}
+
+.main-btn{
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(
         135deg,
-        #9a751b,
-        #f6df7b,
-        #d4af37
+        var(--gold3),
+        var(--gold2),
+        var(--gold)
     );
-    transition: .3s;
+
+    color:#111;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    transition:.3s;
 }
 
-.main-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212,175,55,.2);
+.main-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 30px rgba(212,175,55,.18);
 }
 
-.switch-text {
-    text-align: center;
-    margin-top: 20px;
-    color: var(--muted);
-    font-size: 14px;
+.switch-text{
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-top:20px;
 }
 
-.switch-text span {
-    color: var(--gold-light);
-    cursor: pointer;
-    font-weight: 700;
+.switch-text span{
+    color:var(--gold2);
+
+    font-weight:700;
+
+    cursor:pointer;
 }
 
-.error-message {
-    background: rgba(255,77,77,.1);
-    border: 1px solid rgba(255,77,77,.4);
-    color: #ff8585;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    font-size: 13px;
+.error{
+    background:rgba(255,82,82,.1);
+
+    border:1px solid rgba(255,82,82,.35);
+
+    color:#ff8585;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    font-size:12px;
+
+    margin-bottom:15px;
 }
 
-.error-message::before {
-    content: "⚠️ ";
+.error::before{
+    content:"⚠️ ";
 }
 
-/* =========================
-   APP
-========================= */
 
-.app {
-    min-height: 100vh;
+/* ==============================
+   APP HEADER
+============================== */
+
+.header{
+    height:70px;
+
+    position:fixed;
+
+    top:0;
+    right:0;
+    left:0;
+
+    z-index:100;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    background:rgba(8,8,8,.94);
+
+    border-bottom:1px solid var(--border);
+
+    backdrop-filter:blur(15px);
 }
 
-.header {
-    height: 75px;
-    padding: 0 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(10,10,10,.9);
-    border-bottom: 1px solid rgba(212,175,55,.15);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    backdrop-filter: blur(15px);
+.header-user{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
 }
 
-.user-mini {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.avatar{
+    width:40px;
+    height:40px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--gold2),
+        var(--gold)
+    );
+
+    color:#111;
+
+    font-weight:800;
 }
 
-.avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #111;
-    font-weight: 800;
-    background: linear-gradient(135deg,#f6df7b,#d4af37);
+.header-user span{
+    color:#ddd;
+
+    font-size:13px;
 }
 
-.user-mini span {
-    color: #ddd;
-    font-size: 14px;
-}
 
-.menu-btn {
-    display: none;
-    background: none;
-    color: white;
-    border: none;
-    font-size: 25px;
-}
-
-/* =========================
+/* ==============================
    SIDEBAR
-========================= */
+============================== */
 
-.sidebar {
-    position: fixed;
-    right: 0;
-    top: 75px;
-    width: 250px;
-    height: calc(100vh - 75px);
-    background: #0d0d0d;
-    border-left: 1px solid rgba(212,175,55,.12);
-    padding: 25px 15px;
-    z-index: 9;
+.sidebar{
+    position:fixed;
+
+    top:70px;
+    right:0;
+
+    width:240px;
+
+    height:calc(100vh - 70px);
+
+    padding:20px 14px;
+
+    background:#0d0d0d;
+
+    border-left:1px solid var(--border);
+
+    z-index:90;
+
+    overflow-y:auto;
 }
 
-.nav-item {
-    width: 100%;
-    border: none;
-    background: transparent;
-    color: #aaa;
-    text-align: right;
-    padding: 14px 16px;
-    margin-bottom: 7px;
-    border-radius: 10px;
-    font-size: 14px;
-    transition: .3s;
+.nav-title{
+    color:#666;
+
+    font-size:11px;
+
+    padding:12px 15px 8px;
+}
+
+.nav-item{
+    width:100%;
+
+    padding:13px 15px;
+
+    margin-bottom:5px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:transparent;
+
+    color:#aaa;
+
+    text-align:right;
+
+    font-size:13px;
+
+    transition:.3s;
 }
 
 .nav-item:hover,
-.nav-item.active {
-    background: rgba(212,175,55,.12);
-    color: var(--gold-light);
+.nav-item.active{
+    background:rgba(212,175,55,.11);
+
+    color:var(--gold2);
 }
 
-/* =========================
+
+/* ==============================
    CONTENT
-========================= */
+============================== */
 
-.content {
-    margin-right: 250px;
-    padding: 35px;
-    max-width: 1500px;
+.content{
+    margin-right:240px;
+
+    padding:100px 30px 40px;
+
+    max-width:1450px;
 }
 
-.page {
-    display: none;
+.page{
+    display:none;
 }
 
-.page.active {
-    display: block;
+.page.active{
+    display:block;
 }
 
-.page-title {
-    margin-bottom: 25px;
+.page-title{
+    margin-bottom:25px;
 }
 
-.page-title h1 {
-    font-size: 27px;
+.page-title h1{
+    font-size:25px;
 }
 
-.page-title p {
-    color: var(--muted);
-    font-size: 14px;
-    margin-top: 5px;
+.page-title p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-top:4px;
 }
 
-/* =========================
-   DASHBOARD CARDS
-========================= */
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
-    margin-bottom: 25px;
-}
+/* ==============================
+   BALANCE
+============================== */
 
-.card {
-    background: linear-gradient(
-        145deg,
-        rgba(28,28,28,.95),
-        rgba(15,15,15,.95)
+.balance-card{
+    background:
+    linear-gradient(
+        135deg,
+        #19150a,
+        #151515
     );
-    border: 1px solid rgba(212,175,55,.16);
-    border-radius: 18px;
-    padding: 23px;
-    position: relative;
-    overflow: hidden;
+
+    border:1px solid rgba(212,175,55,.3);
+
+    border-radius:20px;
+
+    padding:28px;
+
+    margin-bottom:18px;
+
+    text-align:center;
 }
 
-.card::after {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: rgba(212,175,55,.08);
-    filter: blur(40px);
-    left: -30px;
-    bottom: -30px;
+.balance-label{
+    color:#aaa;
+
+    font-size:13px;
 }
 
-.card-title {
-    color: var(--muted);
-    font-size: 14px;
+.balance-value{
+    font-size:38px;
+
+    font-weight:800;
+
+    margin-top:8px;
+
+    color:var(--gold2);
 }
 
-.card-value {
-    font-size: 28px;
-    font-weight: 800;
-    margin-top: 10px;
-    color: var(--gold-light);
+
+/* ==============================
+   SMALL PROFIT CARDS
+============================== */
+
+.small-cards{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin-bottom:18px;
 }
 
-.actions {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 15px;
-    margin-bottom: 25px;
+.small-card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:20px;
 }
 
-.action-btn {
-    padding: 17px;
-    border-radius: 13px;
-    border: 1px solid rgba(212,175,55,.35);
-    background: rgba(212,175,55,.08);
-    color: var(--gold-light);
-    font-weight: 700;
-    transition: .3s;
+.small-card-title{
+    color:#999;
+
+    font-size:12px;
 }
 
-.action-btn:hover {
-    background: rgba(212,175,55,.17);
+.small-card-value{
+    color:var(--gold2);
+
+    font-size:22px;
+
+    font-weight:800;
+
+    margin-top:5px;
 }
 
-/* =========================
+
+/* ==============================
+   DEPOSIT WITHDRAW
+============================== */
+
+.money-actions{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin-bottom:18px;
+}
+
+.money-btn{
+    padding:20px;
+
+    border-radius:16px;
+
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+.money-btn:hover{
+    border-color:var(--gold);
+
+    transform:translateY(-2px);
+}
+
+.money-btn.deposit{
+    color:var(--green);
+}
+
+.money-btn.withdraw{
+    color:#ff8b8b;
+}
+
+
+/* ==============================
+   MAIN MENU
+============================== */
+
+.menu-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:14px;
+
+    margin-bottom:20px;
+}
+
+.menu-card{
+    padding:20px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.menu-card:hover{
+    transform:translateY(-3px);
+
+    border-color:var(--gold);
+}
+
+.menu-icon{
+    font-size:25px;
+
+    margin-bottom:7px;
+}
+
+.menu-card span{
+    display:block;
+
+    color:#ddd;
+
+    font-size:12px;
+}
+
+
+/* ==============================
    REFERRAL
-========================= */
+============================== */
 
-.referral-box {
-    background: #141414;
-    border: 1px solid rgba(212,175,55,.18);
-    border-radius: 18px;
-    padding: 25px;
+.referral-box{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:25px;
 }
 
-.referral-code {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
+.referral-box h3{
+    font-size:17px;
 }
 
-.referral-code input {
-    flex: 1;
-    background: #090909;
-    color: var(--gold-light);
-    border: 1px solid #333;
-    padding: 13px;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: 700;
+.referral-box p{
+    color:#999;
+
+    font-size:12px;
+
+    margin-top:5px;
 }
 
-.copy-btn {
-    border: none;
-    background: var(--gold);
-    color: #111;
-    padding: 0 20px;
-    border-radius: 10px;
-    font-weight: 800;
+.referral-code{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:18px;
 }
 
-/* =========================
+.referral-code input{
+    flex:1;
+
+    background:#090909;
+
+    border:1px solid #333;
+
+    border-radius:10px;
+
+    color:var(--gold2);
+
+    padding:13px;
+
+    text-align:center;
+
+    font-weight:700;
+
+    outline:none;
+}
+
+.copy-btn,
+.share-btn{
+    border:none;
+
+    border-radius:10px;
+
+    padding:0 18px;
+
+    font-weight:700;
+}
+
+.copy-btn{
+    background:var(--gold);
+
+    color:#111;
+}
+
+.share-btn{
+    background:#252525;
+
+    color:var(--gold2);
+
+    border:1px solid var(--border);
+}
+
+
+/* ==============================
    SETTINGS
-========================= */
+============================== */
 
-.settings-box {
-    max-width: 700px;
-    background: #141414;
-    border: 1px solid rgba(212,175,55,.15);
-    border-radius: 18px;
-    padding: 25px;
+.settings-box{
+    max-width:650px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:25px;
 }
 
-.settings-box .main-btn {
-    margin-top: 10px;
+
+/* ==============================
+   TRANSACTIONS
+============================== */
+
+.transaction{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:15px;
+
+    background:var(--card);
+
+    border-bottom:1px solid #252525;
 }
 
-/* =========================
+.transaction:first-child{
+    border-radius:12px 12px 0 0;
+}
+
+.transaction:last-child{
+    border-radius:0 0 12px 12px;
+}
+
+.transaction-name{
+    font-size:13px;
+}
+
+.transaction-date{
+    color:#777;
+
+    font-size:10px;
+}
+
+.transaction-amount{
+    color:var(--gold2);
+
+    font-weight:700;
+}
+
+
+/* ==============================
    MODAL
-========================= */
+============================== */
 
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.75);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    z-index: 50;
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.8);
+
+    z-index:300;
 }
 
-.modal.show {
-    display: flex;
+.modal.show{
+    display:flex;
 }
 
-.modal-box {
-    width: 100%;
-    max-width: 430px;
-    background: #151515;
-    border: 1px solid rgba(212,175,55,.3);
-    border-radius: 20px;
-    padding: 25px;
+.modal-box{
+    width:100%;
+
+    max-width:420px;
+
+    background:#151515;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:25px;
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+.modal-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
 }
 
-.close-btn {
-    background: none;
-    border: none;
-    color: #aaa;
-    font-size: 22px;
+.close-btn{
+    background:none;
+
+    border:none;
+
+    color:#aaa;
+
+    font-size:25px;
 }
 
-/* =========================
+
+/* ==============================
    MOBILE
-========================= */
+============================== */
 
-@media(max-width: 900px) {
+.mobile-menu{
+    display:none;
 
-    .menu-btn {
-        display: block;
-    }
+    background:none;
 
-    .sidebar {
-        transform: translateX(100%);
-        transition: .3s;
-    }
+    border:none;
 
-    .sidebar.open {
-        transform: translateX(0);
-    }
+    color:white;
 
-    .content {
-        margin-right: 0;
-        padding: 25px 18px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .header {
-        padding: 0 18px;
-    }
-
-    .user-mini span {
-        display: none;
-    }
+    font-size:25px;
 }
 
-@media(max-width: 500px) {
+@media(max-width:900px){
 
-    .auth-box {
-        padding: 25px 18px;
+    .mobile-menu{
+        display:block;
     }
 
-    .logo {
-        font-size: 28px;
+    .sidebar{
+        transform:translateX(100%);
+
+        transition:.3s;
     }
 
-    .actions {
-        grid-template-columns: 1fr;
+    .sidebar.open{
+        transform:translateX(0);
     }
 
-    .referral-code {
-        flex-direction: column;
+    .content{
+        margin-right:0;
+
+        padding:95px 18px 30px;
     }
 
-    .copy-btn {
-        padding: 13px;
+    .header{
+        padding:0 18px;
     }
 
-    .page-title h1 {
-        font-size: 23px;
+    .menu-grid{
+        grid-template-columns:
+        repeat(2,1fr);
     }
+
 }
+
+@media(max-width:550px){
+
+    .auth-box{
+        padding:25px 18px;
+    }
+
+    .logo{
+        font-size:28px;
+    }
+
+    .small-cards{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .small-card{
+        padding:15px;
+    }
+
+    .small-card-value{
+        font-size:18px;
+    }
+
+    .money-actions{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .money-btn{
+        padding:16px 8px;
+        font-size:12px;
+    }
+
+    .referral-code{
+        flex-direction:column;
+    }
+
+    .copy-btn,
+    .share-btn{
+        padding:12px;
+    }
+
+    .header-user span{
+        display:none;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
-     AUTHENTICATION
-========================= -->
 
-<div id="authScreen" class="auth-container">
+<!-- ==================================================
+     AUTH SCREEN
+================================================== -->
 
-    <div class="auth-box">
+<div id="authScreen" class="auth-screen">
 
-        <div class="logo-box">
-            <div class="logo">XL22</div>
-            <p>منصتك الرقمية في مكان واحد</p>
-        </div>
+<div class="auth-box">
 
-        <!-- LOGIN -->
+<div class="auth-logo">
 
-        <div id="loginForm">
+<div class="logo">
+XL22
+</div>
 
-            <h2 class="form-title">تسجيل الدخول</h2>
-
-            <div id="loginError" class="error-message hidden"></div>
-
-            <div class="input-group">
-                <label>البريد الإلكتروني أو رقم الهاتف</label>
-                <input id="loginIdentifier" type="text" placeholder="أدخل البريد أو رقم الهاتف">
-            </div>
-
-            <div class="input-group">
-                <label>كلمة المرور</label>
-                <input id="loginPassword" type="password" placeholder="أدخل كلمة المرور">
-            </div>
-
-            <button class="main-btn" onclick="login()">
-                دخول
-            </button>
-
-            <div class="switch-text">
-                ليس لديك حساب؟
-                <span onclick="showRegister()">إنشاء حساب</span>
-            </div>
-
-        </div>
-
-        <!-- REGISTER -->
-
-        <div id="registerForm" class="hidden">
-
-            <h2 class="form-title">إنشاء حساب جديد</h2>
-
-            <div id="registerError" class="error-message hidden"></div>
-
-            <div class="input-group">
-                <label>البريد الإلكتروني</label>
-                <input id="registerEmail" type="email" placeholder="example@email.com">
-            </div>
-
-            <div class="input-group">
-                <label>رقم الهاتف</label>
-                <input id="registerPhone" type="text" placeholder="رقم الهاتف">
-            </div>
-
-            <div class="input-group">
-                <label>كلمة المرور</label>
-                <input id="registerPassword" type="password" placeholder="كلمة المرور">
-            </div>
-
-            <div class="input-group">
-                <label>تأكيد كلمة المرور</label>
-                <input id="registerConfirm" type="password" placeholder="تأكيد كلمة المرور">
-            </div>
-
-            <div class="input-group">
-                <label>كود الدعوة</label>
-                <input id="registerReferral" type="text" placeholder="اختياري">
-            </div>
-
-            <button class="main-btn" onclick="register()">
-                إنشاء الحساب
-            </button>
-
-            <div class="switch-text">
-                لديك حساب بالفعل؟
-                <span onclick="showLogin()">تسجيل الدخول</span>
-            </div>
-
-        </div>
-
-    </div>
+<p>
+منصتك الرقمية
+</p>
 
 </div>
 
 
-<!-- =========================
-     APPLICATION
-========================= -->
+<!-- LOGIN -->
 
-<div id="app" class="app hidden">
+<div id="loginForm">
 
-    <header class="header">
+<h2 class="form-title">
+تسجيل الدخول
+</h2>
 
-        <div class="logo">XL22</div>
+<div id="loginError"
+class="error hidden">
+</div>
 
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
 
-        <div class="user-mini">
-            <div class="avatar" id="avatar">X</div>
-            <span id="headerUser">مستخدم XL22</span>
-        </div>
+<div class="input-group">
 
-    </header>
+<label>
+البريد الإلكتروني أو رقم الهاتف
+</label>
 
+<div class="input-wrapper">
 
-    <!-- SIDEBAR -->
+<input
+id="loginIdentifier"
+type="text"
+placeholder="أدخل البريد الإلكتروني أو رقم الهاتف"
+>
 
-    <aside id="sidebar" class="sidebar">
-
-        <button class="nav-item active" onclick="showPage('dashboard', this)">
-            🏠 الرئيسية
-        </button>
-
-        <button class="nav-item" onclick="showPage('referrals', this)">
-            👥 نظام الدعوات
-        </button>
-
-        <button class="nav-item" onclick="openModal('depositModal')">
-            💰 الإيداع
-        </button>
-
-        <button class="nav-item" onclick="openModal('withdrawModal')">
-            💸 السحب
-        </button>
-
-        <button class="nav-item" onclick="showPage('settings', this)">
-            ⚙️ الإعدادات
-        </button>
-
-        <button class="nav-item" onclick="logout()">
-            🚪 تسجيل الخروج
-        </button>
-
-    </aside>
-
-
-    <!-- CONTENT -->
-
-    <main class="content">
-
-        <!-- DASHBOARD -->
-
-        <section id="dashboard" class="page active">
-
-            <div class="page-title">
-                <h1>مرحباً بك في XL22 👋</h1>
-                <p>إليك ملخص حسابك وأرباحك</p>
-            </div>
-
-            <div class="cards">
-
-                <div class="card">
-                    <div class="card-title">الرصيد الحالي</div>
-                    <div class="card-value">
-                        $<span id="balance">0.00</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">أرباح المهام</div>
-                    <div class="card-value">
-                        $<span id="taskProfit">0.00</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">أرباح الدعوات</div>
-                    <div class="card-value">
-                        $<span id="referralProfit">0.00</span>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="actions">
-
-                <button class="action-btn"
-                        onclick="openModal('depositModal')">
-                    💰 إيداع
-                </button>
-
-                <button class="action-btn"
-                        onclick="openModal('withdrawModal')">
-                    💸 سحب
-                </button>
-
-            </div>
-
-
-            <div class="referral-box">
-
-                <h3>كود الدعوة الخاص بك</h3>
-
-                <p style="color:#aaa;font-size:13px;margin-top:5px;">
-                    شارك الكود مع أصدقائك.
-                </p>
-
-                <div class="referral-code">
-
-                    <input id="myReferralCode"
-                           type="text"
-                           readonly>
-
-                    <button class="copy-btn"
-                            onclick="copyReferral()">
-                        نسخ
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- REFERRALS -->
-
-        <section id="referrals" class="page">
-
-            <div class="page-title">
-                <h1>نظام الدعوات</h1>
-                <p>قم بدعوة أصدقائك واستفد من نظام الإحالة</p>
-            </div>
-
-            <div class="cards">
-
-                <div class="card">
-                    <div class="card-title">كود الدعوة</div>
-                    <div class="card-value" id="referralCodePage">
-                        XL22
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">عدد الدعوات</div>
-                    <div class="card-value">
-                        <span id="referralCount">0</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">أرباح الدعوات</div>
-                    <div class="card-value">
-                        $<span id="referralProfitPage">0.00</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="referral-box">
-
-                <h3>شارك كود الدعوة</h3>
-
-                <div class="referral-code">
-
-                    <input id="shareReferralCode"
-                           readonly>
-
-                    <button class="copy-btn"
-                            onclick="copyReferral()">
-                        نسخ الكود
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SETTINGS -->
-
-        <section id="settings" class="page">
-
-            <div class="page-title">
-                <h1>الإعدادات</h1>
-                <p>إدارة معلومات حسابك</p>
-            </div>
-
-            <div class="settings-box">
-
-                <div class="input-group">
-                    <label>البريد الإلكتروني</label>
-                    <input id="settingsEmail" type="email">
-                </div>
-
-                <div class="input-group">
-                    <label>رقم الهاتف</label>
-                    <input id="settingsPhone" type="text">
-                </div>
-
-                <button class="main-btn"
-                        onclick="updateProfile()">
-                    حفظ البيانات
-                </button>
-
-                <hr style="border-color:#292929;margin:25px 0;">
-
-                <h3 style="margin-bottom:18px;">
-                    تغيير كلمة المرور
-                </h3>
-
-                <div class="input-group">
-                    <label>كلمة المرور الجديدة</label>
-                    <input id="newPassword"
-                           type="password"
-                           placeholder="كلمة المرور الجديدة">
-                </div>
-
-                <button class="main-btn"
-                        onclick="changePassword()">
-                    تغيير كلمة المرور
-                </button>
-
-            </div>
-
-        </section>
-
-    </main>
+</div>
 
 </div>
 
 
-<!-- =========================
+<div class="input-group">
+
+<label>
+كلمة المرور
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="loginPassword"
+type="password"
+placeholder="أدخل كلمة المرور"
+>
+
+<button
+class="password-toggle"
+onclick="togglePassword('loginPassword',this)"
+type="button">
+👁️
+</button>
+
+</div>
+
+</div>
+
+
+<button
+class="main-btn"
+onclick="login()">
+
+تسجيل الدخول
+
+</button>
+
+
+<div class="switch-text">
+
+ليس لديك حساب؟
+
+<span onclick="showRegister()">
+إنشاء حساب
+</span>
+
+</div>
+
+</div>
+
+
+<!-- REGISTER -->
+
+<div id="registerForm"
+class="hidden">
+
+<h2 class="form-title">
+إنشاء حساب
+</h2>
+
+<div id="registerError"
+class="error hidden">
+</div>
+
+
+<div class="input-group">
+
+<label>
+البريد الإلكتروني أو رقم الهاتف
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="registerIdentifier"
+type="text"
+placeholder="البريد الإلكتروني أو رقم الهاتف"
+>
+
+</div>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+كلمة المرور
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="registerPassword"
+type="password"
+placeholder="كلمة المرور"
+>
+
+<button
+class="password-toggle"
+onclick="togglePassword('registerPassword',this)"
+type="button">
+👁️
+</button>
+
+</div>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+تأكيد كلمة المرور
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="registerConfirm"
+type="password"
+placeholder="تأكيد كلمة المرور"
+>
+
+<button
+class="password-toggle"
+onclick="togglePassword('registerConfirm',this)"
+type="button">
+👁️
+</button>
+
+</div>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+كود الدعوة - اختياري
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="registerReferral"
+type="text"
+placeholder="أدخل كود الدعوة"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="main-btn"
+onclick="register()">
+
+إنشاء الحساب
+
+</button>
+
+
+<div class="switch-text">
+
+لديك حساب؟
+
+<span onclick="showLogin()">
+تسجيل الدخول
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     APP
+================================================== -->
+
+<div id="app"
+class="hidden">
+
+
+<header class="header">
+
+<button
+class="mobile-menu"
+onclick="toggleSidebar()">
+☰
+</button>
+
+<div class="logo">
+XL22
+</div>
+
+<div class="header-user">
+
+<div
+class="avatar"
+id="avatar">
+X
+</div>
+
+<span id="headerUser">
+مستخدم
+</span>
+
+</div>
+
+</header>
+
+
+<!-- SIDEBAR -->
+
+<aside
+id="sidebar"
+class="sidebar">
+
+<div class="nav-title">
+القائمة الرئيسية
+</div>
+
+
+<button
+class="nav-item active"
+onclick="showPage('home',this)">
+
+🏠 الرئيسية
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="showPage('balancePage',this)">
+
+💰 الرصيد
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="showPage('profitsPage',this)">
+
+📊 الأرباح
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="showPage('referralPage',this)">
+
+👥 الدعوات
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="showPage('transactionsPage',this)">
+
+📋 المعاملات
+
+</button>
+
+
+<div class="nav-title">
+الحساب
+</div>
+
+
+<button
+class="nav-item"
+onclick="showPage('settingsPage',this)">
+
+⚙️ الإعدادات
+
+</button>
+
+
+<button
+class="nav-item"
+onclick="logout()">
+
+🚪 تسجيل الخروج
+
+</button>
+
+</aside>
+
+
+<!-- CONTENT -->
+
+<main class="content">
+
+
+<!-- ==================================================
+     HOME
+================================================== -->
+
+<section
+id="home"
+class="page active">
+
+<div class="page-title">
+
+<h1>
+الرئيسية
+</h1>
+
+<p>
+مرحباً بك في منصة XL22
+</p>
+
+</div>
+
+
+<!-- BALANCE -->
+
+<div class="balance-card">
+
+<div class="balance-label">
+رصيدك الإجمالي
+</div>
+
+<div class="balance-value">
+
+$ <span id="homeBalance">
+0.00
+</span>
+
+</div>
+
+</div>
+
+
+<!-- PROFITS -->
+
+<div class="small-cards">
+
+<div class="small-card">
+
+<div class="small-card-title">
+أرباح المهام
+</div>
+
+<div class="small-card-value">
+
+$ <span id="homeTaskProfit">
+0.00
+</span>
+
+</div>
+
+</div>
+
+
+<div class="small-card">
+
+<div class="small-card-title">
+أرباح الدعوة
+</div>
+
+<div class="small-card-value">
+
+$ <span id="homeReferralProfit">
+0.00
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MONEY -->
+
+<div class="money-actions">
+
+<button
+class="money-btn deposit"
+onclick="openModal('depositModal')">
+
+💰
+<br>
+إيداع
+
+</button>
+
+
+<button
+class="money-btn withdraw"
+onclick="openModal('withdrawModal')">
+
+💸
+<br>
+سحب
+
+</button>
+
+</div>
+
+
+<!-- MAIN MENU -->
+
+<div class="menu-grid">
+
+<div
+class="menu-card"
+onclick="showPageById('balancePage')">
+
+<div class="menu-icon">
+💰
+</div>
+
+<span>
+الرصيد
+</span>
+
+</div>
+
+
+<div
+class="menu-card"
+onclick="showPageById('profitsPage')">
+
+<div class="menu-icon">
+📊
+</div>
+
+<span>
+الأرباح
+</span>
+
+</div>
+
+
+<div
+class="menu-card"
+onclick="showPageById('referralPage')">
+
+<div class="menu-icon">
+👥
+</div>
+
+<span>
+الدعوات
+</span>
+
+</div>
+
+
+<div
+class="menu-card"
+onclick="showPageById('transactionsPage')">
+
+<div class="menu-icon">
+📋
+</div>
+
+<span>
+المعاملات
+</span>
+
+</div>
+
+</div>
+
+
+<!-- REFERRAL -->
+
+<div class="referral-box">
+
+<h3>
+كود الدعوة الخاص بك
+</h3>
+
+<p>
+شارك كودك مع الآخرين للحصول على أرباح الدعوات.
+</p>
+
+
+<div class="referral-code">
+
+<input
+id="homeReferralCode"
+readonly
+>
+
+
+<button
+class="copy-btn"
+onclick="copyReferral()">
+
+نسخ
+
+</button>
+
+
+<button
+class="share-btn"
+onclick="shareReferral()">
+
+مشاركة
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     BALANCE PAGE
+================================================== -->
+
+<section
+id="balancePage"
+class="page">
+
+<div class="page-title">
+
+<h1>
+الرصيد
+</h1>
+
+<p>
+تفاصيل رصيد حسابك
+</p>
+
+</div>
+
+
+<div class="balance-card">
+
+<div class="balance-label">
+رصيدك الإجمالي
+</div>
+
+<div class="balance-value">
+
+$ <span id="balancePageValue">
+0.00
+</span>
+
+</div>
+
+</div>
+
+
+<div class="money-actions">
+
+<button
+class="money-btn deposit"
+onclick="openModal('depositModal')">
+
+💰 إيداع
+
+</button>
+
+
+<button
+class="money-btn withdraw"
+onclick="openModal('withdrawModal')">
+
+💸 سحب
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     PROFITS
+================================================== -->
+
+<section
+id="profitsPage"
+class="page">
+
+<div class="page-title">
+
+<h1>
+الأرباح
+</h1>
+
+<p>
+تفاصيل أرباحك
+</p>
+
+</div>
+
+
+<div class="small-cards">
+
+<div class="small-card">
+
+<div class="small-card-title">
+أرباح المهام
+</div>
+
+<div class="small-card-value">
+
+$ <span id="profitTask">
+0.00
+</span>
+
+</div>
+
+</div>
+
+
+<div class="small-card">
+
+<div class="small-card-title">
+أرباح الدعوات
+</div>
+
+<div class="small-card-value">
+
+$ <span id="profitReferral">
+0.00
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     REFERRAL
+================================================== -->
+
+<section
+id="referralPage"
+class="page">
+
+<div class="page-title">
+
+<h1>
+نظام الدعوات
+</h1>
+
+<p>
+شارك كود الدعوة الخاص بك
+</p>
+
+</div>
+
+
+<div class="referral-box">
+
+<h3>
+كود الدعوة الخاص بك
+</h3>
+
+<p>
+هذا الكود خاص بحسابك فقط.
+</p>
+
+
+<div class="referral-code">
+
+<input
+id="referralPageCode"
+readonly
+>
+
+
+<button
+class="copy-btn"
+onclick="copyReferral()">
+
+نسخ
+
+</button>
+
+
+<button
+class="share-btn"
+onclick="shareReferral()">
+
+مشاركة
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="small-cards"
+style="margin-top:18px;">
+
+<div class="small-card">
+
+<div class="small-card-title">
+عدد الأشخاص المدعوين
+</div>
+
+<div class="small-card-value">
+
+<span id="referralCount">
+0
+</span>
+
+</div>
+
+</div>
+
+
+<div class="small-card">
+
+<div class="small-card-title">
+أرباح الدعوات
+</div>
+
+<div class="small-card-value">
+
+$ <span id="referralPageProfit">
+0.00
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     TRANSACTIONS
+================================================== -->
+
+<section
+id="transactionsPage"
+class="page">
+
+<div class="page-title">
+
+<h1>
+المعاملات
+</h1>
+
+<p>
+سجل عمليات حسابك
+</p>
+
+</div>
+
+
+<div id="transactionsList">
+
+<div
+style="
+text-align:center;
+color:#777;
+padding:30px;
+">
+
+لا توجد معاملات حتى الآن
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     SETTINGS
+================================================== -->
+
+<section
+id="settingsPage"
+class="page">
+
+<div class="page-title">
+
+<h1>
+الإعدادات
+</h1>
+
+<p>
+إدارة حسابك
+</p>
+
+</div>
+
+
+<div class="settings-box">
+
+
+<div class="input-group">
+
+<label>
+البريد الإلكتروني أو رقم الهاتف
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="settingsIdentifier"
+type="text"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="main-btn"
+onclick="updateProfile()">
+
+حفظ البيانات
+
+</button>
+
+
+<br><br>
+
+
+<div class="input-group">
+
+<label>
+كلمة المرور الجديدة
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="newPassword"
+type="password"
+placeholder="كلمة المرور الجديدة"
+>
+
+<button
+class="password-toggle"
+onclick="togglePassword('newPassword',this)"
+type="button">
+
+👁️
+
+</button>
+
+</div>
+
+</div>
+
+
+<button
+class="main-btn"
+onclick="changePassword()">
+
+تغيير كلمة المرور
+
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- ==================================================
      DEPOSIT MODAL
-========================= -->
+================================================== -->
 
-<div id="depositModal" class="modal">
+<div
+id="depositModal"
+class="modal">
 
-    <div class="modal-box">
+<div class="modal-box">
 
-        <div class="modal-header">
-            <h3>طلب إيداع</h3>
-            <button class="close-btn"
-                    onclick="closeModal('depositModal')">
-                ×
-            </button>
-        </div>
+<div class="modal-header">
 
-        <div class="input-group">
-            <label>مبلغ الإيداع</label>
-            <input id="depositAmount"
-                   type="number"
-                   placeholder="مثال: 100">
-        </div>
+<h3>
+إيداع
+</h3>
 
-        <button class="main-btn"
-                onclick="deposit()">
-            إرسال طلب الإيداع
-        </button>
+<button
+class="close-btn"
+onclick="closeModal('depositModal')">
 
-    </div>
+×
+
+</button>
 
 </div>
 
 
-<!-- =========================
+<div class="input-group">
+
+<label>
+مبلغ الإيداع
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="depositAmount"
+type="number"
+placeholder="أدخل المبلغ"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="main-btn"
+onclick="deposit()">
+
+تأكيد الإيداع
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
      WITHDRAW MODAL
-========================= -->
+================================================== -->
 
-<div id="withdrawModal" class="modal">
+<div
+id="withdrawModal"
+class="modal">
 
-    <div class="modal-box">
+<div class="modal-box">
 
-        <div class="modal-header">
-            <h3>طلب سحب</h3>
-            <button class="close-btn"
-                    onclick="closeModal('withdrawModal')">
-                ×
-            </button>
-        </div>
+<div class="modal-header">
 
-        <div class="input-group">
-            <label>مبلغ السحب</label>
-            <input id="withdrawAmount"
-                   type="number"
-                   placeholder="مثال: 50">
-        </div>
+<h3>
+سحب
+</h3>
 
-        <button class="main-btn"
-                onclick="withdraw()">
-            إرسال طلب السحب
-        </button>
+<button
+class="close-btn"
+onclick="closeModal('withdrawModal')">
 
-    </div>
+×
+
+</button>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+مبلغ السحب
+</label>
+
+<div class="input-wrapper">
+
+<input
+id="withdrawAmount"
+type="number"
+placeholder="أدخل المبلغ"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="main-btn"
+onclick="withdraw()">
+
+تأكيد السحب
+
+</button>
+
+</div>
 
 </div>
 
 
 <script>
 
-/* =========================
-   DATA
-========================= */
+/* =========================================
+   DATABASE LOCAL
+========================================= */
 
-let users = JSON.parse(localStorage.getItem("xl22_users")) || [];
+let users =
+JSON.parse(
+localStorage.getItem("XL22_USERS")
+) || [];
+
 
 let currentUserIndex =
-    localStorage.getItem("xl22_currentUser");
+localStorage.getItem("XL22_CURRENT_USER");
 
 
-/* =========================
-   AUTH UI
-========================= */
+/* =========================================
+   AUTH
+========================================= */
 
-function showRegister() {
+function showRegister(){
 
-    document.getElementById("loginForm")
-        .classList.add("hidden");
+document
+.getElementById("loginForm")
+.classList.add("hidden");
 
-    document.getElementById("registerForm")
-        .classList.remove("hidden");
-
-}
-
-function showLogin() {
-
-    document.getElementById("registerForm")
-        .classList.add("hidden");
-
-    document.getElementById("loginForm")
-        .classList.remove("hidden");
-
-}
-
-function showError(id, message) {
-
-    const box = document.getElementById(id);
-
-    box.textContent = message;
-
-    box.classList.remove("hidden");
+document
+.getElementById("registerForm")
+.classList.remove("hidden");
 
 }
 
 
-/* =========================
+function showLogin(){
+
+document
+.getElementById("registerForm")
+.classList.add("hidden");
+
+document
+.getElementById("loginForm")
+.classList.remove("hidden");
+
+}
+
+
+/* =========================================
+   PASSWORD EYE
+========================================= */
+
+function togglePassword(id,button){
+
+const input =
+document.getElementById(id);
+
+if(input.type === "password"){
+
+input.type = "text";
+
+button.textContent = "🙈";
+
+}else{
+
+input.type = "password";
+
+button.textContent = "👁️";
+
+}
+
+}
+
+
+/* =========================================
+   GENERATE UNIQUE REFERRAL CODE
+========================================= */
+
+function generateReferralCode(){
+
+let code;
+
+do{
+
+code =
+"XL22-" +
+Math.random()
+.toString(36)
+.substring(2,8)
+.toUpperCase();
+
+}while(
+users.some(
+user =>
+user.referralCode === code
+)
+);
+
+return code;
+
+}
+
+
+/* =========================================
    REGISTER
-========================= */
+========================================= */
 
-function register() {
+function register(){
 
-    const email =
-        document.getElementById("registerEmail").value.trim();
+const identifier =
+document
+.getElementById("registerIdentifier")
+.value
+.trim();
 
-    const phone =
-        document.getElementById("registerPhone").value.trim();
+const password =
+document
+.getElementById("registerPassword")
+.value;
 
-    const password =
-        document.getElementById("registerPassword").value;
+const confirm =
+document
+.getElementById("registerConfirm")
+.value;
 
-    const confirm =
-        document.getElementById("registerConfirm").value;
+const referral =
+document
+.getElementById("registerReferral")
+.value
+.trim()
+.toUpperCase();
 
-    const referral =
-        document.getElementById("registerReferral").value.trim();
 
-    if (!email || !phone || !password || !confirm) {
+if(!identifier ||
+!password ||
+!confirm){
 
-        showError(
-            "registerError",
-            "يرجى تعبئة جميع الحقول المطلوبة"
-        );
+showError(
+"registerError",
+"يرجى تعبئة جميع الحقول المطلوبة"
+);
 
-        return;
-    }
-
-    if (password !== confirm) {
-
-        showError(
-            "registerError",
-            "كلمتا المرور غير متطابقتين"
-        );
-
-        return;
-    }
-
-    if (users.some(u => u.email === email)) {
-
-        showError(
-            "registerError",
-            "البريد الإلكتروني مستخدم مسبقاً"
-        );
-
-        return;
-    }
-
-    const referralCode =
-        "XL22-" +
-        Math.random()
-        .toString(36)
-        .substring(2,8)
-        .toUpperCase();
-
-    const newUser = {
-
-        email,
-        phone,
-        password,
-
-        referralCode,
-
-        usedReferral: referral,
-
-        balance: 0,
-
-        taskProfit: 0,
-
-        referralProfit: 0,
-
-        referralCount: 0
-
-    };
-
-    users.push(newUser);
-
-    /*
-      حساب الدعوة بشكل تجريبي
-    */
-
-    if (referral) {
-
-        const inviter =
-            users.find(u =>
-                u.referralCode === referral
-            );
-
-        if (inviter) {
-
-            inviter.referralCount++;
-
-            inviter.referralProfit += 5;
-
-            inviter.balance += 5;
-
-        }
-
-    }
-
-    localStorage.setItem(
-        "xl22_users",
-        JSON.stringify(users)
-    );
-
-    alert("تم إنشاء الحساب بنجاح");
-
-    currentUserIndex =
-        users.length - 1;
-
-    localStorage.setItem(
-        "xl22_currentUser",
-        currentUserIndex
-    );
-
-    openApp();
+return;
 
 }
 
 
-/* =========================
+if(password.length < 6){
+
+showError(
+"registerError",
+"كلمة المرور يجب أن تكون 6 أحرف على الأقل"
+);
+
+return;
+
+}
+
+
+if(password !== confirm){
+
+showError(
+"registerError",
+"كلمتا المرور غير متطابقتين"
+);
+
+return;
+
+}
+
+
+if(
+users.some(
+user =>
+user.identifier === identifier
+)
+){
+
+showError(
+"registerError",
+"هذا البريد الإلكتروني أو رقم الهاتف مستخدم مسبقاً"
+);
+
+return;
+
+}
+
+
+/* إنشاء كود جديد */
+
+const referralCode =
+generateReferralCode();
+
+
+const newUser = {
+
+identifier:identifier,
+
+password:password,
+
+referralCode:referralCode,
+
+invitedBy:null,
+
+balance:0,
+
+taskProfit:0,
+
+referralProfit:0,
+
+referralCount:0,
+
+transactions:[]
+
+};
+
+
+/* ربط الدعوة */
+
+if(referral){
+
+const inviterIndex =
+users.findIndex(
+user =>
+user.referralCode === referral
+);
+
+
+if(inviterIndex !== -1){
+
+newUser.invitedBy =
+referral;
+
+
+/*
+هنا يتم فقط تسجيل الدعوة.
+يمكن لاحقاً تحديد مبلغ الربح
+من قاعدة البيانات.
+*/
+
+users[inviterIndex]
+.referralCount++;
+
+}
+
+}
+
+
+/* إضافة المستخدم */
+
+users.push(newUser);
+
+
+saveUsers();
+
+
+currentUserIndex =
+users.length - 1;
+
+
+localStorage.setItem(
+"XL22_CURRENT_USER",
+currentUserIndex
+);
+
+
+openApp();
+
+}
+
+
+/* =========================================
    LOGIN
-========================= */
+========================================= */
 
-function login() {
+function login(){
 
-    const identifier =
-        document.getElementById("loginIdentifier")
-        .value.trim();
+const identifier =
+document
+.getElementById("loginIdentifier")
+.value
+.trim();
 
-    const password =
-        document.getElementById("loginPassword")
-        .value;
+const password =
+document
+.getElementById("loginPassword")
+.value;
 
-    const index =
-        users.findIndex(u =>
-            (u.email === identifier ||
-             u.phone === identifier)
-            &&
-            u.password === password
-        );
 
-    if (index === -1) {
+const index =
+users.findIndex(
+user =>
+user.identifier === identifier
+&&
+user.password === password
+);
 
-        showError(
-            "loginError",
-            "بيانات تسجيل الدخول غير صحيحة"
-        );
 
-        return;
+if(index === -1){
 
-    }
+showError(
+"loginError",
+"البريد الإلكتروني أو رقم الهاتف أو كلمة المرور غير صحيحة"
+);
 
-    currentUserIndex = index;
-
-    localStorage.setItem(
-        "xl22_currentUser",
-        index
-    );
-
-    openApp();
+return;
 
 }
 
 
-/* =========================
+currentUserIndex =
+index;
+
+
+localStorage.setItem(
+"XL22_CURRENT_USER",
+index
+);
+
+
+openApp();
+
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+function showError(id,message){
+
+const box =
+document.getElementById(id);
+
+box.textContent =
+message;
+
+box.classList.remove("hidden");
+
+}
+
+
+/* =========================================
    OPEN APP
-========================= */
+========================================= */
 
-function openApp() {
+function openApp(){
 
-    document
-        .getElementById("authScreen")
-        .classList.add("hidden");
+document
+.getElementById("authScreen")
+.classList.add("hidden");
 
-    document
-        .getElementById("app")
-        .classList.remove("hidden");
+document
+.getElementById("app")
+.classList.remove("hidden");
 
-    updateDashboard();
-
-}
-
-
-/* =========================
-   UPDATE DASHBOARD
-========================= */
-
-function updateDashboard() {
-
-    const user =
-        users[currentUserIndex];
-
-    if (!user) return;
-
-    document.getElementById("balance")
-        .textContent =
-        user.balance.toFixed(2);
-
-    document.getElementById("taskProfit")
-        .textContent =
-        user.taskProfit.toFixed(2);
-
-    document.getElementById("referralProfit")
-        .textContent =
-        user.referralProfit.toFixed(2);
-
-    document.getElementById("referralProfitPage")
-        .textContent =
-        user.referralProfit.toFixed(2);
-
-    document.getElementById("referralCount")
-        .textContent =
-        user.referralCount;
-
-    document.getElementById("myReferralCode")
-        .value =
-        user.referralCode;
-
-    document.getElementById("shareReferralCode")
-        .value =
-        user.referralCode;
-
-    document.getElementById("referralCodePage")
-        .textContent =
-        user.referralCode;
-
-    document.getElementById("settingsEmail")
-        .value =
-        user.email;
-
-    document.getElementById("settingsPhone")
-        .value =
-        user.phone;
-
-    document.getElementById("headerUser")
-        .textContent =
-        user.email;
-
-    document.getElementById("avatar")
-        .textContent =
-        user.email.charAt(0).toUpperCase();
+updateUI();
 
 }
 
 
-/* =========================
+/* =========================================
+   UPDATE UI
+========================================= */
+
+function updateUI(){
+
+const user =
+users[currentUserIndex];
+
+
+if(!user)return;
+
+
+/* Balance */
+
+document
+.getElementById("homeBalance")
+.textContent =
+user.balance.toFixed(2);
+
+
+document
+.getElementById("balancePageValue")
+.textContent =
+user.balance.toFixed(2);
+
+
+/* Profits */
+
+document
+.getElementById("homeTaskProfit")
+.textContent =
+user.taskProfit.toFixed(2);
+
+
+document
+.getElementById("homeReferralProfit")
+.textContent =
+user.referralProfit.toFixed(2);
+
+
+document
+.getElementById("profitTask")
+.textContent =
+user.taskProfit.toFixed(2);
+
+
+document
+.getElementById("profitReferral")
+.textContent =
+user.referralProfit.toFixed(2);
+
+
+document
+.getElementById("referralPageProfit")
+.textContent =
+user.referralProfit.toFixed(2);
+
+
+/* Referral */
+
+document
+.getElementById("homeReferralCode")
+.value =
+user.referralCode;
+
+
+document
+.getElementById("referralPageCode")
+.value =
+user.referralCode;
+
+
+document
+.getElementById("referralCount")
+.textContent =
+user.referralCount;
+
+
+/* User */
+
+document
+.getElementById("headerUser")
+.textContent =
+user.identifier;
+
+
+document
+.getElementById("avatar")
+.textContent =
+user.identifier
+.charAt(0)
+.toUpperCase();
+
+
+/* Settings */
+
+document
+.getElementById("settingsIdentifier")
+.value =
+user.identifier;
+
+
+/* Transactions */
+
+renderTransactions();
+
+}
+
+
+/* =========================================
    NAVIGATION
-========================= */
+========================================= */
 
-function showPage(pageId, button) {
+function showPage(pageId,button){
 
-    document
-        .querySelectorAll(".page")
-        .forEach(page =>
-            page.classList.remove("active")
-        );
+document
+.querySelectorAll(".page")
+.forEach(
+page =>
+page.classList.remove("active")
+);
 
-    document
-        .getElementById(pageId)
-        .classList.add("active");
 
-    document
-        .querySelectorAll(".nav-item")
-        .forEach(btn =>
-            btn.classList.remove("active")
-        );
+document
+.getElementById(pageId)
+.classList.add("active");
 
-    if (button) {
-        button.classList.add("active");
-    }
 
-    document
-        .getElementById("sidebar")
-        .classList.remove("open");
+document
+.querySelectorAll(".nav-item")
+.forEach(
+btn =>
+btn.classList.remove("active")
+);
+
+
+if(button){
+
+button.classList.add("active");
 
 }
 
 
-/* =========================
+document
+.getElementById("sidebar")
+.classList.remove("open");
+
+}
+
+
+function showPageById(id){
+
+document
+.querySelectorAll(".page")
+.forEach(
+page =>
+page.classList.remove("active")
+);
+
+
+document
+.getElementById(id)
+.classList.add("active");
+
+}
+
+
+/* =========================================
    SIDEBAR
-========================= */
+========================================= */
 
-function toggleSidebar() {
+function toggleSidebar(){
 
-    document
-        .getElementById("sidebar")
-        .classList.toggle("open");
+document
+.getElementById("sidebar")
+.classList.toggle("open");
 
 }
 
 
-/* =========================
+/* =========================================
    COPY REFERRAL
-========================= */
+========================================= */
 
-function copyReferral() {
+function copyReferral(){
 
-    const user =
-        users[currentUserIndex];
-
-    navigator.clipboard.writeText(
-        user.referralCode
-    );
-
-    alert("تم نسخ كود الدعوة");
-
-}
+const user =
+users[currentUserIndex];
 
 
-/* =========================
-   PROFILE
-========================= */
-
-function updateProfile() {
-
-    const email =
-        document.getElementById("settingsEmail")
-        .value.trim();
-
-    const phone =
-        document.getElementById("settingsPhone")
-        .value.trim();
-
-    if (!email || !phone) {
-
-        alert("يرجى تعبئة جميع البيانات");
-
-        return;
-
-    }
-
-    users[currentUserIndex].email =
-        email;
-
-    users[currentUserIndex].phone =
-        phone;
-
-    saveUsers();
-
-    updateDashboard();
-
-    alert("تم تحديث البيانات");
+navigator.clipboard
+.writeText(
+user.referralCode
+)
+.then(
+() =>
+alert(
+"تم نسخ كود الدعوة: "
++
+user.referralCode
+)
+);
 
 }
 
 
-/* =========================
-   CHANGE PASSWORD
-========================= */
+/* =========================================
+   SHARE REFERRAL
+========================================= */
 
-function changePassword() {
+function shareReferral(){
 
-    const password =
-        document.getElementById("newPassword")
-        .value;
+const user =
+users[currentUserIndex];
 
-    if (password.length < 6) {
 
-        alert(
-            "كلمة المرور يجب أن تكون 6 أحرف على الأقل"
-        );
+const text =
+"انضم إلى XL22 باستخدام كود الدعوة الخاص بي: "
++
+user.referralCode;
 
-        return;
 
-    }
+if(
+navigator.share
+){
 
-    users[currentUserIndex].password =
-        password;
+navigator.share({
 
-    saveUsers();
+title:"XL22",
 
-    document.getElementById("newPassword")
-        .value = "";
+text:text
 
-    alert("تم تغيير كلمة المرور بنجاح");
+});
+
+}else{
+
+copyReferral();
+
+}
 
 }
 
 
-/* =========================
+/* =========================================
    DEPOSIT
-========================= */
+========================================= */
 
-function deposit() {
+function deposit(){
 
-    const amount =
-        Number(
-            document.getElementById("depositAmount")
-            .value
-        );
+const amount =
+Number(
+document
+.getElementById("depositAmount")
+.value
+);
 
-    if (!amount || amount <= 0) {
 
-        alert("أدخل مبلغاً صحيحاً");
+if(!amount || amount <= 0){
 
-        return;
+alert(
+"يرجى إدخال مبلغ صحيح"
+);
 
-    }
-
-    /*
-      تجريبي فقط:
-      في النظام الحقيقي يجب إنشاء طلب
-      وربطه ببوابة دفع وقاعدة بيانات.
-    */
-
-    users[currentUserIndex].balance += amount;
-
-    saveUsers();
-
-    updateDashboard();
-
-    closeModal("depositModal");
-
-    document.getElementById("depositAmount")
-        .value = "";
-
-    alert(
-        "تم تسجيل الإيداع بشكل تجريبي"
-    );
+return;
 
 }
 
 
-/* =========================
+const user =
+users[currentUserIndex];
+
+
+/*
+هذه عملية تجريبية فقط.
+في النسخة الحقيقية يتم إنشاء طلب إيداع
+ويرسل إلى Backend وقاعدة البيانات.
+*/
+
+user.balance += amount;
+
+
+user.transactions.push({
+
+type:"إيداع",
+
+amount:amount,
+
+date:new Date()
+.toLocaleString("ar")
+
+});
+
+
+saveUsers();
+
+updateUI();
+
+closeModal("depositModal");
+
+
+document
+.getElementById("depositAmount")
+.value = "";
+
+
+alert(
+"تم تسجيل الإيداع بشكل تجريبي"
+);
+
+}
+
+
+/* =========================================
    WITHDRAW
-========================= */
+========================================= */
 
-function withdraw() {
+function withdraw(){
 
-    const amount =
-        Number(
-            document.getElementById("withdrawAmount")
-            .value
-        );
+const amount =
+Number(
+document
+.getElementById("withdrawAmount")
+.value
+);
 
-    const user =
-        users[currentUserIndex];
 
-    if (!amount || amount <= 0) {
+const user =
+users[currentUserIndex];
 
-        alert("أدخل مبلغاً صحيحاً");
 
-        return;
+if(!amount || amount <= 0){
 
-    }
+alert(
+"يرجى إدخال مبلغ صحيح"
+);
 
-    if (amount > user.balance) {
-
-        alert(
-            "الرصيد غير كافٍ لإتمام العملية"
-        );
-
-        return;
-
-    }
-
-    /*
-      تجريبي فقط
-    */
-
-    user.balance -= amount;
-
-    saveUsers();
-
-    updateDashboard();
-
-    closeModal("withdrawModal");
-
-    document.getElementById("withdrawAmount")
-        .value = "";
-
-    alert(
-        "تم تسجيل طلب السحب بشكل تجريبي"
-    );
+return;
 
 }
 
 
-/* =========================
+if(amount > user.balance){
+
+alert(
+"الرصيد غير كافٍ"
+);
+
+return;
+
+}
+
+
+/*
+هذه عملية تجريبية فقط.
+*/
+
+user.balance -= amount;
+
+
+user.transactions.push({
+
+type:"سحب",
+
+amount:amount,
+
+date:new Date()
+.toLocaleString("ar")
+
+});
+
+
+saveUsers();
+
+updateUI();
+
+closeModal("withdrawModal");
+
+
+document
+.getElementById("withdrawAmount")
+.value = "";
+
+
+alert(
+"تم تسجيل طلب السحب بشكل تجريبي"
+);
+
+}
+
+
+/* =========================================
+   TRANSACTIONS
+========================================= */
+
+function renderTransactions(){
+
+const user =
+users[currentUserIndex];
+
+
+const list =
+document
+.getElementById("transactionsList");
+
+
+if(
+!user.transactions ||
+user.transactions.length === 0
+){
+
+list.innerHTML = `
+
+<div style="
+text-align:center;
+color:#777;
+padding:30px;
+">
+
+لا توجد معاملات حتى الآن
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+list.innerHTML =
+user.transactions
+.slice()
+.reverse()
+.map(
+transaction => `
+
+<div class="transaction">
+
+<div>
+
+<div class="transaction-name">
+
+${transaction.type}
+
+</div>
+
+<div class="transaction-date">
+
+${transaction.date}
+
+</div>
+
+</div>
+
+<div class="transaction-amount">
+
+$ ${Number(
+transaction.amount
+).toFixed(2)}
+
+</div>
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+/* =========================================
+   PROFILE
+========================================= */
+
+function updateProfile(){
+
+const identifier =
+document
+.getElementById("settingsIdentifier")
+.value
+.trim();
+
+
+if(!identifier){
+
+alert(
+"يرجى إدخال البريد الإلكتروني أو رقم الهاتف"
+);
+
+return;
+
+}
+
+
+users[currentUserIndex]
+.identifier =
+identifier;
+
+
+saveUsers();
+
+updateUI();
+
+
+alert(
+"تم تحديث البيانات"
+);
+
+}
+
+
+/* =========================================
+   CHANGE PASSWORD
+========================================= */
+
+function changePassword(){
+
+const password =
+document
+.getElementById("newPassword")
+.value;
+
+
+if(password.length < 6){
+
+alert(
+"كلمة المرور يجب أن تكون 6 أحرف على الأقل"
+);
+
+return;
+
+}
+
+
+users[currentUserIndex]
+.password =
+password;
+
+
+saveUsers();
+
+
+document
+.getElementById("newPassword")
+.value = "";
+
+
+alert(
+"تم تغيير كلمة المرور بنجاح"
+);
+
+}
+
+
+/* =========================================
    MODALS
-========================= */
+========================================= */
 
-function openModal(id) {
+function openModal(id){
 
-    document
-        .getElementById(id)
-        .classList.add("show");
-
-}
-
-function closeModal(id) {
-
-    document
-        .getElementById(id)
-        .classList.remove("show");
+document
+.getElementById(id)
+.classList.add("show");
 
 }
 
 
-/* =========================
-   LOGOUT
-========================= */
+function closeModal(id){
 
-function logout() {
-
-    localStorage.removeItem(
-        "xl22_currentUser"
-    );
-
-    location.reload();
+document
+.getElementById(id)
+.classList.remove("show");
 
 }
 
 
-/* =========================
+/* =========================================
    SAVE
-========================= */
+========================================= */
 
-function saveUsers() {
+function saveUsers(){
 
-    localStorage.setItem(
-        "xl22_users",
-        JSON.stringify(users)
-    );
+localStorage.setItem(
+"XL22_USERS",
+JSON.stringify(users)
+);
 
 }
 
 
-/* =========================
+/* =========================================
+   LOGOUT
+========================================= */
+
+function logout(){
+
+localStorage.removeItem(
+"XL22_CURRENT_USER"
+);
+
+location.reload();
+
+}
+
+
+/* =========================================
    AUTO LOGIN
-========================= */
+========================================= */
 
-if (
-    currentUserIndex !== null &&
-    users[currentUserIndex]
-) {
+if(
+currentUserIndex !== null
+&&
+users[currentUserIndex]
+){
 
-    openApp();
+openApp();
 
 }
 
 </script>
 
 </body>
-  </html>
+    </html>
