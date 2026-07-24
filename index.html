@@ -1,3176 +1,2516 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XL22</title>
-
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+<title>XL22</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-    --gold:#d4af37;
-    --gold2:#f1d46a;
-    --gold3:#8e6d16;
-    --black:#090909;
-    --black2:#111111;
-    --black3:#1a1a1a;
-    --white:#fff;
-    --muted:#aaa;
-    --green:#20c77a;
-    --red:#ef5350;
+--gold:#d4af37;
+--gold2:#f0cf63;
+--gold3:#8f7118;
+--black:#090909;
+--black2:#111111;
+--card:#171717;
+--card2:#1d1d1d;
+--border:rgba(212,175,55,.25);
+--text:#fff;
+--muted:#aaa;
+--green:#25c76f;
+--red:#e85b5b;
 }
 
 body{
-    font-family:Arial,"Tahoma",sans-serif;
-    background:
-        radial-gradient(circle at top right,rgba(212,175,55,.12),transparent 30%),
-        var(--black);
-    color:#fff;
-    min-height:100vh;
+font-family:Arial,"Tahoma",sans-serif;
+background:var(--black);
+color:var(--text);
+min-height:100vh;
+overflow-x:hidden;
 }
 
-button,input,textarea{
-    font-family:inherit;
+button,input,textarea{font-family:inherit}
+
+button{cursor:pointer}
+
+.hidden{display:none!important}
+
+/* خلفية متحركة خفيفة */
+.bg-animation{
+position:fixed;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+z-index:0;
+opacity:.10;
 }
 
-button{
-    cursor:pointer;
+.bg-symbol{
+position:absolute;
+color:var(--gold);
+font-weight:bold;
+animation:floatSymbol linear infinite;
 }
 
-.hidden{
-    display:none!important;
+.s1{left:5%;font-size:28px;animation-duration:18s}
+.s2{left:18%;font-size:20px;animation-duration:24s}
+.s3{left:35%;font-size:32px;animation-duration:20s}
+.s4{left:55%;font-size:22px;animation-duration:27s}
+.s5{left:72%;font-size:30px;animation-duration:19s}
+.s6{left:88%;font-size:21px;animation-duration:23s}
+
+@keyframes floatSymbol{
+0%{transform:translateY(110vh) rotate(0deg);opacity:0}
+15%{opacity:1}
+85%{opacity:1}
+100%{transform:translateY(-120px) rotate(360deg);opacity:0}
 }
 
 /* AUTH */
-
 .auth-screen{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(212,175,55,.16),transparent 30%),
-        radial-gradient(circle at 80% 80%,rgba(212,175,55,.10),transparent 30%),
-        #070707;
+position:relative;
+z-index:2;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:
+radial-gradient(circle at top,#2b2410 0%,#090909 48%,#050505 100%);
 }
 
 .auth-box{
-    width:100%;
-    max-width:430px;
-    background:linear-gradient(145deg,#171717,#0d0d0d);
-    border:1px solid rgba(212,175,55,.35);
-    border-radius:25px;
-    padding:32px;
-    box-shadow:0 25px 80px rgba(0,0,0,.7);
+width:100%;
+max-width:440px;
+background:rgba(18,18,18,.97);
+border:1px solid var(--border);
+border-radius:24px;
+padding:32px 25px;
+box-shadow:0 20px 80px rgba(0,0,0,.65);
 }
 
 .logo{
-    color:var(--gold);
-    font-size:34px;
-    font-weight:900;
-    letter-spacing:3px;
+font-size:32px;
+font-weight:900;
+letter-spacing:4px;
+color:var(--gold);
+text-align:center;
 }
 
 .auth-logo{
-    text-align:center;
-    margin-bottom:28px;
+text-align:center;
+margin-bottom:28px;
 }
 
 .auth-logo p{
-    color:#999;
-    margin-top:8px;
+color:var(--muted);
+margin-top:8px;
 }
 
 .form-title{
-    text-align:center;
-    margin-bottom:25px;
+text-align:center;
+margin-bottom:22px;
 }
 
 .input-group{
-    margin-bottom:17px;
+margin-bottom:16px;
 }
 
 .input-group label{
-    display:block;
-    margin-bottom:8px;
-    color:#ddd;
-    font-size:14px;
+display:block;
+margin-bottom:7px;
+font-size:14px;
+color:#ddd;
 }
 
 .input-wrap{
-    position:relative;
+position:relative;
 }
 
 input,textarea{
-    width:100%;
-    padding:14px;
-    border-radius:12px;
-    border:1px solid #333;
-    background:#080808;
-    color:#fff;
-    outline:none;
+width:100%;
+padding:13px 14px;
+border-radius:10px;
+border:1px solid #3b3b3b;
+background:#0d0d0d;
+color:#fff;
+outline:none;
+font-size:15px;
 }
 
 input:focus,textarea:focus{
-    border-color:var(--gold);
-    box-shadow:0 0 0 3px rgba(212,175,55,.1);
+border-color:var(--gold);
+box-shadow:0 0 0 3px rgba(212,175,55,.10);
 }
 
-textarea{
-    min-height:110px;
-    resize:vertical;
+.password-input{
+padding-left:50px;
 }
 
 .eye-btn{
-    position:absolute;
-    left:10px;
-    top:50%;
-    transform:translateY(-50%);
-    border:0;
-    background:none;
-    color:var(--gold);
-    font-size:20px;
-    padding:5px;
+position:absolute;
+left:8px;
+top:50%;
+transform:translateY(-50%);
+width:38px;
+height:36px;
+border:0;
+border-radius:8px;
+background:transparent;
+color:var(--gold);
+font-size:20px;
+}
+
+.eye-btn:hover{
+background:rgba(212,175,55,.12);
 }
 
 .main-btn{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,var(--gold2),var(--gold));
-    color:#111;
-    font-weight:900;
-    margin-top:5px;
-    transition:.2s;
+width:100%;
+border:0;
+padding:14px;
+border-radius:10px;
+background:linear-gradient(135deg,var(--gold2),var(--gold3));
+color:#090909;
+font-size:16px;
+font-weight:800;
+margin-top:4px;
 }
 
 .main-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 25px rgba(212,175,55,.25);
+filter:brightness(1.12);
 }
 
 .switch-text{
-    text-align:center;
-    margin-top:20px;
-    color:#999;
+text-align:center;
+margin-top:20px;
+color:#999;
 }
 
 .switch-text span{
-    color:var(--gold);
-    font-weight:bold;
-    cursor:pointer;
+color:var(--gold);
+font-weight:bold;
+cursor:pointer;
 }
 
 .error,.success{
-    padding:11px;
-    border-radius:10px;
-    margin-bottom:15px;
-    font-size:14px;
+padding:11px;
+border-radius:9px;
+margin-bottom:15px;
+font-size:14px;
 }
 
 .error{
-    background:#351717;
-    color:#ff9a9a;
+background:rgba(180,50,50,.15);
+border:1px solid rgba(220,80,80,.3);
+color:#ff9b9b;
 }
 
 .success{
-    background:#20351f;
-    color:#9be69b;
+background:rgba(212,175,55,.12);
+border:1px solid var(--border);
+color:var(--gold2);
 }
 
 /* APP */
+#app{
+position:relative;
+z-index:1;
+}
 
 .header{
-    position:fixed;
-    top:0;
-    right:0;
-    left:0;
-    height:70px;
-    background:rgba(10,10,10,.94);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid rgba(212,175,55,.2);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 25px;
-    z-index:100;
+position:fixed;
+top:0;
+right:0;
+left:0;
+height:70px;
+background:rgba(10,10,10,.96);
+border-bottom:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 25px;
+z-index:100;
+backdrop-filter:blur(10px);
+}
+
+.header .logo{
+font-size:25px;
 }
 
 .header-user{
-    display:flex;
-    align-items:center;
-    gap:10px;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .avatar{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--gold2),var(--gold));
-    color:#111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
+width:40px;
+height:40px;
+border-radius:50%;
+background:linear-gradient(135deg,var(--gold2),var(--gold3));
+color:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
 }
 
 .mobile-menu{
-    display:none;
-    background:none;
-    border:0;
-    color:var(--gold);
-    font-size:26px;
+display:none;
+border:0;
+background:none;
+color:var(--gold);
+font-size:26px;
 }
 
 /* SIDEBAR */
-
 .sidebar{
-    position:fixed;
-    top:70px;
-    right:0;
-    bottom:0;
-    width:240px;
-    background:#0d0d0d;
-    border-left:1px solid rgba(212,175,55,.18);
-    padding:20px 15px;
-    z-index:90;
+position:fixed;
+top:70px;
+right:0;
+bottom:0;
+width:245px;
+background:#0d0d0d;
+border-left:1px solid var(--border);
+padding:20px 15px;
+z-index:90;
 }
 
 .nav-title{
-    color:#777;
-    font-size:12px;
-    margin:15px 10px 8px;
+font-size:12px;
+color:var(--gold3);
+margin:15px 10px 8px;
 }
 
 .nav-item{
-    width:100%;
-    padding:13px;
-    border:0;
-    border-radius:11px;
-    background:transparent;
-    color:#bbb;
-    text-align:right;
-    margin-bottom:5px;
+width:100%;
+border:0;
+background:transparent;
+text-align:right;
+padding:13px;
+border-radius:10px;
+margin-bottom:6px;
+color:#ccc;
+font-size:15px;
 }
 
 .nav-item:hover,
 .nav-item.active{
-    background:linear-gradient(90deg,rgba(212,175,55,.08),rgba(212,175,55,.22));
-    color:var(--gold2);
+background:rgba(212,175,55,.14);
+color:var(--gold2);
+font-weight:bold;
 }
 
 /* CONTENT */
-
 .content{
-    margin-right:240px;
-    padding:100px 30px 40px;
-    max-width:1500px;
+margin-right:245px;
+padding:100px 30px 40px;
 }
 
-.page{
-    display:none;
-}
+.page{display:none}
 
-.page.active{
-    display:block;
-}
+.page.active{display:block}
 
 .page-title{
-    margin-bottom:25px;
+margin-bottom:25px;
 }
 
 .page-title h1{
-    font-size:30px;
+font-size:28px;
+color:var(--gold2);
 }
 
 .page-title p{
-    color:#888;
-    margin-top:6px;
-}
-
-/* HOME HERO */
-
-.hero{
-    position:relative;
-    overflow:hidden;
-    min-height:210px;
-    border-radius:24px;
-    padding:30px;
-    margin-bottom:25px;
-    background:
-        linear-gradient(135deg,rgba(212,175,55,.25),rgba(10,10,10,.95) 55%),
-        #111;
-    border:1px solid rgba(212,175,55,.25);
-}
-
-.hero:before{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    border:1px solid rgba(212,175,55,.25);
-    left:30px;
-    top:-60px;
-}
-
-.hero:after{
-    content:"";
-    position:absolute;
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    border:1px solid rgba(212,175,55,.15);
-    left:100px;
-    bottom:-60px;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-
-.hero h2{
-    font-size:28px;
-    margin-bottom:10px;
-}
-
-.hero p{
-    color:#bbb;
-    max-width:600px;
-}
-
-.hero-badge{
-    display:inline-block;
-    margin-top:20px;
-    padding:8px 14px;
-    border-radius:20px;
-    background:rgba(212,175,55,.15);
-    color:var(--gold2);
-}
-
-/* QUICK CARDS */
-
-.quick-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:25px;
-}
-
-.quick-card{
-    background:linear-gradient(145deg,#171717,#0e0e0e);
-    border:1px solid #252525;
-    border-radius:18px;
-    padding:20px;
-    position:relative;
-    overflow:hidden;
-}
-
-.quick-card:after{
-    content:"";
-    position:absolute;
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:rgba(212,175,55,.06);
-    left:-20px;
-    bottom:-20px;
-}
-
-.quick-icon{
-    font-size:28px;
-    margin-bottom:10px;
-}
-
-.quick-card span{
-    color:#888;
-    font-size:13px;
-}
-
-.quick-card strong{
-    display:block;
-    color:var(--gold2);
-    font-size:22px;
-    margin-top:5px;
+color:var(--muted);
+margin-top:6px;
 }
 
 /* MARKET */
-
 .market-section{
-    background:#111;
-    border:1px solid #252525;
-    border-radius:22px;
-    padding:22px;
+background:#111;
+border:1px solid var(--border);
+border-radius:20px;
+padding:25px;
+box-shadow:0 10px 40px rgba(0,0,0,.25);
 }
 
 .market-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.market-header h2{
+font-size:21px;
+}
+
+.market-header p{
+color:#999;
+font-size:14px;
+margin-top:5px;
 }
 
 .market-status{
-    color:#6fdc9c;
-    font-size:13px;
+color:var(--green);
+font-size:14px;
 }
 
 .status-dot{
-    display:inline-block;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#39d98a;
-    margin-left:5px;
+width:8px;
+height:8px;
+display:inline-block;
+background:var(--green);
+border-radius:50%;
+margin-left:5px;
+box-shadow:0 0 10px var(--green);
 }
 
+/* العملات */
 .crypto-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+display:flex;
+flex-direction:column;
+gap:10px;
 }
 
 .crypto-card{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px;
-    background:#0c0c0c;
-    border:1px solid #222;
-    border-radius:14px;
-    transition:.2s;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:17px 20px;
+background:#181818;
+border:1px solid #292929;
+border-radius:14px;
+transition:.2s;
 }
 
 .crypto-card:hover{
-    border-color:rgba(212,175,55,.35);
-    transform:translateY(-2px);
+transform:translateY(-2px);
+border-color:var(--border);
 }
 
 .crypto-info{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    direction:ltr;
+display:flex;
+align-items:center;
+gap:13px;
+direction:ltr;
 }
 
 .crypto-icon{
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    color:white;
+width:45px;
+height:45px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+font-weight:800;
+font-size:19px;
 }
 
-.crypto-name h3{
-    font-size:15px;
+.crypto-info h3{
+font-size:16px;
 }
 
-.crypto-name span{
-    color:#777;
-    font-size:12px;
+.crypto-info span{
+color:#888;
+font-size:12px;
 }
 
 .crypto-price{
-    text-align:left;
-    direction:ltr;
+text-align:right;
+direction:ltr;
+min-width:130px;
 }
 
 .price-number{
-    display:block;
-    font-weight:bold;
+display:block;
+font-size:17px;
+font-weight:800;
+text-align:right;
 }
 
-.price-up{
-    color:var(--green);
-    font-size:13px;
+.price-up,.price-down{
+display:block;
+margin-top:3px;
+font-size:13px;
+font-weight:bold;
+text-align:right;
 }
 
-.price-down{
-    color:var(--red);
-    font-size:13px;
-}
-
-/* COINS */
+.price-up{color:var(--green)}
+.price-down{color:var(--red)}
 
 .bitcoin{background:#f7931a}
 .ethereum{background:#627eea}
 .usdt{background:#26a17b}
-.bnb{background:#d9a91a}
-.solana{background:#604cff}
-.xrp{background:#333}
+.bnb{background:#f3ba2f;color:#222}
+.solana{background:#6d5dfc}
+.xrp{background:#23292f}
 .cardano{background:#3468d4}
-.doge{background:#b69b2b}
-.tron{background:#d9273e}
+.doge{background:#c2a633}
+.tron{background:#e91d38}
 .dot{background:#e6007a}
 .link{background:#2a5ada}
 .avax{background:#e84142}
+.ltc{background:#345d9d}
+.shib{background:#f3a847}
+.matic{background:#8247e5}
+.near{background:#111;border:1px solid #444}
 
 /* CARDS */
-
 .balance-card,
 .small-card,
 .task-card,
 .team-level,
 .settings-box,
-.referral-box,
-.table-box{
-    background:linear-gradient(145deg,#171717,#0d0d0d);
-    border:1px solid #252525;
-    border-radius:18px;
-    padding:22px;
+.referral-card{
+background:#151515;
+border:1px solid var(--border);
+border-radius:18px;
+padding:25px;
+box-shadow:0 7px 25px rgba(0,0,0,.2);
 }
 
 .balance-value{
-    color:var(--gold2);
-    font-size:36px;
-    font-weight:bold;
-    margin-top:10px;
+font-size:35px;
+font-weight:800;
+color:var(--gold2);
+margin-top:10px;
+direction:ltr;
+text-align:right;
 }
 
 .balance-label{
-    color:#888;
+color:#999;
 }
 
-.small-cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    margin-top:18px;
+.small-cards,
+.tasks-grid,
+.vip-grid,
+.settings-grid{
+display:grid;
+gap:18px;
+margin-top:20px;
 }
+
+.small-cards{grid-template-columns:repeat(2,1fr)}
+.tasks-grid{grid-template-columns:repeat(3,1fr)}
+.vip-grid{grid-template-columns:repeat(5,1fr)}
+.settings-grid{grid-template-columns:repeat(2,1fr)}
 
 .small-card-value{
-    color:var(--gold2);
-    font-size:22px;
-    font-weight:bold;
-    margin-top:8px;
+font-size:22px;
+font-weight:700;
+margin-top:8px;
+direction:ltr;
+text-align:right;
 }
 
-.money-actions{
-    display:flex;
-    gap:15px;
-    margin-top:18px;
-}
-
-.money-btn{
-    flex:1;
-    padding:14px;
-    border:0;
-    border-radius:11px;
-    font-weight:bold;
-}
-
-.deposit{
-    background:var(--gold);
-    color:#111;
-}
-
-.withdraw{
-    background:#272727;
-    color:var(--gold2);
-    border:1px solid var(--gold);
-}
-
-/* TASKS */
-
-.tasks-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.task-icon{
-    font-size:30px;
-}
+.task-icon{font-size:30px}
 
 .task-card h3{
-    margin:12px 0 8px;
+margin:12px 0 8px;
 }
 
-.task-card p{
-    color:#888;
+.task-card p,.settings-box p{
+color:#999;
+font-size:14px;
 }
 
 .task-reward{
-    color:var(--green);
-    font-weight:bold;
-    margin:15px 0;
+color:var(--green);
+font-weight:800;
+margin:15px 0;
+direction:ltr;
+text-align:right;
 }
 
-.task-btn{
-    padding:10px 16px;
-    border:0;
-    border-radius:9px;
-    background:var(--gold);
-    color:#111;
-    font-weight:bold;
+.task-btn,.copy-btn,.share-btn{
+border:0;
+padding:10px 15px;
+border-radius:9px;
+font-weight:700;
+}
+
+.task-btn,.copy-btn{
+background:var(--gold);
+color:#111;
+}
+
+.share-btn{
+background:rgba(212,175,55,.15);
+color:var(--gold2);
+}
+
+.money-actions{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+.money-btn{
+flex:1;
+border:0;
+padding:14px;
+border-radius:10px;
+font-weight:700;
+}
+
+.deposit{
+background:var(--gold);
+color:#111;
+}
+
+.withdraw{
+background:#282828;
+color:var(--gold2);
+border:1px solid var(--border);
 }
 
 /* TEAM */
-
-.team-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.level-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .vip-badge{
-    color:#111;
-    background:linear-gradient(135deg,var(--gold2),var(--gold));
-    padding:10px 18px;
-    border-radius:12px;
-    font-weight:bold;
+background:rgba(212,175,55,.15);
+color:var(--gold2);
+padding:12px 20px;
+border-radius:12px;
+font-weight:800;
 }
 
 .progress{
-    height:9px;
-    background:#292929;
-    border-radius:20px;
-    margin-top:20px;
-    overflow:hidden;
+height:10px;
+background:#292929;
+border-radius:20px;
+margin-top:20px;
+overflow:hidden;
 }
 
 .progress-bar{
-    height:100%;
-    width:0;
-    background:linear-gradient(90deg,var(--gold),var(--gold2));
-    transition:.4s;
-}
-
-.vip-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:12px;
-    margin-top:18px;
+height:100%;
+width:0;
+background:linear-gradient(90deg,var(--gold3),var(--gold2));
+transition:.4s;
 }
 
 .vip-item{
-    padding:18px;
-    text-align:center;
-    background:#111;
-    border:1px solid #252525;
-    border-radius:14px;
+background:#161616;
+padding:20px;
+text-align:center;
+border-radius:15px;
+border:1px solid #292929;
+transition:.2s;
+}
+
+.vip-item:hover{
+transform:translateY(-3px);
+border-color:var(--border);
 }
 
 .vip-item.active{
-    background:rgba(212,175,55,.12);
-    border-color:var(--gold);
+background:linear-gradient(145deg,#30270f,#181818);
+border-color:var(--gold);
 }
 
 .vip-item h4{
-    color:var(--gold2);
+color:var(--gold2);
+margin-bottom:8px;
 }
 
 .vip-item p{
-    color:#888;
-    font-size:13px;
-    margin-top:5px;
+color:#aaa;
+font-size:14px;
 }
 
-/* REFERRAL */
-
-.referral-box{
-    margin-top:18px;
+.team-link{
+display:flex;
+gap:8px;
+margin-top:15px;
 }
 
-.referral-code-row{
-    display:flex;
-    gap:8px;
-    margin-top:15px;
+.team-link input{
+direction:ltr;
+text-align:left;
 }
 
-.referral-code-row input{
-    direction:ltr;
-    text-align:left;
+.referral-card{
+margin-top:18px;
 }
 
-.copy-btn,
-.share-btn{
-    border:0;
-    padding:10px 14px;
-    border-radius:9px;
-    font-weight:bold;
-    white-space:nowrap;
+.user-code-box{
+display:flex;
+gap:8px;
+margin-top:15px;
 }
 
-.copy-btn{
-    background:var(--gold);
-    color:#111;
+.user-code-box input{
+direction:ltr;
+text-align:center;
+font-size:18px;
+font-weight:bold;
+letter-spacing:2px;
+color:var(--gold2);
 }
 
-.share-btn{
-    background:#272727;
-    color:var(--gold2);
-}
-
-/* TABLE */
-
+/* TABLES */
 .table-box{
-    margin-top:18px;
-    overflow-x:auto;
+margin-top:20px;
+background:#151515;
+border:1px solid var(--border);
+border-radius:18px;
+padding:20px;
+overflow-x:auto;
 }
 
 .table-box h3{
-    margin-bottom:15px;
+color:var(--gold2);
+margin-bottom:15px;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:500px;
+width:100%;
+border-collapse:collapse;
+min-width:450px;
 }
 
 th,td{
-    padding:14px;
-    text-align:center;
-    border-bottom:1px solid #292929;
+padding:13px;
+text-align:center;
+border-bottom:1px solid #292929;
 }
 
 th{
-    color:var(--gold2);
-    background:#111;
+color:var(--gold2);
+background:#1b1b1b;
 }
 
 td{
-    color:#ddd;
+color:#ddd;
+}
+
+.percent{
+color:var(--gold2);
+font-weight:bold;
 }
 
 /* HISTORY */
-
-.record{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    padding:15px;
-    margin-top:10px;
-    background:#111;
-    border:1px solid #242424;
-    border-radius:12px;
+.withdraw-history-section{
+margin-top:25px;
+background:#151515;
+border:1px solid var(--border);
+border-radius:18px;
+padding:24px;
 }
 
-.record-date{
-    color:#777;
-    font-size:12px;
-    margin-top:4px;
+.withdraw-history-section h2{
+color:var(--gold2);
 }
 
-.record-amount{
-    color:var(--gold2);
-    font-weight:bold;
+.withdraw-history-section p{
+color:#999;
+font-size:14px;
+margin-top:5px;
 }
 
-/* MOBILE NAV */
-
-.mobile-bottom{
-    display:none;
+.withdraw-record{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+padding:16px;
+margin-top:12px;
+background:#1a1a1a;
+border:1px solid #292929;
+border-radius:14px;
 }
 
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.75);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:500;
-    padding:20px;
+.withdraw-record-date{
+color:#888;
+font-size:13px;
+margin-top:5px;
 }
 
-.modal.show{
-    display:flex;
+.withdraw-record-amount{
+font-weight:800;
+direction:ltr;
+text-align:right;
 }
 
-.modal-box{
-    width:100%;
-    max-width:450px;
-    background:#141414;
-    border:1px solid rgba(212,175,55,.35);
-    border-radius:20px;
-    padding:24px;
+.withdraw-status{
+padding:7px 13px;
+border-radius:8px;
+font-size:13px;
+font-weight:700;
 }
 
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+.withdraw-complete{
+background:rgba(212,175,55,.15);
+color:var(--gold2);
 }
 
-.close-btn{
-    background:none;
-    border:0;
-    color:#aaa;
-    font-size:28px;
+.withdraw-failed{
+background:rgba(220,70,70,.12);
+color:#ff9292;
 }
 
-/* TOAST */
-
-.toast{
-    position:fixed;
-    left:20px;
-    bottom:25px;
-    background:var(--gold);
-    color:#111;
-    padding:13px 20px;
-    border-radius:10px;
-    font-weight:bold;
-    z-index:1000;
-    display:none;
-}
-
-.toast.show{
-    display:block;
+.withdraw-empty{
+text-align:center;
+padding:30px;
+color:#888;
+background:#111;
+border-radius:12px;
+margin-top:20px;
 }
 
 /* MOBILE */
+.mobile-bottom{display:none}
 
 @media(max-width:900px){
 
-    .mobile-menu{
-        display:block;
-    }
+.mobile-menu{display:block}
 
-    .sidebar{
-        right:-250px;
-        transition:.3s;
-    }
+.sidebar{
+right:-250px;
+transition:.3s;
+}
 
-    .sidebar.open{
-        right:0;
-    }
+.sidebar.open{right:0}
 
-    .content{
-        margin-right:0;
-        padding:90px 15px 90px;
-    }
+.content{
+margin-right:0;
+padding:90px 15px 90px;
+}
 
-    .quick-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+.tasks-grid,.settings-grid{
+grid-template-columns:1fr;
+}
 
-    .tasks-grid{
-        grid-template-columns:1fr;
-    }
+.vip-grid{
+grid-template-columns:repeat(2,1fr);
+}
 
-    .vip-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+.mobile-bottom{
+position:fixed;
+bottom:0;
+right:0;
+left:0;
+height:65px;
+background:#0d0d0d;
+display:flex;
+justify-content:space-around;
+z-index:200;
+border-top:1px solid var(--border);
+}
 
-    .mobile-bottom{
-        position:fixed;
-        display:flex;
-        bottom:0;
-        right:0;
-        left:0;
-        height:68px;
-        background:rgba(10,10,10,.96);
-        border-top:1px solid rgba(212,175,55,.2);
-        z-index:200;
-        justify-content:space-around;
-        backdrop-filter:blur(15px);
-    }
+.bottom-item{
+border:0;
+background:transparent;
+color:#888;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-size:12px;
+}
 
-    .bottom-item{
-        flex:1;
-        background:none;
-        border:0;
-        color:#777;
-        font-size:11px;
-    }
-
-    .bottom-item span{
-        display:block;
-        margin-top:4px;
-    }
-
-    .bottom-item.active{
-        color:var(--gold2);
-    }
+.bottom-item.active{
+color:var(--gold2);
+font-weight:bold;
+}
 }
 
 @media(max-width:600px){
 
-    .auth-box{
-        padding:25px 20px;
-    }
-
-    .header{
-        padding:0 15px;
-    }
-
-    .header .logo{
-        font-size:25px;
-    }
-
-    .hero{
-        padding:22px;
-    }
-
-    .hero h2{
-        font-size:23px;
-    }
-
-    .quick-grid{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-    }
-
-    .quick-card{
-        padding:15px;
-    }
-
-    .small-cards{
-        grid-template-columns:1fr;
-    }
-
-    .money-actions{
-        flex-direction:column;
-    }
-
-    .referral-code-row{
-        flex-wrap:wrap;
-    }
-
-    .referral-code-row input{
-        width:100%;
-    }
-
-    .crypto-card{
-        padding:12px;
-    }
-
-    .crypto-icon{
-        width:38px;
-        height:38px;
-    }
-
-    .price-number{
-        font-size:13px;
-    }
+.auth-box{
+padding:25px 20px;
 }
-</style>
-</head>
 
-<body>
+.market-section{
+padding:15px;
+}
 
-<!-- AUTH -->
+.crypto-card{
+padding:13px;
+}
 
-<div id="authScreen" class="auth-screen">
+.crypto-icon{
+width:40px;
+height:40px;
+}
 
-<div class="auth-box">
+.price-number{
+font-size:14px;
+}
 
-<div class="auth-logo">
+.crypto-price{
+min-width:100px;
+}
+
+.small-cards{
+grid-template-columns:1fr;
+}
+
+.money-actions{
+flex-direction:column;
+}
+
+.withdraw-record{
+flex-wrap:wrap;
+}
+
+.withdraw-record-info{
+width:100%;
+}
+
+.team-link,.user-code-box{
+flex-wrap:wrap;
+}
+
+.team-link input,.user-code-box input{
+width:100%;
+}
+
+.team-link button,.user-code-box button{
+flex:1;
+}
+}
+
+/* MODAL */
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:500;
+padding:20px;
+}
+
+.modal.show{display:flex}
+
+.modal-box{
+width:100%;
+max-width:450px;
+background:#151515;
+padding:25px;
+border-radius:18px;
+border:1px solid var(--border);
+}
+
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.close-btn{
+border:0;
+background:none;
+color:var(--gold2);
+font-size:28px;
+}
+
+/* TOAST */
+.toast{
+position:fixed;
+left:20px;
+bottom:25px;
+background:var(--gold);
+color:#111;
+padding:13px 20px;
+border-radius:10px;
+z-index:1000;
+display:none;
+font-weight:bold;
+}
+
+.toast.show{display:block}
+</style></head><body><!-- خلفية --><div class="bg-animation">
+<span class="bg-symbol s1">₿</span>
+<span class="bg-symbol s2">↗</span>
+<span class="bg-symbol s3">Ξ</span>
+<span class="bg-symbol s4">₮</span>
+<span class="bg-symbol s5">↘</span>
+<span class="bg-symbol s6">◆</span>
+</div><!-- AUTH --><div id="authScreen" class="auth-screen"><div class="auth-box"><div class="auth-logo">
 <div class="logo">XL22</div>
 <p>منصتك الرقمية الذكية</p>
-</div>
-
-<div id="loginForm">
-
-<h2 class="form-title">تسجيل الدخول</h2>
-
-<div id="loginError" class="error hidden"></div>
-
-<div class="input-group">
-<label>كود المستخدم</label>
-<input id="loginCode" type="text" placeholder="أدخل كود المستخدم">
-</div>
-
-<div class="input-group">
+</div><!-- LOGIN --><div id="loginForm"><h2 class="form-title">تسجيل الدخول</h2><div id="loginError" class="error hidden"></div><div class="input-group">
+<label>البريد الإلكتروني أو رقم الهاتف</label>
+<input id="loginIdentifier" type="text" autocomplete="username" placeholder="أدخل البريد الإلكتروني أو رقم الهاتف">
+</div><div class="input-group">
 <label>كلمة المرور</label>
-
 <div class="input-wrap">
-<input id="loginPassword" type="password" placeholder="أدخل كلمة المرور">
-
-<button class="eye-btn" type="button" onclick="togglePassword('loginPassword',this)">
-👁
-</button>
+<input id="loginPassword" class="password-input" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور">
+<button type="button" class="eye-btn" onclick="togglePassword('loginPassword',this)">👁</button>
 </div>
-</div>
-
-<button class="main-btn" onclick="login()">
-تسجيل الدخول
-</button>
+</div><button class="main-btn" type="button" onclick="login()">تسجيل الدخول</button>
 
 <div class="switch-text">
 ليس لديك حساب؟
 <span onclick="showRegister()">إنشاء حساب</span>
-</div>
-
-</div>
-
-
-<div id="registerForm" class="hidden">
-
-<h2 class="form-title">إنشاء حساب</h2>
-
-<div id="registerError" class="error hidden"></div>
-
-<div class="input-group">
+</div></div><!-- REGISTER --><div id="registerForm" class="hidden"><h2 class="form-title">إنشاء حساب</h2><div id="registerError" class="error hidden"></div><div class="input-group">
+<label>البريد الإلكتروني أو رقم الهاتف</label>
+<input id="registerIdentifier" type="text" autocomplete="username" placeholder="البريد الإلكتروني أو رقم الهاتف">
+</div><div class="input-group">
 <label>كلمة المرور</label>
-
 <div class="input-wrap">
-<input id="registerPassword" type="password" placeholder="كلمة المرور">
-
-<button class="eye-btn" type="button" onclick="togglePassword('registerPassword',this)">
-👁
-</button>
+<input id="registerPassword" class="password-input" type="password" autocomplete="new-password" placeholder="كلمة المرور">
+<button type="button" class="eye-btn" onclick="togglePassword('registerPassword',this)">👁</button>
 </div>
-</div>
-
-<div class="input-group">
+</div><div class="input-group">
 <label>تأكيد كلمة المرور</label>
-
 <div class="input-wrap">
-<input id="registerConfirm" type="password" placeholder="تأكيد كلمة المرور">
-
-<button class="eye-btn" type="button" onclick="togglePassword('registerConfirm',this)">
-👁
-</button>
+<input id="registerConfirm" class="password-input" type="password" autocomplete="new-password" placeholder="تأكيد كلمة المرور">
+<button type="button" class="eye-btn" onclick="togglePassword('registerConfirm',this)">👁</button>
 </div>
-</div>
-
-<div class="input-group">
-<label>كود الدعوة - اختياري</label>
-<input id="registerReferral" type="text" placeholder="ضع كود الدعوة">
-</div>
-
-<button class="main-btn" onclick="register()">
-إنشاء الحساب
-</button>
+</div><div class="input-group">
+<label>كود الدعوة فقط</label>
+<input id="registerReferral" type="text" placeholder="أدخل كود الدعوة إن وجد">
+</div><button class="main-btn" type="button" onclick="register()">إنشاء الحساب</button>
 
 <div class="switch-text">
 لديك حساب؟
 <span onclick="showLogin()">تسجيل الدخول</span>
-</div>
+</div></div></div>
+</div><!-- APP --><div id="app" class="hidden"><header class="header"><button class="mobile-menu" onclick="toggleSidebar()">☰</button>
 
-</div>
-
-</div>
-</div>
-
-
-<!-- APP -->
-
-<div id="app" class="hidden">
-
-<header class="header">
-
-<button class="mobile-menu" onclick="toggleSidebar()">☰</button>
-
-<div class="logo">XL22</div>
-
-<div class="header-user">
+<div class="logo">XL22</div><div class="header-user">
 <div id="avatar" class="avatar">X</div>
 <span id="headerUser">مستخدم</span>
-</div>
+</div></header><aside id="sidebar" class="sidebar"><div class="nav-title">القائمة</div><button class="nav-item active" onclick="showPage('home',this)">🏠 الرئيسية</button>
+<button class="nav-item" onclick="showPage('tasksPage',this)">📋 المهام</button>
+<button class="nav-item" onclick="showPage('balancePage',this)">💰 الرصيد</button>
+<button class="nav-item" onclick="showPage('teamPage',this)">👑 الفريق</button>
 
-</header>
+<div class="nav-title">الحساب</div><button class="nav-item" onclick="showPage('transactionsPage',this)">📊 المعاملات</button>
+<button class="nav-item" onclick="showPage('settingsPage',this)">⚙️ الإعدادات</button>
+<button class="nav-item" onclick="logout()">🚪 تسجيل الخروج</button>
 
-
-<aside id="sidebar" class="sidebar">
-
-<div class="nav-title">القائمة</div>
-
-<button class="nav-item active" onclick="showPage('home',this)">
-🏠 الرئيسية
-</button>
-
-<button class="nav-item" onclick="showPage('tasksPage',this)">
-📋 المهام
-</button>
-
-<button class="nav-item" onclick="showPage('balancePage',this)">
-💰 الرصيد
-</button>
-
-<button class="nav-item" onclick="showPage('teamPage',this)">
-👑 الفريق
-</button>
-
-<div class="nav-title">الحساب</div>
-
-<button class="nav-item" onclick="showPage('transactionsPage',this)">
-📊 المعاملات
-</button>
-
-<button class="nav-item" onclick="showPage('settingsPage',this)">
-⚙️ الإعدادات
-</button>
-
-<button class="nav-item" onclick="logout()">
-🚪 تسجيل الخروج
-</button>
-
-</aside>
-
-
-<main class="content">
-
-
-<!-- HOME -->
-
-<section id="home" class="page active">
-
-<div class="page-title">
+</aside><main class="content"><!-- HOME --><section id="home" class="page active"><div class="page-title">
 <h1>الرئيسية</h1>
-<p>مرحباً بك في منصة XL22</p>
-</div>
-
-<div class="hero">
-
-<div class="hero-content">
-
-<h2>ابدأ رحلتك مع XL22</h2>
-
-<p>
-تابع رصيدك، أنجز المهام، وشارك رابط الدعوة الخاص بك للحصول على مكافآت ونسب إضافية.
-</p>
-
-<div class="hero-badge">
-● النظام يعمل بشكل تجريبي
-</div>
-
-</div>
-
-</div>
-
-
-<div class="quick-grid">
-
-<div class="quick-card">
-<div class="quick-icon">💰</div>
-<span>الرصيد الحالي</span>
-<strong>$ <span id="homeBalance">0.00</span></strong>
-</div>
-
-<div class="quick-card">
-<div class="quick-icon">🎯</div>
-<span>أرباح المهام</span>
-<strong>$ <span id="homeTaskProfit">0.00</span></strong>
-</div>
-
-<div class="quick-card">
-<div class="quick-icon">👥</div>
-<span>أعضاء الفريق</span>
-<strong id="homeTeamCount">0</strong>
-</div>
-
-<div class="quick-card">
-<div class="quick-icon">👑</div>
-<span>مستوى VIP</span>
-<strong id="homeVip">VIP 0</strong>
-</div>
-
-</div>
-
-
-<div class="market-section">
-
-<div class="market-header">
-
-<div>
+<p>أسعار العملات الرقمية</p>
+</div><div class="market-section"><div class="market-header"><div>
 <h2>📊 سوق العملات الرقمية</h2>
-<p style="color:#777;margin-top:5px">
-أسعار تجريبية للعرض
-</p>
-</div>
-
-<div class="market-status">
+<p>متابعة الأسعار ونسب التغير</p>
+</div><div class="market-status">
 <span class="status-dot"></span>
 السوق نشط
-</div>
-
-</div>
-
-
-<div class="crypto-list">
-
-<div class="crypto-card">
+</div></div><div class="crypto-list"><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon bitcoin">₿</div>
-<div class="crypto-name">
-<h3>Bitcoin</h3>
-<span>BTC</span>
-</div>
+<div><h3>Bitcoin</h3><span>BTC</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$68,420.00</strong>
 <span class="price-up">▲ 2.48%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon ethereum">Ξ</div>
-<div class="crypto-name">
-<h3>Ethereum</h3>
-<span>ETH</span>
-</div>
+<div><h3>Ethereum</h3><span>ETH</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$3,520.00</strong>
 <span class="price-up">▲ 1.72%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon usdt">₮</div>
-<div class="crypto-name">
-<h3>Tether</h3>
-<span>USDT</span>
-</div>
+<div><h3>Tether</h3><span>USDT</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$1.00</strong>
 <span class="price-down">▼ 0.03%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon bnb">B</div>
-<div class="crypto-name">
-<h3>BNB</h3>
-<span>BNB</span>
-</div>
+<div><h3>BNB</h3><span>BNB</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$620.00</strong>
 <span class="price-up">▲ 3.14%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon solana">S</div>
-<div class="crypto-name">
-<h3>Solana</h3>
-<span>SOL</span>
-</div>
+<div><h3>Solana</h3><span>SOL</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$168.00</strong>
 <span class="price-up">▲ 4.21%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon xrp">X</div>
-<div class="crypto-name">
-<h3>XRP</h3>
-<span>XRP</span>
-</div>
+<div><h3>XRP</h3><span>XRP</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$2.18</strong>
 <span class="price-down">▼ 1.36%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon cardano">₳</div>
-<div class="crypto-name">
-<h3>Cardano</h3>
-<span>ADA</span>
-</div>
+<div><h3>Cardano</h3><span>ADA</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$0.72</strong>
 <span class="price-up">▲ 2.06%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon doge">Ð</div>
-<div class="crypto-name">
-<h3>Dogecoin</h3>
-<span>DOGE</span>
-</div>
+<div><h3>Dogecoin</h3><span>DOGE</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$0.21</strong>
 <span class="price-up">▲ 5.28%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon tron">T</div>
-<div class="crypto-name">
-<h3>TRON</h3>
-<span>TRX</span>
-</div>
+<div><h3>TRON</h3><span>TRX</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$0.28</strong>
 <span class="price-up">▲ 1.84%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon dot">●</div>
-<div class="crypto-name">
-<h3>Polkadot</h3>
-<span>DOT</span>
-</div>
+<div><h3>Polkadot</h3><span>DOT</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$4.82</strong>
 <span class="price-down">▼ 2.17%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon link">🔗</div>
-<div class="crypto-name">
-<h3>Chainlink</h3>
-<span>LINK</span>
-</div>
+<div><h3>Chainlink</h3><span>LINK</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$14.80</strong>
 <span class="price-up">▲ 3.67%</span>
 </div>
-</div>
-
-<div class="crypto-card">
+</div><div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon avax">A</div>
-<div class="crypto-name">
-<h3>Avalanche</h3>
-<span>AVAX</span>
-</div>
+<div><h3>Avalanche</h3><span>AVAX</span></div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$24.50</strong>
 <span class="price-down">▼ 1.92%</span>
 </div>
+</div><div class="crypto-card">
+<div class="crypto-info">
+<div class="crypto-icon ltc">Ł</div>
+<div><h3>Litecoin</h3><span>LTC</span></div>
 </div>
-
+<div class="crypto-price">
+<strong class="price-number">$72.40</strong>
+<span class="price-up">▲ 1.25%</span>
 </div>
+</div><div class="crypto-card">
+<div class="crypto-info">
+<div class="crypto-icon shib">SHIB</div>
+<div><h3>Shiba Inu</h3><span>SHIB</span></div>
 </div>
-
-</section>
-
-
-<!-- TASKS -->
-
-<section id="tasksPage" class="page">
-
-<div class="page-title">
+<div class="crypto-price">
+<strong class="price-number">$0.000014</strong>
+<span class="price-down">▼ 0.84%</span>
+</div>
+</div><div class="crypto-card">
+<div class="crypto-info">
+<div class="crypto-icon matic">M</div>
+<div><h3>Polygon</h3><span>MATIC</span></div>
+</div>
+<div class="crypto-price">
+<strong class="price-number">$0.58</strong>
+<span class="price-up">▲ 2.31%</span>
+</div>
+</div><div class="crypto-card">
+<div class="crypto-info">
+<div class="crypto-icon near">N</div>
+<div><h3>NEAR Protocol</h3><span>NEAR</span></div>
+</div>
+<div class="crypto-price">
+<strong class="price-number">$4.92</strong>
+<span class="price-up">▲ 3.12%</span>
+</div>
+</div></div>
+</div>
+</section><!-- TASKS --><section id="tasksPage" class="page"><div class="page-title">
 <h1>المهام</h1>
-<p>أنجز المهام واحصل على مكافآت افتراضية</p>
-</div>
-
-<div class="tasks-grid">
-
-<div class="task-card">
+<p>أنجز المهام واحصل على أرباح افتراضية</p>
+</div><div class="tasks-grid"><div class="task-card">
 <div class="task-icon">📱</div>
-<h3>المهمة اليومية</h3>
-<p>قم بتنفيذ المهمة اليومية التجريبية.</p>
+<h3>مهمة يومية</h3>
+<p>قم بتنفيذ المهمة اليومية.</p>
 <div class="task-reward">+ $1.00</div>
 <button class="task-btn" onclick="completeTask(1)">تنفيذ المهمة</button>
-</div>
-
-<div class="task-card">
+</div><div class="task-card">
 <div class="task-icon">⭐</div>
 <h3>مهمة التفاعل</h3>
 <p>أكمل مهمة التفاعل التجريبية.</p>
 <div class="task-reward">+ $2.00</div>
 <button class="task-btn" onclick="completeTask(2)">تنفيذ المهمة</button>
-</div>
-
-<div class="task-card">
+</div><div class="task-card">
 <div class="task-icon">🚀</div>
 <h3>المهمة المميزة</h3>
 <p>مهمة تجريبية بمكافأة أكبر.</p>
 <div class="task-reward">+ $5.00</div>
 <button class="task-btn" onclick="completeTask(5)">تنفيذ المهمة</button>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- BALANCE -->
-
-<section id="balancePage" class="page">
-
-<div class="page-title">
+</div></div>
+</section><!-- BALANCE --><section id="balancePage" class="page"><div class="page-title">
 <h1>الرصيد</h1>
 <p>إدارة رصيدك وأرباحك</p>
-</div>
-
-<div class="balance-card">
+</div><div class="balance-card">
 <div class="balance-label">الرصيد الإجمالي</div>
-<div class="balance-value">
-$ <span id="balancePageValue">0.00</span>
-</div>
-</div>
-
-<div class="small-cards">
-
-<div class="small-card">
+<div class="balance-value">$ <span id="balancePageValue">0.00</span></div>
+</div><div class="small-cards"><div class="small-card">
 <div>أرباح المهام</div>
-<div class="small-card-value">
-$ <span id="profitTask">0.00</span>
-</div>
-</div>
-
-<div class="small-card">
+<div class="small-card-value">$ <span id="profitTask">0.00</span></div>
+</div><div class="small-card">
 <div>أرباح الدعوات</div>
-<div class="small-card-value">
-$ <span id="profitReferral">0.00</span>
-</div>
-</div>
-
-</div>
-
-<div class="money-actions">
-
-<button class="money-btn deposit" onclick="openModal('depositModal')">
-💰 إيداع
-</button>
-
-<button class="money-btn withdraw" onclick="openModal('withdrawModal')">
-💸 سحب
-</button>
-
-</div>
-
-<div class="table-box">
-
-<h3>سجل السحب</h3>
-
-<div id="withdrawHistory">
-<div class="record">
-لا توجد عمليات سحب حتى الآن
-</div>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- TEAM -->
-
-<section id="teamPage" class="page">
-
-<div class="page-title">
+<div class="small-card-value">$ <span id="profitReferral">0.00</span></div>
+</div></div><div class="money-actions">
+<button class="money-btn deposit" onclick="openModal('depositModal')">💰 إيداع</button>
+<button class="money-btn withdraw" onclick="openModal('withdrawModal')">💸 سحب</button>
+</div><div class="withdraw-history-section">
+<h2>سجل السحب</h2>
+<p>سجل عمليات السحب الخاصة بك</p>
+<div id="withdrawHistory"></div>
+</div></section><!-- TEAM --><section id="teamPage" class="page"><div class="page-title">
 <h1>👑 الفريق</h1>
-<p>قم ببناء فريقك واستفد من نظام الدعوات وVIP</p>
-</div>
-
-
-<div class="team-level">
-
-<div class="team-header">
-
-<div>
+<p>قم ببناء فريقك للوصول إلى مستويات VIP</p>
+</div><div class="team-level"><div class="level-header"><div>
 <h3 id="vipTitle">VIP 0</h3>
-<p style="color:#888;margin-top:5px">
-عدد الأشخاص: <span id="teamCount">0</span>
-</p>
-</div>
-
-<div class="vip-badge">
+<p>عدد الأعضاء المؤهلين: <span id="teamCount">0</span></p>
+</div><div class="vip-badge">
 <span id="vipPercent">0%</span>
-</div>
-
-</div>
-
-<div class="progress">
+</div></div><div class="progress">
 <div id="teamProgress" class="progress-bar"></div>
-</div>
+</div></div><!-- VIP BOXES --><div class="vip-grid"><div class="vip-item">
+<h4>VIP 1</h4>
+<p>5 أشخاص</p>
+<p class="percent">3%</p>
+</div><div class="vip-item">
+<h4>VIP 2</h4>
+<p>10 أشخاص</p>
+<p class="percent">8%</p>
+</div><div class="vip-item">
+<h4>VIP 3</h4>
+<p>20 شخص</p>
+<p class="percent">12%</p>
+</div><div class="vip-item">
+<h4>VIP 4</h4>
+<p>50 شخص</p>
+<p class="percent">15%</p>
+</div><div class="vip-item">
+<h4>VIP 5</h4>
+<p>100 شخص</p>
+<p class="percent">20%</p>
+</div></div><!-- كود المستخدم --><div class="referral-card"><h3>🆔 كود المستخدم الخاص بك</h3>
+<p>هذا الكود خاص بحسابك ويمكن استخدامه للتعريف بحسابك.</p><div class="user-code-box"><input id="userCode" type="text" readonly><button class="copy-btn" onclick="copyUserCode()">📋 نسخ</button>
 
-</div>
+</div></div><!-- رابط الدعوة --><div class="referral-card"><h3>🔗 رابط الدعوة الخاص بك</h3>
+<p>شارك الرابط مع أصدقائك.</p><div class="team-link"><input id="referralLink" type="text" readonly><button class="copy-btn" onclick="copyReferralLink()">نسخ</button>
 
+<button class="share-btn" onclick="shareReferral()">مشاركة</button>
 
-<!-- CODE -->
-
-<div class="referral-box">
-
-<h3>🔗 كود الدعوة الخاص بك</h3>
-
-<p style="color:#888;margin-top:7px">
-شارك كودك مع أصدقائك.
-</p>
-
-<div class="referral-code-row">
-
-<input id="myReferralCode" type="text" readonly>
-
-<button class="copy-btn" onclick="copyReferralCode()">
-📋 نسخ
-</button>
-
-<button class="share-btn" onclick="shareReferral()">
-مشاركة
-</button>
-
-</div>
-
-</div>
-
-
-<!-- REFERRAL EARNINGS -->
-
-<div class="table-box">
-
-<h3>💰 أرباح الدعوة من الإيداع</h3>
-
-<table>
-
-<thead>
+</div></div><!-- جدول أرباح الدعوة --><div class="table-box"><h3>💰 أرباح الدعوة المباشرة</h3><p style="color:#999;margin-bottom:15px">
+تحصل على 10% من إيداع الشخص الذي قام بالتسجيل عن طريق كود الدعوة الخاص بك.
+</p><table><thead>
 <tr>
 <th>إيداع الشخص</th>
-<th>نسبة الدعوة</th>
+<th>نسبة الربح</th>
 <th>ربحك</th>
 </tr>
-</thead>
-
-<tbody>
-
+</thead><tbody>
+<tr><td>$100</td><td class="percent">10%</td><td>$10</td></tr>
+<tr><td>$200</td><td class="percent">10%</td><td>$20</td></tr>
+<tr><td>$300</td><td class="percent">10%</td><td>$30</td></tr>
+<tr><td>$400</td><td class="percent">10%</td><td>$40</td></tr>
+<tr><td>$500</td><td class="percent">10%</td><td>$50</td></tr>
+</tbody></table></div><!-- جدول أرباح المستوى --><div class="table-box"><h3>👥 أرباح الفريق حسب مستوى VIP</h3><p style="color:#999;margin-bottom:15px">
+نسبة الربح من أرباح الأشخاص الموجودين ضمن فريقك حسب مستوى VIP.
+</p><table><thead>
 <tr>
-<td>$100</td>
-<td>10%</td>
-<td>$10</td>
-</tr>
-
-<tr>
-<td>$200</td>
-<td>10%</td>
-<td>$20</td>
-</tr>
-
-<tr>
-<td>$300</td>
-<td>10%</td>
-<td>$30</td>
-</tr>
-
-<tr>
-<td>$400</td>
-<td>10%</td>
-<td>$40</td>
-</tr>
-
-<tr>
-<td>$500</td>
-<td>10%</td>
-<td>$50</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-
-<!-- VIP TABLE -->
-
-<div class="table-box">
-
-<h3>👑 مستويات VIP ونسبة الربح</h3>
-
-<table>
-
-<thead>
-
-<tr>
-<th>المستوى</th>
+<th>الفريق</th>
 <th>عدد الأشخاص</th>
 <th>نسبة الربح</th>
 </tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-<td>VIP 1</td>
-<td>5</td>
-<td>3%</td>
-</tr>
-
-<tr>
-<td>VIP 2</td>
-<td>10</td>
-<td>8%</td>
-</tr>
-
-<tr>
-<td>VIP 3</td>
-<td>20</td>
-<td>12%</td>
-</tr>
-
-<tr>
-<td>VIP 4</td>
-<td>50</td>
-<td>15%</td>
-</tr>
-
-<tr>
-<td>VIP 5</td>
-<td>100</td>
-<td>20%</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<!-- TRANSACTIONS -->
-
-<section id="transactionsPage" class="page">
-
-<div class="page-title">
-<h1>📊 المعاملات</h1>
+</thead><tbody>
+<tr><td>VIP 1</td><td>5</td><td class="percent">3%</td></tr>
+<tr><td>VIP 2</td><td>10</td><td class="percent">8%</td></tr>
+<tr><td>VIP 3</td><td>20</td><td class="percent">12%</td></tr>
+<tr><td>VIP 4</td><td>50</td><td class="percent">15%</td></tr>
+<tr><td>VIP 5</td><td>100</td><td class="percent">20%</td></tr>
+</tbody></table></div></section><!-- TRANSACTIONS --><section id="transactionsPage" class="page"><div class="page-title">
+<h1>المعاملات</h1>
 <p>سجل عمليات حسابك</p>
-</div>
-
-<div id="transactionsList">
-
-<div class="record">
-لا توجد معاملات حتى الآن
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SETTINGS -->
-
-<section id="settingsPage" class="page">
-
-<div class="page-title">
-<h1>⚙️ الإعدادات</h1>
+</div><div id="transactionsList"></div></section><!-- SETTINGS --><section id="settingsPage" class="page"><div class="page-title">
+<h1>الإعدادات</h1>
 <p>إدارة الحساب والأمان</p>
-</div>
+</div><div class="settings-grid"><div class="settings-box"><h3>👤 الملف الشخصي</h3>
+<p>تعديل البريد الإلكتروني أو رقم الهاتف.</p><div class="input-group">
+<label>البريد الإلكتروني أو رقم الهاتف</label>
+<input id="settingsIdentifier" type="text">
+</div><button class="main-btn" onclick="updateProfile()">حفظ البيانات</button>
 
-<div class="settings-box">
+</div><div class="settings-box"><h3>🔑 تغيير كلمة المرور</h3>
+<p>تغيير كلمة مرور تسجيل الدخول.</p><div class="input-group"><label>كلمة المرور الجديدة</label>
 
-<h3>🔑 تغيير كلمة المرور</h3>
+<div class="input-wrap"><input id="newPassword" class="password-input" type="password"><button type="button" class="eye-btn" onclick="togglePassword('newPassword',this)">👁</button>
 
-<div class="input-group" style="margin-top:18px">
+</div></div><button class="main-btn" onclick="changePassword()">تغيير كلمة المرور</button>
 
-<label>كلمة المرور الجديدة</label>
+</div><div class="settings-box"><h3>💬 مراسلة الدعم</h3>
+<p>أرسل رسالة إلى فريق الدعم.</p><div class="input-group">
+<textarea id="agentMessage" placeholder="اكتب رسالتك هنا"></textarea>
+</div><button class="main-btn" onclick="sendAgentMessage()">إرسال الرسالة</button>
 
-<div class="input-wrap">
-
-<input id="newPassword" type="password">
-
-<button class="eye-btn" type="button" onclick="togglePassword('newPassword',this)">
-👁
-</button>
-
-</div>
-
-</div>
-
-<button class="main-btn" onclick="changePassword()">
-تغيير كلمة المرور
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-
-<!-- MOBILE NAV -->
-
-<nav class="mobile-bottom">
-
-<button class="bottom-item active" onclick="mobilePage('home',this)">
-🏠
-<span>الرئيسية</span>
-</button>
-
-<button class="bottom-item" onclick="mobilePage('tasksPage',this)">
-📋
-<span>المهام</span>
-</button>
-
-<button class="bottom-item" onclick="mobilePage('balancePage',this)">
-💰
-<span>الرصيد</span>
-</button>
-
-<button class="bottom-item" onclick="mobilePage('teamPage',this)">
-👑
-<span>الفريق</span>
-</button>
-
-</nav>
-
-</div>
-
-
-<!-- DEPOSIT MODAL -->
-
-<div id="depositModal" class="modal">
-
-<div class="modal-box">
-
-<div class="modal-header">
-
+</div></div>
+</section></main><nav class="mobile-bottom"><button class="bottom-item active" onclick="mobilePage('home',this)">
+🏠<span>الرئيسية</span>
+</button><button class="bottom-item" onclick="mobilePage('tasksPage',this)">
+📋<span>المهام</span>
+</button><button class="bottom-item" onclick="mobilePage('balancePage',this)">
+💰<span>الرصيد</span>
+</button><button class="bottom-item" onclick="mobilePage('teamPage',this)">
+👑<span>الفريق</span>
+</button></nav></div><!-- DEPOSIT MODAL --><div id="depositModal" class="modal"><div class="modal-box"><div class="modal-header">
 <h3>💰 إيداع</h3>
-
-<button class="close-btn" onclick="closeModal('depositModal')">
-×
-</button>
-
-</div>
-
-<div class="input-group">
-
+<button class="close-btn" onclick="closeModal('depositModal')">×</button>
+</div><div class="input-group">
 <label>مبلغ الإيداع</label>
-
 <input id="depositAmount" type="number" min="1" placeholder="100">
+</div><button class="main-btn" onclick="deposit()">تأكيد الإيداع التجريبي</button>
 
 </div>
-
-<button class="main-btn" onclick="deposit()">
-تأكيد الإيداع التجريبي
-</button>
-
-</div>
-
-</div>
-
-
-<!-- WITHDRAW MODAL -->
-
-<div id="withdrawModal" class="modal">
-
-<div class="modal-box">
-
-<div class="modal-header">
-
+</div><!-- WITHDRAW MODAL --><div id="withdrawModal" class="modal"><div class="modal-box"><div class="modal-header">
 <h3>💸 سحب</h3>
-
-<button class="close-btn" onclick="closeModal('withdrawModal')">
-×
-</button>
-
-</div>
-
-<div class="input-group">
-
+<button class="close-btn" onclick="closeModal('withdrawModal')">×</button>
+</div><div class="input-group">
 <label>عنوان TRON TRC20</label>
-
 <input id="withdrawTron" type="text" placeholder="T...">
-
-</div>
-
-<div class="input-group">
-
+</div><div class="input-group">
 <label>مبلغ السحب</label>
-
 <input id="withdrawAmount" type="number" min="1" placeholder="50">
+</div><button class="main-btn" onclick="withdraw()">تأكيد طلب السحب</button>
 
 </div>
+</div><div id="toast" class="toast"></div><script>
+"use strict";
 
-<button class="main-btn" onclick="withdraw()">
-تأكيد طلب السحب
-</button>
-
-</div>
-
-</div>
-
-
-<div id="toast" class="toast"></div>
-
-
-<script>
-
-/* ================================
+/* ==============================
    DATA
-================================ */
+============================== */
 
-const STORAGE_KEY = "XL22_DATA_V3";
+let users = [];
 
-let state = {
-    users: [],
-    currentUserId: null
-};
-
-
-/* ================================
-   LOAD
-================================ */
-
-function loadData(){
-
-    try{
-
-        const saved = localStorage.getItem(STORAGE_KEY);
-
-        if(saved){
-
-            const parsed = JSON.parse(saved);
-
-            if(parsed && typeof parsed === "object"){
-                state = parsed;
-            }
-
-        }
-
-    }catch(error){
-
-        console.log("Storage error:",error);
-
-        state = {
-            users: [],
-            currentUserId: null
-        };
-
-    }
-
-    if(!Array.isArray(state.users)){
-        state.users = [];
-    }
-
+try{
+users = JSON.parse(localStorage.getItem("xl22_users") || "[]");
+if(!Array.isArray(users)) users=[];
+}catch(e){
+users=[];
 }
 
+let currentUserIndex = null;
 
-/* ================================
+try{
+const saved = localStorage.getItem("xl22_currentUser");
+if(saved !== null && saved !== ""){
+const n = Number(saved);
+if(Number.isInteger(n)) currentUserIndex=n;
+}
+}catch(e){
+currentUserIndex=null;
+}
+
+/* ==============================
    SAVE
-================================ */
+============================== */
 
 function saveData(){
 
-    try{
+try{
 
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(state)
-        );
+localStorage.setItem(
+"xl22_users",
+JSON.stringify(users)
+);
 
-    }catch(error){
+if(currentUserIndex !== null){
 
-        console.log("Save error:",error);
-
-    }
-
-}
-
-
-/* ================================
-   USER
-================================ */
-
-function currentUser(){
-
-    return state.users.find(
-        user => user.id === state.currentUserId
-    ) || null;
+localStorage.setItem(
+"xl22_currentUser",
+String(currentUserIndex)
+);
 
 }
 
+}catch(e){
 
-/* ================================
-   ID
-================================ */
-
-function generateUserCode(){
-
-    let code;
-
-    do{
-
-        code =
-            "XL" +
-            Math.random()
-            .toString(36)
-            .substring(2,8)
-            .toUpperCase();
-
-    }while(
-        state.users.some(
-            user => user.code === code
-        )
-    );
-
-    return code;
+console.error(e);
+toast("تعذر حفظ البيانات في المتصفح");
 
 }
 
+}
 
-/* ================================
-   TOAST
-================================ */
+/* ==============================
+   HELPERS
+============================== */
+
+function $(id){
+return document.getElementById(id);
+}
 
 function toast(message){
 
-    const el =
-        document.getElementById("toast");
+const el=$("toast");
 
-    el.textContent = message;
+if(!el)return;
 
-    el.classList.add("show");
+el.textContent=message;
+el.classList.add("show");
 
-    setTimeout(
-        () => el.classList.remove("show"),
-        2500
-    );
+setTimeout(()=>{
+el.classList.remove("show");
+},2500);
 
 }
 
+function generateUserCode(){
 
-/* ================================
-   PASSWORD EYE
-================================ */
+let code="";
+
+do{
+
+code=
+Math.floor(100000 + Math.random()*900000)
++
+String.fromCharCode(
+65 + Math.floor(Math.random()*26)
+);
+
+}while(
+users.some(
+u=>u.userCode===code
+)
+);
+
+return code;
+
+}
 
 function togglePassword(id,button){
 
-    const input =
-        document.getElementById(id);
+const input=$(id);
 
-    if(!input){
-        return;
-    }
+if(!input)return;
 
-    if(input.type === "password"){
+if(input.type==="password"){
 
-        input.type = "text";
+input.type="text";
 
-        button.textContent = "🙈";
+if(button)button.textContent="🙈";
 
-    }else{
+}else{
 
-        input.type = "password";
+input.type="password";
 
-        button.textContent = "👁";
-
-    }
+if(button)button.textContent="👁";
 
 }
 
+}
 
-/* ================================
-   AUTH SWITCH
-================================ */
+/* ==============================
+   AUTH SCREENS
+============================== */
 
 function showRegister(){
 
-    document
-    .getElementById("loginForm")
-    .classList.add("hidden");
-
-    document
-    .getElementById("registerForm")
-    .classList.remove("hidden");
+$("loginForm").classList.add("hidden");
+$("registerForm").classList.remove("hidden");
 
 }
-
 
 function showLogin(){
 
-    document
-    .getElementById("registerForm")
-    .classList.add("hidden");
-
-    document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
+$("registerForm").classList.add("hidden");
+$("loginForm").classList.remove("hidden");
 
 }
-
-
-/* ================================
-   REGISTER
-================================ */
 
 function register(){
 
-    const password =
-        document
-        .getElementById("registerPassword")
-        .value;
+const identifier=
+$("registerIdentifier").value.trim();
 
-    const confirm =
-        document
-        .getElementById("registerConfirm")
-        .value;
+const password=
+$("registerPassword").value;
 
-    const referral =
-        document
-        .getElementById("registerReferral")
-        .value
-        .trim()
-        .toUpperCase();
+const confirm=
+$("registerConfirm").value;
 
-    const error =
-        document
-        .getElementById("registerError");
+const referral=
+$("registerReferral").value.trim().toUpperCase();
 
+const error=$("registerError");
 
-    error.classList.add("hidden");
+error.classList.add("hidden");
 
+if(!identifier){
 
-    if(password.length < 6){
-
-        error.textContent =
-            "كلمة المرور يجب أن تكون 6 أحرف على الأقل";
-
-        error.classList.remove("hidden");
-
-        return;
-
-    }
-
-
-    if(password !== confirm){
-
-        error.textContent =
-            "كلمتا المرور غير متطابقتين";
-
-        error.classList.remove("hidden");
-
-        return;
-
-    }
-
-
-    if(
-        referral &&
-        !state.users.some(
-            user => user.code === referral
-        )
-    ){
-
-        error.textContent =
-            "كود الدعوة غير صحيح";
-
-        error.classList.remove("hidden");
-
-        return;
-
-    }
-
-
-    const user = {
-
-        id:
-            Date.now().toString() +
-            Math.random()
-            .toString(36)
-            .substring(2),
-
-        code:
-            generateUserCode(),
-
-        password: password,
-
-        balance: 0,
-
-        taskProfit: 0,
-
-        referralProfit: 0,
-
-        referralCount: 0,
-
-        referralCode: referral,
-
-        transactions: [],
-
-        withdrawHistory: []
-
-    };
-
-
-    state.users.push(user);
-
-    state.currentUserId = user.id;
-
-    saveData();
-
-    toast(
-        "تم إنشاء الحساب بنجاح - كودك: " +
-        user.code
-    );
-
-    openApp();
+error.textContent="أدخل البريد الإلكتروني أو رقم الهاتف";
+error.classList.remove("hidden");
+return;
 
 }
 
+if(password.length<6){
 
-/* ================================
-   LOGIN
-================================ */
+error.textContent="كلمة المرور يجب أن تكون 6 أحرف على الأقل";
+error.classList.remove("hidden");
+return;
+
+}
+
+if(password!==confirm){
+
+error.textContent="كلمتا المرور غير متطابقتين";
+error.classList.remove("hidden");
+return;
+
+}
+
+const exists=users.some(
+u=>String(u.identifier).toLowerCase()===identifier.toLowerCase()
+);
+
+if(exists){
+
+error.textContent="البريد الإلكتروني أو رقم الهاتف مستخدم مسبقاً";
+error.classList.remove("hidden");
+return;
+
+}
+
+/* تحقق من كود الدعوة */
+let inviterIndex=-1;
+
+if(referral){
+
+inviterIndex=users.findIndex(
+u=>String(u.userCode).toUpperCase()===referral
+);
+
+if(inviterIndex===-1){
+
+error.textContent="كود الدعوة غير صحيح";
+error.classList.remove("hidden");
+return;
+
+}
+
+}
+
+/* إنشاء المستخدم */
+const newUser={
+
+identifier:identifier,
+
+password:password,
+
+userCode:generateUserCode(),
+
+referralCode:generateUserCode(),
+
+invitedBy:
+inviterIndex>=0
+?users[inviterIndex].userCode
+:null,
+
+balance:0,
+
+taskProfit:0,
+
+referralProfit:0,
+
+referralCount:0,
+
+withdrawHistory:[],
+
+transactions:[]
+
+};
+
+users.push(newUser);
+
+currentUserIndex=users.length-1;
+
+/* تحديث فريق الداعي */
+if(inviterIndex>=0){
+
+users[inviterIndex].referralCount=
+Number(users[inviterIndex].referralCount||0)+1;
+
+}
+
+saveData();
+
+$("registerIdentifier").value="";
+$("registerPassword").value="";
+$("registerConfirm").value="";
+$("registerReferral").value="";
+
+toast("تم إنشاء الحساب بنجاح");
+
+openApp();
+
+}
 
 function login(){
 
-    const code =
-        document
-        .getElementById("loginCode")
-        .value
-        .trim()
-        .toUpperCase();
+const identifier=
+$("loginIdentifier").value.trim();
 
-    const password =
-        document
-        .getElementById("loginPassword")
-        .value;
+const password=
+$("loginPassword").value;
 
-    const error =
-        document
-        .getElementById("loginError");
+const error=$("loginError");
 
+error.classList.add("hidden");
 
-    error.classList.add("hidden");
+const index=users.findIndex(
 
+user=>
+String(user.identifier).toLowerCase()===
+identifier.toLowerCase()
+&&
+user.password===password
 
-    const user =
-        state.users.find(
-            item =>
-                item.code === code &&
-                item.password === password
-        );
+);
 
+if(index===-1){
 
-    if(!user){
-
-        error.textContent =
-            "كود المستخدم أو كلمة المرور غير صحيحة";
-
-        error.classList.remove("hidden");
-
-        return;
-
-    }
-
-
-    state.currentUserId = user.id;
-
-    saveData();
-
-    openApp();
+error.textContent="بيانات تسجيل الدخول غير صحيحة";
+error.classList.remove("hidden");
+return;
 
 }
 
+currentUserIndex=index;
 
-/* ================================
-   LOGOUT
-================================ */
+saveData();
+
+openApp();
+
+}
 
 function logout(){
 
-    state.currentUserId = null;
+currentUserIndex=null;
 
-    saveData();
+localStorage.removeItem("xl22_currentUser");
 
-    document
-    .getElementById("app")
-    .classList.add("hidden");
+$("app").classList.add("hidden");
+$("authScreen").classList.remove("hidden");
 
-    document
-    .getElementById("authScreen")
-    .classList.remove("hidden");
+$("loginIdentifier").value="";
+$("loginPassword").value="";
 
-    showLogin();
+showLogin();
 
 }
 
+/* ==============================
+   CURRENT USER
+============================== */
 
-/* ================================
+function getCurrentUser(){
+
+if(
+currentUserIndex===null ||
+!users[currentUserIndex]
+){
+
+return null;
+
+}
+
+return users[currentUserIndex];
+
+}
+
+/* ==============================
    OPEN APP
-================================ */
+============================== */
 
 function openApp(){
 
-    const user = currentUser();
+const user=getCurrentUser();
 
-    if(!user){
-        return;
-    }
+if(!user)return;
 
-    document
-    .getElementById("authScreen")
-    .classList.add("hidden");
+$("authScreen").classList.add("hidden");
+$("app").classList.remove("hidden");
 
-    document
-    .getElementById("app")
-    .classList.remove("hidden");
+updateUI();
 
-    updateUI();
+const homeButton=
+document.querySelector(
+'.nav-item[onclick*="showPage(\'home\'"]'
+);
 
-    showPage(
-        "home",
-        document.querySelector(
-            '.nav-item[onclick*="home"]'
-        )
-    );
+showPage("home",homeButton);
 
 }
 
-
-/* ================================
+/* ==============================
    UPDATE UI
-================================ */
+============================== */
 
 function updateUI(){
 
-    const user = currentUser();
+const user=getCurrentUser();
 
-    if(!user){
-        return;
-    }
+if(!user)return;
 
+$("headerUser").textContent=user.identifier;
 
-    document
-    .getElementById("headerUser")
-    .textContent =
-        user.code;
+$("avatar").textContent=
+String(user.identifier)
+.charAt(0)
+.toUpperCase();
 
+$("balancePageValue").textContent=
+Number(user.balance||0).toFixed(2);
 
-    document
-    .getElementById("avatar")
-    .textContent =
-        user.code
-        .substring(0,2);
+$("profitTask").textContent=
+Number(user.taskProfit||0).toFixed(2);
 
+$("profitReferral").textContent=
+Number(user.referralProfit||0).toFixed(2);
 
-    const balance =
-        Number(user.balance || 0)
-        .toFixed(2);
+$("settingsIdentifier").value=
+user.identifier;
 
+$("userCode").value=
+user.userCode||"";
 
-    document
-    .getElementById("balancePageValue")
-    .textContent =
-        balance;
+updateReferralLink();
 
+updateTeam();
 
-    document
-    .getElementById("homeBalance")
-    .textContent =
-        balance;
+renderWithdrawHistory();
 
-
-    document
-    .getElementById("profitTask")
-    .textContent =
-        Number(user.taskProfit || 0)
-        .toFixed(2);
-
-
-    document
-    .getElementById("homeTaskProfit")
-    .textContent =
-        Number(user.taskProfit || 0)
-        .toFixed(2);
-
-
-    document
-    .getElementById("profitReferral")
-    .textContent =
-        Number(user.referralProfit || 0)
-        .toFixed(2);
-
-
-    document
-    .getElementById("myReferralCode")
-    .value =
-        user.code;
-
-
-    updateTeam();
-
-    renderWithdrawHistory();
-
-    renderTransactions();
+renderTransactions();
 
 }
 
-
-/* ================================
+/* ==============================
    NAVIGATION
-================================ */
+============================== */
 
 function showPage(pageId,button){
 
-    document
-    .querySelectorAll(".page")
-    .forEach(
-        page =>
-        page.classList.remove("active")
-    );
+document.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
 
+const page=$(pageId);
 
-    const page =
-        document.getElementById(pageId);
+if(page)page.classList.add("active");
 
+document.querySelectorAll(".nav-item")
+.forEach(item=>{
+item.classList.remove("active");
+});
 
-    if(page){
-        page.classList.add("active");
-    }
+if(button)button.classList.add("active");
 
+const sidebar=$("sidebar");
 
-    document
-    .querySelectorAll(".nav-item")
-    .forEach(
-        item =>
-        item.classList.remove("active")
-    );
+if(sidebar)sidebar.classList.remove("open");
 
-
-    if(button){
-        button.classList.add("active");
-    }
-
-
-    const sidebar =
-        document.getElementById("sidebar");
-
-
-    if(sidebar){
-        sidebar.classList.remove("open");
-    }
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
-
 
 function mobilePage(pageId,button){
 
-    showPage(pageId,null);
+showPage(pageId,null);
 
-    document
-    .querySelectorAll(".bottom-item")
-    .forEach(
-        item =>
-        item.classList.remove("active")
-    );
+document.querySelectorAll(".bottom-item")
+.forEach(item=>{
+item.classList.remove("active");
+});
 
-
-    if(button){
-        button.classList.add("active");
-    }
+if(button)button.classList.add("active");
 
 }
 
-
-/* ================================
+/* ==============================
    SIDEBAR
-================================ */
+============================== */
 
 function toggleSidebar(){
 
-    document
-    .getElementById("sidebar")
-    .classList.toggle("open");
+$("sidebar").classList.toggle("open");
 
 }
 
-
-/* ================================
+/* ==============================
    MODALS
-================================ */
+============================== */
 
 function openModal(id){
 
-    const modal =
-        document.getElementById(id);
+const modal=$(id);
 
-    if(modal){
-        modal.classList.add("show");
-    }
+if(modal)modal.classList.add("show");
 
 }
-
 
 function closeModal(id){
 
-    const modal =
-        document.getElementById(id);
+const modal=$(id);
 
-    if(modal){
-        modal.classList.remove("show");
-    }
+if(modal)modal.classList.remove("show");
 
 }
 
-
-/* ================================
+/* ==============================
    DEPOSIT
-================================ */
+============================== */
 
 function deposit(){
 
-    const user = currentUser();
+const amount=
+Number($("depositAmount").value);
 
-    if(!user){
-        return;
-    }
+const user=getCurrentUser();
 
+if(!user)return;
 
-    const amount =
-        Number(
-            document
-            .getElementById("depositAmount")
-            .value
-        );
+if(!amount || amount<=0){
 
-
-    if(!amount || amount <= 0){
-
-        toast("أدخل مبلغاً صحيحاً");
-
-        return;
-
-    }
-
-
-    user.balance =
-        Number(user.balance || 0) +
-        amount;
-
-
-    user.transactions.unshift({
-
-        type:"إيداع",
-
-        amount:amount,
-
-        date:
-            new Date()
-            .toLocaleString("ar-EG")
-
-    });
-
-
-    saveData();
-
-    updateUI();
-
-    closeModal("depositModal");
-
-    document
-    .getElementById("depositAmount")
-    .value = "";
-
-
-    toast(
-        "تم تسجيل الإيداع التجريبي"
-    );
+toast("أدخل مبلغاً صحيحاً");
+return;
 
 }
 
+user.balance=
+Number(user.balance||0)+amount;
 
-/* ================================
+user.transactions=
+user.transactions||[];
+
+user.transactions.unshift({
+
+type:"إيداع",
+
+amount:amount,
+
+date:new Date().toLocaleString("ar-SA")
+
+});
+
+/* عمولة دعوة مباشرة 10% */
+if(user.invitedBy){
+
+const inviter=
+users.find(
+u=>u.userCode===user.invitedBy
+);
+
+if(inviter){
+
+const commission=amount*0.10;
+
+inviter.balance=
+Number(inviter.balance||0)+commission;
+
+inviter.referralProfit=
+Number(inviter.referralProfit||0)+commission;
+
+inviter.transactions=
+inviter.transactions||[];
+
+inviter.transactions.unshift({
+
+type:"عمولة دعوة مباشرة",
+
+amount:commission,
+
+date:new Date().toLocaleString("ar-SA")
+
+});
+
+}
+
+}
+
+saveData();
+
+updateUI();
+
+$("depositAmount").value="";
+
+closeModal("depositModal");
+
+toast("تم تسجيل الإيداع التجريبي");
+
+}
+
+/* ==============================
    WITHDRAW
-================================ */
+============================== */
 
 function withdraw(){
 
-    const user = currentUser();
+const amount=
+Number($("withdrawAmount").value);
 
-    if(!user){
-        return;
-    }
+const address=
+$("withdrawTron").value.trim();
 
+const user=getCurrentUser();
 
-    const amount =
-        Number(
-            document
-            .getElementById("withdrawAmount")
-            .value
-        );
+if(!user)return;
 
+if(!amount || amount<=0){
 
-    const address =
-        document
-        .getElementById("withdrawTron")
-        .value
-        .trim();
-
-
-    if(!amount || amount <= 0){
-
-        toast("أدخل مبلغ السحب");
-
-        return;
-
-    }
-
-
-    if(!address){
-
-        toast("أدخل عنوان TRON");
-
-        return;
-
-    }
-
-
-    if(amount > Number(user.balance || 0)){
-
-        user.withdrawHistory.unshift({
-
-            amount:amount,
-
-            status:"فشل",
-
-            date:
-                new Date()
-                .toLocaleString("ar-EG")
-
-        });
-
-
-        saveData();
-
-        updateUI();
-
-        closeModal("withdrawModal");
-
-        toast(
-            "فشل السحب بسبب عدم كفاية الرصيد"
-        );
-
-        return;
-
-    }
-
-
-    user.balance -= amount;
-
-
-    user.withdrawHistory.unshift({
-
-        amount:amount,
-
-        status:"مكتمل",
-
-        date:
-            new Date()
-            .toLocaleString("ar-EG")
-
-    });
-
-
-    user.transactions.unshift({
-
-        type:"سحب",
-
-        amount:amount,
-
-        date:
-            new Date()
-            .toLocaleString("ar-EG")
-
-    });
-
-
-    saveData();
-
-    updateUI();
-
-    closeModal("withdrawModal");
-
-    toast("تم تسجيل طلب السحب");
+toast("أدخل مبلغ السحب");
+return;
 
 }
 
+if(!address){
 
-/* ================================
-   TASK
-================================ */
-
-function completeTask(amount){
-
-    const user = currentUser();
-
-    if(!user){
-        return;
-    }
-
-
-    user.balance += amount;
-
-    user.taskProfit += amount;
-
-
-    user.transactions.unshift({
-
-        type:"مكافأة مهمة",
-
-        amount:amount,
-
-        date:
-            new Date()
-            .toLocaleString("ar-EG")
-
-    });
-
-
-    saveData();
-
-    updateUI();
-
-    toast(
-        "تمت إضافة $" +
-        amount.toFixed(2) +
-        " إلى رصيدك"
-    );
+toast("أدخل عنوان TRON");
+return;
 
 }
 
+user.withdrawHistory=
+user.withdrawHistory||[];
 
-/* ================================
-   VIP
-================================ */
+if(amount>Number(user.balance||0)){
 
-function getVipLevel(count){
+user.withdrawHistory.unshift({
 
-    if(count >= 100) return 5;
+amount:amount,
 
-    if(count >= 50) return 4;
+status:"فشل",
 
-    if(count >= 20) return 3;
+date:new Date().toLocaleString("ar-SA")
 
-    if(count >= 10) return 2;
+});
 
-    if(count >= 5) return 1;
+saveData();
 
-    return 0;
+renderWithdrawHistory();
 
-}
+toast("فشل السحب بسبب عدم كفاية الرصيد");
 
+closeModal("withdrawModal");
 
-function getVipPercent(level){
-
-    const percentages = [
-        0,
-        3,
-        8,
-        12,
-        15,
-        20
-    ];
-
-    return percentages[level] || 0;
+return;
 
 }
 
+user.balance-=amount;
 
-function updateTeam(){
+user.withdrawHistory.unshift({
 
-    const user = currentUser();
+amount:amount,
 
-    if(!user){
-        return;
-    }
+status:"مكتمل",
 
+date:new Date().toLocaleString("ar-SA")
 
-    const count =
-        Number(user.referralCount || 0);
+});
 
+user.transactions=
+user.transactions||[];
 
-    const level =
-        getVipLevel(count);
+user.transactions.unshift({
 
+type:"سحب",
 
-    const percent =
-        getVipPercent(level);
+amount:amount,
 
+date:new Date().toLocaleString("ar-SA")
 
-    document
-    .getElementById("teamCount")
-    .textContent =
-        count;
+});
 
+saveData();
 
-    document
-    .getElementById("homeTeamCount")
-    .textContent =
-        count;
+updateUI();
 
+$("withdrawAmount").value="";
+$("withdrawTron").value="";
 
-    document
-    .getElementById("vipTitle")
-    .textContent =
-        "VIP " + level;
+closeModal("withdrawModal");
 
-
-    document
-    .getElementById("homeVip")
-    .textContent =
-        "VIP " + level;
-
-
-    document
-    .getElementById("vipPercent")
-    .textContent =
-        percent + "%";
-
-
-    let progress = 0;
-
-
-    if(level === 0){
-
-        progress =
-            (count / 5) * 100;
-
-    }else if(level === 5){
-
-        progress = 100;
-
-    }else{
-
-        const targets = [
-            5,
-            10,
-            20,
-            50,
-            100
-        ];
-
-
-        const previous =
-            targets[level - 1];
-
-        const next =
-            targets[level];
-
-
-        progress =
-            (
-                (count - previous) /
-                (next - previous)
-            ) * 100;
-
-    }
-
-
-    document
-    .getElementById("teamProgress")
-    .style.width =
-        Math.max(
-            0,
-            Math.min(100,progress)
-        ) + "%";
+toast("تم تسجيل طلب السحب");
 
 }
 
-
-/* ================================
-   COPY CODE
-================================ */
-
-function copyReferralCode(){
-
-    const user = currentUser();
-
-    if(!user){
-        return;
-    }
-
-
-    const code = user.code;
-
-
-    if(
-        navigator.clipboard &&
-        window.isSecureContext
-    ){
-
-        navigator.clipboard
-        .writeText(code)
-        .then(
-            () =>
-            toast("تم نسخ كود الدعوة")
-        )
-        .catch(
-            () =>
-            fallbackCopy(code)
-        );
-
-    }else{
-
-        fallbackCopy(code);
-
-    }
-
-}
-
-
-function fallbackCopy(text){
-
-    const input =
-        document.createElement("textarea");
-
-    input.value = text;
-
-    document.body.appendChild(input);
-
-    input.select();
-
-    try{
-
-        document.execCommand("copy");
-
-        toast("تم نسخ كود الدعوة");
-
-    }catch(error){
-
-        toast("انسخ الكود يدوياً: " + text);
-
-    }
-
-    document.body.removeChild(input);
-
-}
-
-
-/* ================================
-   SHARE
-================================ */
-
-function shareReferral(){
-
-    const user = currentUser();
-
-    if(!user){
-        return;
-    }
-
-
-    const text =
-        "انضم إلى منصة XL22 باستخدام كود الدعوة: " +
-        user.code;
-
-
-    if(navigator.share){
-
-        navigator.share({
-
-            title:"XL22",
-
-            text:text
-
-        }).catch(
-            () => {}
-        );
-
-    }else{
-
-        fallbackCopy(user.code);
-
-        toast(
-            "تم نسخ كود الدعوة للمشاركة"
-        );
-
-    }
-
-}
-
-
-/* ================================
+/* ==============================
    WITHDRAW HISTORY
-================================ */
+============================== */
 
 function renderWithdrawHistory(){
 
-    const container =
-        document.getElementById(
-            "withdrawHistory"
-        );
+const container=$("withdrawHistory");
 
+const user=getCurrentUser();
 
-    const user = currentUser();
+if(!container||!user)return;
 
+const history=user.withdrawHistory||[];
 
-    if(!container || !user){
-        return;
-    }
+if(!history.length){
 
+container.innerHTML=
+'<div class="withdraw-empty">لا توجد عمليات سحب حتى الآن</div>';
 
-    const list =
-        user.withdrawHistory || [];
-
-
-    if(!list.length){
-
-        container.innerHTML =
-            '<div class="record">لا توجد عمليات سحب حتى الآن</div>';
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        list.map(
-            item => `
-
-            <div class="record">
-
-                <div>
-
-                    <strong>
-                        سحب
-                    </strong>
-
-                    <div class="record-date">
-                        ${item.date}
-                    </div>
-
-                </div>
-
-                <div class="record-amount">
-                    $${Number(item.amount).toFixed(2)}
-                </div>
-
-                <div>
-                    ${item.status}
-                </div>
-
-            </div>
-
-            `
-        ).join("");
+return;
 
 }
 
+container.innerHTML=
+history.map(record=>{
 
-/* ================================
+const status=
+record.status==="مكتمل"
+?"مكتمل"
+:"فشل";
+
+const cls=
+status==="مكتمل"
+?"withdraw-complete"
+:"withdraw-failed";
+
+return `
+
+<div class="withdraw-record">
+
+<div>
+<strong>سحب</strong>
+<div class="withdraw-record-date">${escapeHTML(record.date)}</div>
+</div>
+
+<div class="withdraw-record-amount">
+$${Number(record.amount).toFixed(2)}
+</div>
+
+<div class="withdraw-status ${cls}">
+${status}
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+/* ==============================
+   TASKS
+============================== */
+
+function completeTask(amount){
+
+const user=getCurrentUser();
+
+if(!user)return;
+
+user.balance=
+Number(user.balance||0)+amount;
+
+user.taskProfit=
+Number(user.taskProfit||0)+amount;
+
+user.transactions=
+user.transactions||[];
+
+user.transactions.unshift({
+
+type:"مكافأة مهمة",
+
+amount:amount,
+
+date:new Date().toLocaleString("ar-SA")
+
+});
+
+saveData();
+
+updateUI();
+
+toast(
+"تمت إضافة $"+
+amount.toFixed(2)+
+" إلى رصيدك"
+);
+
+}
+
+/* ==============================
+   TEAM
+============================== */
+
+function updateTeam(){
+
+const user=getCurrentUser();
+
+if(!user)return;
+
+const count=
+Number(user.referralCount||0);
+
+let level=0;
+
+if(count>=5)level=1;
+if(count>=10)level=2;
+if(count>=20)level=3;
+if(count>=50)level=4;
+if(count>=100)level=5;
+
+const percentages=[
+0,
+3,
+8,
+12,
+15,
+20
+];
+
+$("teamCount").textContent=count;
+
+$("vipTitle").textContent=
+"VIP "+level;
+
+$("vipPercent").textContent=
+percentages[level]+"%";
+
+let progress=0;
+
+if(level===0){
+
+progress=(count/5)*100;
+
+}else if(level===5){
+
+progress=100;
+
+}else{
+
+const targets=[5,10,20,50,100];
+
+const previous=targets[level-1];
+
+const next=targets[level];
+
+progress=
+((count-previous)/
+(next-previous))*100;
+
+}
+
+$("teamProgress").style.width=
+Math.max(0,Math.min(100,progress))+"%";
+
+document.querySelectorAll(".vip-item")
+.forEach((item,index)=>{
+
+item.classList.toggle(
+"active",
+index+1<=level
+);
+
+});
+
+}
+
+/* ==============================
+   REFERRAL
+============================== */
+
+function updateReferralLink(){
+
+const user=getCurrentUser();
+
+if(!user)return;
+
+$("referralLink").value=
+window.location.href.split("?")[0]
++
+"?ref="
++
+user.userCode;
+
+}
+
+function copyUserCode(){
+
+const input=$("userCode");
+
+if(!input)return;
+
+copyText(input.value);
+
+}
+
+function copyReferralLink(){
+
+const input=$("referralLink");
+
+if(!input)return;
+
+copyText(input.value);
+
+}
+
+function copyText(text){
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(text)
+.then(()=>{
+toast("تم النسخ بنجاح");
+})
+.catch(()=>{
+fallbackCopy(text);
+});
+
+}else{
+
+fallbackCopy(text);
+
+}
+
+}
+
+function fallbackCopy(text){
+
+const area=document.createElement("textarea");
+
+area.value=text;
+
+document.body.appendChild(area);
+
+area.select();
+
+try{
+
+document.execCommand("copy");
+
+toast("تم النسخ بنجاح");
+
+}catch(e){
+
+toast("تعذر النسخ تلقائياً");
+
+}
+
+document.body.removeChild(area);
+
+}
+
+function shareReferral(){
+
+const user=getCurrentUser();
+
+if(!user)return;
+
+const link=
+window.location.href.split("?")[0]
++
+"?ref="
++
+user.userCode;
+
+if(navigator.share){
+
+navigator.share({
+
+title:"XL22",
+
+text:"انضم إلى منصة XL22",
+
+url:link
+
+}).catch(()=>{});
+
+}else{
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(link),
+"_blank"
+);
+
+}
+
+}
+
+/* ==============================
    TRANSACTIONS
-================================ */
+============================== */
 
 function renderTransactions(){
 
-    const container =
-        document.getElementById(
-            "transactionsList"
-        );
+const container=$("transactionsList");
 
+const user=getCurrentUser();
 
-    const user = currentUser();
+if(!container||!user)return;
 
+const list=user.transactions||[];
 
-    if(!container || !user){
-        return;
-    }
+if(!list.length){
 
+container.innerHTML=
+'<div class="withdraw-empty">لا توجد معاملات حتى الآن</div>';
 
-    const list =
-        user.transactions || [];
-
-
-    if(!list.length){
-
-        container.innerHTML =
-            '<div class="record">لا توجد معاملات حتى الآن</div>';
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        list.map(
-            item => `
-
-            <div class="record">
-
-                <div>
-
-                    <strong>
-                        ${item.type}
-                    </strong>
-
-                    <div class="record-date">
-                        ${item.date}
-                    </div>
-
-                </div>
-
-                <div class="record-amount">
-                    $${Number(item.amount).toFixed(2)}
-                </div>
-
-            </div>
-
-            `
-        ).join("");
+return;
 
 }
 
+container.innerHTML=
+list.map(item=>`
 
-/* ================================
-   PASSWORD CHANGE
-================================ */
+<div class="withdraw-record">
+
+<div>
+<strong>${escapeHTML(item.type)}</strong>
+
+<div class="withdraw-record-date">
+${escapeHTML(item.date)}
+</div>
+</div>
+
+<div class="withdraw-record-amount">
+$${Number(item.amount).toFixed(2)}
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+/* ==============================
+   SETTINGS
+============================== */
+
+function updateProfile(){
+
+const user=getCurrentUser();
+
+if(!user)return;
+
+const value=
+$("settingsIdentifier").value.trim();
+
+if(!value){
+
+toast("أدخل البيانات");
+return;
+
+}
+
+const duplicate=users.some(
+(u,index)=>
+index!==currentUserIndex &&
+String(u.identifier).toLowerCase()===
+value.toLowerCase()
+);
+
+if(duplicate){
+
+toast("البيانات مستخدمة من حساب آخر");
+return;
+
+}
+
+user.identifier=value;
+
+saveData();
+
+updateUI();
+
+toast("تم حفظ البيانات");
+
+}
 
 function changePassword(){
 
-    const user = currentUser();
+const user=getCurrentUser();
 
-    if(!user){
-        return;
-    }
+if(!user)return;
 
+const password=
+$("newPassword").value;
 
-    const password =
-        document
-        .getElementById("newPassword")
-        .value;
+if(password.length<6){
 
-
-    if(password.length < 6){
-
-        toast(
-            "كلمة المرور يجب أن تكون 6 أحرف على الأقل"
-        );
-
-        return;
-
-    }
-
-
-    user.password = password;
-
-    saveData();
-
-    document
-    .getElementById("newPassword")
-    .value = "";
-
-
-    toast(
-        "تم تغيير كلمة المرور"
-    );
+toast("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+return;
 
 }
 
+user.password=password;
 
-/* ================================
+saveData();
+
+$("newPassword").value="";
+
+toast("تم تغيير كلمة المرور");
+
+}
+
+function sendAgentMessage(){
+
+const message=
+$("agentMessage").value.trim();
+
+if(!message){
+
+toast("اكتب رسالتك أولاً");
+return;
+
+}
+
+$("agentMessage").value="";
+
+toast("تم إرسال الرسالة");
+
+}
+
+/* ==============================
+   HTML SAFETY
+============================== */
+
+function escapeHTML(value){
+
+return String(value||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+/* ==============================
    AUTO LOGIN
-================================ */
+============================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
+window.addEventListener("load",function(){
 
-        loadData();
+/* توافق مع الحسابات القديمة */
+users.forEach(user=>{
 
-        if(
-            state.currentUserId &&
-            currentUser()
-        ){
+if(!user.userCode){
 
-            openApp();
+user.userCode=generateUserCode();
 
-        }
+}
 
-        const referralInput =
-            document.getElementById(
-                "registerReferral"
-            );
+if(!Array.isArray(user.transactions)){
 
+user.transactions=[];
 
-        if(referralInput){
+}
 
-            const params =
-                new URLSearchParams(
-                    window.location.search
-                );
+if(!Array.isArray(user.withdrawHistory)){
 
+user.withdrawHistory=[];
 
-            const ref =
-                params.get("ref");
+}
 
+});
 
-            if(ref){
+saveData();
 
-                referralInput.value =
-                    ref.toUpperCase();
+if(
+currentUserIndex!==null &&
+users[currentUserIndex]
+){
 
-            }
+openApp();
 
-        }
+}
 
-    }
-);
+});
 
-
-/* ================================
+/* ==============================
    CLOSE SIDEBAR
-================================ */
+============================== */
 
-document.addEventListener(
-    "click",
-    function(event){
+document.addEventListener("click",function(event){
 
-        const sidebar =
-            document.getElementById(
-                "sidebar"
-            );
+const sidebar=$("sidebar");
 
+const menu=document.querySelector(".mobile-menu");
 
-        const menu =
-            document.querySelector(
-                ".mobile-menu"
-            );
+if(
+window.innerWidth<=900 &&
+sidebar &&
+sidebar.classList.contains("open") &&
+!sidebar.contains(event.target) &&
+menu &&
+!menu.contains(event.target)
+){
 
+sidebar.classList.remove("open");
 
-        if(
-            window.innerWidth <= 900 &&
-            sidebar &&
-            sidebar.classList.contains("open") &&
-            !sidebar.contains(event.target) &&
-            menu &&
-            !menu.contains(event.target)
-        ){
+}
 
-            sidebar.classList.remove("open");
+});
 
-        }
+/* ==============================
+   CLOSE MODAL OUTSIDE
+============================== */
 
-    }
-);
+document.querySelectorAll(".modal")
+.forEach(modal=>{
 
-</script>
+modal.addEventListener("click",function(e){
 
-</body>
-    </html>
+if(e.target===modal){
+
+modal.classList.remove("show");
+
+}
+
+});
+
+});
+
+</script></body>
+                                                        </html>
