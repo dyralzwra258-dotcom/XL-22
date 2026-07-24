@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>XL22</title>
 
@@ -12,19 +18,29 @@
         rel="stylesheet"
     >
 
-    <!-- ملف التنسيقات الرئيسي -->
-    <link rel="stylesheet" href="style.css">
+    <!-- ملف التنسيقات -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
+
 <body>
+
 
     <!-- ==================================================
          AUTH SCREEN
     ================================================== -->
 
-    <div id="authScreen" class="auth-screen">
+    <div
+        id="authScreen"
+        class="auth-screen"
+    >
 
         <div class="auth-box">
+
 
             <!-- الشعار -->
 
@@ -41,8 +57,9 @@
             </div>
 
 
+
             <!-- ==================================================
-                 LOGIN
+                 LOGIN FORM
             ================================================== -->
 
             <div id="loginForm">
@@ -51,11 +68,14 @@
                     تسجيل الدخول
                 </h2>
 
+
                 <div
                     id="loginError"
-                    class="error hidden">
-                </div>
+                    class="error hidden"
+                ></div>
 
+
+                <!-- البريد أو الهاتف -->
 
                 <div class="input-group">
 
@@ -76,6 +96,8 @@
 
                 </div>
 
+
+                <!-- كلمة المرور -->
 
                 <div class="input-group">
 
@@ -105,13 +127,18 @@
                 </div>
 
 
+                <!-- زر تسجيل الدخول -->
+
                 <button
+                    type="button"
                     class="main-btn"
                     onclick="login()"
                 >
                     تسجيل الدخول
                 </button>
 
+
+                <!-- الانتقال للتسجيل -->
 
                 <div class="switch-text">
 
@@ -124,7 +151,10 @@
                 </div>
 
 
+                <!-- مسح البيانات -->
+
                 <button
+                    type="button"
                     class="demo-reset"
                     onclick="resetDemoData()"
                 >
@@ -134,8 +164,9 @@
             </div>
 
 
+
             <!-- ==================================================
-                 REGISTER
+                 REGISTER FORM
             ================================================== -->
 
             <div
@@ -148,17 +179,23 @@
                 </h2>
 
 
+                <!-- رسالة الخطأ -->
+
                 <div
                     id="registerError"
-                    class="error hidden">
-                </div>
+                    class="error hidden"
+                ></div>
 
+
+                <!-- رسالة النجاح -->
 
                 <div
                     id="registerSuccess"
-                    class="success hidden">
-                </div>
+                    class="success hidden"
+                ></div>
 
+
+                <!-- البريد أو الهاتف -->
 
                 <div class="input-group">
 
@@ -171,6 +208,7 @@
                         <input
                             id="registerIdentifier"
                             type="text"
+                            autocomplete="username"
                             placeholder="البريد الإلكتروني أو رقم الهاتف"
                         >
 
@@ -178,6 +216,8 @@
 
                 </div>
 
+
+                <!-- كلمة المرور -->
 
                 <div class="input-group">
 
@@ -190,6 +230,7 @@
                         <input
                             id="registerPassword"
                             type="password"
+                            autocomplete="new-password"
                             placeholder="كلمة المرور"
                         >
 
@@ -206,6 +247,8 @@
                 </div>
 
 
+                <!-- تأكيد كلمة المرور -->
+
                 <div class="input-group">
 
                     <label>
@@ -217,6 +260,7 @@
                         <input
                             id="registerConfirm"
                             type="password"
+                            autocomplete="new-password"
                             placeholder="تأكيد كلمة المرور"
                         >
 
@@ -233,7 +277,7 @@
                 </div>
 
 
-                <!-- كود الدعوة يظهر دائماً -->
+                <!-- كود الدعوة -->
 
                 <div class="input-group">
 
@@ -246,8 +290,8 @@
                         <input
                             id="registerReferral"
                             type="text"
-                            placeholder="أدخل كود الدعوة"
                             autocomplete="off"
+                            placeholder="أدخل كود الدعوة - اختياري"
                         >
 
                     </div>
@@ -255,13 +299,18 @@
                 </div>
 
 
+                <!-- زر إنشاء الحساب -->
+
                 <button
+                    type="button"
                     class="main-btn"
                     onclick="register()"
                 >
                     إنشاء الحساب
                 </button>
 
+
+                <!-- العودة لتسجيل الدخول -->
 
                 <div class="switch-text">
 
@@ -290,6 +339,7 @@
         class="hidden"
     >
 
+
         <!-- ==================================================
              HEADER
         ================================================== -->
@@ -297,6 +347,7 @@
         <header class="header">
 
             <button
+                type="button"
                 class="mobile-menu"
                 onclick="toggleSidebar()"
             >
@@ -342,9 +393,8 @@
             </div>
 
 
-            <!-- الرئيسية -->
-
             <button
+                type="button"
                 class="nav-item active"
                 onclick="showPage('home', this)"
             >
@@ -352,9 +402,8 @@
             </button>
 
 
-            <!-- المهام -->
-
             <button
+                type="button"
                 class="nav-item"
                 onclick="showPage('tasksPage', this)"
             >
@@ -362,9 +411,8 @@
             </button>
 
 
-            <!-- الرصيد -->
-
             <button
+                type="button"
                 class="nav-item"
                 onclick="showPage('balancePage', this)"
             >
@@ -372,9 +420,8 @@
             </button>
 
 
-            <!-- الفريق -->
-
             <button
+                type="button"
                 class="nav-item"
                 onclick="showPage('teamPage', this)"
             >
@@ -387,9 +434,8 @@
             </div>
 
 
-            <!-- المعاملات -->
-
             <button
+                type="button"
                 class="nav-item"
                 onclick="showPage('transactionsPage', this)"
             >
@@ -397,9 +443,8 @@
             </button>
 
 
-            <!-- الإعدادات -->
-
             <button
+                type="button"
                 class="nav-item"
                 onclick="showPage('settingsPage', this)"
             >
@@ -407,9 +452,8 @@
             </button>
 
 
-            <!-- تسجيل الخروج -->
-
             <button
+                type="button"
                 class="nav-item"
                 onclick="logout()"
             >
@@ -428,7 +472,7 @@
 
 
             <!-- ==================================================
-                 HOME
+                 HOME PAGE
             ================================================== -->
 
             <section
@@ -483,7 +527,7 @@
                             <path
                                 class="chart-path"
                                 d="M0,160 L80,140 L150,150 L220,90 L300,120 L380,70 L450,100 L530,45 L610,80 L690,35 L770,70 L850,25 L930,50 L1000,20"
-                            />
+                            ></path>
 
                         </svg>
 
@@ -503,6 +547,7 @@
                     <div class="balance-value">
 
                         $
+
                         <span id="homeBalance">
                             0.00
                         </span>
@@ -525,6 +570,7 @@
                         <div class="small-card-value">
 
                             $
+
                             <span id="homeTaskProfit">
                                 0.00
                             </span>
@@ -543,6 +589,7 @@
                         <div class="small-card-value">
 
                             $
+
                             <span id="homeReferralProfit">
                                 0.00
                             </span>
@@ -554,11 +601,12 @@
                 </div>
 
 
-                <!-- إيداع وسحب -->
+                <!-- الإيداع والسحب -->
 
                 <div class="money-actions">
 
                     <button
+                        type="button"
                         class="money-btn deposit"
                         onclick="openModal('depositModal')"
                     >
@@ -569,6 +617,7 @@
 
 
                     <button
+                        type="button"
                         class="money-btn withdraw"
                         onclick="openModal('withdrawModal')"
                     >
@@ -584,7 +633,7 @@
 
 
             <!-- ==================================================
-                 TASKS
+                 TASKS PAGE
             ================================================== -->
 
             <section
@@ -627,6 +676,7 @@
                         </div>
 
                         <button
+                            type="button"
                             class="task-btn"
                             onclick="completeTask(1)"
                         >
@@ -634,7 +684,6 @@
                         </button>
 
                     </div>
-
 
 
                     <div class="task-card">
@@ -656,6 +705,7 @@
                         </div>
 
                         <button
+                            type="button"
                             class="task-btn"
                             onclick="completeTask(2)"
                         >
@@ -663,7 +713,6 @@
                         </button>
 
                     </div>
-
 
 
                     <div class="task-card">
@@ -685,6 +734,7 @@
                         </div>
 
                         <button
+                            type="button"
                             class="task-btn"
                             onclick="completeTask(5)"
                         >
@@ -700,7 +750,7 @@
 
 
             <!-- ==================================================
-                 BALANCE
+                 BALANCE PAGE
             ================================================== -->
 
             <section
@@ -730,6 +780,7 @@
                     <div class="balance-value">
 
                         $
+
                         <span id="balancePageValue">
                             0.00
                         </span>
@@ -750,6 +801,7 @@
                         <div class="small-card-value">
 
                             $
+
                             <span id="profitTask">
                                 0.00
                             </span>
@@ -768,6 +820,7 @@
                         <div class="small-card-value">
 
                             $
+
                             <span id="profitReferral">
                                 0.00
                             </span>
@@ -782,6 +835,7 @@
                 <div class="money-actions">
 
                     <button
+                        type="button"
                         class="money-btn deposit"
                         onclick="openModal('depositModal')"
                     >
@@ -790,6 +844,7 @@
 
 
                     <button
+                        type="button"
                         class="money-btn withdraw"
                         onclick="openModal('withdrawModal')"
                     >
@@ -803,7 +858,7 @@
 
 
             <!-- ==================================================
-                 TEAM
+                 TEAM PAGE
             ================================================== -->
 
             <section
@@ -835,10 +890,13 @@
                             </h3>
 
                             <p>
+
                                 عدد الأعضاء المؤهلين:
+
                                 <span id="teamCount">
                                     0
                                 </span>
+
                             </p>
 
                         </div>
@@ -867,9 +925,10 @@
                 </div>
 
 
-                <!-- مستويات الفريق -->
+                <!-- مستويات VIP -->
 
                 <div class="vip-grid">
+
 
                     <div class="vip-item">
 
@@ -958,11 +1017,13 @@
 
                         <input
                             id="referralLink"
+                            type="text"
                             readonly
                         >
 
 
                         <button
+                            type="button"
                             class="copy-btn"
                             onclick="copyReferralLink()"
                         >
@@ -971,6 +1032,7 @@
 
 
                         <button
+                            type="button"
                             class="share-btn"
                             onclick="shareReferral()"
                         >
@@ -986,7 +1048,7 @@
 
 
             <!-- ==================================================
-                 TRANSACTIONS
+                 TRANSACTIONS PAGE
             ================================================== -->
 
             <section
@@ -1014,7 +1076,7 @@
 
 
             <!-- ==================================================
-                 SETTINGS
+                 SETTINGS PAGE
             ================================================== -->
 
             <section
@@ -1038,7 +1100,7 @@
                 <div class="settings-grid">
 
 
-                    <!-- تعديل الملف -->
+                    <!-- الملف الشخصي -->
 
                     <div class="settings-box">
 
@@ -1070,6 +1132,7 @@
 
 
                         <button
+                            type="button"
                             class="main-btn"
                             onclick="updateProfile()"
                         >
@@ -1080,7 +1143,7 @@
 
 
 
-                    <!-- كلمة مرور الأمان -->
+                    <!-- رمز الأمان -->
 
                     <div class="settings-box">
 
@@ -1105,6 +1168,7 @@
                                     id="securityPin"
                                     type="password"
                                     maxlength="6"
+                                    inputmode="numeric"
                                     placeholder="6 أرقام"
                                 >
 
@@ -1114,6 +1178,7 @@
 
 
                         <button
+                            type="button"
                             class="main-btn"
                             onclick="changeSecurityPin()"
                         >
@@ -1157,6 +1222,7 @@
 
 
                         <button
+                            type="button"
                             class="main-btn"
                             onclick="changePassword()"
                         >
@@ -1189,6 +1255,7 @@
 
 
                         <button
+                            type="button"
                             class="main-btn"
                             onclick="requestVerification()"
                         >
@@ -1231,6 +1298,7 @@
 
 
                         <button
+                            type="button"
                             class="main-btn"
                             onclick="sendAgentMessage()"
                         >
@@ -1289,7 +1357,7 @@
 
 
 
-                    <!-- طرق السحب -->
+                    <!-- طريقة السحب -->
 
                     <div class="settings-box">
 
@@ -1322,6 +1390,7 @@
 
 
                         <button
+                            type="button"
                             class="main-btn"
                             onclick="saveWithdrawMethod()"
                         >
@@ -1344,47 +1413,64 @@
 
         <nav class="mobile-bottom">
 
+
             <button
+                type="button"
                 class="bottom-item active"
                 onclick="mobilePage('home', this)"
             >
+
                 🏠
+
                 <span>
                     الرئيسية
                 </span>
+
             </button>
 
 
             <button
+                type="button"
                 class="bottom-item"
                 onclick="mobilePage('tasksPage', this)"
             >
+
                 📋
+
                 <span>
                     المهام
                 </span>
+
             </button>
 
 
             <button
+                type="button"
                 class="bottom-item"
                 onclick="mobilePage('balancePage', this)"
             >
+
                 💰
+
                 <span>
                     الرصيد
                 </span>
+
             </button>
 
 
             <button
+                type="button"
                 class="bottom-item"
                 onclick="mobilePage('teamPage', this)"
             >
+
                 👑
+
                 <span>
                     الفريق
                 </span>
+
             </button>
 
         </nav>
@@ -1404,13 +1490,16 @@
 
         <div class="modal-box">
 
+
             <div class="modal-header">
 
                 <h3>
                     💰 إيداع
                 </h3>
 
+
                 <button
+                    type="button"
                     class="close-btn"
                     onclick="closeModal('depositModal')"
                 >
@@ -1447,6 +1536,7 @@
 
 
             <button
+                type="button"
                 class="main-btn"
                 onclick="deposit()"
             >
@@ -1470,13 +1560,16 @@
 
         <div class="modal-box">
 
+
             <div class="modal-header">
 
                 <h3>
                     💸 سحب
                 </h3>
 
+
                 <button
+                    type="button"
                     class="close-btn"
                     onclick="closeModal('withdrawModal')"
                 >
@@ -1549,6 +1642,7 @@
                         id="withdrawPin"
                         type="password"
                         maxlength="6"
+                        inputmode="numeric"
                         placeholder="رمز الأمان"
                     >
 
@@ -1558,6 +1652,7 @@
 
 
             <button
+                type="button"
                 class="main-btn"
                 onclick="withdraw()"
             >
@@ -1577,14 +1672,13 @@
     <!-- الإعدادات والبيانات -->
     <script src="config.js"></script>
 
-    <!-- قاعدة البيانات المحلية -->
-    <script src="database.js"></script>
-
     <!-- المصادقة وتسجيل الدخول -->
     <script src="auth.js"></script>
 
     <!-- وظائف التطبيق -->
     <script src="app.js"></script>
 
+
 </body>
-    </html>
+
+                        </html>
