@@ -1,2516 +1,2954 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XL22</title><style>
-*{box-sizing:border-box;margin:0;padding:0}
+<title>XL22</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 :root{
---gold:#d4af37;
---gold2:#f0cf63;
---gold3:#8f7118;
---black:#090909;
---black2:#111111;
---card:#171717;
---card2:#1d1d1d;
---border:rgba(212,175,55,.25);
---text:#fff;
---muted:#aaa;
---green:#25c76f;
---red:#e85b5b;
+    --gold:#d4af37;
+    --gold2:#b88a16;
+    --gold3:#f1d77a;
+    --black:#090909;
+    --black2:#151515;
+    --dark:#222;
+    --white:#fff;
+    --muted:#999;
+    --green:#19b96b;
+    --red:#e34b4b;
 }
 
 body{
-font-family:Arial,"Tahoma",sans-serif;
-background:var(--black);
-color:var(--text);
-min-height:100vh;
-overflow-x:hidden;
+    font-family:Arial,Tahoma,sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(212,175,55,.08),transparent 30%),
+        radial-gradient(circle at 80% 70%,rgba(212,175,55,.05),transparent 30%),
+        var(--black);
+    color:#fff;
+    min-height:100vh;
 }
 
-button,input,textarea{font-family:inherit}
-
-button{cursor:pointer}
-
-.hidden{display:none!important}
-
-/* خلفية متحركة خفيفة */
-.bg-animation{
-position:fixed;
-inset:0;
-overflow:hidden;
-pointer-events:none;
-z-index:0;
-opacity:.10;
+button,input,textarea{
+    font-family:inherit;
 }
 
-.bg-symbol{
-position:absolute;
-color:var(--gold);
-font-weight:bold;
-animation:floatSymbol linear infinite;
+button{
+    cursor:pointer;
 }
 
-.s1{left:5%;font-size:28px;animation-duration:18s}
-.s2{left:18%;font-size:20px;animation-duration:24s}
-.s3{left:35%;font-size:32px;animation-duration:20s}
-.s4{left:55%;font-size:22px;animation-duration:27s}
-.s5{left:72%;font-size:30px;animation-duration:19s}
-.s6{left:88%;font-size:21px;animation-duration:23s}
-
-@keyframes floatSymbol{
-0%{transform:translateY(110vh) rotate(0deg);opacity:0}
-15%{opacity:1}
-85%{opacity:1}
-100%{transform:translateY(-120px) rotate(360deg);opacity:0}
+.hidden{
+    display:none!important;
 }
 
-/* AUTH */
+/* =========================
+AUTH
+========================= */
+
 .auth-screen{
-position:relative;
-z-index:2;
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-background:
-radial-gradient(circle at top,#2b2410 0%,#090909 48%,#050505 100%);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+        linear-gradient(135deg,#050505,#191919);
 }
 
 .auth-box{
-width:100%;
-max-width:440px;
-background:rgba(18,18,18,.97);
-border:1px solid var(--border);
-border-radius:24px;
-padding:32px 25px;
-box-shadow:0 20px 80px rgba(0,0,0,.65);
+    width:100%;
+    max-width:430px;
+    background:#111;
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
 }
 
 .logo{
-font-size:32px;
-font-weight:900;
-letter-spacing:4px;
-color:var(--gold);
-text-align:center;
+    color:var(--gold);
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:3px;
 }
 
 .auth-logo{
-text-align:center;
-margin-bottom:28px;
+    text-align:center;
+    margin-bottom:28px;
 }
 
 .auth-logo p{
-color:var(--muted);
-margin-top:8px;
+    color:#999;
+    margin-top:8px;
 }
 
 .form-title{
-text-align:center;
-margin-bottom:22px;
+    text-align:center;
+    margin-bottom:22px;
 }
 
 .input-group{
-margin-bottom:16px;
+    margin-bottom:16px;
 }
 
 .input-group label{
-display:block;
-margin-bottom:7px;
-font-size:14px;
-color:#ddd;
+    display:block;
+    margin-bottom:7px;
+    color:#ddd;
+    font-size:14px;
 }
 
-.input-wrap{
-position:relative;
+.input-wrapper{
+    position:relative;
 }
 
 input,textarea{
-width:100%;
-padding:13px 14px;
-border-radius:10px;
-border:1px solid #3b3b3b;
-background:#0d0d0d;
-color:#fff;
-outline:none;
-font-size:15px;
+    width:100%;
+    border:1px solid #3a3a3a;
+    background:#1a1a1a;
+    color:#fff;
+    padding:13px 15px;
+    border-radius:10px;
+    outline:none;
 }
 
 input:focus,textarea:focus{
-border-color:var(--gold);
-box-shadow:0 0 0 3px rgba(212,175,55,.10);
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(212,175,55,.1);
 }
 
 .password-input{
-padding-left:50px;
+    padding-left:50px;
 }
 
 .eye-btn{
-position:absolute;
-left:8px;
-top:50%;
-transform:translateY(-50%);
-width:38px;
-height:36px;
-border:0;
-border-radius:8px;
-background:transparent;
-color:var(--gold);
-font-size:20px;
-}
-
-.eye-btn:hover{
-background:rgba(212,175,55,.12);
+    position:absolute;
+    left:8px;
+    top:50%;
+    transform:translateY(-50%);
+    width:36px;
+    height:36px;
+    border:0;
+    background:transparent;
+    color:var(--gold);
+    font-size:20px;
 }
 
 .main-btn{
-width:100%;
-border:0;
-padding:14px;
-border-radius:10px;
-background:linear-gradient(135deg,var(--gold2),var(--gold3));
-color:#090909;
-font-size:16px;
-font-weight:800;
-margin-top:4px;
+    width:100%;
+    border:0;
+    padding:14px;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#080808;
+    font-weight:900;
+    margin-top:5px;
 }
 
 .main-btn:hover{
-filter:brightness(1.12);
+    filter:brightness(1.12);
 }
 
 .switch-text{
-text-align:center;
-margin-top:20px;
-color:#999;
+    text-align:center;
+    margin-top:20px;
+    color:#888;
 }
 
 .switch-text span{
-color:var(--gold);
-font-weight:bold;
-cursor:pointer;
-}
-
-.error,.success{
-padding:11px;
-border-radius:9px;
-margin-bottom:15px;
-font-size:14px;
+    color:var(--gold);
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .error{
-background:rgba(180,50,50,.15);
-border:1px solid rgba(220,80,80,.3);
-color:#ff9b9b;
+    background:rgba(220,60,60,.12);
+    border:1px solid rgba(220,60,60,.3);
+    color:#ff7777;
+    padding:10px;
+    border-radius:9px;
+    margin-bottom:15px;
+    font-size:13px;
 }
 
-.success{
-background:rgba(212,175,55,.12);
-border:1px solid var(--border);
-color:var(--gold2);
-}
-
-/* APP */
-#app{
-position:relative;
-z-index:1;
-}
+/* =========================
+APP HEADER
+========================= */
 
 .header{
-position:fixed;
-top:0;
-right:0;
-left:0;
-height:70px;
-background:rgba(10,10,10,.96);
-border-bottom:1px solid var(--border);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 25px;
-z-index:100;
-backdrop-filter:blur(10px);
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    height:72px;
+    background:rgba(10,10,10,.96);
+    border-bottom:1px solid rgba(212,175,55,.25);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 24px;
+    z-index:100;
+    backdrop-filter:blur(10px);
 }
 
-.header .logo{
-font-size:25px;
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
 .header-user{
-display:flex;
-align-items:center;
-gap:10px;
+    display:flex;
+    align-items:center;
+    gap:9px;
 }
 
 .avatar{
-width:40px;
-height:40px;
-border-radius:50%;
-background:linear-gradient(135deg,var(--gold2),var(--gold3));
-color:#000;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:900;
 }
 
 .mobile-menu{
-display:none;
-border:0;
-background:none;
-color:var(--gold);
-font-size:26px;
+    display:none;
+    background:none;
+    border:0;
+    color:var(--gold);
+    font-size:26px;
 }
 
-/* SIDEBAR */
+/* كود المستخدم أعلى الشاشة */
+
+.user-code-box{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    direction:ltr;
+}
+
+.user-code{
+    background:#181818;
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:8px;
+    padding:7px 10px;
+    color:var(--gold3);
+    font-weight:bold;
+    font-size:13px;
+}
+
+.copy-small{
+    border:1px solid rgba(212,175,55,.4);
+    background:#211d10;
+    color:var(--gold);
+    border-radius:8px;
+    padding:7px 9px;
+    font-size:14px;
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
 .sidebar{
-position:fixed;
-top:70px;
-right:0;
-bottom:0;
-width:245px;
-background:#0d0d0d;
-border-left:1px solid var(--border);
-padding:20px 15px;
-z-index:90;
+    position:fixed;
+    top:72px;
+    right:0;
+    bottom:0;
+    width:235px;
+    background:#101010;
+    border-left:1px solid rgba(212,175,55,.2);
+    padding:18px 13px;
+    z-index:90;
 }
 
 .nav-title{
-font-size:12px;
-color:var(--gold3);
-margin:15px 10px 8px;
+    color:#777;
+    font-size:12px;
+    margin:15px 10px 8px;
 }
 
 .nav-item{
-width:100%;
-border:0;
-background:transparent;
-text-align:right;
-padding:13px;
-border-radius:10px;
-margin-bottom:6px;
-color:#ccc;
-font-size:15px;
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#bbb;
+    text-align:right;
+    padding:13px;
+    border-radius:10px;
+    margin-bottom:5px;
 }
 
 .nav-item:hover,
 .nav-item.active{
-background:rgba(212,175,55,.14);
-color:var(--gold2);
-font-weight:bold;
+    background:linear-gradient(90deg,rgba(212,175,55,.18),rgba(212,175,55,.05));
+    color:var(--gold);
+    font-weight:bold;
 }
 
-/* CONTENT */
+/* =========================
+CONTENT
+========================= */
+
 .content{
-margin-right:245px;
-padding:100px 30px 40px;
+    margin-right:235px;
+    padding:105px 30px 40px;
+    min-height:100vh;
 }
 
-.page{display:none}
+.page{
+    display:none;
+}
 
-.page.active{display:block}
+.page.active{
+    display:block;
+}
 
 .page-title{
-margin-bottom:25px;
+    margin-bottom:24px;
 }
 
 .page-title h1{
-font-size:28px;
-color:var(--gold2);
+    color:var(--gold);
+    font-size:28px;
 }
 
 .page-title p{
-color:var(--muted);
-margin-top:6px;
+    color:#888;
+    margin-top:6px;
 }
 
-/* MARKET */
+/* =========================
+HOME MARKET
+========================= */
+
 .market-section{
-background:#111;
-border:1px solid var(--border);
-border-radius:20px;
-padding:25px;
-box-shadow:0 10px 40px rgba(0,0,0,.25);
+    position:relative;
+    overflow:hidden;
+    background:#111;
+    border:1px solid rgba(212,175,55,.2);
+    border-radius:20px;
+    padding:24px;
 }
 
 .market-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
 }
 
 .market-header h2{
-font-size:21px;
+    color:#eee;
 }
 
 .market-header p{
-color:#999;
-font-size:14px;
-margin-top:5px;
+    color:#777;
+    font-size:13px;
+    margin-top:5px;
 }
 
 .market-status{
-color:var(--green);
-font-size:14px;
+    color:#79c98e;
+    font-size:13px;
 }
 
 .status-dot{
-width:8px;
-height:8px;
-display:inline-block;
-background:var(--green);
-border-radius:50%;
-margin-left:5px;
-box-shadow:0 0 10px var(--green);
+    display:inline-block;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#42d477;
+    margin-left:5px;
+    box-shadow:0 0 10px #42d477;
 }
 
-/* العملات */
-.crypto-list{
-display:flex;
-flex-direction:column;
-gap:10px;
+/* رسومات متحركة خفيفة */
+
+.market-animation{
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    height:100%;
+    pointer-events:none;
+    overflow:hidden;
+    opacity:.16;
 }
+
+.float-coin{
+    position:absolute;
+    color:var(--gold);
+    font-size:25px;
+    animation:floatCoin 8s linear infinite;
+}
+
+.coin1{left:8%;animation-delay:0s;}
+.coin2{left:25%;animation-delay:2s;font-size:18px;}
+.coin3{left:50%;animation-delay:4s;}
+.coin4{left:72%;animation-delay:1s;font-size:20px;}
+.coin5{left:90%;animation-delay:3s;}
+
+@keyframes floatCoin{
+    0%{
+        transform:translateY(120px) rotate(0deg);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    80%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-100px) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.trading-line{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    width:130px;
+    height:40px;
+    opacity:.4;
+}
+
+.trading-line svg{
+    width:100%;
+    height:100%;
+}
+
+.crypto-list{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+/* العملات يسار والأسعار يمين */
 
 .crypto-card{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:17px 20px;
-background:#181818;
-border:1px solid #292929;
-border-radius:14px;
-transition:.2s;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    direction:ltr;
+    background:#181818;
+    border:1px solid #292929;
+    border-radius:13px;
+    padding:13px 16px;
+    transition:.2s;
 }
 
 .crypto-card:hover{
-transform:translateY(-2px);
-border-color:var(--border);
+    border-color:rgba(212,175,55,.45);
+    transform:translateY(-1px);
 }
 
 .crypto-info{
-display:flex;
-align-items:center;
-gap:13px;
-direction:ltr;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    direction:ltr;
+    text-align:left;
 }
 
 .crypto-icon{
-width:45px;
-height:45px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#fff;
-font-weight:800;
-font-size:19px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-weight:900;
 }
 
-.crypto-info h3{
-font-size:16px;
+.crypto-name{
+    color:#eee;
+    font-weight:bold;
 }
 
-.crypto-info span{
-color:#888;
-font-size:12px;
+.crypto-symbol{
+    color:#777;
+    font-size:12px;
+    margin-top:3px;
 }
 
 .crypto-price{
-text-align:right;
-direction:ltr;
-min-width:130px;
+    text-align:right;
+    direction:ltr;
 }
 
 .price-number{
-display:block;
-font-size:17px;
-font-weight:800;
-text-align:right;
+    display:block;
+    color:#fff;
+    font-weight:900;
 }
 
-.price-up,.price-down{
-display:block;
-margin-top:3px;
-font-size:13px;
-font-weight:bold;
-text-align:right;
+.price-up{
+    color:var(--green);
+    font-size:12px;
+    margin-top:3px;
+    display:block;
 }
 
-.price-up{color:var(--green)}
-.price-down{color:var(--red)}
+.price-down{
+    color:var(--red);
+    font-size:12px;
+    margin-top:3px;
+    display:block;
+}
 
-.bitcoin{background:#f7931a}
-.ethereum{background:#627eea}
-.usdt{background:#26a17b}
-.bnb{background:#f3ba2f;color:#222}
-.solana{background:#6d5dfc}
-.xrp{background:#23292f}
-.cardano{background:#3468d4}
-.doge{background:#c2a633}
-.tron{background:#e91d38}
-.dot{background:#e6007a}
-.link{background:#2a5ada}
-.avax{background:#e84142}
-.ltc{background:#345d9d}
-.shib{background:#f3a847}
-.matic{background:#8247e5}
-.near{background:#111;border:1px solid #444}
+/* العملات */
 
-/* CARDS */
+.bitcoin{background:#f7931a;}
+.ethereum{background:#627eea;}
+.usdt{background:#26a17b;}
+.bnb{background:#d9a923;color:#111;}
+.solana{background:#635bdb;}
+.xrp{background:#222;}
+.cardano{background:#3468d4;}
+.doge{background:#c2a633;color:#111;}
+.tron{background:#e91d38;}
+.dot{background:#e6007a;}
+.link{background:#2a5ada;}
+.avax{background:#e84142;}
+.ltc{background:#345d9d;}
+.shib{background:#e8a54b;color:#111;}
+.matic{background:#8247e5;}
+.near{background:#333;}
+
+/* =========================
+CARDS
+========================= */
+
 .balance-card,
 .small-card,
 .task-card,
 .team-level,
 .settings-box,
-.referral-card{
-background:#151515;
-border:1px solid var(--border);
-border-radius:18px;
-padding:25px;
-box-shadow:0 7px 25px rgba(0,0,0,.2);
+.withdraw-history-section{
+    background:#111;
+    border:1px solid rgba(212,175,55,.2);
+    border-radius:17px;
+    padding:22px;
 }
 
 .balance-value{
-font-size:35px;
-font-weight:800;
-color:var(--gold2);
-margin-top:10px;
-direction:ltr;
-text-align:right;
+    color:var(--gold);
+    font-size:32px;
+    font-weight:900;
+    margin-top:8px;
 }
 
 .balance-label{
-color:#999;
+    color:#888;
 }
 
-.small-cards,
-.tasks-grid,
-.vip-grid,
-.settings-grid{
-display:grid;
-gap:18px;
-margin-top:20px;
+.small-cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:15px;
 }
-
-.small-cards{grid-template-columns:repeat(2,1fr)}
-.tasks-grid{grid-template-columns:repeat(3,1fr)}
-.vip-grid{grid-template-columns:repeat(5,1fr)}
-.settings-grid{grid-template-columns:repeat(2,1fr)}
 
 .small-card-value{
-font-size:22px;
-font-weight:700;
-margin-top:8px;
-direction:ltr;
-text-align:right;
-}
-
-.task-icon{font-size:30px}
-
-.task-card h3{
-margin:12px 0 8px;
-}
-
-.task-card p,.settings-box p{
-color:#999;
-font-size:14px;
-}
-
-.task-reward{
-color:var(--green);
-font-weight:800;
-margin:15px 0;
-direction:ltr;
-text-align:right;
-}
-
-.task-btn,.copy-btn,.share-btn{
-border:0;
-padding:10px 15px;
-border-radius:9px;
-font-weight:700;
-}
-
-.task-btn,.copy-btn{
-background:var(--gold);
-color:#111;
-}
-
-.share-btn{
-background:rgba(212,175,55,.15);
-color:var(--gold2);
+    color:var(--gold);
+    font-size:20px;
+    font-weight:bold;
+    margin-top:7px;
 }
 
 .money-actions{
-display:flex;
-gap:15px;
-margin-top:20px;
+    display:flex;
+    gap:12px;
+    margin-top:15px;
+    max-width:500px;
 }
 
 .money-btn{
-flex:1;
-border:0;
-padding:14px;
-border-radius:10px;
-font-weight:700;
+    flex:1;
+    border:0;
+    padding:11px 15px;
+    border-radius:9px;
+    font-weight:bold;
 }
 
 .deposit{
-background:var(--gold);
-color:#111;
+    background:var(--gold);
+    color:#111;
 }
 
 .withdraw{
-background:#282828;
-color:var(--gold2);
-border:1px solid var(--border);
+    background:#252525;
+    color:var(--gold);
+    border:1px solid rgba(212,175,55,.35);
 }
 
-/* TEAM */
+/* =========================
+TASKS
+========================= */
+
+.tasks-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.task-icon{
+    font-size:28px;
+}
+
+.task-card h3{
+    margin:10px 0;
+}
+
+.task-card p{
+    color:#888;
+    font-size:14px;
+}
+
+.task-reward{
+    color:var(--green);
+    font-weight:bold;
+    margin:14px 0;
+}
+
+.task-btn{
+    border:0;
+    background:var(--gold);
+    color:#111;
+    padding:10px 15px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* =========================
+TEAM
+========================= */
+
 .level-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .vip-badge{
-background:rgba(212,175,55,.15);
-color:var(--gold2);
-padding:12px 20px;
-border-radius:12px;
-font-weight:800;
+    background:#241f0e;
+    color:var(--gold);
+    border:1px solid rgba(212,175,55,.35);
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:900;
 }
 
 .progress{
-height:10px;
-background:#292929;
-border-radius:20px;
-margin-top:20px;
-overflow:hidden;
+    height:8px;
+    background:#252525;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:18px;
 }
 
 .progress-bar{
-height:100%;
-width:0;
-background:linear-gradient(90deg,var(--gold3),var(--gold2));
-transition:.4s;
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,var(--gold2),var(--gold3));
+    transition:.4s;
+}
+
+/* مربعات VIP */
+
+.vip-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-top:18px;
 }
 
 .vip-item{
-background:#161616;
-padding:20px;
-text-align:center;
-border-radius:15px;
-border:1px solid #292929;
-transition:.2s;
-}
-
-.vip-item:hover{
-transform:translateY(-3px);
-border-color:var(--border);
-}
-
-.vip-item.active{
-background:linear-gradient(145deg,#30270f,#181818);
-border-color:var(--gold);
+    background:#111;
+    border:1px solid #2b2b2b;
+    border-radius:15px;
+    padding:20px 10px;
+    text-align:center;
 }
 
 .vip-item h4{
-color:var(--gold2);
-margin-bottom:8px;
+    color:#ddd;
+    margin-bottom:7px;
 }
 
 .vip-item p{
-color:#aaa;
-font-size:14px;
+    color:#777;
+    font-size:13px;
 }
 
-.team-link{
-display:flex;
-gap:8px;
-margin-top:15px;
+.vip-item.active{
+    background:linear-gradient(180deg,#2a220b,#151515);
+    border-color:var(--gold);
+    box-shadow:0 0 20px rgba(212,175,55,.08);
 }
 
-.team-link input{
-direction:ltr;
-text-align:left;
+.vip-item.active h4{
+    color:var(--gold);
 }
 
-.referral-card{
-margin-top:18px;
-}
+/* =========================
+WITHDRAW
+========================= */
 
-.user-code-box{
-display:flex;
-gap:8px;
-margin-top:15px;
-}
-
-.user-code-box input{
-direction:ltr;
-text-align:center;
-font-size:18px;
-font-weight:bold;
-letter-spacing:2px;
-color:var(--gold2);
-}
-
-/* TABLES */
-.table-box{
-margin-top:20px;
-background:#151515;
-border:1px solid var(--border);
-border-radius:18px;
-padding:20px;
-overflow-x:auto;
-}
-
-.table-box h3{
-color:var(--gold2);
-margin-bottom:15px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-min-width:450px;
-}
-
-th,td{
-padding:13px;
-text-align:center;
-border-bottom:1px solid #292929;
-}
-
-th{
-color:var(--gold2);
-background:#1b1b1b;
-}
-
-td{
-color:#ddd;
-}
-
-.percent{
-color:var(--gold2);
-font-weight:bold;
-}
-
-/* HISTORY */
 .withdraw-history-section{
-margin-top:25px;
-background:#151515;
-border:1px solid var(--border);
-border-radius:18px;
-padding:24px;
-}
-
-.withdraw-history-section h2{
-color:var(--gold2);
+    margin-top:18px;
 }
 
 .withdraw-history-section p{
-color:#999;
-font-size:14px;
-margin-top:5px;
+    color:#777;
+    font-size:13px;
+    margin-top:5px;
 }
 
 .withdraw-record{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-padding:16px;
-margin-top:12px;
-background:#1a1a1a;
-border:1px solid #292929;
-border-radius:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-top:10px;
+    padding:13px;
+    background:#181818;
+    border:1px solid #292929;
+    border-radius:10px;
 }
 
 .withdraw-record-date{
-color:#888;
-font-size:13px;
-margin-top:5px;
+    color:#777;
+    font-size:12px;
+    margin-top:4px;
 }
 
 .withdraw-record-amount{
-font-weight:800;
-direction:ltr;
-text-align:right;
+    color:var(--gold);
+    font-weight:bold;
 }
 
 .withdraw-status{
-padding:7px 13px;
-border-radius:8px;
-font-size:13px;
-font-weight:700;
+    padding:6px 10px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
 }
 
 .withdraw-complete{
-background:rgba(212,175,55,.15);
-color:var(--gold2);
+    background:rgba(25,185,107,.12);
+    color:#55d995;
 }
 
 .withdraw-failed{
-background:rgba(220,70,70,.12);
-color:#ff9292;
+    background:rgba(227,75,75,.12);
+    color:#ff7777;
 }
 
 .withdraw-empty{
-text-align:center;
-padding:30px;
-color:#888;
-background:#111;
-border-radius:12px;
-margin-top:20px;
+    text-align:center;
+    padding:25px;
+    color:#777;
 }
 
-/* MOBILE */
-.mobile-bottom{display:none}
+/* =========================
+SETTINGS
+========================= */
+
+.settings-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.settings-box h3{
+    margin-bottom:8px;
+}
+
+.settings-box p{
+    color:#777;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:500;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:430px;
+    background:#111;
+    border:1px solid rgba(212,175,55,.3);
+    border-radius:18px;
+    padding:24px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close-btn{
+    border:0;
+    background:none;
+    color:#aaa;
+    font-size:28px;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+.mobile-bottom{
+    display:none;
+}
 
 @media(max-width:900px){
 
-.mobile-menu{display:block}
+    .mobile-menu{
+        display:block;
+    }
 
-.sidebar{
-right:-250px;
-transition:.3s;
-}
+    .sidebar{
+        right:-250px;
+        transition:.3s;
+    }
 
-.sidebar.open{right:0}
+    .sidebar.open{
+        right:0;
+    }
 
-.content{
-margin-right:0;
-padding:90px 15px 90px;
-}
+    .content{
+        margin-right:0;
+        padding:95px 14px 90px;
+    }
 
-.tasks-grid,.settings-grid{
-grid-template-columns:1fr;
-}
+    .tasks-grid{
+        grid-template-columns:1fr;
+    }
 
-.vip-grid{
-grid-template-columns:repeat(2,1fr);
-}
+    .settings-grid{
+        grid-template-columns:1fr;
+    }
 
-.mobile-bottom{
-position:fixed;
-bottom:0;
-right:0;
-left:0;
-height:65px;
-background:#0d0d0d;
-display:flex;
-justify-content:space-around;
-z-index:200;
-border-top:1px solid var(--border);
-}
+    .vip-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-.bottom-item{
-border:0;
-background:transparent;
-color:#888;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-font-size:12px;
-}
+    .mobile-bottom{
+        position:fixed;
+        display:flex;
+        right:0;
+        left:0;
+        bottom:0;
+        height:65px;
+        background:#101010;
+        border-top:1px solid rgba(212,175,55,.25);
+        z-index:200;
+        justify-content:space-around;
+    }
 
-.bottom-item.active{
-color:var(--gold2);
-font-weight:bold;
-}
+    .bottom-item{
+        border:0;
+        background:none;
+        color:#777;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        font-size:12px;
+    }
+
+    .bottom-item.active{
+        color:var(--gold);
+        font-weight:bold;
+    }
+
+    .user-code-box{
+        display:none;
+    }
+
+    .header{
+        padding:0 13px;
+    }
+
+    .header-user span{
+        max-width:110px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
 }
 
 @media(max-width:600px){
 
-.auth-box{
-padding:25px 20px;
+    .auth-box{
+        padding:24px 18px;
+    }
+
+    .market-section{
+        padding:14px;
+    }
+
+    .market-header{
+        align-items:flex-start;
+    }
+
+    .market-status{
+        font-size:11px;
+    }
+
+    .crypto-card{
+        padding:11px;
+    }
+
+    .crypto-icon{
+        width:38px;
+        height:38px;
+        font-size:13px;
+    }
+
+    .crypto-name{
+        font-size:13px;
+    }
+
+    .price-number{
+        font-size:13px;
+    }
+
+    .small-cards{
+        grid-template-columns:1fr;
+    }
+
+    .money-actions{
+        max-width:none;
+    }
+
+    .vip-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .withdraw-record{
+        flex-wrap:wrap;
+    }
 }
 
-.market-section{
-padding:15px;
-}
+/* =========================
+TOAST
+========================= */
 
-.crypto-card{
-padding:13px;
-}
-
-.crypto-icon{
-width:40px;
-height:40px;
-}
-
-.price-number{
-font-size:14px;
-}
-
-.crypto-price{
-min-width:100px;
-}
-
-.small-cards{
-grid-template-columns:1fr;
-}
-
-.money-actions{
-flex-direction:column;
-}
-
-.withdraw-record{
-flex-wrap:wrap;
-}
-
-.withdraw-record-info{
-width:100%;
-}
-
-.team-link,.user-code-box{
-flex-wrap:wrap;
-}
-
-.team-link input,.user-code-box input{
-width:100%;
-}
-
-.team-link button,.user-code-box button{
-flex:1;
-}
-}
-
-/* MODAL */
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.75);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:500;
-padding:20px;
-}
-
-.modal.show{display:flex}
-
-.modal-box{
-width:100%;
-max-width:450px;
-background:#151515;
-padding:25px;
-border-radius:18px;
-border:1px solid var(--border);
-}
-
-.modal-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-}
-
-.close-btn{
-border:0;
-background:none;
-color:var(--gold2);
-font-size:28px;
-}
-
-/* TOAST */
 .toast{
-position:fixed;
-left:20px;
-bottom:25px;
-background:var(--gold);
-color:#111;
-padding:13px 20px;
-border-radius:10px;
-z-index:1000;
-display:none;
-font-weight:bold;
+    position:fixed;
+    left:20px;
+    bottom:25px;
+    background:var(--gold);
+    color:#111;
+    padding:12px 18px;
+    border-radius:9px;
+    font-weight:bold;
+    z-index:1000;
+    display:none;
 }
 
-.toast.show{display:block}
-</style></head><body><!-- خلفية --><div class="bg-animation">
-<span class="bg-symbol s1">₿</span>
-<span class="bg-symbol s2">↗</span>
-<span class="bg-symbol s3">Ξ</span>
-<span class="bg-symbol s4">₮</span>
-<span class="bg-symbol s5">↘</span>
-<span class="bg-symbol s6">◆</span>
-</div><!-- AUTH --><div id="authScreen" class="auth-screen"><div class="auth-box"><div class="auth-logo">
+.toast.show{
+    display:block;
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+AUTH
+========================= -->
+
+<div id="authScreen" class="auth-screen">
+
+<div class="auth-box">
+
+<div class="auth-logo">
 <div class="logo">XL22</div>
 <p>منصتك الرقمية الذكية</p>
-</div><!-- LOGIN --><div id="loginForm"><h2 class="form-title">تسجيل الدخول</h2><div id="loginError" class="error hidden"></div><div class="input-group">
-<label>البريد الإلكتروني أو رقم الهاتف</label>
-<input id="loginIdentifier" type="text" autocomplete="username" placeholder="أدخل البريد الإلكتروني أو رقم الهاتف">
-</div><div class="input-group">
-<label>كلمة المرور</label>
-<div class="input-wrap">
-<input id="loginPassword" class="password-input" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور">
-<button type="button" class="eye-btn" onclick="togglePassword('loginPassword',this)">👁</button>
 </div>
-</div><button class="main-btn" type="button" onclick="login()">تسجيل الدخول</button>
+
+<!-- LOGIN -->
+
+<div id="loginForm">
+
+<h2 class="form-title">تسجيل الدخول</h2>
+
+<div id="loginError" class="error hidden"></div>
+
+<div class="input-group">
+<label>البريد الإلكتروني أو رقم الهاتف</label>
+<input id="loginIdentifier" type="text" autocomplete="username" placeholder="أدخل البريد أو رقم الهاتف">
+</div>
+
+<div class="input-group">
+
+<label>كلمة المرور</label>
+
+<div class="input-wrapper">
+
+<input
+id="loginPassword"
+class="password-input"
+type="password"
+autocomplete="current-password"
+placeholder="أدخل كلمة المرور"
+>
+
+<button
+type="button"
+class="eye-btn"
+onclick="togglePassword('loginPassword',this)"
+>
+👁
+</button>
+
+</div>
+
+</div>
+
+<button type="button" class="main-btn" onclick="login()">
+تسجيل الدخول
+</button>
 
 <div class="switch-text">
 ليس لديك حساب؟
 <span onclick="showRegister()">إنشاء حساب</span>
-</div></div><!-- REGISTER --><div id="registerForm" class="hidden"><h2 class="form-title">إنشاء حساب</h2><div id="registerError" class="error hidden"></div><div class="input-group">
+</div>
+
+</div>
+
+<!-- REGISTER -->
+
+<div id="registerForm" class="hidden">
+
+<h2 class="form-title">إنشاء حساب</h2>
+
+<div id="registerError" class="error hidden"></div>
+
+<div class="input-group">
 <label>البريد الإلكتروني أو رقم الهاتف</label>
-<input id="registerIdentifier" type="text" autocomplete="username" placeholder="البريد الإلكتروني أو رقم الهاتف">
-</div><div class="input-group">
+<input
+id="registerIdentifier"
+type="text"
+autocomplete="username"
+placeholder="البريد الإلكتروني أو رقم الهاتف"
+>
+</div>
+
+<div class="input-group">
+
 <label>كلمة المرور</label>
-<div class="input-wrap">
-<input id="registerPassword" class="password-input" type="password" autocomplete="new-password" placeholder="كلمة المرور">
-<button type="button" class="eye-btn" onclick="togglePassword('registerPassword',this)">👁</button>
+
+<div class="input-wrapper">
+
+<input
+id="registerPassword"
+class="password-input"
+type="password"
+autocomplete="new-password"
+placeholder="كلمة المرور"
+>
+
+<button
+type="button"
+class="eye-btn"
+onclick="togglePassword('registerPassword',this)"
+>
+👁
+</button>
+
 </div>
-</div><div class="input-group">
+
+</div>
+
+<div class="input-group">
+
 <label>تأكيد كلمة المرور</label>
-<div class="input-wrap">
-<input id="registerConfirm" class="password-input" type="password" autocomplete="new-password" placeholder="تأكيد كلمة المرور">
-<button type="button" class="eye-btn" onclick="togglePassword('registerConfirm',this)">👁</button>
+
+<div class="input-wrapper">
+
+<input
+id="registerConfirm"
+class="password-input"
+type="password"
+autocomplete="new-password"
+placeholder="تأكيد كلمة المرور"
+>
+
+<button
+type="button"
+class="eye-btn"
+onclick="togglePassword('registerConfirm',this)"
+>
+👁
+</button>
+
 </div>
-</div><div class="input-group">
-<label>كود الدعوة فقط</label>
-<input id="registerReferral" type="text" placeholder="أدخل كود الدعوة إن وجد">
-</div><button class="main-btn" type="button" onclick="register()">إنشاء الحساب</button>
+
+</div>
+
+<div class="input-group">
+<label>كود الدعوة</label>
+<input
+id="registerReferral"
+type="text"
+placeholder="أدخل كود الدعوة"
+>
+</div>
+
+<button type="button" class="main-btn" onclick="register()">
+إنشاء الحساب
+</button>
 
 <div class="switch-text">
 لديك حساب؟
 <span onclick="showLogin()">تسجيل الدخول</span>
-</div></div></div>
-</div><!-- APP --><div id="app" class="hidden"><header class="header"><button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+</div>
 
-<div class="logo">XL22</div><div class="header-user">
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================
+APP
+========================= -->
+
+<div id="app" class="hidden">
+
+<header class="header">
+
+<div class="header-right">
+
+<button
+type="button"
+class="mobile-menu"
+onclick="toggleSidebar()"
+>
+☰
+</button>
+
+<div class="logo">XL22</div>
+
+</div>
+
+<!-- الكود الخاص أعلى الشاشة فقط -->
+
+<div class="user-code-box">
+
+<span class="user-code" id="headerUserCode">
+XL000000
+</span>
+
+<button
+type="button"
+class="copy-small"
+onclick="copyUserCode()"
+>
+📋
+</button>
+
+</div>
+
+<div class="header-user">
+
 <div id="avatar" class="avatar">X</div>
+
 <span id="headerUser">مستخدم</span>
-</div></header><aside id="sidebar" class="sidebar"><div class="nav-title">القائمة</div><button class="nav-item active" onclick="showPage('home',this)">🏠 الرئيسية</button>
-<button class="nav-item" onclick="showPage('tasksPage',this)">📋 المهام</button>
-<button class="nav-item" onclick="showPage('balancePage',this)">💰 الرصيد</button>
-<button class="nav-item" onclick="showPage('teamPage',this)">👑 الفريق</button>
 
-<div class="nav-title">الحساب</div><button class="nav-item" onclick="showPage('transactionsPage',this)">📊 المعاملات</button>
-<button class="nav-item" onclick="showPage('settingsPage',this)">⚙️ الإعدادات</button>
-<button class="nav-item" onclick="logout()">🚪 تسجيل الخروج</button>
+</div>
 
-</aside><main class="content"><!-- HOME --><section id="home" class="page active"><div class="page-title">
+</header>
+
+
+<!-- SIDEBAR -->
+
+<aside id="sidebar" class="sidebar">
+
+<div class="nav-title">القائمة</div>
+
+<button
+type="button"
+class="nav-item active"
+onclick="showPage('home',this)"
+>
+🏠 الرئيسية
+</button>
+
+<button
+type="button"
+class="nav-item"
+onclick="showPage('tasksPage',this)"
+>
+📋 المهام
+</button>
+
+<button
+type="button"
+class="nav-item"
+onclick="showPage('balancePage',this)"
+>
+💰 الرصيد
+</button>
+
+<button
+type="button"
+class="nav-item"
+onclick="showPage('teamPage',this)"
+>
+👑 الفريق
+</button>
+
+<div class="nav-title">الحساب</div>
+
+<button
+type="button"
+class="nav-item"
+onclick="showPage('transactionsPage',this)"
+>
+📊 المعاملات
+</button>
+
+<button
+type="button"
+class="nav-item"
+onclick="showPage('settingsPage',this)"
+>
+⚙️ الإعدادات
+</button>
+
+<button
+type="button"
+class="nav-item"
+onclick="logout()"
+>
+🚪 تسجيل الخروج
+</button>
+
+</aside>
+
+
+<main class="content">
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="page-title">
 <h1>الرئيسية</h1>
 <p>أسعار العملات الرقمية</p>
-</div><div class="market-section"><div class="market-header"><div>
+</div>
+
+<div class="market-section">
+
+<!-- رسومات خفيفة -->
+
+<div class="market-animation">
+
+<div class="float-coin coin1">₿</div>
+<div class="float-coin coin2">Ξ</div>
+<div class="float-coin coin3">₮</div>
+<div class="float-coin coin4">₿</div>
+<div class="float-coin coin5">Ξ</div>
+
+<div class="trading-line">
+<svg viewBox="0 0 130 40">
+<polyline
+points="0,35 20,28 35,32 50,15 65,22 80,8 95,18 110,5 130,10"
+fill="none"
+stroke="#d4af37"
+stroke-width="2"
+/>
+</svg>
+</div>
+
+</div>
+
+<div class="market-header">
+
+<div>
 <h2>📊 سوق العملات الرقمية</h2>
 <p>متابعة الأسعار ونسب التغير</p>
-</div><div class="market-status">
+</div>
+
+<div class="market-status">
 <span class="status-dot"></span>
 السوق نشط
-</div></div><div class="crypto-list"><div class="crypto-card">
+</div>
+
+</div>
+
+<div class="crypto-list">
+
+<!-- العملات -->
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon bitcoin">₿</div>
-<div><h3>Bitcoin</h3><span>BTC</span></div>
+<div>
+<div class="crypto-name">Bitcoin</div>
+<div class="crypto-symbol">BTC</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$68,420.00</strong>
 <span class="price-up">▲ 2.48%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon ethereum">Ξ</div>
-<div><h3>Ethereum</h3><span>ETH</span></div>
+<div>
+<div class="crypto-name">Ethereum</div>
+<div class="crypto-symbol">ETH</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$3,520.00</strong>
 <span class="price-up">▲ 1.72%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon usdt">₮</div>
-<div><h3>Tether</h3><span>USDT</span></div>
+<div>
+<div class="crypto-name">Tether</div>
+<div class="crypto-symbol">USDT</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$1.00</strong>
 <span class="price-down">▼ 0.03%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon bnb">B</div>
-<div><h3>BNB</h3><span>BNB</span></div>
+<div>
+<div class="crypto-name">BNB</div>
+<div class="crypto-symbol">BNB</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$620.00</strong>
 <span class="price-up">▲ 3.14%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon solana">S</div>
-<div><h3>Solana</h3><span>SOL</span></div>
+<div>
+<div class="crypto-name">Solana</div>
+<div class="crypto-symbol">SOL</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$168.00</strong>
 <span class="price-up">▲ 4.21%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon xrp">X</div>
-<div><h3>XRP</h3><span>XRP</span></div>
+<div>
+<div class="crypto-name">XRP</div>
+<div class="crypto-symbol">XRP</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$2.18</strong>
 <span class="price-down">▼ 1.36%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon cardano">₳</div>
-<div><h3>Cardano</h3><span>ADA</span></div>
+<div>
+<div class="crypto-name">Cardano</div>
+<div class="crypto-symbol">ADA</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$0.72</strong>
 <span class="price-up">▲ 2.06%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon doge">Ð</div>
-<div><h3>Dogecoin</h3><span>DOGE</span></div>
+<div>
+<div class="crypto-name">Dogecoin</div>
+<div class="crypto-symbol">DOGE</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$0.21</strong>
 <span class="price-up">▲ 5.28%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon tron">T</div>
-<div><h3>TRON</h3><span>TRX</span></div>
+<div>
+<div class="crypto-name">TRON</div>
+<div class="crypto-symbol">TRX</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$0.28</strong>
 <span class="price-up">▲ 1.84%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon dot">●</div>
-<div><h3>Polkadot</h3><span>DOT</span></div>
+<div>
+<div class="crypto-name">Polkadot</div>
+<div class="crypto-symbol">DOT</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$4.82</strong>
 <span class="price-down">▼ 2.17%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon link">🔗</div>
-<div><h3>Chainlink</h3><span>LINK</span></div>
+<div>
+<div class="crypto-name">Chainlink</div>
+<div class="crypto-symbol">LINK</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$14.80</strong>
 <span class="price-up">▲ 3.67%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon avax">A</div>
-<div><h3>Avalanche</h3><span>AVAX</span></div>
+<div>
+<div class="crypto-name">Avalanche</div>
+<div class="crypto-symbol">AVAX</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$24.50</strong>
 <span class="price-down">▼ 1.92%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon ltc">Ł</div>
-<div><h3>Litecoin</h3><span>LTC</span></div>
+<div>
+<div class="crypto-name">Litecoin</div>
+<div class="crypto-symbol">LTC</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$72.40</strong>
 <span class="price-up">▲ 1.25%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon shib">SHIB</div>
-<div><h3>Shiba Inu</h3><span>SHIB</span></div>
+<div>
+<div class="crypto-name">Shiba Inu</div>
+<div class="crypto-symbol">SHIB</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$0.000014</strong>
 <span class="price-down">▼ 0.84%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon matic">M</div>
-<div><h3>Polygon</h3><span>MATIC</span></div>
+<div>
+<div class="crypto-name">Polygon</div>
+<div class="crypto-symbol">MATIC</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$0.58</strong>
 <span class="price-up">▲ 2.31%</span>
 </div>
-</div><div class="crypto-card">
+</div>
+
+<div class="crypto-card">
 <div class="crypto-info">
 <div class="crypto-icon near">N</div>
-<div><h3>NEAR Protocol</h3><span>NEAR</span></div>
+<div>
+<div class="crypto-name">NEAR Protocol</div>
+<div class="crypto-symbol">NEAR</div>
+</div>
 </div>
 <div class="crypto-price">
 <strong class="price-number">$4.92</strong>
 <span class="price-up">▲ 3.12%</span>
 </div>
-</div></div>
 </div>
-</section><!-- TASKS --><section id="tasksPage" class="page"><div class="page-title">
+
+</div>
+</div>
+</section>
+
+
+<!-- TASKS -->
+
+<section id="tasksPage" class="page">
+
+<div class="page-title">
 <h1>المهام</h1>
-<p>أنجز المهام واحصل على أرباح افتراضية</p>
-</div><div class="tasks-grid"><div class="task-card">
+<p>أنجز المهام واحصل على مكافآت افتراضية</p>
+</div>
+
+<div class="tasks-grid">
+
+<div class="task-card">
 <div class="task-icon">📱</div>
 <h3>مهمة يومية</h3>
 <p>قم بتنفيذ المهمة اليومية.</p>
 <div class="task-reward">+ $1.00</div>
 <button class="task-btn" onclick="completeTask(1)">تنفيذ المهمة</button>
-</div><div class="task-card">
+</div>
+
+<div class="task-card">
 <div class="task-icon">⭐</div>
 <h3>مهمة التفاعل</h3>
 <p>أكمل مهمة التفاعل التجريبية.</p>
 <div class="task-reward">+ $2.00</div>
 <button class="task-btn" onclick="completeTask(2)">تنفيذ المهمة</button>
-</div><div class="task-card">
+</div>
+
+<div class="task-card">
 <div class="task-icon">🚀</div>
 <h3>المهمة المميزة</h3>
 <p>مهمة تجريبية بمكافأة أكبر.</p>
 <div class="task-reward">+ $5.00</div>
 <button class="task-btn" onclick="completeTask(5)">تنفيذ المهمة</button>
-</div></div>
-</section><!-- BALANCE --><section id="balancePage" class="page"><div class="page-title">
+</div>
+
+</div>
+</section>
+
+
+<!-- BALANCE -->
+
+<section id="balancePage" class="page">
+
+<div class="page-title">
 <h1>الرصيد</h1>
 <p>إدارة رصيدك وأرباحك</p>
-</div><div class="balance-card">
+</div>
+
+<div class="balance-card">
+
 <div class="balance-label">الرصيد الإجمالي</div>
-<div class="balance-value">$ <span id="balancePageValue">0.00</span></div>
-</div><div class="small-cards"><div class="small-card">
+
+<div class="balance-value">
+$ <span id="balancePageValue">0.00</span>
+</div>
+
+</div>
+
+<div class="small-cards">
+
+<div class="small-card">
 <div>أرباح المهام</div>
-<div class="small-card-value">$ <span id="profitTask">0.00</span></div>
-</div><div class="small-card">
+<div class="small-card-value">
+$ <span id="profitTask">0.00</span>
+</div>
+</div>
+
+<div class="small-card">
 <div>أرباح الدعوات</div>
-<div class="small-card-value">$ <span id="profitReferral">0.00</span></div>
-</div></div><div class="money-actions">
-<button class="money-btn deposit" onclick="openModal('depositModal')">💰 إيداع</button>
-<button class="money-btn withdraw" onclick="openModal('withdrawModal')">💸 سحب</button>
-</div><div class="withdraw-history-section">
+<div class="small-card-value">
+$ <span id="profitReferral">0.00</span>
+</div>
+</div>
+
+</div>
+
+<div class="money-actions">
+
+<button class="money-btn deposit" onclick="openModal('depositModal')">
+💰 إيداع
+</button>
+
+<button class="money-btn withdraw" onclick="openModal('withdrawModal')">
+💸 سحب
+</button>
+
+</div>
+
+<div class="withdraw-history-section">
+
 <h2>سجل السحب</h2>
 <p>سجل عمليات السحب الخاصة بك</p>
-<div id="withdrawHistory"></div>
-</div></section><!-- TEAM --><section id="teamPage" class="page"><div class="page-title">
+
+<div id="withdrawHistory">
+<div class="withdraw-empty">لا توجد عمليات سحب حتى الآن</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TEAM -->
+
+<section id="teamPage" class="page">
+
+<div class="page-title">
 <h1>👑 الفريق</h1>
 <p>قم ببناء فريقك للوصول إلى مستويات VIP</p>
-</div><div class="team-level"><div class="level-header"><div>
+</div>
+
+<div class="team-level">
+
+<div class="level-header">
+
+<div>
 <h3 id="vipTitle">VIP 0</h3>
-<p>عدد الأعضاء المؤهلين: <span id="teamCount">0</span></p>
-</div><div class="vip-badge">
+
+<p>
+عدد الأعضاء المؤهلين:
+<span id="teamCount">0</span>
+</p>
+</div>
+
+<div class="vip-badge">
 <span id="vipPercent">0%</span>
-</div></div><div class="progress">
+</div>
+
+</div>
+
+<div class="progress">
 <div id="teamProgress" class="progress-bar"></div>
-</div></div><!-- VIP BOXES --><div class="vip-grid"><div class="vip-item">
+</div>
+
+</div>
+
+<!-- مربعات المستويات فقط -->
+
+<div class="vip-grid">
+
+<div class="vip-item">
 <h4>VIP 1</h4>
-<p>5 أشخاص</p>
-<p class="percent">3%</p>
-</div><div class="vip-item">
+<p>5 أشخاص — 3%</p>
+</div>
+
+<div class="vip-item">
 <h4>VIP 2</h4>
-<p>10 أشخاص</p>
-<p class="percent">8%</p>
-</div><div class="vip-item">
+<p>10 أشخاص — 8%</p>
+</div>
+
+<div class="vip-item">
 <h4>VIP 3</h4>
-<p>20 شخص</p>
-<p class="percent">12%</p>
-</div><div class="vip-item">
+<p>20 شخص — 12%</p>
+</div>
+
+<div class="vip-item">
 <h4>VIP 4</h4>
-<p>50 شخص</p>
-<p class="percent">15%</p>
-</div><div class="vip-item">
+<p>50 شخص — 15%</p>
+</div>
+
+<div class="vip-item">
 <h4>VIP 5</h4>
-<p>100 شخص</p>
-<p class="percent">20%</p>
-</div></div><!-- كود المستخدم --><div class="referral-card"><h3>🆔 كود المستخدم الخاص بك</h3>
-<p>هذا الكود خاص بحسابك ويمكن استخدامه للتعريف بحسابك.</p><div class="user-code-box"><input id="userCode" type="text" readonly><button class="copy-btn" onclick="copyUserCode()">📋 نسخ</button>
+<p>100 شخص — 20%</p>
+</div>
 
-</div></div><!-- رابط الدعوة --><div class="referral-card"><h3>🔗 رابط الدعوة الخاص بك</h3>
-<p>شارك الرابط مع أصدقائك.</p><div class="team-link"><input id="referralLink" type="text" readonly><button class="copy-btn" onclick="copyReferralLink()">نسخ</button>
+</div>
 
-<button class="share-btn" onclick="shareReferral()">مشاركة</button>
+</section>
 
-</div></div><!-- جدول أرباح الدعوة --><div class="table-box"><h3>💰 أرباح الدعوة المباشرة</h3><p style="color:#999;margin-bottom:15px">
-تحصل على 10% من إيداع الشخص الذي قام بالتسجيل عن طريق كود الدعوة الخاص بك.
-</p><table><thead>
-<tr>
-<th>إيداع الشخص</th>
-<th>نسبة الربح</th>
-<th>ربحك</th>
-</tr>
-</thead><tbody>
-<tr><td>$100</td><td class="percent">10%</td><td>$10</td></tr>
-<tr><td>$200</td><td class="percent">10%</td><td>$20</td></tr>
-<tr><td>$300</td><td class="percent">10%</td><td>$30</td></tr>
-<tr><td>$400</td><td class="percent">10%</td><td>$40</td></tr>
-<tr><td>$500</td><td class="percent">10%</td><td>$50</td></tr>
-</tbody></table></div><!-- جدول أرباح المستوى --><div class="table-box"><h3>👥 أرباح الفريق حسب مستوى VIP</h3><p style="color:#999;margin-bottom:15px">
-نسبة الربح من أرباح الأشخاص الموجودين ضمن فريقك حسب مستوى VIP.
-</p><table><thead>
-<tr>
-<th>الفريق</th>
-<th>عدد الأشخاص</th>
-<th>نسبة الربح</th>
-</tr>
-</thead><tbody>
-<tr><td>VIP 1</td><td>5</td><td class="percent">3%</td></tr>
-<tr><td>VIP 2</td><td>10</td><td class="percent">8%</td></tr>
-<tr><td>VIP 3</td><td>20</td><td class="percent">12%</td></tr>
-<tr><td>VIP 4</td><td>50</td><td class="percent">15%</td></tr>
-<tr><td>VIP 5</td><td>100</td><td class="percent">20%</td></tr>
-</tbody></table></div></section><!-- TRANSACTIONS --><section id="transactionsPage" class="page"><div class="page-title">
+
+<!-- TRANSACTIONS -->
+
+<section id="transactionsPage" class="page">
+
+<div class="page-title">
 <h1>المعاملات</h1>
 <p>سجل عمليات حسابك</p>
-</div><div id="transactionsList"></div></section><!-- SETTINGS --><section id="settingsPage" class="page"><div class="page-title">
+</div>
+
+<div id="transactionsList">
+
+<div class="withdraw-empty">
+لا توجد معاملات حتى الآن
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settingsPage" class="page">
+
+<div class="page-title">
 <h1>الإعدادات</h1>
 <p>إدارة الحساب والأمان</p>
-</div><div class="settings-grid"><div class="settings-box"><h3>👤 الملف الشخصي</h3>
-<p>تعديل البريد الإلكتروني أو رقم الهاتف.</p><div class="input-group">
+</div>
+
+<div class="settings-grid">
+
+<div class="settings-box">
+
+<h3>👤 الملف الشخصي</h3>
+
+<p>تعديل البريد الإلكتروني أو رقم الهاتف.</p>
+
+<div class="input-group">
+
 <label>البريد الإلكتروني أو رقم الهاتف</label>
+
 <input id="settingsIdentifier" type="text">
-</div><button class="main-btn" onclick="updateProfile()">حفظ البيانات</button>
 
-</div><div class="settings-box"><h3>🔑 تغيير كلمة المرور</h3>
-<p>تغيير كلمة مرور تسجيل الدخول.</p><div class="input-group"><label>كلمة المرور الجديدة</label>
+</div>
 
-<div class="input-wrap"><input id="newPassword" class="password-input" type="password"><button type="button" class="eye-btn" onclick="togglePassword('newPassword',this)">👁</button>
+<button class="main-btn" onclick="updateProfile()">
+حفظ البيانات
+</button>
 
-</div></div><button class="main-btn" onclick="changePassword()">تغيير كلمة المرور</button>
+</div>
 
-</div><div class="settings-box"><h3>💬 مراسلة الدعم</h3>
-<p>أرسل رسالة إلى فريق الدعم.</p><div class="input-group">
-<textarea id="agentMessage" placeholder="اكتب رسالتك هنا"></textarea>
-</div><button class="main-btn" onclick="sendAgentMessage()">إرسال الرسالة</button>
 
-</div></div>
-</section></main><nav class="mobile-bottom"><button class="bottom-item active" onclick="mobilePage('home',this)">
-🏠<span>الرئيسية</span>
-</button><button class="bottom-item" onclick="mobilePage('tasksPage',this)">
-📋<span>المهام</span>
-</button><button class="bottom-item" onclick="mobilePage('balancePage',this)">
-💰<span>الرصيد</span>
-</button><button class="bottom-item" onclick="mobilePage('teamPage',this)">
-👑<span>الفريق</span>
-</button></nav></div><!-- DEPOSIT MODAL --><div id="depositModal" class="modal"><div class="modal-box"><div class="modal-header">
+<div class="settings-box">
+
+<h3>🔑 تغيير كلمة المرور</h3>
+
+<p>تغيير كلمة مرور تسجيل الدخول.</p>
+
+<div class="input-group">
+
+<label>كلمة المرور الجديدة</label>
+
+<div class="input-wrapper">
+
+<input
+id="newPassword"
+class="password-input"
+type="password"
+>
+
+<button
+type="button"
+class="eye-btn"
+onclick="togglePassword('newPassword',this)"
+>
+👁
+</button>
+
+</div>
+
+</div>
+
+<button class="main-btn" onclick="changePassword()">
+تغيير كلمة المرور
+</button>
+
+</div>
+
+
+<div class="settings-box">
+
+<h3>💬 مراسلة الدعم</h3>
+
+<p>أرسل رسالة إلى فريق الدعم.</p>
+
+<div class="input-group">
+
+<textarea
+id="agentMessage"
+placeholder="اكتب رسالتك هنا"
+></textarea>
+
+</div>
+
+<button class="main-btn" onclick="sendAgentMessage()">
+إرسال الرسالة
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- MOBILE NAV -->
+
+<nav class="mobile-bottom">
+
+<button class="bottom-item active" onclick="mobilePage('home',this)">
+🏠
+<span>الرئيسية</span>
+</button>
+
+<button class="bottom-item" onclick="mobilePage('tasksPage',this)">
+📋
+<span>المهام</span>
+</button>
+
+<button class="bottom-item" onclick="mobilePage('balancePage',this)">
+💰
+<span>الرصيد</span>
+</button>
+
+<button class="bottom-item" onclick="mobilePage('teamPage',this)">
+👑
+<span>الفريق</span>
+</button>
+
+</nav>
+
+</div>
+
+
+<!-- DEPOSIT -->
+
+<div id="depositModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
 <h3>💰 إيداع</h3>
-<button class="close-btn" onclick="closeModal('depositModal')">×</button>
-</div><div class="input-group">
+
+<button class="close-btn" onclick="closeModal('depositModal')">
+×
+</button>
+
+</div>
+
+<div class="input-group">
+
 <label>مبلغ الإيداع</label>
-<input id="depositAmount" type="number" min="1" placeholder="100">
-</div><button class="main-btn" onclick="deposit()">تأكيد الإيداع التجريبي</button>
+
+<input
+id="depositAmount"
+type="number"
+min="1"
+placeholder="100"
+>
 
 </div>
-</div><!-- WITHDRAW MODAL --><div id="withdrawModal" class="modal"><div class="modal-box"><div class="modal-header">
+
+<button class="main-btn" onclick="deposit()">
+تأكيد الإيداع التجريبي
+</button>
+
+</div>
+
+</div>
+
+
+<!-- WITHDRAW -->
+
+<div id="withdrawModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
 <h3>💸 سحب</h3>
-<button class="close-btn" onclick="closeModal('withdrawModal')">×</button>
-</div><div class="input-group">
-<label>عنوان TRON TRC20</label>
-<input id="withdrawTron" type="text" placeholder="T...">
-</div><div class="input-group">
-<label>مبلغ السحب</label>
-<input id="withdrawAmount" type="number" min="1" placeholder="50">
-</div><button class="main-btn" onclick="withdraw()">تأكيد طلب السحب</button>
+
+<button class="close-btn" onclick="closeModal('withdrawModal')">
+×
+</button>
 
 </div>
-</div><div id="toast" class="toast"></div><script>
-"use strict";
 
-/* ==============================
-   DATA
-============================== */
+<div class="input-group">
+
+<label>عنوان TRON TRC20</label>
+
+<input
+id="withdrawTron"
+type="text"
+placeholder="T..."
+>
+
+</div>
+
+<div class="input-group">
+
+<label>مبلغ السحب</label>
+
+<input
+id="withdrawAmount"
+type="number"
+min="1"
+placeholder="50"
+>
+
+</div>
+
+<button class="main-btn" onclick="withdraw()">
+تأكيد طلب السحب
+</button>
+
+</div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================
+DATA SAFE STORAGE
+========================= */
+
+const USERS_KEY = "xl22_users_v3";
+const CURRENT_KEY = "xl22_current_user_v3";
 
 let users = [];
-
-try{
-users = JSON.parse(localStorage.getItem("xl22_users") || "[]");
-if(!Array.isArray(users)) users=[];
-}catch(e){
-users=[];
-}
-
 let currentUserIndex = null;
 
-try{
-const saved = localStorage.getItem("xl22_currentUser");
-if(saved !== null && saved !== ""){
-const n = Number(saved);
-if(Number.isInteger(n)) currentUserIndex=n;
-}
-}catch(e){
-currentUserIndex=null;
+/* قراءة البيانات بأمان لمنع الشاشة البيضاء */
+
+function loadData(){
+
+    try{
+
+        const savedUsers = localStorage.getItem(USERS_KEY);
+
+        users = savedUsers ? JSON.parse(savedUsers) : [];
+
+        if(!Array.isArray(users)){
+            users = [];
+        }
+
+        const current = localStorage.getItem(CURRENT_KEY);
+
+        currentUserIndex =
+            current !== null ? Number(current) : null;
+
+        if(
+            currentUserIndex !== null &&
+            (!Number.isInteger(currentUserIndex) ||
+            !users[currentUserIndex])
+        ){
+            currentUserIndex = null;
+        }
+
+    }catch(error){
+
+        console.error("Storage error:",error);
+
+        users = [];
+        currentUserIndex = null;
+
+    }
+
 }
 
-/* ==============================
-   SAVE
-============================== */
+loadData();
+
 
 function saveData(){
 
-try{
+    try{
 
-localStorage.setItem(
-"xl22_users",
-JSON.stringify(users)
-);
+        localStorage.setItem(
+            USERS_KEY,
+            JSON.stringify(users)
+        );
 
-if(currentUserIndex !== null){
+        if(currentUserIndex !== null){
 
-localStorage.setItem(
-"xl22_currentUser",
-String(currentUserIndex)
-);
+            localStorage.setItem(
+                CURRENT_KEY,
+                String(currentUserIndex)
+            );
+
+        }else{
+
+            localStorage.removeItem(CURRENT_KEY);
+
+        }
+
+    }catch(error){
+
+        console.error("Save error:",error);
+
+        toast("تعذر حفظ البيانات في المتصفح");
+
+    }
 
 }
 
-}catch(e){
 
-console.error(e);
-toast("تعذر حفظ البيانات في المتصفح");
-
-}
-
-}
-
-/* ==============================
-   HELPERS
-============================== */
-
-function $(id){
-return document.getElementById(id);
-}
+/* =========================
+HELPERS
+========================= */
 
 function toast(message){
 
-const el=$("toast");
+    const el =
+        document.getElementById("toast");
 
-if(!el)return;
+    if(!el) return;
 
-el.textContent=message;
-el.classList.add("show");
+    el.textContent = message;
 
-setTimeout(()=>{
-el.classList.remove("show");
-},2500);
+    el.classList.add("show");
 
-}
-
-function generateUserCode(){
-
-let code="";
-
-do{
-
-code=
-Math.floor(100000 + Math.random()*900000)
-+
-String.fromCharCode(
-65 + Math.floor(Math.random()*26)
-);
-
-}while(
-users.some(
-u=>u.userCode===code
-)
-);
-
-return code;
+    setTimeout(
+        function(){
+            el.classList.remove("show");
+        },
+        2500
+    );
 
 }
+
 
 function togglePassword(id,button){
 
-const input=$(id);
+    const input =
+        document.getElementById(id);
 
-if(!input)return;
+    if(!input) return;
 
-if(input.type==="password"){
+    if(input.type === "password"){
 
-input.type="text";
+        input.type = "text";
 
-if(button)button.textContent="🙈";
+        button.textContent = "🙈";
 
-}else{
+    }else{
 
-input.type="password";
+        input.type = "password";
 
-if(button)button.textContent="👁";
+        button.textContent = "👁";
+
+    }
 
 }
 
-}
 
-/* ==============================
-   AUTH SCREENS
-============================== */
+/* =========================
+AUTH SCREENS
+========================= */
 
 function showRegister(){
 
-$("loginForm").classList.add("hidden");
-$("registerForm").classList.remove("hidden");
+    document
+        .getElementById("loginForm")
+        .classList.add("hidden");
+
+    document
+        .getElementById("registerForm")
+        .classList.remove("hidden");
 
 }
+
 
 function showLogin(){
 
-$("registerForm").classList.add("hidden");
-$("loginForm").classList.remove("hidden");
+    document
+        .getElementById("registerForm")
+        .classList.add("hidden");
+
+    document
+        .getElementById("loginForm")
+        .classList.remove("hidden");
 
 }
+
+
+/* =========================
+GENERATE USER CODE
+========================= */
+
+function generateUserCode(){
+
+    let code;
+
+    do{
+
+        code =
+            Math.random()
+            .toString(36)
+            .substring(2,8)
+            .toUpperCase();
+
+    }while(
+        users.some(
+            user => user.userCode === code
+        )
+    );
+
+    return code;
+
+}
+
+
+/* =========================
+REGISTER
+========================= */
 
 function register(){
 
-const identifier=
-$("registerIdentifier").value.trim();
+    const identifier =
+        document
+        .getElementById("registerIdentifier")
+        .value
+        .trim();
 
-const password=
-$("registerPassword").value;
+    const password =
+        document
+        .getElementById("registerPassword")
+        .value;
 
-const confirm=
-$("registerConfirm").value;
+    const confirm =
+        document
+        .getElementById("registerConfirm")
+        .value;
 
-const referral=
-$("registerReferral").value.trim().toUpperCase();
+    const referral =
+        document
+        .getElementById("registerReferral")
+        .value
+        .trim()
+        .toUpperCase();
 
-const error=$("registerError");
+    const error =
+        document
+        .getElementById("registerError");
 
-error.classList.add("hidden");
+    error.classList.add("hidden");
 
-if(!identifier){
 
-error.textContent="أدخل البريد الإلكتروني أو رقم الهاتف";
-error.classList.remove("hidden");
-return;
+    if(!identifier){
+
+        error.textContent =
+            "أدخل البريد الإلكتروني أو رقم الهاتف";
+
+        error.classList.remove("hidden");
+
+        return;
+
+    }
+
+
+    if(password.length < 6){
+
+        error.textContent =
+            "كلمة المرور يجب أن تكون 6 أحرف على الأقل";
+
+        error.classList.remove("hidden");
+
+        return;
+
+    }
+
+
+    if(password !== confirm){
+
+        error.textContent =
+            "كلمتا المرور غير متطابقتين";
+
+        error.classList.remove("hidden");
+
+        return;
+
+    }
+
+
+    const exists =
+        users.some(
+            user =>
+                user.identifier.toLowerCase() ===
+                identifier.toLowerCase()
+        );
+
+
+    if(exists){
+
+        error.textContent =
+            "هذا البريد أو رقم الهاتف مسجل مسبقاً";
+
+        error.classList.remove("hidden");
+
+        return;
+
+    }
+
+
+    /* التحقق من كود الدعوة إذا تم إدخاله */
+
+    let inviterIndex = -1;
+
+    if(referral){
+
+        inviterIndex =
+            users.findIndex(
+                user =>
+                    user.userCode === referral
+            );
+
+        if(inviterIndex === -1){
+
+            error.textContent =
+                "كود الدعوة غير صحيح";
+
+            error.classList.remove("hidden");
+
+            return;
+
+        }
+
+    }
+
+
+    const user = {
+
+        identifier:identifier,
+
+        password:password,
+
+        userCode:generateUserCode(),
+
+        invitedBy:referral || "",
+
+        balance:0,
+
+        taskProfit:0,
+
+        referralProfit:0,
+
+        referralCount:0,
+
+        withdrawHistory:[],
+
+        transactions:[]
+
+    };
+
+
+    users.push(user);
+
+    currentUserIndex =
+        users.length - 1;
+
+
+    /* زيادة عدد أعضاء الداعي */
+
+    if(inviterIndex !== -1){
+
+        users[inviterIndex].referralCount =
+            Number(
+                users[inviterIndex].referralCount || 0
+            ) + 1;
+
+    }
+
+
+    saveData();
+
+    openApp();
+
+    toast("تم إنشاء الحساب بنجاح");
 
 }
 
-if(password.length<6){
 
-error.textContent="كلمة المرور يجب أن تكون 6 أحرف على الأقل";
-error.classList.remove("hidden");
-return;
-
-}
-
-if(password!==confirm){
-
-error.textContent="كلمتا المرور غير متطابقتين";
-error.classList.remove("hidden");
-return;
-
-}
-
-const exists=users.some(
-u=>String(u.identifier).toLowerCase()===identifier.toLowerCase()
-);
-
-if(exists){
-
-error.textContent="البريد الإلكتروني أو رقم الهاتف مستخدم مسبقاً";
-error.classList.remove("hidden");
-return;
-
-}
-
-/* تحقق من كود الدعوة */
-let inviterIndex=-1;
-
-if(referral){
-
-inviterIndex=users.findIndex(
-u=>String(u.userCode).toUpperCase()===referral
-);
-
-if(inviterIndex===-1){
-
-error.textContent="كود الدعوة غير صحيح";
-error.classList.remove("hidden");
-return;
-
-}
-
-}
-
-/* إنشاء المستخدم */
-const newUser={
-
-identifier:identifier,
-
-password:password,
-
-userCode:generateUserCode(),
-
-referralCode:generateUserCode(),
-
-invitedBy:
-inviterIndex>=0
-?users[inviterIndex].userCode
-:null,
-
-balance:0,
-
-taskProfit:0,
-
-referralProfit:0,
-
-referralCount:0,
-
-withdrawHistory:[],
-
-transactions:[]
-
-};
-
-users.push(newUser);
-
-currentUserIndex=users.length-1;
-
-/* تحديث فريق الداعي */
-if(inviterIndex>=0){
-
-users[inviterIndex].referralCount=
-Number(users[inviterIndex].referralCount||0)+1;
-
-}
-
-saveData();
-
-$("registerIdentifier").value="";
-$("registerPassword").value="";
-$("registerConfirm").value="";
-$("registerReferral").value="";
-
-toast("تم إنشاء الحساب بنجاح");
-
-openApp();
-
-}
+/* =========================
+LOGIN
+========================= */
 
 function login(){
 
-const identifier=
-$("loginIdentifier").value.trim();
+    const identifier =
+        document
+        .getElementById("loginIdentifier")
+        .value
+        .trim();
 
-const password=
-$("loginPassword").value;
+    const password =
+        document
+        .getElementById("loginPassword")
+        .value;
 
-const error=$("loginError");
+    const error =
+        document
+        .getElementById("loginError");
 
-error.classList.add("hidden");
+    error.classList.add("hidden");
 
-const index=users.findIndex(
 
-user=>
-String(user.identifier).toLowerCase()===
-identifier.toLowerCase()
-&&
-user.password===password
+    if(!identifier || !password){
 
-);
+        error.textContent =
+            "أدخل البريد أو رقم الهاتف وكلمة المرور";
 
-if(index===-1){
+        error.classList.remove("hidden");
 
-error.textContent="بيانات تسجيل الدخول غير صحيحة";
-error.classList.remove("hidden");
-return;
+        return;
+
+    }
+
+
+    const index =
+        users.findIndex(
+            user =>
+                user.identifier.toLowerCase() ===
+                identifier.toLowerCase() &&
+                user.password === password
+        );
+
+
+    if(index === -1){
+
+        error.textContent =
+            "بيانات تسجيل الدخول غير صحيحة";
+
+        error.classList.remove("hidden");
+
+        return;
+
+    }
+
+
+    currentUserIndex = index;
+
+    saveData();
+
+    openApp();
 
 }
 
-currentUserIndex=index;
 
-saveData();
-
-openApp();
-
-}
+/* =========================
+LOGOUT
+========================= */
 
 function logout(){
 
-currentUserIndex=null;
+    currentUserIndex = null;
 
-localStorage.removeItem("xl22_currentUser");
+    localStorage.removeItem(CURRENT_KEY);
 
-$("app").classList.add("hidden");
-$("authScreen").classList.remove("hidden");
+    document
+        .getElementById("app")
+        .classList.add("hidden");
 
-$("loginIdentifier").value="";
-$("loginPassword").value="";
+    document
+        .getElementById("authScreen")
+        .classList.remove("hidden");
 
-showLogin();
+    showLogin();
 
 }
 
-/* ==============================
-   CURRENT USER
-============================== */
+
+/* =========================
+CURRENT USER
+========================= */
 
 function getCurrentUser(){
 
-if(
-currentUserIndex===null ||
-!users[currentUserIndex]
-){
+    if(
+        currentUserIndex === null ||
+        !users[currentUserIndex]
+    ){
 
-return null;
+        return null;
+
+    }
+
+    return users[currentUserIndex];
 
 }
 
-return users[currentUserIndex];
 
-}
-
-/* ==============================
-   OPEN APP
-============================== */
+/* =========================
+OPEN APP
+========================= */
 
 function openApp(){
 
-const user=getCurrentUser();
+    const user =
+        getCurrentUser();
 
-if(!user)return;
+    if(!user) return;
 
-$("authScreen").classList.add("hidden");
-$("app").classList.remove("hidden");
 
-updateUI();
+    document
+        .getElementById("authScreen")
+        .classList.add("hidden");
 
-const homeButton=
-document.querySelector(
-'.nav-item[onclick*="showPage(\'home\'"]'
-);
+    document
+        .getElementById("app")
+        .classList.remove("hidden");
 
-showPage("home",homeButton);
+
+    updateUI();
+
+
+    const homeButton =
+        document.querySelector(
+            '.nav-item[onclick*="home"]'
+        );
+
+    showPage(
+        "home",
+        homeButton
+    );
 
 }
 
-/* ==============================
-   UPDATE UI
-============================== */
+
+/* =========================
+UPDATE UI
+========================= */
 
 function updateUI(){
 
-const user=getCurrentUser();
+    const user =
+        getCurrentUser();
 
-if(!user)return;
+    if(!user) return;
 
-$("headerUser").textContent=user.identifier;
 
-$("avatar").textContent=
-String(user.identifier)
-.charAt(0)
-.toUpperCase();
+    document
+        .getElementById("headerUser")
+        .textContent =
+            user.identifier;
 
-$("balancePageValue").textContent=
-Number(user.balance||0).toFixed(2);
 
-$("profitTask").textContent=
-Number(user.taskProfit||0).toFixed(2);
+    document
+        .getElementById("avatar")
+        .textContent =
+            user.identifier
+            .charAt(0)
+            .toUpperCase();
 
-$("profitReferral").textContent=
-Number(user.referralProfit||0).toFixed(2);
 
-$("settingsIdentifier").value=
-user.identifier;
+    document
+        .getElementById("headerUserCode")
+        .textContent =
+            user.userCode;
 
-$("userCode").value=
-user.userCode||"";
 
-updateReferralLink();
+    document
+        .getElementById("balancePageValue")
+        .textContent =
+            Number(
+                user.balance || 0
+            ).toFixed(2);
 
-updateTeam();
 
-renderWithdrawHistory();
+    document
+        .getElementById("profitTask")
+        .textContent =
+            Number(
+                user.taskProfit || 0
+            ).toFixed(2);
 
-renderTransactions();
 
-}
+    document
+        .getElementById("profitReferral")
+        .textContent =
+            Number(
+                user.referralProfit || 0
+            ).toFixed(2);
 
-/* ==============================
-   NAVIGATION
-============================== */
 
-function showPage(pageId,button){
+    document
+        .getElementById("settingsIdentifier")
+        .value =
+            user.identifier;
 
-document.querySelectorAll(".page")
-.forEach(page=>{
-page.classList.remove("active");
-});
 
-const page=$(pageId);
+    updateTeam();
 
-if(page)page.classList.add("active");
+    renderWithdrawHistory();
 
-document.querySelectorAll(".nav-item")
-.forEach(item=>{
-item.classList.remove("active");
-});
-
-if(button)button.classList.add("active");
-
-const sidebar=$("sidebar");
-
-if(sidebar)sidebar.classList.remove("open");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+    renderTransactions();
 
 }
 
-function mobilePage(pageId,button){
 
-showPage(pageId,null);
-
-document.querySelectorAll(".bottom-item")
-.forEach(item=>{
-item.classList.remove("active");
-});
-
-if(button)button.classList.add("active");
-
-}
-
-/* ==============================
-   SIDEBAR
-============================== */
-
-function toggleSidebar(){
-
-$("sidebar").classList.toggle("open");
-
-}
-
-/* ==============================
-   MODALS
-============================== */
-
-function openModal(id){
-
-const modal=$(id);
-
-if(modal)modal.classList.add("show");
-
-}
-
-function closeModal(id){
-
-const modal=$(id);
-
-if(modal)modal.classList.remove("show");
-
-}
-
-/* ==============================
-   DEPOSIT
-============================== */
-
-function deposit(){
-
-const amount=
-Number($("depositAmount").value);
-
-const user=getCurrentUser();
-
-if(!user)return;
-
-if(!amount || amount<=0){
-
-toast("أدخل مبلغاً صحيحاً");
-return;
-
-}
-
-user.balance=
-Number(user.balance||0)+amount;
-
-user.transactions=
-user.transactions||[];
-
-user.transactions.unshift({
-
-type:"إيداع",
-
-amount:amount,
-
-date:new Date().toLocaleString("ar-SA")
-
-});
-
-/* عمولة دعوة مباشرة 10% */
-if(user.invitedBy){
-
-const inviter=
-users.find(
-u=>u.userCode===user.invitedBy
-);
-
-if(inviter){
-
-const commission=amount*0.10;
-
-inviter.balance=
-Number(inviter.balance||0)+commission;
-
-inviter.referralProfit=
-Number(inviter.referralProfit||0)+commission;
-
-inviter.transactions=
-inviter.transactions||[];
-
-inviter.transactions.unshift({
-
-type:"عمولة دعوة مباشرة",
-
-amount:commission,
-
-date:new Date().toLocaleString("ar-SA")
-
-});
-
-}
-
-}
-
-saveData();
-
-updateUI();
-
-$("depositAmount").value="";
-
-closeModal("depositModal");
-
-toast("تم تسجيل الإيداع التجريبي");
-
-}
-
-/* ==============================
-   WITHDRAW
-============================== */
-
-function withdraw(){
-
-const amount=
-Number($("withdrawAmount").value);
-
-const address=
-$("withdrawTron").value.trim();
-
-const user=getCurrentUser();
-
-if(!user)return;
-
-if(!amount || amount<=0){
-
-toast("أدخل مبلغ السحب");
-return;
-
-}
-
-if(!address){
-
-toast("أدخل عنوان TRON");
-return;
-
-}
-
-user.withdrawHistory=
-user.withdrawHistory||[];
-
-if(amount>Number(user.balance||0)){
-
-user.withdrawHistory.unshift({
-
-amount:amount,
-
-status:"فشل",
-
-date:new Date().toLocaleString("ar-SA")
-
-});
-
-saveData();
-
-renderWithdrawHistory();
-
-toast("فشل السحب بسبب عدم كفاية الرصيد");
-
-closeModal("withdrawModal");
-
-return;
-
-}
-
-user.balance-=amount;
-
-user.withdrawHistory.unshift({
-
-amount:amount,
-
-status:"مكتمل",
-
-date:new Date().toLocaleString("ar-SA")
-
-});
-
-user.transactions=
-user.transactions||[];
-
-user.transactions.unshift({
-
-type:"سحب",
-
-amount:amount,
-
-date:new Date().toLocaleString("ar-SA")
-
-});
-
-saveData();
-
-updateUI();
-
-$("withdrawAmount").value="";
-$("withdrawTron").value="";
-
-closeModal("withdrawModal");
-
-toast("تم تسجيل طلب السحب");
-
-}
-
-/* ==============================
-   WITHDRAW HISTORY
-============================== */
-
-function renderWithdrawHistory(){
-
-const container=$("withdrawHistory");
-
-const user=getCurrentUser();
-
-if(!container||!user)return;
-
-const history=user.withdrawHistory||[];
-
-if(!history.length){
-
-container.innerHTML=
-'<div class="withdraw-empty">لا توجد عمليات سحب حتى الآن</div>';
-
-return;
-
-}
-
-container.innerHTML=
-history.map(record=>{
-
-const status=
-record.status==="مكتمل"
-?"مكتمل"
-:"فشل";
-
-const cls=
-status==="مكتمل"
-?"withdraw-complete"
-:"withdraw-failed";
-
-return `
-
-<div class="withdraw-record">
-
-<div>
-<strong>سحب</strong>
-<div class="withdraw-record-date">${escapeHTML(record.date)}</div>
-</div>
-
-<div class="withdraw-record-amount">
-$${Number(record.amount).toFixed(2)}
-</div>
-
-<div class="withdraw-status ${cls}">
-${status}
-</div>
-
-</div>
-
-`;
-
-}).join("");
-
-}
-
-/* ==============================
-   TASKS
-============================== */
-
-function completeTask(amount){
-
-const user=getCurrentUser();
-
-if(!user)return;
-
-user.balance=
-Number(user.balance||0)+amount;
-
-user.taskProfit=
-Number(user.taskProfit||0)+amount;
-
-user.transactions=
-user.transactions||[];
-
-user.transactions.unshift({
-
-type:"مكافأة مهمة",
-
-amount:amount,
-
-date:new Date().toLocaleString("ar-SA")
-
-});
-
-saveData();
-
-updateUI();
-
-toast(
-"تمت إضافة $"+
-amount.toFixed(2)+
-" إلى رصيدك"
-);
-
-}
-
-/* ==============================
-   TEAM
-============================== */
-
-function updateTeam(){
-
-const user=getCurrentUser();
-
-if(!user)return;
-
-const count=
-Number(user.referralCount||0);
-
-let level=0;
-
-if(count>=5)level=1;
-if(count>=10)level=2;
-if(count>=20)level=3;
-if(count>=50)level=4;
-if(count>=100)level=5;
-
-const percentages=[
-0,
-3,
-8,
-12,
-15,
-20
-];
-
-$("teamCount").textContent=count;
-
-$("vipTitle").textContent=
-"VIP "+level;
-
-$("vipPercent").textContent=
-percentages[level]+"%";
-
-let progress=0;
-
-if(level===0){
-
-progress=(count/5)*100;
-
-}else if(level===5){
-
-progress=100;
-
-}else{
-
-const targets=[5,10,20,50,100];
-
-const previous=targets[level-1];
-
-const next=targets[level];
-
-progress=
-((count-previous)/
-(next-previous))*100;
-
-}
-
-$("teamProgress").style.width=
-Math.max(0,Math.min(100,progress))+"%";
-
-document.querySelectorAll(".vip-item")
-.forEach((item,index)=>{
-
-item.classList.toggle(
-"active",
-index+1<=level
-);
-
-});
-
-}
-
-/* ==============================
-   REFERRAL
-============================== */
-
-function updateReferralLink(){
-
-const user=getCurrentUser();
-
-if(!user)return;
-
-$("referralLink").value=
-window.location.href.split("?")[0]
-+
-"?ref="
-+
-user.userCode;
-
-}
+/* =========================
+COPY USER CODE
+========================= */
 
 function copyUserCode(){
 
-const input=$("userCode");
+    const user =
+        getCurrentUser();
 
-if(!input)return;
+    if(!user) return;
 
-copyText(input.value);
-
-}
-
-function copyReferralLink(){
-
-const input=$("referralLink");
-
-if(!input)return;
-
-copyText(input.value);
+    copyText(
+        user.userCode
+    );
 
 }
+
 
 function copyText(text){
 
-if(navigator.clipboard){
+    if(
+        navigator.clipboard &&
+        window.isSecureContext
+    ){
 
-navigator.clipboard.writeText(text)
-.then(()=>{
-toast("تم النسخ بنجاح");
-})
-.catch(()=>{
-fallbackCopy(text);
-});
+        navigator.clipboard
+        .writeText(text)
+        .then(
+            function(){
+                toast("تم النسخ بنجاح");
+            }
+        )
+        .catch(
+            function(){
+                fallbackCopy(text);
+            }
+        );
 
-}else{
+    }else{
 
-fallbackCopy(text);
+        fallbackCopy(text);
+
+    }
 
 }
 
-}
 
 function fallbackCopy(text){
 
-const area=document.createElement("textarea");
+    const input =
+        document.createElement("input");
 
-area.value=text;
+    input.value = text;
 
-document.body.appendChild(area);
+    document.body.appendChild(input);
 
-area.select();
+    input.select();
 
-try{
+    try{
 
-document.execCommand("copy");
+        document.execCommand("copy");
 
-toast("تم النسخ بنجاح");
+        toast("تم النسخ بنجاح");
 
-}catch(e){
+    }catch(error){
 
-toast("تعذر النسخ تلقائياً");
+        toast("انسخ الكود يدوياً");
 
-}
+    }
 
-document.body.removeChild(area);
-
-}
-
-function shareReferral(){
-
-const user=getCurrentUser();
-
-if(!user)return;
-
-const link=
-window.location.href.split("?")[0]
-+
-"?ref="
-+
-user.userCode;
-
-if(navigator.share){
-
-navigator.share({
-
-title:"XL22",
-
-text:"انضم إلى منصة XL22",
-
-url:link
-
-}).catch(()=>{});
-
-}else{
-
-window.open(
-"https://wa.me/?text="+
-encodeURIComponent(link),
-"_blank"
-);
+    input.remove();
 
 }
 
-}
 
-/* ==============================
-   TRANSACTIONS
-============================== */
+/* =========================
+NAVIGATION
+========================= */
 
-function renderTransactions(){
+function showPage(pageId,button){
 
-const container=$("transactionsList");
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            page =>
+                page.classList.remove("active")
+        );
 
-const user=getCurrentUser();
 
-if(!container||!user)return;
+    const page =
+        document.getElementById(pageId);
 
-const list=user.transactions||[];
+    if(page){
 
-if(!list.length){
+        page.classList.add("active");
 
-container.innerHTML=
-'<div class="withdraw-empty">لا توجد معاملات حتى الآن</div>';
+    }
 
-return;
 
-}
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(
+            item =>
+                item.classList.remove("active")
+        );
 
-container.innerHTML=
-list.map(item=>`
 
-<div class="withdraw-record">
+    if(button){
 
-<div>
-<strong>${escapeHTML(item.type)}</strong>
+        button.classList.add("active");
 
-<div class="withdraw-record-date">
-${escapeHTML(item.date)}
-</div>
-</div>
+    }
 
-<div class="withdraw-record-amount">
-$${Number(item.amount).toFixed(2)}
-</div>
 
-</div>
+    document
+        .getElementById("sidebar")
+        .classList.remove("open");
 
-`).join("");
 
-}
-
-/* ==============================
-   SETTINGS
-============================== */
-
-function updateProfile(){
-
-const user=getCurrentUser();
-
-if(!user)return;
-
-const value=
-$("settingsIdentifier").value.trim();
-
-if(!value){
-
-toast("أدخل البيانات");
-return;
+    window.scrollTo(0,0);
 
 }
 
-const duplicate=users.some(
-(u,index)=>
-index!==currentUserIndex &&
-String(u.identifier).toLowerCase()===
-value.toLowerCase()
-);
 
-if(duplicate){
+function mobilePage(pageId,button){
 
-toast("البيانات مستخدمة من حساب آخر");
-return;
+    showPage(
+        pageId,
+        null
+    );
 
-}
 
-user.identifier=value;
+    document
+        .querySelectorAll(".bottom-item")
+        .forEach(
+            item =>
+                item.classList.remove("active")
+        );
 
-saveData();
 
-updateUI();
+    if(button){
 
-toast("تم حفظ البيانات");
+        button.classList.add("active");
 
-}
-
-function changePassword(){
-
-const user=getCurrentUser();
-
-if(!user)return;
-
-const password=
-$("newPassword").value;
-
-if(password.length<6){
-
-toast("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
-return;
+    }
 
 }
 
-user.password=password;
 
-saveData();
+/* =========================
+SIDEBAR
+========================= */
 
-$("newPassword").value="";
+function toggleSidebar(){
 
-toast("تم تغيير كلمة المرور");
-
-}
-
-function sendAgentMessage(){
-
-const message=
-$("agentMessage").value.trim();
-
-if(!message){
-
-toast("اكتب رسالتك أولاً");
-return;
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
 
 }
 
-$("agentMessage").value="";
 
-toast("تم إرسال الرسالة");
+/* =========================
+MODAL
+========================= */
 
-}
+function openModal(id){
 
-/* ==============================
-   HTML SAFETY
-============================== */
+    const modal =
+        document.getElementById(id);
 
-function escapeHTML(value){
+    if(modal){
 
-return String(value||"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+        modal.classList.add("show");
+
+    }
 
 }
 
-/* ==============================
-   AUTO LOGIN
-============================== */
 
-window.addEventListener("load",function(){
+function closeModal(id){
 
-/* توافق مع الحسابات القديمة */
-users.forEach(user=>{
+    const modal =
+        document.getElementById(id);
 
-if(!user.userCode){
+    if(modal){
 
-user.userCode=generateUserCode();
+        modal.classList.remove("show");
 
-}
-
-if(!Array.isArray(user.transactions)){
-
-user.transactions=[];
+    }
 
 }
 
-if(!Array.isArray(user.withdrawHistory)){
 
-user.withdrawHistory=[];
+/* =========================
+DEPOSIT
+========================= */
+
+function deposit(){
+
+    const amount =
+        Number(
+            document
+            .getElementById("depositAmount")
+            .value
+        );
+
+
+    const user =
+        getCurrentUser();
+
+    if(!user) return;
+
+
+    if(
+        !amount ||
+        amount <= 0
+    ){
+
+        toast("أدخل مبلغاً صحيحاً");
+
+        return;
+
+    }
+
+
+    user.balance =
+        Number(
+            user.balance || 0
+        ) + amount;
+
+
+    user.transactions =
+        user.transactions || [];
+
+
+    user.transactions.unshift({
+
+        type:"إيداع",
+
+        amount:amount,
+
+        date:
+            new Date()
+            .toLocaleString("ar-SA")
+
+    });
+
+
+    /*
+    إذا كان المستخدم مدعواً
+    يتم احتساب 10% للداعي
+    */
+
+    if(user.invitedBy){
+
+        const inviter =
+            users.find(
+                u =>
+                    u.userCode ===
+                    user.invitedBy
+            );
+
+
+        if(inviter){
+
+            const commission =
+                amount * 0.10;
+
+
+            inviter.referralProfit =
+                Number(
+                    inviter.referralProfit || 0
+                ) + commission;
+
+
+            inviter.balance =
+                Number(
+                    inviter.balance || 0
+                ) + commission;
+
+
+            inviter.transactions =
+                inviter.transactions || [];
+
+
+            inviter.transactions.unshift({
+
+                type:"ربح دعوة 10%",
+
+                amount:commission,
+
+                date:
+                    new Date()
+                    .toLocaleString("ar-SA")
+
+            });
+
+        }
+
+    }
+
+
+    saveData();
+
+    updateUI();
+
+    closeModal("depositModal");
+
+    document
+        .getElementById("depositAmount")
+        .value = "";
+
+
+    toast("تم تسجيل الإيداع التجريبي");
 
 }
 
-});
 
-saveData();
+/* =========================
+WITHDRAW
+========================= */
 
-if(
-currentUserIndex!==null &&
-users[currentUserIndex]
-){
+function withdraw(){
 
-openApp();
+    const amount =
+        Number(
+            document
+            .getElementById("withdrawAmount")
+            .value
+        );
 
-}
 
-});
+    const address =
+        document
+        .getElementById("withdrawTron")
+        .value
+        .trim();
 
-/* ==============================
-   CLOSE SIDEBAR
-============================== */
 
-document.addEventListener("click",function(event){
+    const user =
+        getCurrentUser();
 
-const sidebar=$("sidebar");
+    if(!user) return;
 
-const menu=document.querySelector(".mobile-menu");
 
-if(
-window.innerWidth<=900 &&
-sidebar &&
-sidebar.classList.contains("open") &&
-!sidebar.contains(event.target) &&
-menu &&
-!menu.contains(event.target)
-){
+    if(
+        !amount ||
+        amount <= 0
+    ){
 
-sidebar.classList.remove("open");
+        toast("أدخل مبلغ السحب");
 
-}
+        return;
 
-});
+    }
 
-/* ==============================
-   CLOSE MODAL OUTSIDE
-============================== */
 
-document.querySelectorAll(".modal")
-.forEach(modal=>{
+    if(!address){
 
-modal.addEventListener("click",function(e){
+        toast("أدخل عنوان TRON");
 
-if(e.target===modal){
+        return;
 
-modal.classList.remove("show");
+    }
 
-}
 
-});
+    user.withdrawHistory =
+        user.withdrawHistory || [];
 
-});
 
-</script></body>
-                                                        </html>
+    if(
+        amount >
+        Number(
+            user.balance || 0
+        )
+    ){
+
+        user.withdrawHistory.unshift({
+
+            amount:amount,
+
+            status:"فشل",
+
+            date:
+                new Date()
+                .toLocaleString("ar-SA")
+
+        });
+
+
+        saveData();
+
+        renderWithdrawHistory();
+
+        closeModal("withdrawModal");
+
+        toast("الرصيد غير كافٍ");
+
+        return;
+
+    }
+
+
+    user.balance -= amount;
+
+
+    user.withdrawHistory.unshift({
+
+        amount:amount,
+
+        status:"مكتمل",
+
+
+      
