@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>XL22</title>
 
@@ -22,8 +25,8 @@
     --gold3:#8f6b17;
     --bg:#070707;
     --card:#151515;
-    --card2:#1b1b1b;
-    --border:rgba(212,175,55,.18);
+    --card2:#1d1d1d;
+    --border:rgba(212,175,55,.20);
     --text:#fff;
     --muted:#999;
     --green:#35d07f;
@@ -33,9 +36,15 @@
 body{
     font-family:'Cairo',sans-serif;
     background:
-    radial-gradient(circle at top right,rgba(212,175,55,.12),transparent 30%),
+    radial-gradient(
+        circle at top right,
+        rgba(212,175,55,.12),
+        transparent 30%
+    ),
     var(--bg);
+
     color:var(--text);
+
     min-height:100vh;
 }
 
@@ -52,13 +61,17 @@ button{
     display:none!important;
 }
 
-/* ==============================
-   LOGO
-============================== */
+
+/* =========================
+LOGO
+========================= */
 
 .logo{
+
     font-size:32px;
+
     font-weight:800;
+
     letter-spacing:2px;
 
     background:linear-gradient(
@@ -71,27 +84,35 @@ button{
     );
 
     -webkit-background-clip:text;
+
     -webkit-text-fill-color:transparent;
 }
 
 
-/* ==============================
-   AUTH
-============================== */
+/* =========================
+AUTH
+========================= */
 
 .auth-screen{
+
     min-height:100vh;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
 }
 
 .auth-box{
+
     width:100%;
+
     max-width:440px;
 
-    background:rgba(18,18,18,.96);
+    background:rgba(18,18,18,.97);
 
     border:1px solid var(--border);
 
@@ -105,38 +126,53 @@ button{
 }
 
 .auth-logo{
+
     text-align:center;
+
     margin-bottom:30px;
 }
 
 .auth-logo p{
+
     color:var(--muted);
+
     font-size:13px;
+
     margin-top:5px;
 }
 
 .form-title{
+
     font-size:22px;
+
     margin-bottom:20px;
 }
 
 .input-group{
+
     margin-bottom:16px;
 }
 
 .input-group label{
+
     display:block;
+
     color:#ddd;
+
     font-size:13px;
+
     margin-bottom:7px;
 }
 
 .input-wrapper{
+
     position:relative;
 }
 
 .input-wrapper input{
+
     width:100%;
+
     padding:14px;
 
     background:#0c0c0c;
@@ -153,19 +189,26 @@ button{
 }
 
 .input-wrapper input:focus{
+
     border-color:var(--gold);
-    box-shadow:0 0 12px rgba(212,175,55,.12);
+
+    box-shadow:
+    0 0 12px
+    rgba(212,175,55,.12);
 }
 
 .password-toggle{
+
     position:absolute;
 
     left:12px;
+
     top:50%;
 
     transform:translateY(-50%);
 
     border:none;
+
     background:none;
 
     color:#aaa;
@@ -174,6 +217,7 @@ button{
 }
 
 .main-btn{
+
     width:100%;
 
     padding:14px;
@@ -199,13 +243,16 @@ button{
 }
 
 .main-btn:hover{
+
     transform:translateY(-2px);
 
     box-shadow:
-    0 10px 30px rgba(212,175,55,.18);
+    0 10px 30px
+    rgba(212,175,55,.18);
 }
 
 .switch-text{
+
     text-align:center;
 
     color:var(--muted);
@@ -216,6 +263,7 @@ button{
 }
 
 .switch-text span{
+
     color:var(--gold2);
 
     font-weight:700;
@@ -224,9 +272,13 @@ button{
 }
 
 .error{
-    background:rgba(255,82,82,.1);
 
-    border:1px solid rgba(255,82,82,.35);
+    background:
+    rgba(255,82,82,.1);
+
+    border:
+    1px solid
+    rgba(255,82,82,.35);
 
     color:#ff8585;
 
@@ -240,21 +292,25 @@ button{
 }
 
 .error::before{
+
     content:"⚠️ ";
 }
 
 
-/* ==============================
-   APP HEADER
-============================== */
+/* =========================
+APP
+========================= */
 
 .header{
+
     height:70px;
 
     position:fixed;
 
     top:0;
+
     right:0;
+
     left:0;
 
     z-index:100;
@@ -267,14 +323,19 @@ button{
 
     padding:0 30px;
 
-    background:rgba(8,8,8,.94);
+    background:
+    rgba(8,8,8,.94);
 
-    border-bottom:1px solid var(--border);
+    border-bottom:
+    1px solid
+    var(--border);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+    blur(15px);
 }
 
 .header-user{
+
     display:flex;
 
     align-items:center;
@@ -283,17 +344,21 @@ button{
 }
 
 .avatar{
+
     width:40px;
+
     height:40px;
 
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     border-radius:50%;
 
-    background:linear-gradient(
+    background:
+    linear-gradient(
         135deg,
         var(--gold2),
         var(--gold)
@@ -305,31 +370,37 @@ button{
 }
 
 .header-user span{
+
     color:#ddd;
 
     font-size:13px;
 }
 
 
-/* ==============================
-   SIDEBAR
-============================== */
+/* =========================
+SIDEBAR DESKTOP
+========================= */
 
 .sidebar{
+
     position:fixed;
 
     top:70px;
+
     right:0;
 
     width:240px;
 
-    height:calc(100vh - 70px);
+    height:
+    calc(100vh - 70px);
 
     padding:20px 14px;
 
     background:#0d0d0d;
 
-    border-left:1px solid var(--border);
+    border-left:
+    1px solid
+    var(--border);
 
     z-index:90;
 
@@ -337,6 +408,7 @@ button{
 }
 
 .nav-title{
+
     color:#666;
 
     font-size:11px;
@@ -345,6 +417,7 @@ button{
 }
 
 .nav-item{
+
     width:100%;
 
     padding:13px 15px;
@@ -368,41 +441,50 @@ button{
 
 .nav-item:hover,
 .nav-item.active{
-    background:rgba(212,175,55,.11);
+
+    background:
+    rgba(212,175,55,.11);
 
     color:var(--gold2);
 }
 
 
-/* ==============================
-   CONTENT
-============================== */
+/* =========================
+CONTENT
+========================= */
 
 .content{
+
     margin-right:240px;
 
-    padding:100px 30px 40px;
+    padding:
+    100px 30px 110px;
 
     max-width:1450px;
 }
 
 .page{
+
     display:none;
 }
 
 .page.active{
+
     display:block;
 }
 
 .page-title{
+
     margin-bottom:25px;
 }
 
 .page-title h1{
+
     font-size:25px;
 }
 
 .page-title p{
+
     color:var(--muted);
 
     font-size:13px;
@@ -411,11 +493,12 @@ button{
 }
 
 
-/* ==============================
-   BALANCE
-============================== */
+/* =========================
+BALANCE
+========================= */
 
 .balance-card{
+
     background:
     linear-gradient(
         135deg,
@@ -423,7 +506,9 @@ button{
         #151515
     );
 
-    border:1px solid rgba(212,175,55,.3);
+    border:
+    1px solid
+    rgba(212,175,55,.3);
 
     border-radius:20px;
 
@@ -435,12 +520,14 @@ button{
 }
 
 .balance-label{
+
     color:#aaa;
 
     font-size:13px;
 }
 
 .balance-value{
+
     font-size:38px;
 
     font-weight:800;
@@ -451,14 +538,16 @@ button{
 }
 
 
-/* ==============================
-   SMALL PROFIT CARDS
-============================== */
+/* =========================
+SMALL CARDS
+========================= */
 
 .small-cards{
+
     display:grid;
 
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+    repeat(2,1fr);
 
     gap:15px;
 
@@ -466,9 +555,12 @@ button{
 }
 
 .small-card{
+
     background:var(--card);
 
-    border:1px solid var(--border);
+    border:
+    1px solid
+    var(--border);
 
     border-radius:16px;
 
@@ -476,12 +568,14 @@ button{
 }
 
 .small-card-title{
+
     color:#999;
 
     font-size:12px;
 }
 
 .small-card-value{
+
     color:var(--gold2);
 
     font-size:22px;
@@ -492,14 +586,16 @@ button{
 }
 
 
-/* ==============================
-   DEPOSIT WITHDRAW
-============================== */
+/* =========================
+MONEY
+========================= */
 
 .money-actions{
+
     display:grid;
 
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+    repeat(2,1fr);
 
     gap:15px;
 
@@ -507,11 +603,14 @@ button{
 }
 
 .money-btn{
+
     padding:20px;
 
     border-radius:16px;
 
-    border:1px solid var(--border);
+    border:
+    1px solid
+    var(--border);
 
     background:var(--card);
 
@@ -525,91 +624,49 @@ button{
 }
 
 .money-btn:hover{
+
     border-color:var(--gold);
 
     transform:translateY(-2px);
 }
 
 .money-btn.deposit{
+
     color:var(--green);
 }
 
 .money-btn.withdraw{
+
     color:#ff8b8b;
 }
 
 
-/* ==============================
-   MAIN MENU
-============================== */
-
-.menu-grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:14px;
-
-    margin-bottom:20px;
-}
-
-.menu-card{
-    padding:20px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:15px;
-
-    text-align:center;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.menu-card:hover{
-    transform:translateY(-3px);
-
-    border-color:var(--gold);
-}
-
-.menu-icon{
-    font-size:25px;
-
-    margin-bottom:7px;
-}
-
-.menu-card span{
-    display:block;
-
-    color:#ddd;
-
-    font-size:12px;
-}
-
-
-/* ==============================
-   REFERRAL
-============================== */
+/* =========================
+REFERRAL
+========================= */
 
 .referral-box{
+
     background:var(--card);
 
-    border:1px solid var(--border);
+    border:
+    1px solid
+    var(--border);
 
     border-radius:18px;
 
     padding:25px;
+
+    margin-bottom:18px;
 }
 
 .referral-box h3{
+
     font-size:17px;
 }
 
 .referral-box p{
+
     color:#999;
 
     font-size:12px;
@@ -618,6 +675,7 @@ button{
 }
 
 .referral-code{
+
     display:flex;
 
     gap:10px;
@@ -626,11 +684,13 @@ button{
 }
 
 .referral-code input{
+
     flex:1;
 
     background:#090909;
 
-    border:1px solid #333;
+    border:
+    1px solid #333;
 
     border-radius:10px;
 
@@ -647,6 +707,7 @@ button{
 
 .copy-btn,
 .share-btn{
+
     border:none;
 
     border-radius:10px;
@@ -657,42 +718,301 @@ button{
 }
 
 .copy-btn{
+
     background:var(--gold);
 
     color:#111;
 }
 
 .share-btn{
+
     background:#252525;
 
     color:var(--gold2);
 
-    border:1px solid var(--border);
+    border:
+    1px solid
+    var(--border);
 }
 
 
-/* ==============================
-   SETTINGS
-============================== */
+/* =========================
+TASKS
+========================= */
 
-.settings-box{
-    max-width:650px;
+.task-card{
 
     background:var(--card);
 
-    border:1px solid var(--border);
+    border:
+    1px solid
+    var(--border);
 
     border-radius:18px;
 
-    padding:25px;
+    padding:22px;
+
+    margin-bottom:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.task-info h3{
+
+    font-size:15px;
+}
+
+.task-info p{
+
+    color:#888;
+
+    font-size:11px;
+
+    margin-top:5px;
+}
+
+.task-btn{
+
+    border:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--gold3),
+        var(--gold2)
+    );
+
+    color:#111;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:800;
+}
+
+.task-btn.done{
+
+    background:#252525;
+
+    color:#777;
+
+    cursor:not-allowed;
 }
 
 
-/* ==============================
-   TRANSACTIONS
-============================== */
+/* =========================
+VIP
+========================= */
+
+.vip-card{
+
+    background:
+    linear-gradient(
+        135deg,
+        #211b0c,
+        #141414
+    );
+
+    border:
+    1px solid
+    rgba(212,175,55,.35);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    margin-bottom:18px;
+}
+
+.vip-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.vip-name{
+
+    font-size:25px;
+
+    font-weight:800;
+
+    color:var(--gold2);
+}
+
+.vip-percent{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:var(--gold);
+}
+
+.progress-box{
+
+    margin-top:20px;
+}
+
+.progress-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    margin-bottom:8px;
+}
+
+.progress{
+
+    height:10px;
+
+    background:#292929;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        var(--gold3),
+        var(--gold2)
+    );
+
+    width:0%;
+
+    transition:.5s;
+}
+
+.vip-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:15px;
+
+    margin-bottom:18px;
+}
+
+.vip-level{
+
+    background:var(--card);
+
+    border:
+    1px solid
+    var(--border);
+
+    border-radius:15px;
+
+    padding:18px;
+}
+
+.vip-level.active{
+
+    border-color:var(--gold);
+
+    box-shadow:
+    0 0 20px
+    rgba(212,175,55,.08);
+}
+
+.vip-level h3{
+
+    color:var(--gold2);
+
+    font-size:16px;
+}
+
+.vip-level p{
+
+    color:#888;
+
+    font-size:11px;
+
+    margin-top:5px;
+}
+
+
+/* =========================
+TEAM
+========================= */
+
+.team-list{
+
+    background:var(--card);
+
+    border:
+    1px solid
+    var(--border);
+
+    border-radius:18px;
+
+    overflow:hidden;
+}
+
+.team-member{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:16px;
+
+    border-bottom:
+    1px solid #252525;
+}
+
+.team-member:last-child{
+
+    border-bottom:none;
+}
+
+.member-name{
+
+    font-size:13px;
+}
+
+.member-deposit{
+
+    color:var(--gold2);
+
+    font-weight:700;
+
+    font-size:13px;
+}
+
+
+/* =========================
+TRANSACTIONS
+========================= */
 
 .transaction{
+
     display:flex;
 
     align-items:center;
@@ -703,39 +1023,48 @@ button{
 
     background:var(--card);
 
-    border-bottom:1px solid #252525;
+    border-bottom:
+    1px solid #252525;
 }
 
 .transaction:first-child{
-    border-radius:12px 12px 0 0;
+
+    border-radius:
+    12px 12px 0 0;
 }
 
 .transaction:last-child{
-    border-radius:0 0 12px 12px;
+
+    border-radius:
+    0 0 12px 12px;
 }
 
 .transaction-name{
+
     font-size:13px;
 }
 
 .transaction-date{
+
     color:#777;
 
     font-size:10px;
 }
 
 .transaction-amount{
+
     color:var(--gold2);
 
     font-weight:700;
 }
 
 
-/* ==============================
-   MODAL
-============================== */
+/* =========================
+MODAL
+========================= */
 
 .modal{
+
     position:fixed;
 
     inset:0;
@@ -748,23 +1077,28 @@ button{
 
     padding:20px;
 
-    background:rgba(0,0,0,.8);
+    background:
+    rgba(0,0,0,.8);
 
     z-index:300;
 }
 
 .modal.show{
+
     display:flex;
 }
 
 .modal-box{
+
     width:100%;
 
     max-width:420px;
 
     background:#151515;
 
-    border:1px solid var(--border);
+    border:
+    1px solid
+    var(--border);
 
     border-radius:20px;
 
@@ -772,6 +1106,7 @@ button{
 }
 
 .modal-header{
+
     display:flex;
 
     align-items:center;
@@ -782,6 +1117,7 @@ button{
 }
 
 .close-btn{
+
     background:none;
 
     border:none;
@@ -792,11 +1128,12 @@ button{
 }
 
 
-/* ==============================
-   MOBILE
-============================== */
+/* =========================
+MOBILE MENU
+========================= */
 
 .mobile-menu{
+
     display:none;
 
     background:none;
@@ -808,35 +1145,105 @@ button{
     font-size:25px;
 }
 
+
+/* =========================
+BOTTOM NAV
+========================= */
+
+.bottom-nav{
+
+    display:none;
+}
+
+
+/* =========================
+RESPONSIVE
+========================= */
+
 @media(max-width:900px){
 
     .mobile-menu{
+
         display:block;
     }
 
     .sidebar{
-        transform:translateX(100%);
 
-        transition:.3s;
-    }
-
-    .sidebar.open{
-        transform:translateX(0);
+        display:none;
     }
 
     .content{
+
         margin-right:0;
 
-        padding:95px 18px 30px;
+        padding:
+        95px 18px 100px;
     }
 
     .header{
+
         padding:0 18px;
     }
 
-    .menu-grid{
+    .bottom-nav{
+
+        position:fixed;
+
+        display:grid;
+
         grid-template-columns:
-        repeat(2,1fr);
+        repeat(4,1fr);
+
+        bottom:0;
+
+        right:0;
+
+        left:0;
+
+        height:70px;
+
+        background:
+        rgba(12,12,12,.97);
+
+        border-top:
+        1px solid
+        var(--border);
+
+        z-index:200;
+
+        backdrop-filter:
+        blur(15px);
+    }
+
+    .bottom-item{
+
+        border:none;
+
+        background:none;
+
+        color:#777;
+
+        font-size:10px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        justify-content:center;
+
+        gap:4px;
+    }
+
+    .bottom-item .icon{
+
+        font-size:21px;
+    }
+
+    .bottom-item.active{
+
+        color:var(--gold2);
     }
 
 }
@@ -844,65 +1251,104 @@ button{
 @media(max-width:550px){
 
     .auth-box{
-        padding:25px 18px;
+
+        padding:
+        25px 18px;
     }
 
     .logo{
+
         font-size:28px;
     }
 
     .small-cards{
+
         grid-template-columns:
         repeat(2,1fr);
     }
 
     .small-card{
+
         padding:15px;
     }
 
     .small-card-value{
+
         font-size:18px;
     }
 
     .money-actions{
+
         grid-template-columns:
         repeat(2,1fr);
     }
 
     .money-btn{
+
         padding:16px 8px;
+
         font-size:12px;
     }
 
     .referral-code{
+
         flex-direction:column;
     }
 
     .copy-btn,
     .share-btn{
+
         padding:12px;
     }
 
     .header-user span{
+
         display:none;
+    }
+
+    .vip-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .vip-top{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .task-card{
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .task-btn{
+
+        width:100%;
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ==================================================
-     AUTH SCREEN
-================================================== -->
+<!-- =====================================================
+AUTH
+===================================================== -->
 
 <div id="authScreen" class="auth-screen">
 
 <div class="auth-box">
+
 
 <div class="auth-logo">
 
@@ -967,7 +1413,9 @@ placeholder="أدخل كلمة المرور"
 class="password-toggle"
 onclick="togglePassword('loginPassword',this)"
 type="button">
+
 👁️
+
 </button>
 
 </div>
@@ -1048,7 +1496,9 @@ placeholder="كلمة المرور"
 class="password-toggle"
 onclick="togglePassword('registerPassword',this)"
 type="button">
+
 👁️
+
 </button>
 
 </div>
@@ -1074,7 +1524,9 @@ placeholder="تأكيد كلمة المرور"
 class="password-toggle"
 onclick="togglePassword('registerConfirm',this)"
 type="button">
+
 👁️
+
 </button>
 
 </div>
@@ -1085,7 +1537,7 @@ type="button">
 <div class="input-group">
 
 <label>
-كود الدعوة - اختياري
+كود الدعوة
 </label>
 
 <div class="input-wrapper">
@@ -1093,7 +1545,7 @@ type="button">
 <input
 id="registerReferral"
 type="text"
-placeholder="أدخل كود الدعوة"
+placeholder="سيظهر كود الدعوة تلقائيًا"
 >
 
 </div>
@@ -1122,37 +1574,44 @@ onclick="register()">
 
 </div>
 
-</div>
 
 </div>
 
+</div>
 
-<!-- ==================================================
-     APP
-================================================== -->
 
-<div id="app"
-class="hidden">
+<!-- =====================================================
+APP
+===================================================== -->
+
+<div id="app" class="hidden">
 
 
 <header class="header">
 
+
 <button
 class="mobile-menu"
 onclick="toggleSidebar()">
+
 ☰
+
 </button>
+
 
 <div class="logo">
 XL22
 </div>
+
 
 <div class="header-user">
 
 <div
 class="avatar"
 id="avatar">
+
 X
+
 </div>
 
 <span id="headerUser">
@@ -1164,11 +1623,10 @@ X
 </header>
 
 
-<!-- SIDEBAR -->
+<!-- DESKTOP SIDEBAR -->
 
-<aside
-id="sidebar"
-class="sidebar">
+<aside class="sidebar">
+
 
 <div class="nav-title">
 القائمة الرئيسية
@@ -1186,6 +1644,15 @@ onclick="showPage('home',this)">
 
 <button
 class="nav-item"
+onclick="showPage('tasksPage',this)">
+
+📋 المهام
+
+</button>
+
+
+<button
+class="nav-item"
 onclick="showPage('balancePage',this)">
 
 💰 الرصيد
@@ -1195,27 +1662,9 @@ onclick="showPage('balancePage',this)">
 
 <button
 class="nav-item"
-onclick="showPage('profitsPage',this)">
+onclick="showPage('teamPage',this)">
 
-📊 الأرباح
-
-</button>
-
-
-<button
-class="nav-item"
-onclick="showPage('referralPage',this)">
-
-👥 الدعوات
-
-</button>
-
-
-<button
-class="nav-item"
-onclick="showPage('transactionsPage',this)">
-
-📋 المعاملات
+👑 قائد الفريق
 
 </button>
 
@@ -1242,6 +1691,7 @@ onclick="logout()">
 
 </button>
 
+
 </aside>
 
 
@@ -1250,18 +1700,17 @@ onclick="logout()">
 <main class="content">
 
 
-<!-- ==================================================
-     HOME
-================================================== -->
+<!-- HOME -->
 
 <section
 id="home"
 class="page active">
 
+
 <div class="page-title">
 
 <h1>
-الرئيسية
+القائمة الرئيسية
 </h1>
 
 <p>
@@ -1270,8 +1719,6 @@ class="page active">
 
 </div>
 
-
-<!-- BALANCE -->
 
 <div class="balance-card">
 
@@ -1290,9 +1737,25 @@ $ <span id="homeBalance">
 </div>
 
 
-<!-- PROFITS -->
-
 <div class="small-cards">
+
+
+<div class="small-card">
+
+<div class="small-card-title">
+أرباح الدعوات
+</div>
+
+<div class="small-card-value">
+
+$ <span id="homeReferralProfit">
+0.00
+</span>
+
+</div>
+
+</div>
+
 
 <div class="small-card">
 
@@ -1311,143 +1774,31 @@ $ <span id="homeTaskProfit">
 </div>
 
 
-<div class="small-card">
-
-<div class="small-card-title">
-أرباح الدعوة
 </div>
 
-<div class="small-card-value">
-
-$ <span id="homeReferralProfit">
-0.00
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- MONEY -->
-
-<div class="money-actions">
-
-<button
-class="money-btn deposit"
-onclick="openModal('depositModal')">
-
-💰
-<br>
-إيداع
-
-</button>
-
-
-<button
-class="money-btn withdraw"
-onclick="openModal('withdrawModal')">
-
-💸
-<br>
-سحب
-
-</button>
-
-</div>
-
-
-<!-- MAIN MENU -->
-
-<div class="menu-grid">
-
-<div
-class="menu-card"
-onclick="showPageById('balancePage')">
-
-<div class="menu-icon">
-💰
-</div>
-
-<span>
-الرصيد
-</span>
-
-</div>
-
-
-<div
-class="menu-card"
-onclick="showPageById('profitsPage')">
-
-<div class="menu-icon">
-📊
-</div>
-
-<span>
-الأرباح
-</span>
-
-</div>
-
-
-<div
-class="menu-card"
-onclick="showPageById('referralPage')">
-
-<div class="menu-icon">
-👥
-</div>
-
-<span>
-الدعوات
-</span>
-
-</div>
-
-
-<div
-class="menu-card"
-onclick="showPageById('transactionsPage')">
-
-<div class="menu-icon">
-📋
-</div>
-
-<span>
-المعاملات
-</span>
-
-</div>
-
-</div>
-
-
-<!-- REFERRAL -->
 
 <div class="referral-box">
 
 <h3>
-كود الدعوة الخاص بك
+رابط الإحالة الخاص بك
 </h3>
 
 <p>
-شارك كودك مع الآخرين للحصول على أرباح الدعوات.
+شارك الرابط مع أصدقائك. كود الدعوة موجود تلقائياً.
 </p>
 
 
 <div class="referral-code">
 
 <input
-id="homeReferralCode"
+id="homeReferralLink"
 readonly
 >
 
 
 <button
 class="copy-btn"
-onclick="copyReferral()">
+onclick="copyReferralLink()">
 
 نسخ
 
@@ -1464,18 +1815,113 @@ onclick="shareReferral()">
 
 </div>
 
+
+<div class="referral-code">
+
+<input
+id="homeReferralCode"
+readonly
+>
+
+<button
+class="copy-btn"
+onclick="copyReferral()">
+
+نسخ الكود
+
+</button>
+
 </div>
+
+</div>
+
 
 </section>
 
 
-<!-- ==================================================
-     BALANCE PAGE
-================================================== -->
+<!-- TASKS -->
+
+<section
+id="tasksPage"
+class="page">
+
+
+<div class="page-title">
+
+<h1>
+المهام
+</h1>
+
+<p>
+أكمل المهام للحصول على أرباح
+</p>
+
+</div>
+
+
+<div class="task-card">
+
+<div class="task-info">
+
+<h3>
+تسجيل الدخول اليومي
+</h3>
+
+<p>
+سجل دخولك يومياً للحصول على مكافأة تجريبية.
+</p>
+
+</div>
+
+
+<button
+id="dailyTaskBtn"
+class="task-btn"
+onclick="completeDailyTask()">
+
+استلام 1$
+
+</button>
+
+</div>
+
+
+<div class="task-card">
+
+<div class="task-info">
+
+<h3>
+مكافأة ترحيبية
+</h3>
+
+<p>
+مكافأة تجريبية للمستخدم الجديد.
+</p>
+
+</div>
+
+
+<button
+id="welcomeTaskBtn"
+class="task-btn"
+onclick="completeWelcomeTask()">
+
+استلام 5$
+
+</button>
+
+</div>
+
+
+</section>
+
+
+<!-- BALANCE -->
 
 <section
 id="balancePage"
 class="page">
+
 
 <div class="page-title">
 
@@ -1484,7 +1930,7 @@ class="page">
 </h1>
 
 <p>
-تفاصيل رصيد حسابك
+جميع تفاصيل أموالك وأرباحك
 </p>
 
 </div>
@@ -1493,7 +1939,7 @@ class="page">
 <div class="balance-card">
 
 <div class="balance-label">
-رصيدك الإجمالي
+الرصيد الإجمالي
 </div>
 
 <div class="balance-value">
@@ -1507,68 +1953,7 @@ $ <span id="balancePageValue">
 </div>
 
 
-<div class="money-actions">
-
-<button
-class="money-btn deposit"
-onclick="openModal('depositModal')">
-
-💰 إيداع
-
-</button>
-
-
-<button
-class="money-btn withdraw"
-onclick="openModal('withdrawModal')">
-
-💸 سحب
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- ==================================================
-     PROFITS
-================================================== -->
-
-<section
-id="profitsPage"
-class="page">
-
-<div class="page-title">
-
-<h1>
-الأرباح
-</h1>
-
-<p>
-تفاصيل أرباحك
-</p>
-
-</div>
-
-
 <div class="small-cards">
-
-<div class="small-card">
-
-<div class="small-card-title">
-أرباح المهام
-</div>
-
-<div class="small-card-value">
-
-$ <span id="profitTask">
-0.00
-</span>
-
-</div>
-
-</div>
 
 
 <div class="small-card">
@@ -1579,7 +1964,7 @@ $ <span id="profitTask">
 
 <div class="small-card-value">
 
-$ <span id="profitReferral">
+$ <span id="balanceReferralProfit">
 0.00
 </span>
 
@@ -1587,27 +1972,89 @@ $ <span id="profitReferral">
 
 </div>
 
+
+<div class="small-card">
+
+<div class="small-card-title">
+أرباح المهام
 </div>
+
+<div class="small-card-value">
+
+$ <span id="balanceTaskProfit">
+0.00
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="money-actions">
+
+
+<button
+class="money-btn deposit"
+onclick="openModal('depositModal')">
+
+💰
+
+<br>
+
+إيداع
+
+</button>
+
+
+<button
+class="money-btn withdraw"
+onclick="openModal('withdrawModal')">
+
+💸
+
+<br>
+
+سحب
+
+</button>
+
+
+</div>
+
+
+<h3 style="margin:20px 0 12px">
+
+سجل المعاملات
+
+</h3>
+
+
+<div id="transactionsList">
+
+</div>
+
 
 </section>
 
 
-<!-- ==================================================
-     REFERRAL
-================================================== -->
+<!-- TEAM LEADER -->
 
 <section
-id="referralPage"
+id="teamPage"
 class="page">
+
 
 <div class="page-title">
 
 <h1>
-نظام الدعوات
+👑 قائد الفريق
 </h1>
 
 <p>
-شارك كود الدعوة الخاص بك
+قم ببناء فريقك وارتقِ بمستوى VIP
 </p>
 
 </div>
@@ -1616,25 +2063,25 @@ class="page">
 <div class="referral-box">
 
 <h3>
-كود الدعوة الخاص بك
+رابط الإحالة
 </h3>
 
 <p>
-هذا الكود خاص بحسابك فقط.
+شارك الرابط مع الأشخاص الذين تريد دعوتهم.
 </p>
 
 
 <div class="referral-code">
 
 <input
-id="referralPageCode"
+id="teamReferralLink"
 readonly
 >
 
 
 <button
 class="copy-btn"
-onclick="copyReferral()">
+onclick="copyReferralLink()">
 
 نسخ
 
@@ -1651,21 +2098,109 @@ onclick="shareReferral()">
 
 </div>
 
+
+<div class="referral-code">
+
+<input
+id="teamReferralCode"
+readonly
+>
+
+</div>
+
 </div>
 
 
-<div class="small-cards"
-style="margin-top:18px;">
+<div class="vip-card">
+
+
+<div class="vip-top">
+
+
+<div>
+
+<div class="vip-name"
+id="vipName">
+
+VIP 0
+
+</div>
+
+<p style="color:#888;font-size:12px">
+
+مستواك الحالي
+
+</p>
+
+</div>
+
+
+<div class="vip-percent">
+
+<span id="vipPercent">
+0
+</span>%
+
+</div>
+
+
+</div>
+
+
+<div class="progress-box">
+
+
+<div class="progress-info">
+
+<span>
+
+الأعضاء المؤهلون:
+<span id="qualifiedMembers">
+0
+</span>
+
+</span>
+
+
+<span>
+
+التالي:
+<span id="nextVipMembers">
+5
+</span>
+
+</span>
+
+</div>
+
+
+<div class="progress">
+
+<div
+id="vipProgress"
+class="progress-bar">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="small-cards">
+
 
 <div class="small-card">
 
 <div class="small-card-title">
-عدد الأشخاص المدعوين
+عدد أعضاء الفريق
 </div>
 
 <div class="small-card-value">
 
-<span id="referralCount">
+<span id="teamCount">
 0
 </span>
 
@@ -1677,12 +2212,12 @@ style="margin-top:18px;">
 <div class="small-card">
 
 <div class="small-card-title">
-أرباح الدعوات
+أرباح قائد الفريق
 </div>
 
 <div class="small-card-value">
 
-$ <span id="referralPageProfit">
+$ <span id="teamProfit">
 0.00
 </span>
 
@@ -1690,57 +2225,116 @@ $ <span id="referralPageProfit">
 
 </div>
 
+
 </div>
 
-</section>
+
+<h3 style="margin:20px 0 12px">
+
+مستويات VIP
+
+</h3>
 
 
-<!-- ==================================================
-     TRANSACTIONS
-================================================== -->
+<div class="vip-grid">
 
-<section
-id="transactionsPage"
-class="page">
 
-<div class="page-title">
+<div class="vip-level"
+id="vipLevel1">
 
-<h1>
-المعاملات
-</h1>
+<h3>
+VIP 1
+</h3>
 
 <p>
-سجل عمليات حسابك
+5 أعضاء — عمولة 10%
 </p>
 
 </div>
 
 
-<div id="transactionsList">
+<div class="vip-level"
+id="vipLevel2">
+
+<h3>
+VIP 2
+</h3>
+
+<p>
+10 أعضاء — عمولة 12%
+</p>
+
+</div>
+
+
+<div class="vip-level"
+id="vipLevel3">
+
+<h3>
+VIP 3
+</h3>
+
+<p>
+20 عضو — عمولة 15%
+</p>
+
+</div>
+
+
+<div class="vip-level"
+id="vipLevel4">
+
+<h3>
+VIP 4
+</h3>
+
+<p>
+50 عضو — عمولة 18%
+</p>
+
+</div>
+
+
+<div class="vip-level"
+id="vipLevel5">
+
+<h3>
+VIP 5
+</h3>
+
+<p>
+100 عضو — عمولة 20%
+</p>
+
+</div>
+
+
+</div>
+
+
+<h3 style="margin:20px 0 12px">
+
+أعضاء فريقي
+
+</h3>
+
 
 <div
-style="
-text-align:center;
-color:#777;
-padding:30px;
-">
-
-لا توجد معاملات حتى الآن
+id="teamList"
+class="team-list">
 
 </div>
 
-</div>
 
 </section>
 
 
-<!-- ==================================================
-     SETTINGS
-================================================== -->
+<!-- SETTINGS -->
 
 <section
 id="settingsPage"
 class="page">
+
 
 <div class="page-title">
 
@@ -1755,7 +2349,7 @@ class="page">
 </div>
 
 
-<div class="settings-box">
+<div class="referral-box">
 
 
 <div class="input-group">
@@ -1785,7 +2379,8 @@ onclick="updateProfile()">
 </button>
 
 
-<br><br>
+<br>
+<br>
 
 
 <div class="input-group">
@@ -1824,24 +2419,100 @@ onclick="changePassword()">
 
 </button>
 
+
+<br><br>
+
+
+<button
+class="main-btn"
+onclick="logout()">
+
+تسجيل الخروج
+
+</button>
+
+
 </div>
+
 
 </section>
 
+
 </main>
+
+
+<!-- MOBILE BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+
+<button
+class="bottom-item active"
+onclick="showPageMobile('home',this)">
+
+<span class="icon">
+🏠
+</span>
+
+القائمة الرئيسية
+
+</button>
+
+
+<button
+class="bottom-item"
+onclick="showPageMobile('tasksPage',this)">
+
+<span class="icon">
+📋
+</span>
+
+المهام
+
+</button>
+
+
+<button
+class="bottom-item"
+onclick="showPageMobile('balancePage',this)">
+
+<span class="icon">
+💰
+</span>
+
+الرصيد
+
+</button>
+
+
+<button
+class="bottom-item"
+onclick="showPageMobile('teamPage',this)">
+
+<span class="icon">
+👑
+</span>
+
+قائد الفريق
+
+</button>
+
+
+</nav>
+
 
 </div>
 
 
-<!-- ==================================================
-     DEPOSIT MODAL
-================================================== -->
+<!-- DEPOSIT MODAL -->
 
 <div
 id="depositModal"
 class="modal">
 
+
 <div class="modal-box">
+
 
 <div class="modal-header">
 
@@ -1863,7 +2534,7 @@ onclick="closeModal('depositModal')">
 <div class="input-group">
 
 <label>
-مبلغ الإيداع
+مبلغ الإيداع التجريبي
 </label>
 
 <div class="input-wrapper">
@@ -1871,7 +2542,8 @@ onclick="closeModal('depositModal')">
 <input
 id="depositAmount"
 type="number"
-placeholder="أدخل المبلغ"
+min="1"
+placeholder="مثال: 100"
 >
 
 </div>
@@ -1887,20 +2559,21 @@ onclick="deposit()">
 
 </button>
 
-</div>
 
 </div>
 
+</div>
 
-<!-- ==================================================
-     WITHDRAW MODAL
-================================================== -->
+
+<!-- WITHDRAW MODAL -->
 
 <div
 id="withdrawModal"
 class="modal">
 
+
 <div class="modal-box">
+
 
 <div class="modal-header">
 
@@ -1930,6 +2603,7 @@ onclick="closeModal('withdrawModal')">
 <input
 id="withdrawAmount"
 type="number"
+min="1"
 placeholder="أدخل المبلغ"
 >
 
@@ -1946,6 +2620,7 @@ onclick="withdraw()">
 
 </button>
 
+
 </div>
 
 </div>
@@ -1953,9 +2628,10 @@ onclick="withdraw()">
 
 <script>
 
-/* =========================================
-   DATABASE LOCAL
-========================================= */
+
+/* =====================================================
+DATABASE LOCAL
+===================================================== */
 
 let users =
 JSON.parse(
@@ -1967,9 +2643,64 @@ let currentUserIndex =
 localStorage.getItem("XL22_CURRENT_USER");
 
 
-/* =========================================
-   AUTH
-========================================= */
+if(
+currentUserIndex !== null
+){
+
+currentUserIndex =
+Number(currentUserIndex);
+
+}
+
+
+/* =====================================================
+VIP LEVELS
+===================================================== */
+
+const VIP_LEVELS = [
+
+{
+level:0,
+members:0,
+percent:0
+},
+
+{
+level:1,
+members:5,
+percent:10
+},
+
+{
+level:2,
+members:10,
+percent:12
+},
+
+{
+level:3,
+members:20,
+percent:15
+},
+
+{
+level:4,
+members:50,
+percent:18
+},
+
+{
+level:5,
+members:100,
+percent:20
+}
+
+];
+
+
+/* =====================================================
+AUTH
+===================================================== */
 
 function showRegister(){
 
@@ -1980,6 +2711,8 @@ document
 document
 .getElementById("registerForm")
 .classList.remove("hidden");
+
+loadReferralFromURL();
 
 }
 
@@ -1997,64 +2730,128 @@ document
 }
 
 
-/* =========================================
-   PASSWORD EYE
-========================================= */
+/* =====================================================
+PASSWORD
+===================================================== */
 
 function togglePassword(id,button){
 
 const input =
 document.getElementById(id);
 
-if(input.type === "password"){
+
+if(
+input.type === "password"
+){
 
 input.type = "text";
 
-button.textContent = "🙈";
+button.textContent =
+"🙈";
 
 }else{
 
-input.type = "password";
+input.type =
+"password";
 
-button.textContent = "👁️";
+button.textContent =
+"👁️";
 
 }
 
 }
 
 
-/* =========================================
-   GENERATE UNIQUE REFERRAL CODE
-========================================= */
+/* =====================================================
+REFERRAL CODE
+===================================================== */
 
 function generateReferralCode(){
 
 let code;
 
+
 do{
 
 code =
 "XL22-" +
+
 Math.random()
 .toString(36)
 .substring(2,8)
 .toUpperCase();
 
+
 }while(
+
 users.some(
 user =>
 user.referralCode === code
 )
+
 );
+
 
 return code;
 
 }
 
 
-/* =========================================
-   REGISTER
-========================================= */
+/* =====================================================
+REFERRAL URL
+===================================================== */
+
+function getReferralLink(code){
+
+return (
+
+window.location.origin +
+
+window.location.pathname +
+
+"?ref=" +
+
+encodeURIComponent(code)
+
+);
+
+}
+
+
+/* =====================================================
+LOAD REFERRAL FROM URL
+===================================================== */
+
+function loadReferralFromURL(){
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+
+const referral =
+params.get("ref");
+
+
+if(
+referral
+){
+
+document
+.getElementById("registerReferral")
+.value =
+referral
+.toUpperCase();
+
+}
+
+}
+
+
+/* =====================================================
+REGISTER
+===================================================== */
 
 function register(){
 
@@ -2064,15 +2861,18 @@ document
 .value
 .trim();
 
+
 const password =
 document
 .getElementById("registerPassword")
 .value;
 
+
 const confirm =
 document
 .getElementById("registerConfirm")
 .value;
+
 
 const referral =
 document
@@ -2082,9 +2882,11 @@ document
 .toUpperCase();
 
 
-if(!identifier ||
+if(
+!identifier ||
 !password ||
-!confirm){
+!confirm
+){
 
 showError(
 "registerError",
@@ -2096,7 +2898,9 @@ return;
 }
 
 
-if(password.length < 6){
+if(
+password.length < 6
+){
 
 showError(
 "registerError",
@@ -2108,7 +2912,9 @@ return;
 }
 
 
-if(password !== confirm){
+if(
+password !== confirm
+){
 
 showError(
 "registerError",
@@ -2120,16 +2926,25 @@ return;
 }
 
 
+const normalized =
+identifier
+.toLowerCase();
+
+
 if(
+
 users.some(
 user =>
-user.identifier === identifier
+user.identifier
+.toLowerCase()
+=== normalized
 )
+
 ){
 
 showError(
 "registerError",
-"هذا البريد الإلكتروني أو رقم الهاتف مستخدم مسبقاً"
+"هذا الحساب مستخدم مسبقاً"
 );
 
 return;
@@ -2137,11 +2952,7 @@ return;
 }
 
 
-/* إنشاء كود جديد */
-
-const referralCode =
-generateReferralCode();
-
+/* NEW USER */
 
 const newUser = {
 
@@ -2149,7 +2960,8 @@ identifier:identifier,
 
 password:password,
 
-referralCode:referralCode,
+referralCode:
+generateReferralCode(),
 
 invitedBy:null,
 
@@ -2161,45 +2973,56 @@ referralProfit:0,
 
 referralCount:0,
 
+tasks:{
+
+daily:false,
+
+welcome:false
+
+},
+
 transactions:[]
 
 };
 
 
-/* ربط الدعوة */
+/* CONNECT REFERRER */
 
-if(referral){
+if(
+referral
+){
 
 const inviterIndex =
 users.findIndex(
+
 user =>
-user.referralCode === referral
+user.referralCode
+=== referral
+
 );
 
 
-if(inviterIndex !== -1){
+if(
+inviterIndex !== -1
+){
 
 newUser.invitedBy =
 referral;
 
-
-/*
-هنا يتم فقط تسجيل الدعوة.
-يمكن لاحقاً تحديد مبلغ الربح
-من قاعدة البيانات.
-*/
-
-users[inviterIndex]
-.referralCount++;
+users[
+inviterIndex
+].referralCount++;
 
 }
 
 }
 
 
-/* إضافة المستخدم */
+/* ADD USER */
 
-users.push(newUser);
+users.push(
+newUser
+);
 
 
 saveUsers();
@@ -2220,9 +3043,9 @@ openApp();
 }
 
 
-/* =========================================
-   LOGIN
-========================================= */
+/* =====================================================
+LOGIN
+===================================================== */
 
 function login(){
 
@@ -2232,22 +3055,38 @@ document
 .value
 .trim();
 
+
 const password =
 document
 .getElementById("loginPassword")
 .value;
 
 
+const normalized =
+identifier
+.toLowerCase();
+
+
 const index =
 users.findIndex(
+
 user =>
-user.identifier === identifier
+
+user.identifier
+.toLowerCase()
+=== normalized
+
 &&
-user.password === password
+
+user.password
+=== password
+
 );
 
 
-if(index === -1){
+if(
+index === -1
+){
 
 showError(
 "loginError",
@@ -2274,56 +3113,82 @@ openApp();
 }
 
 
-/* =========================================
-   ERROR
-========================================= */
+/* =====================================================
+ERROR
+===================================================== */
 
-function showError(id,message){
+function showError(
+id,
+message
+){
 
 const box =
-document.getElementById(id);
+document
+.getElementById(id);
+
 
 box.textContent =
 message;
 
-box.classList.remove("hidden");
+
+box.classList
+.remove("hidden");
 
 }
 
 
-/* =========================================
-   OPEN APP
-========================================= */
+/* =====================================================
+OPEN APP
+===================================================== */
 
 function openApp(){
 
 document
 .getElementById("authScreen")
-.classList.add("hidden");
+.classList
+.add("hidden");
+
 
 document
 .getElementById("app")
-.classList.remove("hidden");
+.classList
+.remove("hidden");
+
 
 updateUI();
 
 }
 
 
-/* =========================================
-   UPDATE UI
-========================================= */
+/* =====================================================
+GET CURRENT USER
+===================================================== */
+
+function getCurrentUser(){
+
+return users[
+currentUserIndex
+];
+
+}
+
+
+/* =====================================================
+UPDATE UI
+===================================================== */
 
 function updateUI(){
 
 const user =
-users[currentUserIndex];
+getCurrentUser();
 
 
-if(!user)return;
+if(
+!user
+)return;
 
 
-/* Balance */
+/* BALANCE */
 
 document
 .getElementById("homeBalance")
@@ -2337,13 +3202,7 @@ document
 user.balance.toFixed(2);
 
 
-/* Profits */
-
-document
-.getElementById("homeTaskProfit")
-.textContent =
-user.taskProfit.toFixed(2);
-
+/* PROFITS */
 
 document
 .getElementById("homeReferralProfit")
@@ -2352,44 +3211,24 @@ user.referralProfit.toFixed(2);
 
 
 document
-.getElementById("profitTask")
+.getElementById("homeTaskProfit")
 .textContent =
 user.taskProfit.toFixed(2);
 
 
 document
-.getElementById("profitReferral")
+.getElementById("balanceReferralProfit")
 .textContent =
 user.referralProfit.toFixed(2);
 
 
 document
-.getElementById("referralPageProfit")
+.getElementById("balanceTaskProfit")
 .textContent =
-user.referralProfit.toFixed(2);
+user.taskProfit.toFixed(2);
 
 
-/* Referral */
-
-document
-.getElementById("homeReferralCode")
-.value =
-user.referralCode;
-
-
-document
-.getElementById("referralPageCode")
-.value =
-user.referralCode;
-
-
-document
-.getElementById("referralCount")
-.textContent =
-user.referralCount;
-
-
-/* User */
+/* USER */
 
 document
 .getElementById("headerUser")
@@ -2405,7 +3244,7 @@ user.identifier
 .toUpperCase();
 
 
-/* Settings */
+/* SETTINGS */
 
 document
 .getElementById("settingsIdentifier")
@@ -2413,92 +3252,170 @@ document
 user.identifier;
 
 
-/* Transactions */
+/* REFERRAL */
+
+const link =
+getReferralLink(
+user.referralCode
+);
+
+
+document
+.getElementById("homeReferralLink")
+.value =
+link;
+
+
+document
+.getElementById("teamReferralLink")
+.value =
+link;
+
+
+document
+.getElementById("homeReferralCode")
+.value =
+user.referralCode;
+
+
+document
+.getElementById("teamReferralCode")
+.value =
+user.referralCode;
+
+
+/* TASKS */
+
+updateTaskButtons();
+
+
+/* TEAM */
+
+updateTeam();
+
+
+/* TRANSACTIONS */
 
 renderTransactions();
 
 }
 
 
-/* =========================================
-   NAVIGATION
-========================================= */
+/* =====================================================
+NAVIGATION DESKTOP
+===================================================== */
 
-function showPage(pageId,button){
+function showPage(
+pageId,
+button
+){
 
 document
 .querySelectorAll(".page")
 .forEach(
+
 page =>
-page.classList.remove("active")
+page.classList
+.remove("active")
+
 );
 
 
 document
 .getElementById(pageId)
-.classList.add("active");
+.classList
+.add("active");
 
 
 document
 .querySelectorAll(".nav-item")
 .forEach(
+
 btn =>
-btn.classList.remove("active")
+btn.classList
+.remove("active")
+
 );
 
 
-if(button){
+if(
+button
+){
 
-button.classList.add("active");
+button.classList
+.add("active");
+
+}
 
 }
 
 
-document
-.getElementById("sidebar")
-.classList.remove("open");
+/* =====================================================
+NAVIGATION MOBILE
+===================================================== */
 
-}
-
-
-function showPageById(id){
+function showPageMobile(
+pageId,
+button
+){
 
 document
 .querySelectorAll(".page")
 .forEach(
+
 page =>
-page.classList.remove("active")
+page.classList
+.remove("active")
+
 );
 
 
 document
-.getElementById(id)
-.classList.add("active");
+.getElementById(pageId)
+.classList
+.add("active");
+
+
+document
+.querySelectorAll(".bottom-item")
+.forEach(
+
+btn =>
+btn.classList
+.remove("active")
+
+);
+
+
+button.classList
+.add("active");
+
+
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-/* =========================================
-   SIDEBAR
-========================================= */
+/* =====================================================
+SIDEBAR
+===================================================== */
 
 function toggleSidebar(){
 
-document
-.getElementById("sidebar")
-.classList.toggle("open");
-
 }
 
 
-/* =========================================
-   COPY REFERRAL
-========================================= */
+/* =====================================================
+COPY REFERRAL CODE
+===================================================== */
 
 function copyReferral(){
 
 const user =
-users[currentUserIndex];
+getCurrentUser();
 
 
 navigator.clipboard
@@ -2506,31 +3423,72 @@ navigator.clipboard
 user.referralCode
 )
 .then(
+
 () =>
+
 alert(
-"تم نسخ كود الدعوة: "
-+
-user.referralCode
+"تم نسخ كود الدعوة"
 )
+
 );
 
 }
 
 
-/* =========================================
-   SHARE REFERRAL
-========================================= */
+/* =====================================================
+COPY REFERRAL LINK
+===================================================== */
+
+function copyReferralLink(){
+
+const user =
+getCurrentUser();
+
+
+const link =
+getReferralLink(
+user.referralCode
+);
+
+
+navigator.clipboard
+.writeText(link)
+.then(
+
+() =>
+
+alert(
+"تم نسخ رابط الإحالة"
+)
+
+);
+
+}
+
+
+/* =====================================================
+SHARE
+===================================================== */
 
 function shareReferral(){
 
 const user =
-users[currentUserIndex];
+getCurrentUser();
+
+
+const link =
+getReferralLink(
+user.referralCode
+);
 
 
 const text =
-"انضم إلى XL22 باستخدام كود الدعوة الخاص بي: "
+
+"انضم إلى منصة XL22 باستخدام رابط الإحالة الخاص بي:\n"
+
 +
-user.referralCode;
+
+link;
 
 
 if(
@@ -2539,36 +3497,383 @@ navigator.share
 
 navigator.share({
 
-title:"XL22",
+title:
+"XL22",
 
-text:text
+text:
+text
 
 });
 
 }else{
 
-copyReferral();
+copyReferralLink();
 
 }
 
 }
 
 
-/* =========================================
-   DEPOSIT
-========================================= */
+/* =====================================================
+VIP CALCULATION
+===================================================== */
+
+function getQualifiedMembers(){
+
+const user =
+getCurrentUser();
+
+
+let count = 0;
+
+
+users.forEach(
+
+member => {
+
+if(
+
+member.invitedBy
+=== user.referralCode
+
+&&
+
+member.totalDeposits
+&&
+
+member.totalDeposits > 0
+
+){
+
+count++;
+
+}
+
+}
+
+);
+
+
+return count;
+
+}
+
+
+function getVIPLevel(){
+
+const count =
+getQualifiedMembers();
+
+
+let current =
+VIP_LEVELS[0];
+
+
+VIP_LEVELS.forEach(
+
+vip => {
+
+if(
+count >= vip.members
+){
+
+current =
+vip;
+
+}
+
+}
+
+);
+
+
+return current;
+
+}
+
+
+/* =====================================================
+UPDATE TEAM
+===================================================== */
+
+function updateTeam(){
+
+const user =
+getCurrentUser();
+
+
+const qualified =
+getQualifiedMembers();
+
+
+const vip =
+getVIPLevel();
+
+
+document
+.getElementById("qualifiedMembers")
+.textContent =
+qualified;
+
+
+document
+.getElementById("teamCount")
+.textContent =
+users.filter(
+
+member =>
+member.invitedBy
+===
+user.referralCode
+
+).length;
+
+
+document
+.getElementById("teamProfit")
+.textContent =
+user.referralProfit
+.toFixed(2);
+
+
+document
+.getElementById("vipName")
+.textContent =
+"VIP " +
+vip.level;
+
+
+document
+.getElementById("vipPercent")
+.textContent =
+vip.percent;
+
+
+let next =
+VIP_LEVELS.find(
+
+level =>
+level.members > qualified
+
+);
+
+
+if(
+next
+){
+
+document
+.getElementById("nextVipMembers")
+.textContent =
+next.members;
+
+const previous =
+vip.members;
+
+
+const range =
+next.members -
+previous;
+
+
+const progress =
+Math.min(
+
+100,
+
+Math.max(
+
+0,
+
+(
+qualified -
+previous
+)
+/
+range
+*
+100
+
+)
+
+);
+
+
+document
+.getElementById("vipProgress")
+.style
+.width =
+progress
++
+"%";
+
+}else{
+
+document
+.getElementById("nextVipMembers")
+.textContent =
+"MAX";
+
+
+document
+.getElementById("vipProgress")
+.style
+.width =
+"100%";
+
+}
+
+
+/* VIP ACTIVE */
+
+for(
+let i=1;
+i<=5;
+i++
+){
+
+document
+.getElementById(
+"vipLevel"+i
+)
+.classList
+.remove("active");
+
+}
+
+
+if(
+vip.level > 0
+){
+
+document
+.getElementById(
+"vipLevel"
++
+vip.level
+)
+.classList
+.add("active");
+
+}
+
+
+/* TEAM LIST */
+
+const list =
+document
+.getElementById("teamList");
+
+
+const team =
+users.filter(
+
+member =>
+member.invitedBy
+===
+user.referralCode
+
+);
+
+
+if(
+team.length === 0
+){
+
+list.innerHTML = `
+
+<div style="
+padding:25px;
+text-align:center;
+color:#777;
+">
+
+لم تقم بدعوة أي شخص حتى الآن
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+list.innerHTML =
+
+team
+.map(
+
+member => `
+
+<div class="team-member">
+
+<div>
+
+<div class="member-name">
+
+${escapeHTML(
+member.identifier
+)}
+
+</div>
+
+<div style="
+font-size:10px;
+color:#777;
+margin-top:4px;
+">
+
+${
+member.totalDeposits > 0
+?
+"عضو مؤهل"
+:
+"لم يقم بالإيداع بعد"
+}
+
+</div>
+
+</div>
+
+<div class="member-deposit">
+
+$ ${Number(
+member.totalDeposits || 0
+).toFixed(2)}
+
+</div>
+
+</div>
+
+`
+
+)
+.join("");
+
+}
+
+
+/* =====================================================
+DEPOSIT
+===================================================== */
 
 function deposit(){
 
 const amount =
 Number(
+
 document
 .getElementById("depositAmount")
 .value
+
 );
 
 
-if(!amount || amount <= 0){
+if(
+!amount ||
+amount <= 0
+){
 
 alert(
 "يرجى إدخال مبلغ صحيح"
@@ -2580,68 +3885,229 @@ return;
 
 
 const user =
-users[currentUserIndex];
+getCurrentUser();
 
 
-/*
-هذه عملية تجريبية فقط.
-في النسخة الحقيقية يتم إنشاء طلب إيداع
-ويرسل إلى Backend وقاعدة البيانات.
-*/
+/* OLD BALANCE */
 
 user.balance += amount;
 
 
+/* TOTAL DEPOSITS */
+
+user.totalDeposits =
+Number(
+user.totalDeposits || 0
+)
++
+amount;
+
+
+/* TRANSACTION */
+
 user.transactions.push({
 
-type:"إيداع",
+type:
+"إيداع",
 
-amount:amount,
+amount:
+amount,
 
-date:new Date()
+date:
+new Date()
 .toLocaleString("ar")
 
 });
 
 
+/*
+=================================================
+REFERRAL COMMISSION
+=================================================
+*/
+
+if(
+user.invitedBy
+){
+
+const inviterIndex =
+users.findIndex(
+
+u =>
+u.referralCode
+===
+user.invitedBy
+
+);
+
+
+if(
+inviterIndex !== -1
+){
+
+const inviter =
+users[
+inviterIndex
+];
+
+
+/*
+عدد أعضاء قائد الفريق المؤهلين
+*/
+
+const qualified =
+users.filter(
+
+member =>
+
+member.invitedBy
+===
+inviter.referralCode
+
+&&
+
+Number(
+member.totalDeposits || 0
+)
+>
+0
+
+).length;
+
+
+/*
+مستوى قائد الفريق
+*/
+
+let vip =
+VIP_LEVELS[0];
+
+
+VIP_LEVELS.forEach(
+
+level => {
+
+if(
+qualified >=
+level.members
+){
+
+vip =
+level;
+
+}
+
+}
+
+);
+
+
+/*
+حساب العمولة
+
+مثال:
+
+100 × 10% = 10$
+
+*/
+
+const commission =
+
+amount
+*
+(
+vip.percent
+/
+100
+);
+
+
+/*
+إضافة العمولة
+*/
+
+inviter.referralProfit +=
+commission;
+
+
+inviter.balance +=
+commission;
+
+
+/*
+تسجيل العملية
+*/
+
+inviter.transactions.push({
+
+type:
+"عمولة إحالة VIP " +
+vip.level,
+
+amount:
+commission,
+
+date:
+new Date()
+.toLocaleString("ar")
+
+});
+
+}
+
+}
+
+
 saveUsers();
+
 
 updateUI();
 
-closeModal("depositModal");
+
+closeModal(
+"depositModal"
+);
 
 
 document
-.getElementById("depositAmount")
-.value = "";
+.getElementById(
+"depositAmount"
+)
+.value =
+"";
 
 
 alert(
-"تم تسجيل الإيداع بشكل تجريبي"
+"تم تسجيل الإيداع التجريبي بنجاح"
 );
 
 }
 
 
-/* =========================================
-   WITHDRAW
-========================================= */
+/* =====================================================
+WITHDRAW
+===================================================== */
 
 function withdraw(){
 
 const amount =
 Number(
+
 document
 .getElementById("withdrawAmount")
 .value
+
 );
 
 
 const user =
-users[currentUserIndex];
+getCurrentUser();
 
 
-if(!amount || amount <= 0){
+if(
+!amount ||
+amount <= 0
+){
 
 alert(
 "يرجى إدخال مبلغ صحيح"
@@ -2652,7 +4118,10 @@ return;
 }
 
 
-if(amount > user.balance){
+if(
+amount >
+user.balance
+){
 
 alert(
 "الرصيد غير كافٍ"
@@ -2663,20 +4132,20 @@ return;
 }
 
 
-/*
-هذه عملية تجريبية فقط.
-*/
-
-user.balance -= amount;
+user.balance -=
+amount;
 
 
 user.transactions.push({
 
-type:"سحب",
+type:
+"سحب",
 
-amount:amount,
+amount:
+amount,
 
-date:new Date()
+date:
+new Date()
 .toLocaleString("ar")
 
 });
@@ -2684,40 +4153,240 @@ date:new Date()
 
 saveUsers();
 
+
 updateUI();
 
-closeModal("withdrawModal");
+
+closeModal(
+"withdrawModal"
+);
 
 
 document
-.getElementById("withdrawAmount")
-.value = "";
+.getElementById(
+"withdrawAmount"
+)
+.value =
+"";
 
 
 alert(
-"تم تسجيل طلب السحب بشكل تجريبي"
+"تم تسجيل طلب السحب التجريبي"
 );
 
 }
 
 
-/* =========================================
-   TRANSACTIONS
-========================================= */
+/* =====================================================
+TASKS
+===================================================== */
+
+function completeDailyTask(){
+
+const user =
+getCurrentUser();
+
+
+if(
+user.tasks.daily
+){
+
+return;
+
+}
+
+
+user.tasks.daily =
+true;
+
+
+user.taskProfit +=
+1;
+
+
+user.balance +=
+1;
+
+
+user.transactions.push({
+
+type:
+"ربح مهمة يومية",
+
+amount:
+1,
+
+date:
+new Date()
+.toLocaleString("ar")
+
+});
+
+
+saveUsers();
+
+
+updateUI();
+
+
+alert(
+"تم إضافة 1$ إلى رصيدك"
+);
+
+}
+
+
+function completeWelcomeTask(){
+
+const user =
+getCurrentUser();
+
+
+if(
+user.tasks.welcome
+){
+
+return;
+
+}
+
+
+user.tasks.welcome =
+true;
+
+
+user.taskProfit +=
+5;
+
+
+user.balance +=
+5;
+
+
+user.transactions.push({
+
+type:
+"مكافأة ترحيبية",
+
+amount:
+5,
+
+date:
+new Date()
+.toLocaleString("ar")
+
+});
+
+
+saveUsers();
+
+
+updateUI();
+
+
+alert(
+"تم إضافة 5$ إلى رصيدك"
+);
+
+}
+
+
+function updateTaskButtons(){
+
+const user =
+getCurrentUser();
+
+
+const daily =
+document
+.getElementById(
+"dailyTaskBtn"
+);
+
+
+const welcome =
+document
+.getElementById(
+"welcomeTaskBtn"
+);
+
+
+if(
+user.tasks.daily
+){
+
+daily.textContent =
+"تم الاستلام";
+
+daily.classList
+.add("done");
+
+daily.disabled =
+true;
+
+}else{
+
+daily.textContent =
+"استلام 1$";
+
+daily.classList
+.remove("done");
+
+daily.disabled =
+false;
+
+}
+
+
+if(
+user.tasks.welcome
+){
+
+welcome.textContent =
+"تم الاستلام";
+
+welcome.classList
+.add("done");
+
+welcome.disabled =
+true;
+
+}else{
+
+welcome.textContent =
+"استلام 5$";
+
+welcome.classList
+.remove("done");
+
+welcome.disabled =
+false;
+
+}
+
+}
+
+
+/* =====================================================
+TRANSACTIONS
+===================================================== */
 
 function renderTransactions(){
 
 const user =
-users[currentUserIndex];
+getCurrentUser();
 
 
 const list =
 document
-.getElementById("transactionsList");
+.getElementById(
+"transactionsList"
+);
 
 
 if(
-!user.transactions ||
+!user.transactions
+||
 user.transactions.length === 0
 ){
 
@@ -2741,10 +4410,12 @@ return;
 
 
 list.innerHTML =
+
 user.transactions
 .slice()
 .reverse()
 .map(
+
 transaction => `
 
 <div class="transaction">
@@ -2753,13 +4424,17 @@ transaction => `
 
 <div class="transaction-name">
 
-${transaction.type}
+${escapeHTML(
+transaction.type
+)}
 
 </div>
 
 <div class="transaction-date">
 
-${transaction.date}
+${escapeHTML(
+transaction.date
+)}
 
 </div>
 
@@ -2776,29 +4451,34 @@ transaction.amount
 </div>
 
 `
+
 )
 .join("");
 
 }
 
 
-/* =========================================
-   PROFILE
-========================================= */
+/* =====================================================
+PROFILE
+===================================================== */
 
 function updateProfile(){
 
 const identifier =
 document
-.getElementById("settingsIdentifier")
+.getElementById(
+"settingsIdentifier"
+)
 .value
 .trim();
 
 
-if(!identifier){
+if(
+!identifier
+){
 
 alert(
-"يرجى إدخال البريد الإلكتروني أو رقم الهاتف"
+"يرجى إدخال البيانات"
 );
 
 return;
@@ -2806,12 +4486,46 @@ return;
 }
 
 
-users[currentUserIndex]
+const duplicate =
+users.some(
+
+(user,index) =>
+
+index !==
+currentUserIndex
+
+&&
+
+user.identifier
+.toLowerCase()
+===
+identifier.toLowerCase()
+
+);
+
+
+if(
+duplicate
+){
+
+alert(
+"هذه البيانات مستخدمة مسبقاً"
+);
+
+return;
+
+}
+
+
+users[
+currentUserIndex
+]
 .identifier =
 identifier;
 
 
 saveUsers();
+
 
 updateUI();
 
@@ -2823,19 +4537,23 @@ alert(
 }
 
 
-/* =========================================
-   CHANGE PASSWORD
-========================================= */
+/* =====================================================
+PASSWORD
+===================================================== */
 
 function changePassword(){
 
 const password =
 document
-.getElementById("newPassword")
+.getElementById(
+"newPassword"
+)
 .value;
 
 
-if(password.length < 6){
+if(
+password.length < 6
+){
 
 alert(
 "كلمة المرور يجب أن تكون 6 أحرف على الأقل"
@@ -2846,7 +4564,9 @@ return;
 }
 
 
-users[currentUserIndex]
+users[
+currentUserIndex
+]
 .password =
 password;
 
@@ -2855,8 +4575,11 @@ saveUsers();
 
 
 document
-.getElementById("newPassword")
-.value = "";
+.getElementById(
+"newPassword"
+)
+.value =
+"";
 
 
 alert(
@@ -2866,15 +4589,16 @@ alert(
 }
 
 
-/* =========================================
-   MODALS
-========================================= */
+/* =====================================================
+MODALS
+===================================================== */
 
 function openModal(id){
 
 document
 .getElementById(id)
-.classList.add("show");
+.classList
+.add("show");
 
 }
 
@@ -2883,28 +4607,70 @@ function closeModal(id){
 
 document
 .getElementById(id)
-.classList.remove("show");
+.classList
+.remove("show");
 
 }
 
 
-/* =========================================
-   SAVE
-========================================= */
+/* =====================================================
+SAVE
+===================================================== */
 
 function saveUsers(){
 
 localStorage.setItem(
+
 "XL22_USERS",
-JSON.stringify(users)
+
+JSON.stringify(
+users
+)
+
 );
 
 }
 
 
-/* =========================================
-   LOGOUT
-========================================= */
+/* =====================================================
+HTML ESCAPE
+===================================================== */
+
+function escapeHTML(value){
+
+return String(value)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+}
+
+
+/* =====================================================
+LOGOUT
+===================================================== */
 
 function logout(){
 
@@ -2917,21 +4683,43 @@ location.reload();
 }
 
 
-/* =========================================
-   AUTO LOGIN
-========================================= */
+/* =====================================================
+AUTO LOGIN
+===================================================== */
 
 if(
+
 currentUserIndex !== null
+
 &&
-users[currentUserIndex]
+
+users[
+currentUserIndex
+]
+
 ){
 
 openApp();
 
 }
 
+
+/* =====================================================
+AUTO REFERRAL
+===================================================== */
+
+window.addEventListener(
+"load",
+function(){
+
+loadReferralFromURL();
+
+}
+);
+
 </script>
 
+
 </body>
+
     </html>
