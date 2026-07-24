@@ -1,39 +1,91 @@
+/* =========================================
+   LOGIN
+========================================= */
+
 function login(){
 
-    const identifier = document
-        .getElementById("loginIdentifier")
-        .value
-        .trim();
+    // جلب البيانات من الخانات
+    const identifierInput =
+        document.getElementById("loginIdentifier");
 
-    const password = document
-        .getElementById("loginPassword")
-        .value;
+    const passwordInput =
+        document.getElementById("loginPassword");
 
-    if(!identifier || !password){
+    const identifier =
+        identifierInput.value.trim();
+
+    const password =
+        passwordInput.value;
+
+    // إخفاء الخطأ القديم
+    const errorBox =
+        document.getElementById("loginError");
+
+    errorBox.classList.add("hidden");
+    errorBox.textContent = "";
+
+    // التحقق من الحقول
+    if(identifier === "" || password === ""){
+
         showError(
             "loginError",
             "يرجى إدخال البريد الإلكتروني أو رقم الهاتف وكلمة المرور"
         );
+
         return;
+    }
+
+    // التأكد من وجود قاعدة بيانات المستخدمين
+    if(!Array.isArray(users)){
+
+        users = [];
+
+        localStorage.setItem(
+            "XL22_USERS",
+            JSON.stringify(users)
+        );
+
     }
 
     // البحث عن المستخدم
-    const index = users.findIndex(user =>
-        String(user.identifier).trim().toLowerCase() ===
-        identifier.toLowerCase()
-        &&
-        String(user.password) === String(password)
-    );
+    const index = users.findIndex(function(user){
 
+        if(!user){
+            return false;
+        }
+
+        // دعم identifier
+        const savedIdentifier =
+            String(user.identifier || "")
+            .trim()
+            .toLowerCase();
+
+        // دعم password
+        const savedPassword =
+            String(user.password || "");
+
+        return (
+            savedIdentifier === identifier.toLowerCase()
+            &&
+            savedPassword === String(password)
+        );
+
+    });
+
+
+    // المستخدم غير موجود
     if(index === -1){
+
         showError(
             "loginError",
-            "البريد الإلكتروني أو رقم الهاتف أو كلمة المرور غير صحيحة"
+            "بيانات الدخول غير صحيحة أو الحساب غير موجود"
         );
+
         return;
     }
 
-    // حفظ رقم المستخدم الحالي
+
+    // حفظ المستخدم الحالي
     currentUserIndex = index;
 
     localStorage.setItem(
@@ -41,6 +93,22 @@ function login(){
         String(index)
     );
 
+
+    // تحديث بيانات المستخدم
+    updateUI();
+
+
     // فتح التطبيق
-    openApp();
+    document
+        .getElementById("authScreen")
+        .classList.add("hidden");
+
+    document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+
+    // الانتقال إلى الرئيسية
+    showPageById("home");
+
 }
