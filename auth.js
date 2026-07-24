@@ -3,41 +3,65 @@
 // تسجيل الدخول + إنشاء الحساب + كود الدعوة
 // ==========================================
 
-// ------------------------------------------
-// إظهار شاشة إنشاء الحساب
-// ------------------------------------------
+/* ==========================================
+   إظهار إنشاء الحساب
+========================================== */
 
 function showRegister() {
-    document.getElementById("loginForm").classList.add("hidden");
-    document.getElementById("registerForm").classList.remove("hidden");
 
-    hideMessage("loginError");
-    hideMessage("registerError");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    if (loginForm) {
+        loginForm.classList.add("hidden");
+    }
+
+    if (registerForm) {
+        registerForm.classList.remove("hidden");
+    }
+
+    if (typeof hideMessage === "function") {
+        hideMessage("loginError");
+        hideMessage("registerError");
+    }
 }
 
 
-// ------------------------------------------
-// إظهار شاشة تسجيل الدخول
-// ------------------------------------------
+/* ==========================================
+   إظهار تسجيل الدخول
+========================================== */
 
 function showLogin() {
-    document.getElementById("registerForm").classList.add("hidden");
-    document.getElementById("loginForm").classList.remove("hidden");
 
-    hideMessage("loginError");
-    hideMessage("registerError");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    if (registerForm) {
+        registerForm.classList.add("hidden");
+    }
+
+    if (loginForm) {
+        loginForm.classList.remove("hidden");
+    }
+
+    if (typeof hideMessage === "function") {
+        hideMessage("loginError");
+        hideMessage("registerError");
+    }
 }
 
 
-// ------------------------------------------
-// إظهار / إخفاء كلمة المرور
-// ------------------------------------------
+/* ==========================================
+   إظهار / إخفاء كلمة المرور
+========================================== */
 
 function togglePassword(id, button) {
 
     const input = document.getElementById(id);
 
-    if (!input) return;
+    if (!input) {
+        return;
+    }
 
     if (input.type === "password") {
 
@@ -58,15 +82,16 @@ function togglePassword(id, button) {
 }
 
 
-// ------------------------------------------
-// إنشاء كود دعوة فريد
-// ------------------------------------------
+/* ==========================================
+   إنشاء كود دعوة فريد
+========================================== */
 
 function generateReferralCode() {
 
     let code;
+    let exists = true;
 
-    do {
+    while (exists) {
 
         code =
             "XL22-" +
@@ -75,52 +100,86 @@ function generateReferralCode() {
                 .substring(2, 8)
                 .toUpperCase();
 
-    } while (
-        users.some(
-            user =>
-                user.referralCode === code
-        )
-    );
+        exists =
+            Array.isArray(users) &&
+            users.some(function(user) {
+
+                return (
+                    user &&
+                    String(user.referralCode || "")
+                        .toUpperCase()
+                    ===
+                    code
+                );
+
+            });
+    }
 
     return code;
 }
 
 
-// ------------------------------------------
-// إنشاء الحساب
-// ------------------------------------------
+/* ==========================================
+   إنشاء الحساب
+========================================== */
 
 function register() {
 
+    const identifierInput =
+        document.getElementById("registerIdentifier");
+
+    const passwordInput =
+        document.getElementById("registerPassword");
+
+    const confirmInput =
+        document.getElementById("registerConfirm");
+
+    const referralInput =
+        document.getElementById("registerReferral");
+
+
+    if (
+        !identifierInput ||
+        !passwordInput ||
+        !confirmInput
+    ) {
+
+        alert(
+            "حدث خطأ في نموذج التسجيل. تأكد من ملف index.html"
+        );
+
+        return;
+    }
+
+
     const identifier =
-        document
-            .getElementById("registerIdentifier")
-            .value
-            .trim();
+        identifierInput.value.trim();
 
     const password =
-        document
-            .getElementById("registerPassword")
-            .value;
+        passwordInput.value;
 
     const confirmPassword =
-        document
-            .getElementById("registerConfirm")
-            .value;
+        confirmInput.value;
 
     const referral =
-        document
-            .getElementById("registerReferral")
-            .value
+        referralInput
+        ?
+        referralInput.value
             .trim()
-            .toUpperCase();
+            .toUpperCase()
+        :
+        "";
 
 
-    hideMessage("registerError");
-    hideMessage("registerSuccess");
+    if (typeof hideMessage === "function") {
+
+        hideMessage("registerError");
+        hideMessage("registerSuccess");
+
+    }
 
 
-    // التحقق من الحقول
+    /* التحقق من الحقول */
 
     if (
         !identifier ||
@@ -128,20 +187,30 @@ function register() {
         !confirmPassword
     ) {
 
-        showError(
-            "registerError",
-            "يرجى تعبئة جميع الحقول المطلوبة"
-        );
+        if (typeof showError === "function") {
+
+            showError(
+                "registerError",
+                "يرجى تعبئة جميع الحقول المطلوبة"
+            );
+
+        } else {
+
+            alert(
+                "يرجى تعبئة جميع الحقول المطلوبة"
+            );
+
+        }
 
         return;
     }
 
 
-    // الحد الأدنى لكلمة المرور
+    /* كلمة المرور */
 
     if (password.length < 6) {
 
-        showError(
+        showErrorSafe(
             "registerError",
             "كلمة المرور يجب أن تكون 6 أحرف على الأقل"
         );
@@ -150,11 +219,11 @@ function register() {
     }
 
 
-    // تأكيد كلمة المرور
+    /* تأكيد كلمة المرور */
 
     if (password !== confirmPassword) {
 
-        showError(
+        showErrorSafe(
             "registerError",
             "كلمتا المرور غير متطابقتين"
         );
@@ -163,22 +232,38 @@ function register() {
     }
 
 
-    // التأكد من عدم وجود الحساب مسبقاً
+    /* التأكد من وجود قاعدة المستخدمين */
+
+    if (!Array.isArray(users)) {
+
+        users = [];
+
+    }
+
+
+    /* التأكد من عدم تكرار الحساب */
 
     const exists =
-        users.some(
-            user =>
+        users.some(function(user) {
+
+            if (!user) {
+                return false;
+            }
+
+            return (
                 String(user.identifier || "")
                     .trim()
                     .toLowerCase()
                 ===
                 identifier.toLowerCase()
-        );
+            );
+
+        });
 
 
     if (exists) {
 
-        showError(
+        showErrorSafe(
             "registerError",
             "البريد الإلكتروني أو رقم الهاتف مستخدم مسبقاً"
         );
@@ -187,13 +272,13 @@ function register() {
     }
 
 
-    // إنشاء كود الدعوة
+    /* إنشاء كود الدعوة */
 
     const referralCode =
         generateReferralCode();
 
 
-    // إنشاء المستخدم
+    /* إنشاء المستخدم */
 
     const newUser = {
 
@@ -254,22 +339,28 @@ function register() {
     };
 
 
-    // ------------------------------------------
-    // معالجة كود الدعوة
-    // ------------------------------------------
+    /* ==========================================
+       معالجة كود الدعوة
+    ========================================== */
 
     if (referral) {
 
         const inviterIndex =
-            users.findIndex(
-                user =>
-                    String(
-                        user.referralCode || ""
-                    )
-                    .toUpperCase()
+            users.findIndex(function(user) {
+
+                if (!user) {
+                    return false;
+                }
+
+                return (
+                    String(user.referralCode || "")
+                        .trim()
+                        .toUpperCase()
                     ===
                     referral
-            );
+                );
+
+            });
 
 
         if (inviterIndex !== -1) {
@@ -277,27 +368,39 @@ function register() {
             newUser.invitedBy =
                 referral;
 
-            users[inviterIndex]
-                .referralCount =
+
+            users[inviterIndex].referralCount =
                 Number(
-                    users[inviterIndex]
-                        .referralCount || 0
+                    users[inviterIndex].referralCount || 0
                 ) + 1;
+
         }
+
     }
 
 
-    // إضافة المستخدم
+    /* إضافة المستخدم */
 
     users.push(newUser);
 
 
-    // حفظ البيانات
+    /* حفظ البيانات */
 
-    saveUsers();
+    if (typeof saveUsers === "function") {
+
+        saveUsers();
+
+    } else {
+
+        localStorage.setItem(
+            "XL22_USERS",
+            JSON.stringify(users)
+        );
+
+    }
 
 
-    // تسجيل دخول المستخدم الجديد
+    /* تسجيل دخول المستخدم الجديد */
 
     currentUserIndex =
         users.length - 1;
@@ -309,57 +412,94 @@ function register() {
     );
 
 
-    // إظهار رسالة النجاح
+    /* رسالة النجاح */
 
-    showRegisterSuccess(
-        "registerSuccess",
-        "تم إنشاء الحساب بنجاح! كود دعوتك: " +
-        referralCode
-    );
+    if (typeof showRegisterSuccess === "function") {
+
+        showRegisterSuccess(
+            "registerSuccess",
+            "تم إنشاء الحساب بنجاح! كود دعوتك الخاص هو: " +
+            referralCode
+        );
+
+    }
 
 
-    // فتح التطبيق بعد لحظة
+    /* فتح التطبيق */
 
-    setTimeout(
-        function () {
+    setTimeout(function() {
+
+        if (typeof openApp === "function") {
 
             openApp();
 
-        },
-        700
-    );
+        } else {
+
+            console.error(
+                "XL22: الدالة openApp غير موجودة"
+            );
+
+            alert(
+                "تم إنشاء الحساب بنجاح، لكن يوجد خطأ في فتح الصفحة الرئيسية. تأكد من ملف app.js"
+            );
+
+        }
+
+    }, 500);
+
 }
 
 
-// ------------------------------------------
-// تسجيل الدخول
-// ------------------------------------------
+/* ==========================================
+   تسجيل الدخول
+========================================== */
 
 function login() {
 
+    const identifierInput =
+        document.getElementById("loginIdentifier");
+
+    const passwordInput =
+        document.getElementById("loginPassword");
+
+
+    if (
+        !identifierInput ||
+        !passwordInput
+    ) {
+
+        alert(
+            "حدث خطأ في نموذج تسجيل الدخول. تأكد من ملف index.html"
+        );
+
+        return;
+    }
+
+
     const identifier =
-        document
-            .getElementById("loginIdentifier")
-            .value
-            .trim();
+        identifierInput.value
+            .trim()
+            .toLowerCase();
 
     const password =
-        document
-            .getElementById("loginPassword")
-            .value;
+        passwordInput.value;
 
 
-    hideMessage("loginError");
+    if (typeof hideMessage === "function") {
+
+        hideMessage("loginError");
+
+    }
 
 
-    // التحقق من البيانات
+    /* التحقق من الحقول */
 
     if (
         !identifier ||
         !password
     ) {
 
-        showError(
+        showErrorSafe(
             "loginError",
             "يرجى إدخال البريد الإلكتروني أو رقم الهاتف وكلمة المرور"
         );
@@ -368,7 +508,7 @@ function login() {
     }
 
 
-    // تحميل آخر نسخة من المستخدمين
+    /* تحميل البيانات من LocalStorage */
 
     try {
 
@@ -386,18 +526,21 @@ function login() {
 
             if (Array.isArray(parsed)) {
 
-                users = parsed;
+                users =
+                    parsed;
+
             }
+
         }
 
     } catch (error) {
 
         console.error(
-            "XL22 Login Data Error:",
+            "XL22 Login Error:",
             error
         );
 
-        showError(
+        showErrorSafe(
             "loginError",
             "حدث خطأ في قراءة بيانات الحساب"
         );
@@ -406,49 +549,57 @@ function login() {
     }
 
 
-    // البحث عن المستخدم
+    /* التأكد من وجود المستخدمين */
+
+    if (!Array.isArray(users)) {
+
+        users = [];
+
+    }
+
+
+    /* البحث عن المستخدم */
 
     const index =
-        users.findIndex(
-            function (user) {
+        users.findIndex(function(user) {
 
-                if (!user) {
-                    return false;
-                }
-
-
-                const savedIdentifier =
-                    String(
-                        user.identifier || ""
-                    )
-                    .trim()
-                    .toLowerCase();
-
-
-                const savedPassword =
-                    String(
-                        user.password || ""
-                    );
-
-
-                return (
-                    savedIdentifier
-                    ===
-                    identifier.toLowerCase()
-                    &&
-                    savedPassword
-                    ===
-                    String(password)
-                );
+            if (!user) {
+                return false;
             }
-        );
 
 
-    // المستخدم غير موجود
+            const savedIdentifier =
+                String(
+                    user.identifier || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const savedPassword =
+                String(
+                    user.password || ""
+                );
+
+
+            return (
+                savedIdentifier
+                ===
+                identifier
+                &&
+                savedPassword
+                ===
+                String(password)
+            );
+
+        });
+
+
+    /* الحساب غير موجود */
 
     if (index === -1) {
 
-        showError(
+        showErrorSafe(
             "loginError",
             "البريد الإلكتروني أو رقم الهاتف أو كلمة المرور غير صحيحة"
         );
@@ -457,7 +608,7 @@ function login() {
     }
 
 
-    // حفظ المستخدم الحالي
+    /* حفظ المستخدم الحالي */
 
     currentUserIndex =
         index;
@@ -465,45 +616,73 @@ function login() {
 
     localStorage.setItem(
         "XL22_CURRENT_USER",
-        String(index)
+        String(currentUserIndex)
     );
 
 
-    // فتح التطبيق
+    /* فتح التطبيق */
 
-    openApp();
+    if (typeof openApp === "function") {
+
+        openApp();
+
+    } else {
+
+        alert(
+            "تم تسجيل الدخول، لكن الدالة openApp غير موجودة في app.js"
+        );
+
+        console.error(
+            "XL22 ERROR: openApp() غير موجودة"
+        );
+
+    }
+
 }
 
 
-// ------------------------------------------
-// تسجيل الخروج
-// ------------------------------------------
+/* ==========================================
+   تسجيل الخروج
+========================================== */
 
 function logout() {
 
-    currentUserIndex = null;
+    currentUserIndex =
+        null;
+
 
     localStorage.removeItem(
         "XL22_CURRENT_USER"
     );
 
 
-    document
-        .getElementById("app")
-        .classList.add("hidden");
+    const app =
+        document.getElementById("app");
 
 
-    document
-        .getElementById("authScreen")
-        .classList.remove("hidden");
+    const authScreen =
+        document.getElementById("authScreen");
 
 
-    // تنظيف حقول الدخول
+    if (app) {
+
+        app.classList.add("hidden");
+
+    }
+
+
+    if (authScreen) {
+
+        authScreen.classList.remove("hidden");
+
+    }
+
 
     const loginIdentifier =
         document.getElementById(
             "loginIdentifier"
         );
+
 
     const loginPassword =
         document.getElementById(
@@ -512,24 +691,29 @@ function logout() {
 
 
     if (loginIdentifier) {
+
         loginIdentifier.value = "";
+
     }
 
 
     if (loginPassword) {
+
         loginPassword.value = "";
+
     }
 
 
     showLogin();
+
 }
 
 
-// ------------------------------------------
-// قراءة كود الدعوة من الرابط
-// مثال:
-// index.html?ref=XL22-ABC123
-// ------------------------------------------
+/* ==========================================
+   قراءة كود الدعوة من الرابط
+   مثال:
+   index.html?ref=XL22-ABC123
+========================================== */
 
 function loadReferralFromURL() {
 
@@ -544,7 +728,9 @@ function loadReferralFromURL() {
 
 
     if (!referral) {
+
         return;
+
     }
 
 
@@ -561,32 +747,78 @@ function loadReferralFromURL() {
                 .trim()
                 .toUpperCase();
 
-        // منع تغيير الكود
-        // حتى يبقى كود الدعوة ثابتاً
 
-        input.readOnly = true;
+        input.readOnly =
+            true;
+
 
         input.style.borderColor =
             "var(--gold)";
 
+
         input.style.color =
             "var(--gold-light)";
+
     }
 
 
-    // فتح التسجيل تلقائياً
-
     showRegister();
+
 }
 
 
-// ------------------------------------------
-// عند تحميل الصفحة
-// ------------------------------------------
+/* ==========================================
+   دالة آمنة لإظهار الخطأ
+========================================== */
+
+function showErrorSafe(
+    id,
+    message
+) {
+
+    if (typeof showError === "function") {
+
+        showError(
+            id,
+            message
+        );
+
+        return;
+
+    }
+
+
+    const box =
+        document.getElementById(id);
+
+
+    if (!box) {
+
+        alert(message);
+
+        return;
+
+    }
+
+
+    box.textContent =
+        message;
+
+
+    box.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+/* ==========================================
+   عند تحميل الصفحة
+========================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    function() {
 
         loadReferralFromURL();
 
