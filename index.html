@@ -1,2259 +1,2121 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<head>
 
-<title>XL22</title>
+    <meta charset="UTF-8">
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<link
-    rel="stylesheet"
-    href="style.css"
->
+    <title>XL22</title>
 
-<style>
+    <!-- الخط -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-    /* ==================================================
-       سوق العملات الرقمية
-    ================================================== */
+    <!-- ملف التنسيقات -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
-    .crypto-market {
-        margin-top: 25px;
-        width: 100%;
-    }
-
-    .crypto-market-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    .crypto-market-title h2 {
-        margin: 0;
-        font-size: 22px;
-    }
-
-    .crypto-market-title span {
-        font-size: 13px;
-        opacity: 0.65;
-    }
-
-    .crypto-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
-
-    .crypto-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 15px;
-        border-radius: 16px;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.08);
-        transition: 0.3s ease;
-    }
-
-    .crypto-item:hover {
-        transform: translateY(-3px);
-        border-color: rgba(255,255,255,0.18);
-    }
-
-    .crypto-info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        min-width: 0;
-    }
-
-    .crypto-icon {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 800;
-        font-size: 17px;
-        color: #fff;
-        flex-shrink: 0;
-    }
-
-    .crypto-icon.btc {
-        background: #f7931a;
-    }
-
-    .crypto-icon.eth {
-        background: #627eea;
-    }
-
-    .crypto-icon.usdt {
-        background: #26a17b;
-    }
-
-    .crypto-icon.bnb {
-        background: #f3ba2f;
-        color: #111;
-    }
-
-    .crypto-icon.sol {
-        background: linear-gradient(
-            135deg,
-            #9945ff,
-            #14f195
-        );
-    }
-
-    .crypto-icon.xrp {
-        background: #23292f;
-    }
-
-    .crypto-icon.ada {
-        background: #0033ad;
-    }
-
-    .crypto-icon.doge {
-        background: #c2a633;
-    }
-
-    .crypto-icon.trx {
-        background: #ef0027;
-    }
-
-    .crypto-icon.ton {
-        background: #0098ea;
-    }
-
-    .crypto-name {
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-    }
-
-    .crypto-name strong {
-        font-size: 14px;
-    }
-
-    .crypto-name span {
-        font-size: 11px;
-        opacity: 0.55;
-    }
-
-    .crypto-price {
-        text-align: left;
-        direction: ltr;
-        white-space: nowrap;
-    }
-
-    .crypto-price-value {
-        font-weight: 700;
-        font-size: 15px;
-    }
-
-    .crypto-change {
-        margin-top: 4px;
-        font-size: 12px;
-        font-weight: 700;
-    }
-
-    .crypto-change.up {
-        color: #16c784;
-    }
-
-    .crypto-change.down {
-        color: #ea3943;
-    }
-
-    .crypto-change.up::before {
-        content: "▲ ";
-    }
-
-    .crypto-change.down::before {
-        content: "▼ ";
-    }
-
-    /* ==================================================
-       على الهاتف
-    ================================================== */
-
-    @media (max-width: 700px) {
-
-        .crypto-list {
-            grid-template-columns: 1fr;
-        }
-
-        .crypto-item {
-            padding: 13px;
-        }
-
-    }
-
-</style>
-
-</head><body><!-- ==================================================
-     AUTH SCREEN
-================================================== -->
-
-<div
-    id="authScreen"
-    class="auth-screen"
->
-
-    <div class="auth-box">
+</head>
 
 
-        <div class="auth-logo">
+<body>
+
+
+    <!-- ==================================================
+         AUTH SCREEN
+    ================================================== -->
+
+    <div
+        id="authScreen"
+        class="auth-screen"
+    >
+
+        <div class="auth-box">
+
+
+            <!-- الشعار -->
+
+            <div class="auth-logo">
+
+                <div class="logo">
+                    XL22
+                </div>
+
+                <p>
+                    منصتك الرقمية الذكية
+                </p>
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 LOGIN FORM
+            ================================================== -->
+
+            <div id="loginForm">
+
+                <h2 class="form-title">
+                    تسجيل الدخول
+                </h2>
+
+
+                <div
+                    id="loginError"
+                    class="error hidden"
+                ></div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        البريد الإلكتروني أو رقم الهاتف
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="loginIdentifier"
+                            type="text"
+                            autocomplete="username"
+                            placeholder="أدخل البريد الإلكتروني أو رقم الهاتف"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        كلمة المرور
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="loginPassword"
+                            type="password"
+                            autocomplete="current-password"
+                            placeholder="أدخل كلمة المرور"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword('loginPassword', this)"
+                        >
+                            👁️
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="main-btn"
+                    onclick="login()"
+                >
+                    تسجيل الدخول
+                </button>
+
+
+                <div class="switch-text">
+
+                    ليس لديك حساب؟
+
+                    <span onclick="showRegister()">
+                        إنشاء حساب
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 REGISTER FORM
+            ================================================== -->
+
+            <div
+                id="registerForm"
+                class="hidden"
+            >
+
+                <h2 class="form-title">
+                    إنشاء حساب
+                </h2>
+
+
+                <div
+                    id="registerError"
+                    class="error hidden"
+                ></div>
+
+
+                <div
+                    id="registerSuccess"
+                    class="success hidden"
+                ></div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        البريد الإلكتروني أو رقم الهاتف
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="registerIdentifier"
+                            type="text"
+                            autocomplete="username"
+                            placeholder="البريد الإلكتروني أو رقم الهاتف"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        كلمة المرور
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="registerPassword"
+                            type="password"
+                            autocomplete="new-password"
+                            placeholder="كلمة المرور"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword('registerPassword', this)"
+                        >
+                            👁️
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        تأكيد كلمة المرور
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="registerConfirm"
+                            type="password"
+                            autocomplete="new-password"
+                            placeholder="تأكيد كلمة المرور"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword('registerConfirm', this)"
+                        >
+                            👁️
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        كود الدعوة
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            id="registerReferral"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="أدخل كود الدعوة - اختياري"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="main-btn"
+                    onclick="register()"
+                >
+                    إنشاء الحساب
+                </button>
+
+
+                <div class="switch-text">
+
+                    لديك حساب؟
+
+                    <span onclick="showLogin()">
+                        تسجيل الدخول
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         MAIN APP
+    ================================================== -->
+
+    <div
+        id="app"
+        class="hidden"
+    >
+
+
+        <!-- ==================================================
+             HEADER
+        ================================================== -->
+
+        <header class="header">
+
+            <button
+                type="button"
+                class="mobile-menu"
+                onclick="toggleSidebar()"
+            >
+                ☰
+            </button>
+
 
             <div class="logo">
                 XL22
             </div>
 
-            <p>
-                منصتك الرقمية الذكية
-            </p>
 
-        </div>
+            <div class="header-user">
+
+                <div
+                    id="avatar"
+                    class="avatar"
+                >
+                    X
+                </div>
+
+                <span id="headerUser">
+                    مستخدم
+                </span>
+
+            </div>
+
+        </header>
 
 
 
         <!-- ==================================================
-             LOGIN
+             SIDEBAR
         ================================================== -->
 
-        <div id="loginForm">
+        <aside
+            id="sidebar"
+            class="sidebar"
+        >
 
-            <h2 class="form-title">
-                تسجيل الدخول
-            </h2>
-
-
-            <div
-                id="loginError"
-                class="error hidden"
-            ></div>
-
-
-            <div class="input-group">
-
-                <label>
-                    البريد الإلكتروني أو رقم الهاتف
-                </label>
-
-                <div class="input-wrapper">
-
-                    <input
-                        id="loginIdentifier"
-                        type="text"
-                        autocomplete="username"
-                        placeholder="أدخل البريد الإلكتروني أو رقم الهاتف"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label>
-                    كلمة المرور
-                </label>
-
-                <div class="input-wrapper">
-
-                    <input
-                        id="loginPassword"
-                        type="password"
-                        autocomplete="current-password"
-                        placeholder="أدخل كلمة المرور"
-                    >
-
-                    <button
-                        type="button"
-                        class="password-toggle"
-                        onclick="togglePassword('loginPassword', this)"
-                    >
-                        👁️
-                    </button>
-
-                </div>
-
+            <div class="nav-title">
+                القائمة
             </div>
 
 
             <button
                 type="button"
-                class="main-btn"
-                onclick="login()"
+                class="nav-item active"
+                onclick="showPage('home', this)"
             >
-                تسجيل الدخول
+                🏠 الرئيسية
             </button>
 
 
-            <div class="switch-text">
-
-                ليس لديك حساب؟
-
-                <span onclick="showRegister()">
-                    إنشاء حساب
-                </span>
-
-            </div>
-
-        </div>
+            <button
+                type="button"
+                class="nav-item"
+                onclick="showPage('tasksPage', this)"
+            >
+                📋 المهام
+            </button>
 
 
-
-        <!-- ==================================================
-             REGISTER
-        ================================================== -->
-
-        <div
-            id="registerForm"
-            class="hidden"
-        >
-
-            <h2 class="form-title">
-                إنشاء حساب
-            </h2>
+            <button
+                type="button"
+                class="nav-item"
+                onclick="showPage('balancePage', this)"
+            >
+                💰 الرصيد
+            </button>
 
 
-            <div
-                id="registerError"
-                class="error hidden"
-            ></div>
+            <button
+                type="button"
+                class="nav-item"
+                onclick="showPage('teamPage', this)"
+            >
+                👑 قائد الفريق
+            </button>
 
 
-            <div
-                id="registerSuccess"
-                class="success hidden"
-            ></div>
-
-
-            <div class="input-group">
-
-                <label>
-                    البريد الإلكتروني أو رقم الهاتف
-                </label>
-
-                <div class="input-wrapper">
-
-                    <input
-                        id="registerIdentifier"
-                        type="text"
-                        autocomplete="username"
-                        placeholder="البريد الإلكتروني أو رقم الهاتف"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label>
-                    كلمة المرور
-                </label>
-
-                <div class="input-wrapper">
-
-                    <input
-                        id="registerPassword"
-                        type="password"
-                        autocomplete="new-password"
-                        placeholder="كلمة المرور"
-                    >
-
-                    <button
-                        type="button"
-                        class="password-toggle"
-                        onclick="togglePassword('registerPassword', this)"
-                    >
-                        👁️
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label>
-                    تأكيد كلمة المرور
-                </label>
-
-                <div class="input-wrapper">
-
-                    <input
-                        id="registerConfirm"
-                        type="password"
-                        autocomplete="new-password"
-                        placeholder="تأكيد كلمة المرور"
-                    >
-
-                    <button
-                        type="button"
-                        class="password-toggle"
-                        onclick="togglePassword('registerConfirm', this)"
-                    >
-                        👁️
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label>
-                    كود الدعوة
-                </label>
-
-                <div class="input-wrapper">
-
-                    <input
-                        id="registerReferral"
-                        type="text"
-                        autocomplete="off"
-                        placeholder="أدخل كود الدعوة - اختياري"
-                    >
-
-                </div>
-
+            <div class="nav-title">
+                الحساب
             </div>
 
 
             <button
                 type="button"
-                class="main-btn"
-                onclick="register()"
+                class="nav-item"
+                onclick="showPage('transactionsPage', this)"
             >
-                إنشاء الحساب
+                📊 المعاملات
             </button>
 
 
-            <div class="switch-text">
-
-                لديك حساب؟
-
-                <span onclick="showLogin()">
-                    تسجيل الدخول
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- ==================================================
-     MAIN APP
-================================================== -->
-
-<div
-    id="app"
-    class="hidden"
->
-
-
-    <!-- ==================================================
-         HEADER
-    ================================================== -->
-
-    <header class="header">
-
-        <button
-            type="button"
-            class="mobile-menu"
-            onclick="toggleSidebar()"
-        >
-            ☰
-        </button>
-
-
-        <div class="logo">
-            XL22
-        </div>
-
-
-        <div class="header-user">
-
-            <div
-                id="avatar"
-                class="avatar"
+            <button
+                type="button"
+                class="nav-item"
+                onclick="showPage('settingsPage', this)"
             >
-                X
-            </div>
-
-            <span id="headerUser">
-                مستخدم
-            </span>
-
-        </div>
-
-    </header>
+                ⚙️ الإعدادات
+            </button>
 
 
+            <button
+                type="button"
+                class="nav-item"
+                onclick="logout()"
+            >
+                🚪 تسجيل الخروج
+            </button>
 
-    <!-- ==================================================
-         SIDEBAR
-    ================================================== -->
+        </aside>
 
-    <aside
-        id="sidebar"
-        class="sidebar"
-    >
-
-        <div class="nav-title">
-            القائمة
-        </div>
-
-
-        <button
-            type="button"
-            class="nav-item active"
-            onclick="showPage('home', this)"
-        >
-            🏠 الرئيسية
-        </button>
-
-
-        <button
-            type="button"
-            class="nav-item"
-            onclick="showPage('tasksPage', this)"
-        >
-            📋 المهام
-        </button>
-
-
-        <button
-            type="button"
-            class="nav-item"
-            onclick="showPage('balancePage', this)"
-        >
-            💰 الرصيد
-        </button>
-
-
-        <button
-            type="button"
-            class="nav-item"
-            onclick="showPage('teamPage', this)"
-        >
-            👑 قائد الفريق
-        </button>
-
-
-        <div class="nav-title">
-            الحساب
-        </div>
-
-
-        <button
-            type="button"
-            class="nav-item"
-            onclick="showPage('transactionsPage', this)"
-        >
-            📊 المعاملات
-        </button>
-
-
-        <button
-            type="button"
-            class="nav-item"
-            onclick="showPage('settingsPage', this)"
-        >
-            ⚙️ الإعدادات
-        </button>
-
-
-        <button
-            type="button"
-            class="nav-item"
-            onclick="logout()"
-        >
-            🚪 تسجيل الخروج
-        </button>
-
-    </aside>
-
-
-
-    <!-- ==================================================
-         CONTENT
-    ================================================== -->
-
-    <main class="content">
 
 
         <!-- ==================================================
-             HOME
+             CONTENT
         ================================================== -->
 
-        <section
-            id="home"
-            class="page active"
-        >
+        <main class="content">
 
-            <div class="page-title">
 
-                <h1>
-                    الرئيسية
-                </h1>
+            <!-- ==================================================
+                 HOME PAGE
+            ================================================== -->
 
-                <p>
-                    مرحباً بك في منصة XL22
-                </p>
+            <section
+                id="home"
+                class="page active"
+            >
 
-            </div>
+                <div class="page-title">
+
+                    <h1>
+                        الرئيسية
+                    </h1>
+
+                    <p>
+                        مرحباً بك في منصة XL22
+                    </p>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     CRYPTO MARKET
+                ================================================== -->
+
+                <div class="market-section">
+
+                    <div class="market-header">
+
+                        <div>
+
+                            <h2>
+                                📊 سوق العملات الرقمية
+                            </h2>
+
+                            <p>
+                                متابعة أسعار العملات الرقمية
+                            </p>
+
+                        </div>
+
+                        <div class="market-status">
+
+                            <span class="status-dot"></span>
+
+                            السوق نشط
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- العملات -->
+
+                    <div class="crypto-list">
+
+
+                        <!-- BITCOIN -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon bitcoin">
+                                    ₿
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Bitcoin
+                                    </h3>
+
+                                    <span>
+                                        BTC
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="68420"
+                                    data-min="68000"
+                                    data-max="70000"
+                                >
+                                    $68,420.00
+                                </strong>
+
+                                <span class="price-up">
+                                    ▲ 2.48%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ETHEREUM -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon ethereum">
+                                    Ξ
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Ethereum
+                                    </h3>
+
+                                    <span>
+                                        ETH
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="3520"
+                                    data-min="3400"
+                                    data-max="3700"
+                                >
+                                    $3,520.00
+                                </strong>
+
+                                <span class="price-up">
+                                    ▲ 1.72%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- USDT -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon usdt">
+                                    ₮
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Tether
+                                    </h3>
+
+                                    <span>
+                                        USDT
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="1"
+                                    data-min="0.99"
+                                    data-max="1.01"
+                                >
+                                    $1.00
+                                </strong>
+
+                                <span class="price-down">
+                                    ▼ 0.03%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- BNB -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon bnb">
+                                    B
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        BNB
+                                    </h3>
+
+                                    <span>
+                                        BNB
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="620"
+                                    data-min="590"
+                                    data-max="650"
+                                >
+                                    $620.00
+                                </strong>
+
+                                <span class="price-up">
+                                    ▲ 3.14%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- SOLANA -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon solana">
+                                    S
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Solana
+                                    </h3>
+
+                                    <span>
+                                        SOL
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="168"
+                                    data-min="150"
+                                    data-max="185"
+                                >
+                                    $168.00
+                                </strong>
+
+                                <span class="price-up">
+                                    ▲ 4.21%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- XRP -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon xrp">
+                                    X
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        XRP
+                                    </h3>
+
+                                    <span>
+                                        XRP
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="2.18"
+                                    data-min="2"
+                                    data-max="2.4"
+                                >
+                                    $2.18
+                                </strong>
+
+                                <span class="price-down">
+                                    ▼ 1.36%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- CARDANO -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon cardano">
+                                    ₳
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Cardano
+                                    </h3>
+
+                                    <span>
+                                        ADA
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="0.72"
+                                    data-min="0.6"
+                                    data-max="0.8"
+                                >
+                                    $0.72
+                                </strong>
+
+                                <span class="price-up">
+                                    ▲ 2.06%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DOGECOIN -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon doge">
+                                    Ð
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Dogecoin
+                                    </h3>
+
+                                    <span>
+                                        DOGE
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="0.21"
+                                    data-min="0.18"
+                                    data-max="0.25"
+                                >
+                                    $0.21
+                                </strong>
+
+                                <span class="price-up">
+                                    ▲ 5.28%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- TRON -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon tron">
+                                    T
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        TRON
+                                    </h3>
+
+                                    <span>
+                                        TRX
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="0.28"
+                                    data-min="0.25"
+                                    data-max="0.32"
+                                >
+                                    $0.28
+                                </strong>
+
+                                <span class="price-up">
+                                    ▲ 1.84%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- POLKADOT -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon dot">
+                                    ●
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Polkadot
+                                    </h3>
+
+                                    <span>
+                                        DOT
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="4.82"
+                                    data-min="4"
+                                    data-max="6"
+                                >
+                                    $4.82
+                                </strong>
+
+                                <span class="price-down">
+                                    ▼ 2.17%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- CHAINLINK -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon link">
+                                    🔗
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Chainlink
+                                    </h3>
+
+                                    <span>
+                                        LINK
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="14.8"
+                                    data-min="12"
+                                    data-max="18"
+                                >
+                                    $14.80
+                                </strong>
+
+                                <span class="price-up">
+                                    ▲ 3.67%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- AVALANCHE -->
+
+                        <div class="crypto-card">
+
+                            <div class="crypto-info">
+
+                                <div class="crypto-icon avax">
+                                    A
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Avalanche
+                                    </h3>
+
+                                    <span>
+                                        AVAX
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="crypto-price">
+
+                                <strong
+                                    class="price-number"
+                                    data-start="24.5"
+                                    data-min="20"
+                                    data-max="30"
+                                >
+                                    $24.50
+                                </strong>
+
+                                <span class="price-down">
+                                    ▼ 1.92%
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
 
 
 
             <!-- ==================================================
-                 CRYPTO MARKET
+                 TASKS PAGE
             ================================================== -->
 
-            <div class="crypto-market">
-
-                <div class="crypto-market-title">
-
-                    <h2>
-                        📊 سوق العملات الرقمية
-                    </h2>
-
-                    <span>
-                        أسعار تجريبية متحركة
-                    </span>
-
-                </div>
-
-
-                <div class="crypto-list">
-
-
-                    <!-- BTC -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon btc">
-                                ₿
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    Bitcoin
-                                </strong>
-
-                                <span>
-                                    BTC
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="btc"
-                            >
-                                $67,420.00
-                            </div>
-
-                            <div
-                                class="crypto-change up"
-                                data-change="btc"
-                            >
-                                +2.45%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- ETH -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon eth">
-                                Ξ
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    Ethereum
-                                </strong>
-
-                                <span>
-                                    ETH
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="eth"
-                            >
-                                $3,520.40
-                            </div>
-
-                            <div
-                                class="crypto-change up"
-                                data-change="eth"
-                            >
-                                +1.82%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- USDT -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon usdt">
-                                ₮
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    Tether
-                                </strong>
-
-                                <span>
-                                    USDT
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="usdt"
-                            >
-                                $1.000
-                            </div>
-
-                            <div
-                                class="crypto-change up"
-                                data-change="usdt"
-                            >
-                                +0.02%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- BNB -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon bnb">
-                                B
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    BNB
-                                </strong>
-
-                                <span>
-                                    BNB
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="bnb"
-                            >
-                                $610.20
-                            </div>
-
-                            <div
-                                class="crypto-change down"
-                                data-change="bnb"
-                            >
-                                -0.84%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- SOL -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon sol">
-                                S
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    Solana
-                                </strong>
-
-                                <span>
-                                    SOL
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="sol"
-                            >
-                                $172.80
-                            </div>
-
-                            <div
-                                class="crypto-change up"
-                                data-change="sol"
-                            >
-                                +3.12%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- XRP -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon xrp">
-                                X
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    XRP
-                                </strong>
-
-                                <span>
-                                    XRP
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="xrp"
-                            >
-                                $0.5420
-                            </div>
-
-                            <div
-                                class="crypto-change down"
-                                data-change="xrp"
-                            >
-                                -1.24%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- ADA -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon ada">
-                                A
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    Cardano
-                                </strong>
-
-                                <span>
-                                    ADA
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="ada"
-                            >
-                                $0.4520
-                            </div>
-
-                            <div
-                                class="crypto-change up"
-                                data-change="ada"
-                            >
-                                +0.74%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- DOGE -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon doge">
-                                Ð
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    Dogecoin
-                                </strong>
-
-                                <span>
-                                    DOGE
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="doge"
-                            >
-                                $0.1420
-                            </div>
-
-                            <div
-                                class="crypto-change down"
-                                data-change="doge"
-                            >
-                                -2.18%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- TRX -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon trx">
-                                T
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    TRON
-                                </strong>
-
-                                <span>
-                                    TRX
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="trx"
-                            >
-                                $0.1180
-                            </div>
-
-                            <div
-                                class="crypto-change up"
-                                data-change="trx"
-                            >
-                                +1.15%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- TON -->
-
-                    <div class="crypto-item">
-
-                        <div class="crypto-info">
-
-                            <div class="crypto-icon ton">
-                                T
-                            </div>
-
-                            <div class="crypto-name">
-
-                                <strong>
-                                    Toncoin
-                                </strong>
-
-                                <span>
-                                    TON
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="crypto-price">
-
-                            <div
-                                class="crypto-price-value"
-                                data-price="ton"
-                            >
-                                $7.420
-                            </div>
-
-                            <div
-                                class="crypto-change up"
-                                data-change="ton"
-                            >
-                                +2.06%
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ==================================================
-                 TASK PROFITS
-            ================================================== -->
-
-            <div class="small-cards">
-
-                <div class="small-card">
-
-                    <div class="small-card-title">
-                        أرباح المهام
-                    </div>
-
-                    <div class="small-card-value">
-
-                        $
-
-                        <span id="homeTaskProfit">
-                            0.00
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="small-card">
-
-                    <div class="small-card-title">
-                        أرباح الدعوات
-                    </div>
-
-                    <div class="small-card-value">
-
-                        $
-
-                        <span id="homeReferralProfit">
-                            0.00
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             TASKS PAGE
-        ================================================== -->
-
-        <section
-            id="tasksPage"
-            class="page"
-        >
-
-            <div class="page-title">
-
-                <h1>
-                    المهام
-                </h1>
-
-                <p>
-                    أنجز المهام واحصل على أرباح افتراضية
-                </p>
-
-            </div>
-
-
-            <div class="tasks-grid">
-
-
-                <div class="task-card">
-
-                    <div class="task-icon">
-                        📱
-                    </div>
-
-                    <h3>
-                        مهمة يومية
-                    </h3>
+            <section
+                id="tasksPage"
+                class="page"
+            >
+
+                <div class="page-title">
+
+                    <h1>
+                        المهام
+                    </h1>
 
                     <p>
-                        قم بتنفيذ المهمة اليومية.
+                        أنجز المهام واحصل على أرباح افتراضية
                     </p>
 
-                    <div class="task-reward">
-                        + $1.00
-                    </div>
-
-                    <button
-                        type="button"
-                        class="task-btn"
-                        onclick="completeTask(1)"
-                    >
-                        تنفيذ المهمة
-                    </button>
-
                 </div>
 
 
-                <div class="task-card">
+                <div class="tasks-grid">
 
-                    <div class="task-icon">
-                        ⭐
-                    </div>
 
-                    <h3>
-                        مهمة التفاعل
-                    </h3>
+                    <div class="task-card">
 
-                    <p>
-                        أكمل مهمة التفاعل التجريبية.
-                    </p>
+                        <div class="task-icon">
+                            📱
+                        </div>
 
-                    <div class="task-reward">
-                        + $2.00
-                    </div>
-
-                    <button
-                        type="button"
-                        class="task-btn"
-                        onclick="completeTask(2)"
-                    >
-                        تنفيذ المهمة
-                    </button>
-
-                </div>
-
-
-                <div class="task-card">
-
-                    <div class="task-icon">
-                        🚀
-                    </div>
-
-                    <h3>
-                        المهمة المميزة
-                    </h3>
-
-                    <p>
-                        مهمة تجريبية بمكافأة أكبر.
-                    </p>
-
-                    <div class="task-reward">
-                        + $5.00
-                    </div>
-
-                    <button
-                        type="button"
-                        class="task-btn"
-                        onclick="completeTask(5)"
-                    >
-                        تنفيذ المهمة
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             BALANCE PAGE
-        ================================================== -->
-
-        <section
-            id="balancePage"
-            class="page"
-        >
-
-            <div class="page-title">
-
-                <h1>
-                    الرصيد
-                </h1>
-
-                <p>
-                    إدارة رصيدك وأرباحك
-                </p>
-
-            </div>
-
-
-            <div class="balance-card">
-
-                <div class="balance-label">
-                    الرصيد الإجمالي
-                </div>
-
-                <div class="balance-value">
-
-                    $
-
-                    <span id="balancePageValue">
-                        0.00
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="small-cards">
-
-                <div class="small-card">
-
-                    <div class="small-card-title">
-                        أرباح المهام
-                    </div>
-
-                    <div class="small-card-value">
-
-                        $
-
-                        <span id="profitTask">
-                            0.00
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="small-card">
-
-                    <div class="small-card-title">
-                        أرباح الدعوات
-                    </div>
-
-                    <div class="small-card-value">
-
-                        $
-
-                        <span id="profitReferral">
-                            0.00
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="money-actions">
-
-                <button
-                    type="button"
-                    class="money-btn deposit"
-                    onclick="openModal('depositModal')"
-                >
-                    💰 إيداع
-                </button>
-
-
-                <button
-                    type="button"
-                    class="money-btn withdraw"
-                    onclick="openModal('withdrawModal')"
-                >
-                    💸 سحب
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             TEAM PAGE
-        ================================================== -->
-
-        <section
-            id="teamPage"
-            class="page"
-        >
-
-            <div class="page-title">
-
-                <h1>
-                    👑 قائد الفريق
-                </h1>
-
-                <p>
-                    قم ببناء فريقك للوصول إلى مستويات VIP
-                </p>
-
-            </div>
-
-
-            <div class="team-level">
-
-                <div class="level-header">
-
-                    <div>
-
-                        <h3 id="vipTitle">
-                            VIP 0
+                        <h3>
+                            مهمة يومية
                         </h3>
 
                         <p>
+                            قم بتنفيذ المهمة اليومية.
+                        </p>
 
-                            عدد الأعضاء المؤهلين:
+                        <div class="task-reward">
+                            + $1.00
+                        </div>
 
-                            <span id="teamCount">
-                                0
+                        <button
+                            type="button"
+                            class="task-btn"
+                            onclick="completeTask(1)"
+                        >
+                            تنفيذ المهمة
+                        </button>
+
+                    </div>
+
+
+                    <div class="task-card">
+
+                        <div class="task-icon">
+                            ⭐
+                        </div>
+
+                        <h3>
+                            مهمة التفاعل
+                        </h3>
+
+                        <p>
+                            أكمل مهمة التفاعل التجريبية.
+                        </p>
+
+                        <div class="task-reward">
+                            + $2.00
+                        </div>
+
+                        <button
+                            type="button"
+                            class="task-btn"
+                            onclick="completeTask(2)"
+                        >
+                            تنفيذ المهمة
+                        </button>
+
+                    </div>
+
+
+                    <div class="task-card">
+
+                        <div class="task-icon">
+                            🚀
+                        </div>
+
+                        <h3>
+                            المهمة المميزة
+                        </h3>
+
+                        <p>
+                            مهمة تجريبية بمكافأة أكبر.
+                        </p>
+
+                        <div class="task-reward">
+                            + $5.00
+                        </div>
+
+                        <button
+                            type="button"
+                            class="task-btn"
+                            onclick="completeTask(5)"
+                        >
+                            تنفيذ المهمة
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 BALANCE PAGE
+            ================================================== -->
+
+            <section
+                id="balancePage"
+                class="page"
+            >
+
+                <div class="page-title">
+
+                    <h1>
+                        الرصيد
+                    </h1>
+
+                    <p>
+                        إدارة رصيدك وأرباحك
+                    </p>
+
+                </div>
+
+
+                <div class="balance-card">
+
+                    <div class="balance-label">
+                        الرصيد الإجمالي
+                    </div>
+
+                    <div class="balance-value">
+
+                        $
+
+                        <span id="balancePageValue">
+                            0.00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="small-cards">
+
+                    <div class="small-card">
+
+                        <div class="small-card-title">
+                            أرباح المهام
+                        </div>
+
+                        <div class="small-card-value">
+
+                            $
+
+                            <span id="profitTask">
+                                0.00
                             </span>
 
+                        </div>
+
+                    </div>
+
+
+                    <div class="small-card">
+
+                        <div class="small-card-title">
+                            أرباح الدعوات
+                        </div>
+
+                        <div class="small-card-value">
+
+                            $
+
+                            <span id="profitReferral">
+                                0.00
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="money-actions">
+
+                    <button
+                        type="button"
+                        class="money-btn deposit"
+                        onclick="openModal('depositModal')"
+                    >
+                        💰 إيداع
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="money-btn withdraw"
+                        onclick="openModal('withdrawModal')"
+                    >
+                        💸 سحب
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 TEAM PAGE
+            ================================================== -->
+
+            <section
+                id="teamPage"
+                class="page"
+            >
+
+                <div class="page-title">
+
+                    <h1>
+                        👑 قائد الفريق
+                    </h1>
+
+                    <p>
+                        قم ببناء فريقك للوصول إلى مستويات VIP
+                    </p>
+
+                </div>
+
+
+                <div class="team-level">
+
+                    <div class="level-header">
+
+                        <div>
+
+                            <h3 id="vipTitle">
+                                VIP 0
+                            </h3>
+
+                            <p>
+
+                                عدد الأعضاء المؤهلين:
+
+                                <span id="teamCount">
+                                    0
+                                </span>
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="vip-badge">
+
+                            <span id="vipPercent">
+                                0%
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            id="teamProgress"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="vip-grid">
+
+
+                    <div class="vip-item">
+
+                        <h4>
+                            VIP 1
+                        </h4>
+
+                        <p>
+                            5 أشخاص
                         </p>
 
                     </div>
 
 
-                    <div class="vip-badge">
+                    <div class="vip-item">
 
-                        <span id="vipPercent">
-                            0%
-                        </span>
+                        <h4>
+                            VIP 2
+                        </h4>
+
+                        <p>
+                            10 أشخاص
+                        </p>
+
+                    </div>
+
+
+                    <div class="vip-item">
+
+                        <h4>
+                            VIP 3
+                        </h4>
+
+                        <p>
+                            20 شخص
+                        </p>
+
+                    </div>
+
+
+                    <div class="vip-item">
+
+                        <h4>
+                            VIP 4
+                        </h4>
+
+                        <p>
+                            50 شخص
+                        </p>
+
+                    </div>
+
+
+                    <div class="vip-item">
+
+                        <h4>
+                            VIP 5
+                        </h4>
+
+                        <p>
+                            100 شخص
+                        </p>
 
                     </div>
 
                 </div>
 
 
-                <div class="progress">
+                <div
+                    class="settings-box"
+                    style="margin-top:18px;"
+                >
 
-                    <div
-                        id="teamProgress"
-                        class="progress-bar"
-                    ></div>
+                    <h3>
+                        رابط الدعوة الخاص بك
+                    </h3>
+
+                    <p>
+                        شارك الرابط مع أصدقائك.
+                    </p>
+
+
+                    <div class="team-link">
+
+                        <input
+                            id="referralLink"
+                            type="text"
+                            readonly
+                        >
+
+
+                        <button
+                            type="button"
+                            class="copy-btn"
+                            onclick="copyReferralLink()"
+                        >
+                            نسخ
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="share-btn"
+                            onclick="shareReferral()"
+                        >
+                            مشاركة
+                        </button>
+
+                    </div>
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <div class="vip-grid">
 
+            <!-- ==================================================
+                 TRANSACTIONS PAGE
+            ================================================== -->
 
-                <div class="vip-item">
+            <section
+                id="transactionsPage"
+                class="page"
+            >
 
-                    <h4>
-                        VIP 1
-                    </h4>
+                <div class="page-title">
+
+                    <h1>
+                        المعاملات
+                    </h1>
 
                     <p>
-                        5 أشخاص
+                        سجل عمليات حسابك
                     </p>
 
                 </div>
 
 
-                <div class="vip-item">
+                <div id="transactionsList"></div>
 
-                    <h4>
-                        VIP 2
-                    </h4>
+            </section>
+
+
+
+            <!-- ==================================================
+                 SETTINGS PAGE
+            ================================================== -->
+
+            <section
+                id="settingsPage"
+                class="page"
+            >
+
+                <div class="page-title">
+
+                    <h1>
+                        الإعدادات
+                    </h1>
 
                     <p>
-                        10 أشخاص
+                        إدارة الحساب والأمان
                     </p>
 
                 </div>
 
 
-                <div class="vip-item">
+                <div class="settings-grid">
 
-                    <h4>
-                        VIP 3
-                    </h4>
 
-                    <p>
-                        20 شخص
-                    </p>
+                    <div class="settings-box">
+
+                        <h3>
+                            👤 تعديل الملف الشخصي
+                        </h3>
+
+                        <p>
+                            تعديل البريد الإلكتروني أو رقم الهاتف.
+                        </p>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                البريد الإلكتروني أو رقم الهاتف
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input
+                                    id="settingsIdentifier"
+                                    type="text"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="main-btn"
+                            onclick="updateProfile()"
+                        >
+                            حفظ البيانات
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="settings-box">
+
+                        <h3>
+                            🔐 كلمة مرور الأمان
+                        </h3>
+
+                        <p>
+                            رمز الأمان مطلوب عند تنفيذ عملية السحب.
+                        </p>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                رمز الأمان الجديد
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input
+                                    id="securityPin"
+                                    type="password"
+                                    maxlength="6"
+                                    inputmode="numeric"
+                                    placeholder="6 أرقام"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="main-btn"
+                            onclick="changeSecurityPin()"
+                        >
+                            حفظ رمز الأمان
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="settings-box">
+
+                        <h3>
+                            🔑 تغيير كلمة المرور
+                        </h3>
+
+                        <p>
+                            تغيير كلمة مرور تسجيل الدخول.
+                        </p>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                كلمة المرور الجديدة
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input
+                                    id="newPassword"
+                                    type="password"
+                                    placeholder="6 أحرف على الأقل"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="main-btn"
+                            onclick="changePassword()"
+                        >
+                            تغيير كلمة المرور
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="settings-box">
+
+                        <h3>
+                            🪪 توثيق الهوية
+                        </h3>
+
+                        <p>
+                            حالة توثيق الحساب.
+                        </p>
+
+
+                        <div
+                            id="verifyStatus"
+                            class="verify-status status-pending"
+                        >
+                            الحالة: غير موثق
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="main-btn"
+                            onclick="requestVerification()"
+                        >
+                            إرسال طلب التوثيق
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="settings-box">
+
+                        <h3>
+                            💬 مراسلة الوكلاء
+                        </h3>
+
+                        <p>
+                            أرسل رسالة إلى فريق الدعم.
+                        </p>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                رسالتك
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <textarea
+                                    id="agentMessage"
+                                    placeholder="اكتب رسالتك هنا"
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="main-btn"
+                            onclick="sendAgentMessage()"
+                        >
+                            إرسال الرسالة
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="settings-box">
+
+                        <h3>
+                            🌐 اللغة
+                        </h3>
+
+                        <p>
+                            اختيار لغة الواجهة.
+                        </p>
+
+
+                        <div class="input-group">
+
+                            <div class="input-wrapper">
+
+                                <select
+                                    id="languageSelect"
+                                    onchange="changeLanguage(this.value)"
+                                >
+
+                                    <option value="ar">
+                                        العربية
+                                    </option>
+
+                                    <option value="en">
+                                        English
+                                    </option>
+
+                                    <option value="tr">
+                                        Türkçe
+                                    </option>
+
+                                    <option value="fr">
+                                        Français
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="settings-box">
+
+                        <h3>
+                            💳 طرق السحب
+                        </h3>
+
+                        <p>
+                            إدارة عنوان شبكة TRON TRC20 الخاص بك.
+                        </p>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                عنوان TRON TRC20
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input
+                                    id="tronAddress"
+                                    type="text"
+                                    placeholder="أدخل عنوان TRON TRC20"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="main-btn"
+                            onclick="saveWithdrawMethod()"
+                        >
+                            حفظ طريقة السحب
+                        </button>
+
+                    </div>
 
                 </div>
 
+            </section>
 
-                <div class="vip-item">
-
-                    <h4>
-                        VIP 4
-                    </h4>
-
-                    <p>
-                        50 شخص
-                    </p>
-
-                </div>
+        </main>
 
 
-                <div class="vip-item">
 
-                    <h4>
-                        VIP 5
-                    </h4>
+        <!-- ==================================================
+             MOBILE BOTTOM NAV
+        ================================================== -->
 
-                    <p>
-                        100 شخص
-                    </p>
+        <nav class="mobile-bottom">
 
-                </div>
+
+            <button
+                type="button"
+                class="bottom-item active"
+                onclick="mobilePage('home', this)"
+            >
+
+                🏠
+
+                <span>
+                    الرئيسية
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="bottom-item"
+                onclick="mobilePage('tasksPage', this)"
+            >
+
+                📋
+
+                <span>
+                    المهام
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="bottom-item"
+                onclick="mobilePage('balancePage', this)"
+            >
+
+                💰
+
+                <span>
+                    الرصيد
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="bottom-item"
+                onclick="mobilePage('teamPage', this)"
+            >
+
+                👑
+
+                <span>
+                    الفريق
+                </span>
+
+            </button>
+
+        </nav>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         DEPOSIT MODAL
+    ================================================== -->
+
+    <div
+        id="depositModal"
+        class="modal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h3>
+                    💰 إيداع
+                </h3>
+
+
+                <button
+                    type="button"
+                    class="close-btn"
+                    onclick="closeModal('depositModal')"
+                >
+                    ×
+                </button>
 
             </div>
 
 
             <div
-                class="settings-box"
-                style="margin-top:18px;"
-            >
-
-                <h3>
-                    رابط الدعوة الخاص بك
-                </h3>
-
-                <p>
-                    شارك الرابط مع أصدقائك.
-                </p>
+                id="depositError"
+                class="error hidden"
+            ></div>
 
 
-                <div class="team-link">
+            <div class="input-group">
+
+                <label>
+                    مبلغ الإيداع - الحد الأدنى 100$
+                </label>
+
+                <div class="input-wrapper">
 
                     <input
-                        id="referralLink"
-                        type="text"
-                        readonly
+                        id="depositAmount"
+                        type="number"
+                        min="100"
+                        placeholder="100"
                     >
-
-
-                    <button
-                        type="button"
-                        class="copy-btn"
-                        onclick="copyReferralLink()"
-                    >
-                        نسخ
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="share-btn"
-                        onclick="shareReferral()"
-                    >
-                        مشاركة
-                    </button>
 
                 </div>
 
             </div>
 
-        </section>
 
+            <button
+                type="button"
+                class="main-btn"
+                onclick="deposit()"
+            >
+                تأكيد الإيداع التجريبي
+            </button>
 
+        </div>
 
-        <!-- ==================================================
-             TRANSACTIONS
-        ================================================== -->
-
-        <section
-            id="transactionsPage"
-            class="page"
-        >
-
-            <div class="page-title">
-
-                <h1>
-                    المعاملات
-                </h1>
-
-                <p>
-                    سجل عمليات حسابك
-                </p>
-
-            </div>
-
-
-            <div id="transactionsList"></div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             SETTINGS
-        ================================================== -->
-
-        <section
-            id="settingsPage"
-            class="page"
-        >
-
-            <div class="page-title">
-
-                <h1>
-                    الإعدادات
-                </h1>
-
-                <p>
-                    إدارة الحساب والأمان
-                </p>
-
-            </div>
-
-
-            <div class="settings-grid">
-
-
-                <div class="settings-box">
-
-                    <h3>
-                        👤 تعديل الملف الشخصي
-                    </h3>
-
-                    <p>
-                        تعديل البريد الإلكتروني أو رقم الهاتف.
-                    </p>
-
-
-                    <div class="input-group">
-
-                        <label>
-                            البريد الإلكتروني أو رقم الهاتف
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <input
-                                id="settingsIdentifier"
-                                type="text"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="main-btn"
-                        onclick="updateProfile()"
-                    >
-                        حفظ البيانات
-                    </button>
-
-                </div>
-
-
-
-                <div class="settings-box">
-
-                    <h3>
-                        🔐 كلمة مرور الأمان
-                    </h3>
-
-                    <p>
-                        رمز الأمان مطلوب عند تنفيذ عملية السحب.
-                    </p>
-
-
-                    <div class="input-group">
-
-                        <label>
-                            رمز الأمان الجديد
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <input
-                                id="securityPin"
-                                type="password"
-                                maxlength="6"
-                                inputmode="numeric"
-                                placeholder="6 أرقام"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="main-btn"
-                        onclick="changeSecurityPin()"
-                    >
-                        حفظ رمز الأمان
-                    </button>
-
-                </div>
-
-
-
-                <div class="settings-box">
-
-                    <h3>
-                        🔑 تغيير كلمة المرور
-                    </h3>
-
-                    <p>
-                        تغيير كلمة مرور تسجيل الدخول.
-                    </p>
-
-
-                    <div class="input-group">
-
-                        <label>
-                            كلمة المرور الجديدة
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <input
-                                id="newPassword"
-                                type="password"
-                                placeholder="6 أحرف على الأقل"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="main-btn"
-                        onclick="changePassword()"
-                    >
-                        تغيير كلمة المرور
-                    </button>
-
-                </div>
-
-
-
-                <div class="settings-box">
-
-                    <h3>
-                        🪪 توثيق الهوية
-                    </h3>
-
-                    <p>
-                        حالة توثيق الحساب.
-                    </p>
-
-
-                    <div
-                        id="verifyStatus"
-                        class="verify-status status-pending"
-                    >
-                        الحالة: غير موثق
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="main-btn"
-                        onclick="requestVerification()"
-                    >
-                        إرسال طلب التوثيق
-                    </button>
-
-                </div>
-
-
-
-                <div class="settings-box">
-
-                    <h3>
-                        💬 مراسلة الوكلاء
-                    </h3>
-
-                    <p>
-                        أرسل رسالة إلى فريق الدعم.
-                    </p>
-
-
-                    <div class="input-group">
-
-                        <label>
-                            رسالتك
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <textarea
-                                id="agentMessage"
-                                placeholder="اكتب رسالتك هنا"
-                            ></textarea>
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="main-btn"
-                        onclick="sendAgentMessage()"
-                    >
-                        إرسال الرسالة
-                    </button>
-
-                </div>
-
-
-
-                <div class="settings-box">
-
-                    <h3>
-                        🌐 اللغة
-                    </h3>
-
-                    <p>
-                        اختيار لغة الواجهة.
-                    </p>
-
-
-                    <div class="input-group">
-
-                        <div class="input-wrapper">
-
-                            <select
-                                id="languageSelect"
-                                onchange="changeLanguage(this.value)"
-                            >
-
-                                <option value="ar">
-                                    العربية
-                                </option>
-
-                                <option value="en">
-                                    English
-                                </option>
-
-                                <option value="tr">
-                                    Türkçe
-                                </option>
-
-                                <option value="fr">
-                                    Français
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="settings-box">
-
-                    <h3>
-                        💳 طرق السحب
-                    </h3>
-
-                    <p>
-                        إدارة عنوان شبكة TRON TRC20 الخاص بك.
-                    </p>
-
-
-                    <div class="input-group">
-
-                        <label>
-                            عنوان TRON TRC20
-                        </label>
-
-                        <div class="input-wrapper">
-
-                            <input
-                                id="tronAddress"
-                                type="text"
-                                placeholder="أدخل عنوان TRON TRC20"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="main-btn"
-                        onclick="saveWithdrawMethod()"
-                    >
-                        حفظ طريقة السحب
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+    </div>
 
 
 
     <!-- ==================================================
-         MOBILE NAV
+         WITHDRAW MODAL
     ================================================== -->
 
-    <nav class="mobile-bottom">
+    <div
+        id="withdrawModal"
+        class="modal"
+    >
+
+        <div class="modal-box">
 
 
-        <button
-            type="button"
-            class="bottom-item active"
-            onclick="mobilePage('home', this)"
-        >
+            <div class="modal-header">
 
-            🏠
-
-            <span>
-                الرئيسية
-            </span>
-
-        </button>
+                <h3>
+                    💸 سحب
+                </h3>
 
 
-        <button
-            type="button"
-            class="bottom-item"
-            onclick="mobilePage('tasksPage', this)"
-        >
-
-            📋
-
-            <span>
-                المهام
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="bottom-item"
-            onclick="mobilePage('balancePage', this)"
-        >
-
-            💰
-
-            <span>
-                الرصيد
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="bottom-item"
-            onclick="mobilePage('teamPage', this)"
-        >
-
-            👑
-
-            <span>
-                الفريق
-            </span>
-
-        </button>
-
-    </nav>
-
-</div>
-
-
-
-<!-- ==================================================
-     DEPOSIT MODAL
-================================================== -->
-
-<div
-    id="depositModal"
-    class="modal"
->
-
-    <div class="modal-box">
-
-        <div class="modal-header">
-
-            <h3>
-                💰 إيداع
-            </h3>
-
-            <button
-                type="button"
-                class="close-btn"
-                onclick="closeModal('depositModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div
-            id="depositError"
-            class="error hidden"
-        ></div>
-
-
-        <div class="input-group">
-
-            <label>
-                مبلغ الإيداع - الحد الأدنى 100$
-            </label>
-
-            <div class="input-wrapper">
-
-                <input
-                    id="depositAmount"
-                    type="number"
-                    min="100"
-                    placeholder="100"
+                <button
+                    type="button"
+                    class="close-btn"
+                    onclick="closeModal('withdrawModal')"
                 >
+                    ×
+                </button>
 
             </div>
 
-        </div>
+
+            <div
+                id="withdrawError"
+                class="error hidden"
+            ></div>
 
 
-        <button
-            type="button"
-            class="main-btn"
-            onclick="deposit()"
-        >
-            تأكيد الإيداع التجريبي
-        </button>
+            <div class="input-group">
 
-    </div>
+                <label>
+                    عنوان شبكة TRON TRC20
+                </label>
 
-</div>
+                <div class="input-wrapper">
 
+                    <input
+                        id="withdrawTron"
+                        type="text"
+                        placeholder="T..."
+                    >
 
+                </div>
 
-<!-- ==================================================
-     WITHDRAW MODAL
-================================================== -->
-
-<div
-    id="withdrawModal"
-    class="modal"
->
-
-    <div class="modal-box">
+            </div>
 
 
-        <div class="modal-header">
+            <div class="input-group">
 
-            <h3>
-                💸 سحب
-            </h3>
+                <label>
+                    مبلغ السحب - الحد الأدنى 50$
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="withdrawAmount"
+                        type="number"
+                        min="50"
+                        placeholder="50"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    رمز أمان السحب
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        id="withdrawPin"
+                        type="password"
+                        maxlength="6"
+                        inputmode="numeric"
+                        placeholder="رمز الأمان"
+                    >
+
+                </div>
+
+            </div>
 
 
             <button
                 type="button"
-                class="close-btn"
-                onclick="closeModal('withdrawModal')"
+                class="main-btn"
+                onclick="withdraw()"
             >
-                ×
+                إرسال طلب السحب
             </button>
 
         </div>
 
-
-        <div
-            id="withdrawError"
-            class="error hidden"
-        ></div>
-
-
-        <div class="input-group">
-
-            <label>
-                عنوان شبكة TRON TRC20
-            </label>
-
-            <div class="input-wrapper">
-
-                <input
-                    id="withdrawTron"
-                    type="text"
-                    placeholder="T..."
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>
-                مبلغ السحب - الحد الأدنى 50$
-            </label>
-
-            <div class="input-wrapper">
-
-                <input
-                    id="withdrawAmount"
-                    type="number"
-                    min="50"
-                    placeholder="50"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>
-                رمز أمان السحب
-            </label>
-
-            <div class="input-wrapper">
-
-                <input
-                    id="withdrawPin"
-                    type="password"
-                    maxlength="6"
-                    inputmode="numeric"
-                    placeholder="رمز الأمان"
-                >
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="main-btn"
-            onclick="withdraw()"
-        >
-            إرسال طلب السحب
-        </button>
-
     </div>
 
-</div>
 
 
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
 
-<!-- ==================================================
-     JAVASCRIPT
-================================================== -->
+    <script src="config.js"></script>
 
-<script src="config.js"></script>
+    <script src="auth.js"></script>
 
-<script src="auth.js"></script>
-
-<script src="app.js"></script>
-
+    <script src="app.js"></script>
 
 
-<!-- ==================================================
-     حركة أسعار العملات
-================================================== -->
+    <!-- ==================================================
+         حركة أرقام العملات
+    ================================================== -->
 
-<script>
+    <script>
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
-            const prices = {
-
-                btc: 67420,
-                eth: 3520.40,
-                usdt: 1,
-                bnb: 610.20,
-                sol: 172.80,
-                xrp: 0.5420,
-                ada: 0.4520,
-                doge: 0.1420,
-                trx: 0.1180,
-                ton: 7.420
-
-            };
+                const prices =
+                    document.querySelectorAll(
+                        ".price-number"
+                    );
 
 
-            const decimals = {
+                prices.forEach(
+                    function (price) {
 
-                btc: 2,
-                eth: 2,
-                usdt: 3,
-                bnb: 2,
-                sol: 2,
-                xrp: 4,
-                ada: 4,
-                doge: 4,
-                trx: 4,
-                ton: 3
-
-            };
-
-
-            function updateCryptoPrices() {
-
-                Object.keys(prices).forEach(
-                    function (coin) {
-
-                        const priceElement =
-                            document.querySelector(
-                                '[data-price="' +
-                                coin +
-                                '"]'
+                        const start =
+                            Number(
+                                price.dataset.start
                             );
 
 
-                        const changeElement =
-                            document.querySelector(
-                                '[data-change="' +
-                                coin +
-                                '"]'
+                        const min =
+                            Number(
+                                price.dataset.min
                             );
 
 
-                        if (
-                            !priceElement ||
-                            !changeElement
-                        ) {
-                            return;
-                        }
+                        const max =
+                            Number(
+                                price.dataset.max
+                            );
 
 
-                        if (
-                            coin !== "usdt"
-                        ) {
+                        let current =
+                            start;
+
+
+                        function updatePrice() {
 
                             const movement =
                                 (
@@ -2261,78 +2123,75 @@
                                     0.5
                                 ) *
                                 (
-                                    prices[coin] *
-                                    0.002
-                                );
+                                    max -
+                                    min
+                                ) *
+                                0.01;
 
 
-                            prices[coin] +=
+                            current +=
                                 movement;
+
+
+                            if (
+                                current < min
+                            ) {
+
+                                current =
+                                    min;
+
+                            }
+
+
+                            if (
+                                current > max
+                            ) {
+
+                                current =
+                                    max;
+
+                            }
+
+
+                            let decimals =
+                                2;
+
+
+                            if (
+                                current < 1
+                            ) {
+
+                                decimals =
+                                    4;
+
+                            }
+
+
+                            price.textContent =
+                                "$" +
+                                current.toFixed(
+                                    decimals
+                                );
 
                         }
 
 
-                        const change =
-                            (
-                                Math.random() *
-                                6
-                            ) -
-                            3;
-
-
-                        const positive =
-                            change >= 0;
-
-
-                        priceElement.textContent =
-                            "$" +
-                            prices[coin].toLocaleString(
-                                "en-US",
-                                {
-                                    minimumFractionDigits:
-                                        decimals[coin],
-
-                                    maximumFractionDigits:
-                                        decimals[coin]
-                                }
-                            );
-
-
-                        changeElement.textContent =
-                            (
-                                positive
-                                    ? "+"
-                                    : ""
-                            ) +
-                            change.toFixed(2) +
-                            "%";
-
-
-                        changeElement.classList.toggle(
-                            "up",
-                            positive
-                        );
-
-
-                        changeElement.classList.toggle(
-                            "down",
-                            !positive
+                        setInterval(
+                            updatePrice,
+                            1800 +
+                            Math.random() *
+                            1500
                         );
 
                     }
                 );
 
             }
+        );
+
+    </script>
 
 
-            setInterval(
-                updateCryptoPrices,
-                2500
-            );
+</body>
 
-        }
-    );
-
-</script>
-
-</body></html>
+                                </html>
