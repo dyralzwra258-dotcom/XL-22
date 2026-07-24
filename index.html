@@ -1,8 +1,14 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XL22</title><style>
+
+<title>XL22</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
 *{
     box-sizing:border-box;
     margin:0;
@@ -13,17 +19,24 @@
     --gold:#c9a227;
     --gold-dark:#a88416;
     --gold-light:#f4e8b8;
+    --gold-soft:#fbf7e8;
+    --border:#eee5c8;
     --text:#332d20;
     --muted:#968a70;
+    --green:#159447;
+    --red:#d83d3d;
 }
 
 body{
-    font-family:Arial,"Tahoma",sans-serif;
+    font-family:"Cairo",sans-serif;
     background:#f8f5ed;
     color:var(--text);
 }
 
-button,input,textarea{
+button,
+input,
+textarea,
+select{
     font-family:inherit;
 }
 
@@ -35,7 +48,10 @@ button{
     display:none!important;
 }
 
-/* AUTH */
+/* =========================
+   AUTH
+========================= */
+
 .auth-screen{
     min-height:100vh;
     display:flex;
@@ -52,7 +68,7 @@ button{
     padding:35px;
     border-radius:22px;
     box-shadow:0 20px 60px rgba(150,120,30,.12);
-    border:1px solid #eee4c2;
+    border:1px solid var(--border);
 }
 
 .auth-logo{
@@ -88,7 +104,13 @@ button{
     font-weight:600;
 }
 
-input,textarea{
+.input-wrapper{
+    position:relative;
+}
+
+input,
+textarea,
+select{
     width:100%;
     padding:13px 15px;
     border:1px solid #ddd4b8;
@@ -98,7 +120,9 @@ input,textarea{
     color:var(--text);
 }
 
-input:focus,textarea:focus{
+input:focus,
+textarea:focus,
+select:focus{
     border-color:var(--gold);
     box-shadow:0 0 0 3px rgba(201,162,39,.10);
 }
@@ -108,18 +132,48 @@ textarea{
     resize:vertical;
 }
 
+.password-input{
+    padding-left:48px;
+}
+
+.password-toggle{
+    position:absolute;
+    left:10px;
+    top:50%;
+    transform:translateY(-50%);
+    width:35px;
+    height:35px;
+    border:0;
+    background:transparent;
+    font-size:20px;
+    color:#777;
+    z-index:2;
+}
+
 .main-btn{
     width:100%;
     border:0;
     padding:14px;
     border-radius:10px;
     background:var(--gold);
-    color:white;
+    color:#fff;
     font-weight:700;
+    margin-top:5px;
 }
 
 .main-btn:hover{
     background:var(--gold-dark);
+}
+
+.secondary-btn{
+    width:100%;
+    border:1px solid #ddd4b8;
+    padding:12px;
+    border-radius:10px;
+    background:#fff;
+    color:var(--gold-dark);
+    font-weight:700;
+    margin-top:10px;
 }
 
 .switch-text{
@@ -134,7 +188,8 @@ textarea{
     cursor:pointer;
 }
 
-.error,.success{
+.error,
+.success{
     padding:10px;
     border-radius:8px;
     margin-bottom:15px;
@@ -146,15 +201,23 @@ textarea{
     color:#8d3e2d;
 }
 
-/* HEADER */
+.success{
+    background:#f4edcf;
+    color:#806719;
+}
+
+/* =========================
+   HEADER
+========================= */
+
 .header{
     position:fixed;
     top:0;
     right:0;
     left:0;
     height:70px;
-    background:white;
-    border-bottom:1px solid #eee5c8;
+    background:#fff;
+    border-bottom:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -173,7 +236,7 @@ textarea{
     height:38px;
     border-radius:50%;
     background:var(--gold);
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -187,15 +250,18 @@ textarea{
     font-size:25px;
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar{
     position:fixed;
     top:70px;
     right:0;
     bottom:0;
     width:240px;
-    background:white;
-    border-left:1px solid #eee5c8;
+    background:#fff;
+    border-left:1px solid var(--border);
     padding:20px 15px;
     z-index:90;
 }
@@ -224,7 +290,10 @@ textarea{
     font-weight:700;
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
+
 .content{
     margin-right:240px;
     padding:100px 30px 40px;
@@ -251,23 +320,16 @@ textarea{
     margin-top:5px;
 }
 
-/* MARKET */
-.market-section,
-.balance-card,
-.small-card,
-.task-card,
-.team-level,
-.settings-box,
-.withdraw-history-section,
-.withdraw-record{
-    background:white;
-    border:1px solid #eee6ca;
-    box-shadow:0 7px 25px rgba(150,120,30,.05);
-}
+/* =========================
+   MARKET
+========================= */
 
 .market-section{
+    background:#fff;
     border-radius:20px;
     padding:25px;
+    box-shadow:0 8px 30px rgba(150,120,30,.06);
+    border:1px solid #eee6ca;
 }
 
 .market-header{
@@ -275,6 +337,10 @@ textarea{
     justify-content:space-between;
     align-items:center;
     margin-bottom:25px;
+}
+
+.market-header h2{
+    font-size:21px;
 }
 
 .market-header p{
@@ -315,6 +381,7 @@ textarea{
 
 .crypto-card:hover{
     transform:translateY(-2px);
+    box-shadow:0 7px 20px rgba(150,120,30,.08);
 }
 
 .crypto-info{
@@ -331,7 +398,7 @@ textarea{
     display:flex;
     align-items:center;
     justify-content:center;
-    color:white;
+    color:#fff;
     font-weight:800;
     font-size:20px;
 }
@@ -355,24 +422,26 @@ textarea{
     display:block;
     font-size:17px;
     font-weight:800;
+    text-align:right;
 }
 
-.price-up,.price-down{
+.price-up,
+.price-down{
     display:block;
     margin-top:3px;
     font-size:13px;
     font-weight:700;
+    text-align:right;
 }
 
 .price-up{
-    color:#159447;
+    color:var(--green);
 }
 
 .price-down{
-    color:#d83d3d;
+    color:var(--red);
 }
 
-/* COINS */
 .bitcoin{background:#f7931a}
 .ethereum{background:#627eea}
 .usdt{background:#26a17b}
@@ -390,14 +459,20 @@ textarea{
 .matic{background:#8247e5}
 .near{background:#111}
 
-/* CARDS */
+/* =========================
+   CARDS
+========================= */
+
 .balance-card,
 .small-card,
 .task-card,
 .team-level,
 .settings-box{
+    background:#fff;
     border-radius:18px;
     padding:25px;
+    box-shadow:0 7px 25px rgba(150,120,30,.05);
+    border:1px solid #eee6ca;
 }
 
 .balance-value{
@@ -461,9 +536,11 @@ textarea{
 }
 
 .task-reward{
-    color:#159447;
+    color:var(--green);
     font-weight:800;
     margin:15px 0;
+    direction:ltr;
+    text-align:right;
 }
 
 .task-btn,
@@ -475,15 +552,9 @@ textarea{
     font-weight:700;
 }
 
-.task-btn,
-.copy-btn{
+.task-btn{
     background:var(--gold);
-    color:white;
-}
-
-.share-btn{
-    background:var(--gold-light);
-    color:var(--gold-dark);
+    color:#fff;
 }
 
 .money-actions{
@@ -497,7 +568,7 @@ textarea{
     border:0;
     padding:14px;
     border-radius:10px;
-    color:white;
+    color:#fff;
     font-weight:700;
 }
 
@@ -509,7 +580,10 @@ textarea{
     background:#b49742;
 }
 
-/* TEAM */
+/* =========================
+   TEAM
+========================= */
+
 .level-header{
     display:flex;
     justify-content:space-between;
@@ -540,7 +614,7 @@ textarea{
 }
 
 .vip-item{
-    background:white;
+    background:#fff;
     padding:20px;
     text-align:center;
     border-radius:15px;
@@ -558,9 +632,24 @@ textarea{
     margin-top:15px;
 }
 
-/* HISTORY */
+.copy-btn{
+    background:var(--gold);
+    color:#fff;
+}
+
+.share-btn{
+    background:var(--gold-light);
+    color:var(--gold-dark);
+}
+
+/* =========================
+   HISTORY
+========================= */
+
 .withdraw-history-section{
     margin-top:25px;
+    background:#fff;
+    border:1px solid #eee4c8;
     border-radius:18px;
     padding:24px;
 }
@@ -579,6 +668,7 @@ textarea{
     padding:16px;
     margin-top:12px;
     background:#fffdf7;
+    border:1px solid #eee4d8;
     border-radius:14px;
 }
 
@@ -620,12 +710,18 @@ textarea{
     margin-top:20px;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
+
 .mobile-bottom{
     display:none;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
+
 .modal{
     position:fixed;
     inset:0;
@@ -644,9 +740,10 @@ textarea{
 .modal-box{
     width:100%;
     max-width:450px;
-    background:white;
+    background:#fff;
     padding:25px;
     border-radius:18px;
+    border:1px solid #eee4c8;
 }
 
 .modal-header{
@@ -662,13 +759,16 @@ textarea{
     font-size:28px;
 }
 
-/* TOAST */
+/* =========================
+   TOAST
+========================= */
+
 .toast{
     position:fixed;
     left:20px;
     bottom:25px;
     background:var(--gold);
-    color:white;
+    color:#fff;
     padding:13px 20px;
     border-radius:10px;
     z-index:1000;
@@ -679,7 +779,10 @@ textarea{
     display:block;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media(max-width:900px){
 
     .mobile-menu{
@@ -715,7 +818,7 @@ textarea{
         right:0;
         left:0;
         height:65px;
-        background:white;
+        background:#fff;
         display:flex;
         justify-content:space-around;
         z-index:200;
@@ -785,66 +888,290 @@ textarea{
     .team-link{
         flex-wrap:wrap;
     }
+
+    .team-link input{
+        width:100%;
+    }
 }
-</style></head><body><!-- AUTH --><div id="authScreen" class="auth-screen"><div class="auth-box"><div class="auth-logo">
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     AUTH SCREEN
+========================= -->
+
+<div id="authScreen" class="auth-screen">
+
+<div class="auth-box">
+
+<div class="auth-logo">
 <div class="logo">XL22</div>
 <p>منصتك الرقمية الذكية</p>
-</div><!-- LOGIN --><div id="loginForm"><h2 class="form-title">تسجيل الدخول</h2><div id="loginError" class="error hidden"></div><div class="input-group">
+</div>
+
+<!-- LOGIN -->
+
+<div id="loginForm">
+
+<h2 class="form-title">تسجيل الدخول</h2>
+
+<div id="loginError" class="error hidden"></div>
+
+<div class="input-group">
+
 <label>البريد الإلكتروني أو رقم الهاتف</label>
-<input id="loginIdentifier" type="text" placeholder="أدخل البريد الإلكتروني أو رقم الهاتف">
-</div><div class="input-group">
+
+<input
+id="loginIdentifier"
+type="text"
+autocomplete="username"
+placeholder="أدخل البريد الإلكتروني أو رقم الهاتف"
+>
+
+</div>
+
+<div class="input-group">
+
 <label>كلمة المرور</label>
-<input id="loginPassword" type="password" placeholder="أدخل كلمة المرور">
-</div><button class="main-btn" onclick="login()">تسجيل الدخول</button>
+
+<div class="input-wrapper">
+
+<input
+id="loginPassword"
+class="password-input"
+type="password"
+autocomplete="current-password"
+placeholder="أدخل كلمة المرور"
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword('loginPassword',this)"
+aria-label="إظهار كلمة المرور"
+>
+👁️
+</button>
+
+</div>
+
+</div>
+
+<button
+type="button"
+class="main-btn"
+onclick="login()"
+>
+تسجيل الدخول
+</button>
 
 <div class="switch-text">
 ليس لديك حساب؟
 <span onclick="showRegister()">إنشاء حساب</span>
-</div></div><!-- REGISTER --><div id="registerForm" class="hidden"><h2 class="form-title">إنشاء حساب</h2><div id="registerError" class="error hidden"></div><div class="input-group">
+</div>
+
+<button
+type="button"
+class="secondary-btn"
+onclick="resetAppData()"
+>
+مسح بيانات التطبيق والبدء من جديد
+</button>
+
+</div>
+
+
+<!-- REGISTER -->
+
+<div id="registerForm" class="hidden">
+
+<h2 class="form-title">إنشاء حساب</h2>
+
+<div id="registerError" class="error hidden"></div>
+
+<div class="input-group">
+
 <label>البريد الإلكتروني أو رقم الهاتف</label>
-<input id="registerIdentifier" type="text" placeholder="البريد الإلكتروني أو رقم الهاتف">
-</div><div class="input-group">
+
+<input
+id="registerIdentifier"
+type="text"
+autocomplete="username"
+placeholder="البريد الإلكتروني أو رقم الهاتف"
+>
+
+</div>
+
+<div class="input-group">
+
 <label>كلمة المرور</label>
-<input id="registerPassword" type="password" placeholder="كلمة المرور">
-</div><div class="input-group">
+
+<div class="input-wrapper">
+
+<input
+id="registerPassword"
+class="password-input"
+type="password"
+autocomplete="new-password"
+placeholder="كلمة المرور"
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword('registerPassword',this)"
+>
+👁️
+</button>
+
+</div>
+
+</div>
+
+<div class="input-group">
+
 <label>تأكيد كلمة المرور</label>
-<input id="registerConfirm" type="password" placeholder="تأكيد كلمة المرور">
-</div><button class="main-btn" onclick="register()">إنشاء الحساب</button>
+
+<div class="input-wrapper">
+
+<input
+id="registerConfirm"
+class="password-input"
+type="password"
+autocomplete="new-password"
+placeholder="تأكيد كلمة المرور"
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword('registerConfirm',this)"
+>
+👁️
+</button>
+
+</div>
+
+</div>
+
+<button
+type="button"
+class="main-btn"
+onclick="register()"
+>
+إنشاء الحساب
+</button>
 
 <div class="switch-text">
 لديك حساب؟
 <span onclick="showLogin()">تسجيل الدخول</span>
-</div></div></div>
-</div><!-- APP --><div id="app" class="hidden"><header class="header"><button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+</div>
 
-<div class="logo">XL22</div><div class="header-user">
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<div id="app" class="hidden">
+
+<header class="header">
+
+<button
+type="button"
+class="mobile-menu"
+onclick="toggleSidebar()"
+>
+☰
+</button>
+
+<div class="logo">XL22</div>
+
+<div class="header-user">
+
 <div id="avatar" class="avatar">X</div>
+
 <span id="headerUser">مستخدم</span>
-</div></header><aside id="sidebar" class="sidebar"><div class="nav-title">القائمة</div><button class="nav-item active" onclick="showPage('home',this)">
+
+</div>
+
+</header>
+
+
+<aside id="sidebar" class="sidebar">
+
+<div class="nav-title">القائمة</div>
+
+<button class="nav-item active" onclick="showPage('home',this)">
 🏠 الرئيسية
-</button><button class="nav-item" onclick="showPage('tasksPage',this)">
+</button>
+
+<button class="nav-item" onclick="showPage('tasksPage',this)">
 📋 المهام
-</button><button class="nav-item" onclick="showPage('balancePage',this)">
+</button>
+
+<button class="nav-item" onclick="showPage('balancePage',this)">
 💰 الرصيد
-</button><button class="nav-item" onclick="showPage('teamPage',this)">
+</button>
+
+<button class="nav-item" onclick="showPage('teamPage',this)">
 👑 قائد الفريق
-</button><div class="nav-title">الحساب</div><button class="nav-item" onclick="showPage('transactionsPage',this)">
+</button>
+
+<div class="nav-title">الحساب</div>
+
+<button class="nav-item" onclick="showPage('transactionsPage',this)">
 📊 المعاملات
-</button><button class="nav-item" onclick="showPage('settingsPage',this)">
+</button>
+
+<button class="nav-item" onclick="showPage('settingsPage',this)">
 ⚙️ الإعدادات
-</button><button class="nav-item" onclick="logout()">
+</button>
+
+<button class="nav-item" onclick="logout()">
 🚪 تسجيل الخروج
-</button></aside><main class="content"><!-- HOME --><section id="home" class="page active"><div class="page-title">
+</button>
+
+</aside>
+
+
+<main class="content">
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="page-title">
 <h1>الرئيسية</h1>
 <p>أسعار العملات الرقمية</p>
-</div><div class="market-section"><div class="market-header"><div>
+</div>
+
+<div class="market-section">
+
+<div class="market-header">
+
+<div>
 <h2>📊 سوق العملات الرقمية</h2>
 <p>متابعة الأسعار ونسب التغير</p>
-</div><div class="market-status">
+</div>
+
+<div class="market-status">
 <span class="status-dot"></span>
 السوق نشط
-</div></div><div class="crypto-list"><script>
-const coins=[
+</div>
+
+</div>
+
+<div class="crypto-list">
+
+<script>
+const cryptoData = [
 ["₿","bitcoin","Bitcoin","BTC","$68,420.00","▲ 2.48%","up"],
 ["Ξ","ethereum","Ethereum","ETH","$3,520.00","▲ 1.72%","up"],
 ["₮","usdt","Tether","USDT","$1.00","▼ 0.03%","down"],
@@ -864,267 +1191,743 @@ const coins=[
 ];
 
 document.write(
-coins.map(c=>`
+cryptoData.map(c => `
 <div class="crypto-card">
+
 <div class="crypto-info">
-<div class="crypto-icon ${c[1]}">${c[0]}</div>
+
+<div class="crypto-icon ${c[1]}">
+${c[0]}
+</div>
+
 <div>
 <h3>${c[2]}</h3>
 <span>${c[3]}</span>
 </div>
+
 </div>
+
 <div class="crypto-price">
-<strong class="price-number">${c[4]}</strong>
-<span class="price-${c[6]}">${c[5]}</span>
+
+<strong class="price-number">
+${c[4]}
+</strong>
+
+<span class="price-${c[6]}">
+${c[5]}
+</span>
+
 </div>
+
 </div>
 `).join("")
 );
-</script></div>
+</script>
+
 </div>
-</section><!-- TASKS --><section id="tasksPage" class="page"><div class="page-title">
+</div>
+
+</section>
+
+
+<!-- TASKS -->
+
+<section id="tasksPage" class="page">
+
+<div class="page-title">
 <h1>المهام</h1>
 <p>أنجز المهام واحصل على أرباح افتراضية</p>
-</div><div class="tasks-grid"><div class="task-card">
+</div>
+
+<div class="tasks-grid">
+
+<div class="task-card">
+
 <div class="task-icon">📱</div>
+
 <h3>مهمة يومية</h3>
+
 <p>قم بتنفيذ المهمة اليومية.</p>
+
 <div class="task-reward">+ $1.00</div>
-<button class="task-btn" onclick="completeTask(1)">تنفيذ المهمة</button>
-</div><div class="task-card">
+
+<button class="task-btn" onclick="completeTask(1)">
+تنفيذ المهمة
+</button>
+
+</div>
+
+
+<div class="task-card">
+
 <div class="task-icon">⭐</div>
+
 <h3>مهمة التفاعل</h3>
+
 <p>أكمل مهمة التفاعل التجريبية.</p>
+
 <div class="task-reward">+ $2.00</div>
-<button class="task-btn" onclick="completeTask(2)">تنفيذ المهمة</button>
-</div><div class="task-card">
+
+<button class="task-btn" onclick="completeTask(2)">
+تنفيذ المهمة
+</button>
+
+</div>
+
+
+<div class="task-card">
+
 <div class="task-icon">🚀</div>
+
 <h3>المهمة المميزة</h3>
+
 <p>مهمة تجريبية بمكافأة أكبر.</p>
+
 <div class="task-reward">+ $5.00</div>
-<button class="task-btn" onclick="completeTask(5)">تنفيذ المهمة</button>
-</div></div>
-</section><!-- BALANCE --><section id="balancePage" class="page"><div class="page-title">
+
+<button class="task-btn" onclick="completeTask(5)">
+تنفيذ المهمة
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BALANCE -->
+
+<section id="balancePage" class="page">
+
+<div class="page-title">
 <h1>الرصيد</h1>
 <p>إدارة رصيدك وأرباحك</p>
-</div><div class="balance-card">
-<div class="balance-label">الرصيد الإجمالي</div>
-<div class="balance-value">$ <span id="balancePageValue">0.00</span></div>
-</div><div class="small-cards"><div class="small-card">
-<div>أرباح المهام</div>
-<div class="small-card-value">$ <span id="profitTask">0.00</span></div>
-</div><div class="small-card">
-<div>أرباح الدعوات</div>
-<div class="small-card-value">$ <span id="profitReferral">0.00</span></div>
-</div></div><div class="money-actions">
-<button class="money-btn deposit" onclick="openModal('depositModal')">💰 إيداع</button>
-<button class="money-btn withdraw" onclick="openModal('withdrawModal')">💸 سحب</button>
-</div><div class="withdraw-history-section"><h2>سجل السحب</h2>
-<p>سجل عمليات السحب الخاصة بك</p><div id="withdrawHistory">
-<div class="withdraw-empty">لا توجد عمليات سحب حتى الآن</div>
-</div></div></section><!-- TEAM --><section id="teamPage" class="page"><div class="page-title">
-<h1>👑 قائد الفريق</h1>
-<p>قم ببناء فريقك للوصول إلى مستويات VIP</p>
-</div><div class="team-level"><div class="level-header"><div>
-<h3 id="vipTitle">VIP 0</h3>
-<p>عدد الأعضاء المؤهلين: <span id="teamCount">0</span></p>
-</div><div class="vip-badge">
-<span id="vipPercent">0%</span>
-</div></div><div class="progress">
-<div id="teamProgress" class="progress-bar"></div>
-</div></div><div class="vip-grid"><div class="vip-item"><h4>VIP 1</h4><p>5 أشخاص</p></div>
-<div class="vip-item"><h4>VIP 2</h4><p>10 أشخاص</p></div>
-<div class="vip-item"><h4>VIP 3</h4><p>20 شخص</p></div>
-<div class="vip-item"><h4>VIP 4</h4><p>50 شخص</p></div>
-<div class="vip-item"><h4>VIP 5</h4><p>100 شخص</p></div></div><div class="settings-box" style="margin-top:18px"><h3>رابط الدعوة الخاص بك</h3>
-<p>شارك الرابط مع أصدقائك.</p><div class="team-link"><input id="referralLink" type="text" readonly><button class="copy-btn" onclick="copyReferralLink()">نسخ</button>
+</div>
 
-<button class="share-btn" onclick="shareReferral()">مشاركة</button>
+<div class="balance-card">
+
+<div class="balance-label">الرصيد الإجمالي</div>
+
+<div class="balance-value">
+$ <span id="balancePageValue">0.00</span>
+</div>
 
 </div>
-</div></section><!-- TRANSACTIONS --><section id="transactionsPage" class="page"><div class="page-title">
+
+
+<div class="small-cards">
+
+<div class="small-card">
+
+<div>أرباح المهام</div>
+
+<div class="small-card-value">
+$ <span id="profitTask">0.00</span>
+</div>
+
+</div>
+
+
+<div class="small-card">
+
+<div>أرباح الدعوات</div>
+
+<div class="small-card-value">
+$ <span id="profitReferral">0.00</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="money-actions">
+
+<button class="money-btn deposit" onclick="openModal('depositModal')">
+💰 إيداع
+</button>
+
+<button class="money-btn withdraw" onclick="openModal('withdrawModal')">
+💸 سحب
+</button>
+
+</div>
+
+
+<div class="withdraw-history-section">
+
+<h2>سجل السحب</h2>
+
+<p>سجل عمليات السحب الخاصة بك</p>
+
+<div id="withdrawHistory">
+<div class="withdraw-empty">
+لا توجد عمليات سحب حتى الآن
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TEAM -->
+
+<section id="teamPage" class="page">
+
+<div class="page-title">
+
+<h1>👑 قائد الفريق</h1>
+
+<p>قم ببناء فريقك للوصول إلى مستويات VIP</p>
+
+</div>
+
+
+<div class="team-level">
+
+<div class="level-header">
+
+<div>
+
+<h3 id="vipTitle">VIP 0</h3>
+
+<p>
+عدد الأعضاء المؤهلين:
+<span id="teamCount">0</span>
+</p>
+
+</div>
+
+<div class="vip-badge">
+<span id="vipPercent">0%</span>
+</div>
+
+</div>
+
+<div class="progress">
+<div id="teamProgress" class="progress-bar"></div>
+</div>
+
+</div>
+
+
+<div class="vip-grid">
+
+<div class="vip-item">
+<h4>VIP 1</h4>
+<p>5 أشخاص</p>
+</div>
+
+<div class="vip-item">
+<h4>VIP 2</h4>
+<p>10 أشخاص</p>
+</div>
+
+<div class="vip-item">
+<h4>VIP 3</h4>
+<p>20 شخص</p>
+</div>
+
+<div class="vip-item">
+<h4>VIP 4</h4>
+<p>50 شخص</p>
+</div>
+
+<div class="vip-item">
+<h4>VIP 5</h4>
+<p>100 شخص</p>
+</div>
+
+</div>
+
+
+<div class="settings-box" style="margin-top:18px;">
+
+<h3>رابط الدعوة الخاص بك</h3>
+
+<p>شارك الرابط مع أصدقائك.</p>
+
+<div class="team-link">
+
+<input id="referralLink" type="text" readonly>
+
+<button class="copy-btn" onclick="copyReferralLink()">
+نسخ
+</button>
+
+<button class="share-btn" onclick="shareReferral()">
+مشاركة
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TRANSACTIONS -->
+
+<section id="transactionsPage" class="page">
+
+<div class="page-title">
+
 <h1>المعاملات</h1>
+
 <p>سجل عمليات حسابك</p>
-</div><div id="transactionsList">
-<div class="withdraw-empty">لا توجد معاملات حتى الآن</div>
-</div></section><!-- SETTINGS --><section id="settingsPage" class="page"><div class="page-title">
+
+</div>
+
+<div id="transactionsList">
+
+<div class="withdraw-empty">
+لا توجد معاملات حتى الآن
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settingsPage" class="page">
+
+<div class="page-title">
+
 <h1>الإعدادات</h1>
+
 <p>إدارة الحساب والأمان</p>
-</div><div class="settings-grid"><div class="settings-box"><h3>👤 الملف الشخصي</h3>
-<p>تعديل البريد الإلكتروني أو رقم الهاتف.</p><div class="input-group">
+
+</div>
+
+
+<div class="settings-grid">
+
+
+<div class="settings-box">
+
+<h3>👤 الملف الشخصي</h3>
+
+<p>تعديل البريد الإلكتروني أو رقم الهاتف.</p>
+
+<div class="input-group">
+
 <label>البريد الإلكتروني أو رقم الهاتف</label>
+
 <input id="settingsIdentifier" type="text">
-</div><button class="main-btn" onclick="updateProfile()">حفظ البيانات</button>
 
-</div><div class="settings-box"><h3>🔑 تغيير كلمة المرور</h3>
-<p>تغيير كلمة مرور تسجيل الدخول.</p><div class="input-group">
+</div>
+
+<button class="main-btn" onclick="updateProfile()">
+حفظ البيانات
+</button>
+
+</div>
+
+
+<div class="settings-box">
+
+<h3>🔑 تغيير كلمة المرور</h3>
+
+<p>تغيير كلمة مرور تسجيل الدخول.</p>
+
+<div class="input-group">
+
 <label>كلمة المرور الجديدة</label>
-<input id="newPassword" type="password">
-</div><button class="main-btn" onclick="changePassword()">تغيير كلمة المرور</button>
 
-</div><div class="settings-box"><h3>💬 مراسلة الدعم</h3>
-<p>أرسل رسالة إلى فريق الدعم.</p><div class="input-group">
-<textarea id="agentMessage" placeholder="اكتب رسالتك هنا"></textarea>
-</div><button class="main-btn" onclick="sendAgentMessage()">إرسال الرسالة</button>
+<div class="input-wrapper">
 
-</div></div>
-</section></main><nav class="mobile-bottom"><button class="bottom-item active" onclick="mobilePage('home',this)">
+<input
+id="newPassword"
+class="password-input"
+type="password"
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword('newPassword',this)"
+>
+👁️
+</button>
+
+</div>
+
+</div>
+
+<button class="main-btn" onclick="changePassword()">
+تغيير كلمة المرور
+</button>
+
+</div>
+
+
+<div class="settings-box">
+
+<h3>💬 مراسلة الدعم</h3>
+
+<p>أرسل رسالة إلى فريق الدعم.</p>
+
+<div class="input-group">
+
+<textarea
+id="agentMessage"
+placeholder="اكتب رسالتك هنا"
+></textarea>
+
+</div>
+
+<button class="main-btn" onclick="sendAgentMessage()">
+إرسال الرسالة
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<nav class="mobile-bottom">
+
+<button class="bottom-item active" onclick="mobilePage('home',this)">
 🏠
 <span>الرئيسية</span>
-</button><button class="bottom-item" onclick="mobilePage('tasksPage',this)">
+</button>
+
+<button class="bottom-item" onclick="mobilePage('tasksPage',this)">
 📋
 <span>المهام</span>
-</button><button class="bottom-item" onclick="mobilePage('balancePage',this)">
+</button>
+
+<button class="bottom-item" onclick="mobilePage('balancePage',this)">
 💰
 <span>الرصيد</span>
-</button><button class="bottom-item" onclick="mobilePage('teamPage',this)">
+</button>
+
+<button class="bottom-item" onclick="mobilePage('teamPage',this)">
 👑
 <span>الفريق</span>
-</button></nav></div><!-- DEPOSIT MODAL --><div id="depositModal" class="modal"><div class="modal-box"><div class="modal-header">
+</button>
+
+</nav>
+
+</div>
+
+
+<!-- DEPOSIT MODAL -->
+
+<div id="depositModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
 <h3>💰 إيداع</h3>
-<button class="close-btn" onclick="closeModal('depositModal')">×</button>
-</div><div class="input-group">
+
+<button class="close-btn" onclick="closeModal('depositModal')">
+×
+</button>
+
+</div>
+
+<div class="input-group">
+
 <label>مبلغ الإيداع</label>
-<input id="depositAmount" type="number" min="1" placeholder="100">
-</div><button class="main-btn" onclick="deposit()">تأكيد الإيداع التجريبي</button>
+
+<input
+id="depositAmount"
+type="number"
+min="1"
+placeholder="100"
+>
 
 </div>
-</div><!-- WITHDRAW MODAL --><div id="withdrawModal" class="modal"><div class="modal-box"><div class="modal-header">
+
+<button class="main-btn" onclick="deposit()">
+تأكيد الإيداع التجريبي
+</button>
+
+</div>
+
+</div>
+
+
+<!-- WITHDRAW MODAL -->
+
+<div id="withdrawModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
 <h3>💸 سحب</h3>
-<button class="close-btn" onclick="closeModal('withdrawModal')">×</button>
-</div><div class="input-group">
-<label>عنوان TRON TRC20</label>
-<input id="withdrawTron" type="text" placeholder="T...">
-</div><div class="input-group">
-<label>مبلغ السحب</label>
-<input id="withdrawAmount" type="number" min="1" placeholder="50">
-</div><button class="main-btn" onclick="withdraw()">تأكيد طلب السحب</button>
+
+<button class="close-btn" onclick="closeModal('withdrawModal')">
+×
+</button>
 
 </div>
-</div><div id="toast" class="toast"></div><script>
 
-/* ================================
-   SAFE STORAGE
-================================ */
+<div class="input-group">
 
-function getUsers(){
+<label>عنوان TRON TRC20</label>
+
+<input
+id="withdrawTron"
+type="text"
+placeholder="T..."
+>
+
+</div>
+
+<div class="input-group">
+
+<label>مبلغ السحب</label>
+
+<input
+id="withdrawAmount"
+type="number"
+min="1"
+placeholder="50"
+>
+
+</div>
+
+<button class="main-btn" onclick="withdraw()">
+تأكيد طلب السحب
+</button>
+
+</div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================================
+   STORAGE - حماية من البيانات التالفة
+========================================= */
+
+const USERS_KEY = "xl22_users_v2";
+const CURRENT_USER_KEY = "xl22_currentUser_v2";
+
+let users = [];
+let currentUserIndex = null;
+
+function loadData(){
 
     try{
-        const data=localStorage.getItem("xl22_users");
-        const parsed=data ? JSON.parse(data) : [];
-        return Array.isArray(parsed) ? parsed : [];
-    }catch(error){
-        console.error("Storage error:",error);
-        return [];
-    }
 
-}
+        const savedUsers =
+            localStorage.getItem(USERS_KEY);
 
-let users=getUsers();
+        const savedCurrent =
+            localStorage.getItem(CURRENT_USER_KEY);
 
-let currentUserIndex=null;
+        users = savedUsers
+            ? JSON.parse(savedUsers)
+            : [];
 
-try{
+        if(!Array.isArray(users)){
+            users = [];
+        }
 
-    const savedIndex=localStorage.getItem("xl22_currentUser");
-
-    if(savedIndex!==null && savedIndex!==""){
-        const numberIndex=Number(savedIndex);
+        currentUserIndex =
+            savedCurrent !== null
+            ? Number(savedCurrent)
+            : null;
 
         if(
-            Number.isInteger(numberIndex) &&
-            numberIndex>=0 &&
-            numberIndex<users.length
+            currentUserIndex !== null &&
+            (
+                Number.isNaN(currentUserIndex) ||
+                !users[currentUserIndex]
+            )
         ){
-            currentUserIndex=numberIndex;
+
+            currentUserIndex = null;
+
+            localStorage.removeItem(
+                CURRENT_USER_KEY
+            );
+
         }
+
+    }catch(error){
+
+        console.error(
+            "Storage Error:",
+            error
+        );
+
+        users = [];
+        currentUserIndex = null;
+
+        localStorage.removeItem(
+            USERS_KEY
+        );
+
+        localStorage.removeItem(
+            CURRENT_USER_KEY
+        );
+
     }
-
-}catch(error){
-
-    console.error("Current user error:",error);
 
 }
 
 
-/* ================================
-   SAVE
-================================ */
+/* =========================================
+   SAVE DATA
+========================================= */
 
 function saveData(){
 
     try{
 
         localStorage.setItem(
-            "xl22_users",
+            USERS_KEY,
             JSON.stringify(users)
         );
 
-        if(currentUserIndex!==null){
+        if(currentUserIndex !== null){
 
             localStorage.setItem(
-                "xl22_currentUser",
+                CURRENT_USER_KEY,
                 String(currentUserIndex)
+            );
+
+        }else{
+
+            localStorage.removeItem(
+                CURRENT_USER_KEY
             );
 
         }
 
-        return true;
-
     }catch(error){
 
-        console.error("Save error:",error);
+        console.error(
+            "Save Error:",
+            error
+        );
 
-        toast("تعذر حفظ البيانات على هذا المتصفح");
-
-        return false;
+        toast(
+            "تعذر حفظ البيانات في المتصفح"
+        );
 
     }
 
 }
 
 
-/* ================================
+/* =========================================
    TOAST
-================================ */
+========================================= */
 
 function toast(message){
 
-    const element=document.getElementById("toast");
+    const element =
+        document.getElementById("toast");
 
     if(!element){
-        alert(message);
         return;
     }
 
-    element.textContent=message;
+    element.textContent =
+        message;
 
     element.classList.add("show");
 
-    clearTimeout(window.toastTimer);
+    clearTimeout(
+        window.toastTimer
+    );
 
-    window.toastTimer=setTimeout(function(){
+    window.toastTimer =
+        setTimeout(
+            function(){
 
-        element.classList.remove("show");
+                element.classList.remove(
+                    "show"
+                );
 
-    },2500);
+            },
+            2500
+        );
 
 }
 
 
-/* ================================
-   AUTH
-================================ */
+/* =========================================
+   PASSWORD EYE
+========================================= */
+
+function togglePassword(
+    inputId,
+    button
+){
+
+    const input =
+        document.getElementById(
+            inputId
+        );
+
+    if(!input){
+        return;
+    }
+
+    if(
+        input.type === "password"
+    ){
+
+        input.type = "text";
+
+        button.textContent =
+            "🙈";
+
+        button.setAttribute(
+            "aria-label",
+            "إخفاء كلمة المرور"
+        );
+
+    }else{
+
+        input.type = "password";
+
+        button.textContent =
+            "👁️";
+
+        button.setAttribute(
+            "aria-label",
+            "إظهار كلمة المرور"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   AUTH SCREENS
+========================================= */
 
 function showRegister(){
 
     document
-    .getElementById("loginForm")
-    .classList.add("hidden");
+        .getElementById("loginForm")
+        .classList.add("hidden");
 
     document
-    .getElementById("registerForm")
-    .classList.remove("hidden");
+        .getElementById("registerForm")
+        .classList.remove("hidden");
 
 }
 
@@ -1132,187 +1935,436 @@ function showRegister(){
 function showLogin(){
 
     document
-    .getElementById("registerForm")
-    .classList.add("hidden");
+        .getElementById("registerForm")
+        .classList.add("hidden");
 
     document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
+        .getElementById("loginForm")
+        .classList.remove("hidden");
 
 }
 
+
+/* =========================================
+   REGISTER
+========================================= */
 
 function register(){
 
-    const identifier=document
-    .getElementById("registerIdentifier")
-    .value
-    .trim();
+    const identifier =
+        document
+            .getElementById(
+                "registerIdentifier"
+            )
+            .value
+            .trim();
 
-    const password=document
-    .getElementById("registerPassword")
-    .value;
+    const password =
+        document
+            .getElementById(
+                "registerPassword"
+            )
+            .value;
 
-    const confirm=document
-    .getElementById("registerConfirm")
-    .value;
+    const confirm =
+        document
+            .getElementById(
+                "registerConfirm"
+            )
+            .value;
 
-    const error=document
-    .getElementById("registerError");
+    const error =
+        document
+            .getElementById(
+                "registerError"
+            );
 
-    error.classList.add("hidden");
+
+    error.classList.add(
+        "hidden"
+    );
+
 
     if(!identifier){
 
-        error.textContent="أدخل البريد الإلكتروني أو رقم الهاتف";
-        error.classList.remove("hidden");
+        error.textContent =
+            "أدخل البريد الإلكتروني أو رقم الهاتف";
+
+        error.classList.remove(
+            "hidden"
+        );
+
         return;
 
     }
 
-    if(password.length<6){
 
-        error.textContent="كلمة المرور يجب أن تكون 6 أحرف على الأقل";
-        error.classList.remove("hidden");
+    if(password.length < 6){
+
+        error.textContent =
+            "كلمة المرور يجب أن تكون 6 أحرف على الأقل";
+
+        error.classList.remove(
+            "hidden"
+        );
+
         return;
 
     }
 
-    if(password!==confirm){
 
-        error.textContent="كلمتا المرور غير متطابقتين";
-        error.classList.remove("hidden");
+    if(password !== confirm){
+
+        error.textContent =
+            "كلمتا المرور غير متطابقتين";
+
+        error.classList.remove(
+            "hidden"
+        );
+
         return;
 
     }
 
-    const exists=users.some(function(user){
 
-        return user.identifier===identifier;
+    const normalized =
+        identifier.toLowerCase();
 
-    });
+
+    const exists =
+        users.some(
+            user =>
+                String(
+                    user.identifier || ""
+                ).toLowerCase()
+                === normalized
+        );
+
 
     if(exists){
 
-        error.textContent="الحساب موجود مسبقاً";
-        error.classList.remove("hidden");
+        error.textContent =
+            "الحساب موجود مسبقاً";
+
+        error.classList.remove(
+            "hidden"
+        );
+
         return;
 
     }
 
-    const user={
 
-        identifier:identifier,
+    const user = {
 
-        password:password,
+        identifier:
+            identifier,
 
-        balance:0,
+        password:
+            password,
 
-        taskProfit:0,
+        balance:
+            0,
 
-        referralProfit:0,
+        taskProfit:
+            0,
 
-        referralCount:0,
+        referralProfit:
+            0,
+
+        referralCount:
+            0,
 
         referralCode:
-        "XL"+
-        Math.random()
-        .toString(36)
-        .substring(2,8)
-        .toUpperCase(),
+            "XL" +
+            Math.random()
+                .toString(36)
+                .substring(2,8)
+                .toUpperCase(),
 
-        withdrawHistory:[],
+        withdrawHistory:
+            [],
 
-        transactions:[]
+        transactions:
+            []
 
     };
 
-    users.push(user);
 
-    currentUserIndex=users.length-1;
+    users.push(
+        user
+    );
 
-    if(saveData()){
 
-        openApp();
+    currentUserIndex =
+        users.length - 1;
 
-        toast("تم إنشاء الحساب بنجاح");
 
-    }
+    saveData();
+
+
+    openApp();
+
+
+    toast(
+        "تم إنشاء الحساب بنجاح"
+    );
 
 }
 
 
+/* =========================================
+   LOGIN
+========================================= */
+
 function login(){
 
-    const identifier=document
-    .getElementById("loginIdentifier")
-    .value
-    .trim();
+    const identifier =
+        document
+            .getElementById(
+                "loginIdentifier"
+            )
+            .value
+            .trim();
 
-    const password=document
-    .getElementById("loginPassword")
-    .value;
+    const password =
+        document
+            .getElementById(
+                "loginPassword"
+            )
+            .value;
 
-    const error=document
-    .getElementById("loginError");
+    const error =
+        document
+            .getElementById(
+                "loginError"
+            );
 
-    error.classList.add("hidden");
 
-    const index=users.findIndex(function(user){
+    error.classList.add(
+        "hidden"
+    );
 
-        return(
-            user.identifier===identifier &&
-            user.password===password
+
+    if(!identifier){
+
+        error.textContent =
+            "أدخل البريد الإلكتروني أو رقم الهاتف";
+
+        error.classList.remove(
+            "hidden"
         );
 
-    });
-
-    if(index===-1){
-
-        error.textContent="بيانات تسجيل الدخول غير صحيحة";
-        error.classList.remove("hidden");
         return;
 
     }
 
-    currentUserIndex=index;
+
+    if(!password){
+
+        error.textContent =
+            "أدخل كلمة المرور";
+
+        error.classList.remove(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+
+    const normalized =
+        identifier.toLowerCase();
+
+
+    const index =
+        users.findIndex(
+            user => {
+
+                const savedIdentifier =
+                    String(
+                        user.identifier || ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+                const savedPassword =
+                    String(
+                        user.password || ""
+                    );
+
+                return (
+                    savedIdentifier
+                    === normalized
+                    &&
+                    savedPassword
+                    === password
+                );
+
+            }
+        );
+
+
+    if(index === -1){
+
+        error.textContent =
+            "بيانات تسجيل الدخول غير صحيحة. تأكد من البريد/الهاتف وكلمة المرور.";
+
+        error.classList.remove(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+
+    currentUserIndex =
+        index;
+
 
     saveData();
+
 
     openApp();
 
 }
 
 
+/* =========================================
+   RESET DATA
+========================================= */
+
+function resetAppData(){
+
+    const confirmed =
+        confirm(
+            "سيتم حذف جميع الحسابات والبيانات المحفوظة على هذا المتصفح. هل تريد المتابعة؟"
+        );
+
+    if(!confirmed){
+        return;
+    }
+
+
+    localStorage.removeItem(
+        USERS_KEY
+    );
+
+    localStorage.removeItem(
+        CURRENT_USER_KEY
+    );
+
+
+    users = [];
+
+    currentUserIndex =
+        null;
+
+
+    document
+        .getElementById(
+            "app"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "authScreen"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "loginIdentifier"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "loginPassword"
+        )
+        .value = "";
+
+
+    showLogin();
+
+
+    toast(
+        "تم مسح البيانات. يمكنك إنشاء حساب جديد."
+    );
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
 function logout(){
 
-    currentUserIndex=null;
+    currentUserIndex =
+        null;
 
-    try{
-        localStorage.removeItem("xl22_currentUser");
-    }catch(error){}
+    localStorage.removeItem(
+        CURRENT_USER_KEY
+    );
 
-    document
-    .getElementById("app")
-    .classList.add("hidden");
 
     document
-    .getElementById("authScreen")
-    .classList.remove("hidden");
+        .getElementById(
+            "app"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "authScreen"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "loginIdentifier"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "loginPassword"
+        )
+        .value = "";
+
 
     showLogin();
 
 }
 
 
-/* ================================
+/* =========================================
    CURRENT USER
-================================ */
+========================================= */
 
 function getCurrentUser(){
 
     if(
-        currentUserIndex===null ||
+        currentUserIndex === null
+        ||
         !users[currentUserIndex]
     ){
 
@@ -1320,88 +2372,164 @@ function getCurrentUser(){
 
     }
 
-    return users[currentUserIndex];
+    return users[
+        currentUserIndex
+    ];
 
 }
 
 
-/* ================================
+/* =========================================
    OPEN APP
-================================ */
+========================================= */
 
 function openApp(){
 
-    const user=getCurrentUser();
+    const user =
+        getCurrentUser();
+
 
     if(!user){
+
+        currentUserIndex =
+            null;
+
         return;
+
     }
 
-    user.withdrawHistory=user.withdrawHistory||[];
-    user.transactions=user.transactions||[];
-    user.balance=Number(user.balance)||0;
-    user.taskProfit=Number(user.taskProfit)||0;
-    user.referralProfit=Number(user.referralProfit)||0;
-    user.referralCount=Number(user.referralCount)||0;
 
     document
-    .getElementById("authScreen")
-    .classList.add("hidden");
+        .getElementById(
+            "authScreen"
+        )
+        .classList.add(
+            "hidden"
+        );
+
 
     document
-    .getElementById("app")
-    .classList.remove("hidden");
+        .getElementById(
+            "app"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
 
     updateUI();
 
-    const homeButton=document.querySelector(
-        '.nav-item[onclick*="home"]'
-    );
 
-    showPage("home",homeButton);
+    const homeButton =
+        document.querySelector(
+            '.nav-item[onclick*="home"]'
+        );
+
+
+    showPage(
+        "home",
+        homeButton
+    );
 
 }
 
 
-/* ================================
+/* =========================================
    UPDATE UI
-================================ */
+========================================= */
 
 function updateUI(){
 
-    const user=getCurrentUser();
+    const user =
+        getCurrentUser();
+
 
     if(!user){
         return;
     }
 
-    document
-    .getElementById("headerUser")
-    .textContent=user.identifier;
+
+    user.balance =
+        Number(
+            user.balance || 0
+        );
+
+    user.taskProfit =
+        Number(
+            user.taskProfit || 0
+        );
+
+    user.referralProfit =
+        Number(
+            user.referralProfit || 0
+        );
+
+    user.withdrawHistory =
+        Array.isArray(
+            user.withdrawHistory
+        )
+        ? user.withdrawHistory
+        : [];
+
+    user.transactions =
+        Array.isArray(
+            user.transactions
+        )
+        ? user.transactions
+        : [];
+
 
     document
-    .getElementById("avatar")
-    .textContent=
-    user.identifier.charAt(0).toUpperCase();
+        .getElementById(
+            "headerUser"
+        )
+        .textContent =
+            user.identifier;
+
 
     document
-    .getElementById("balancePageValue")
-    .textContent=
-    Number(user.balance||0).toFixed(2);
+        .getElementById(
+            "avatar"
+        )
+        .textContent =
+            String(
+                user.identifier
+            )
+            .charAt(0)
+            .toUpperCase();
+
 
     document
-    .getElementById("profitTask")
-    .textContent=
-    Number(user.taskProfit||0).toFixed(2);
+        .getElementById(
+            "balancePageValue"
+        )
+        .textContent =
+            user.balance.toFixed(2);
+
 
     document
-    .getElementById("profitReferral")
-    .textContent=
-    Number(user.referralProfit||0).toFixed(2);
+        .getElementById(
+            "profitTask"
+        )
+        .textContent =
+            user.taskProfit.toFixed(2);
+
 
     document
-    .getElementById("settingsIdentifier")
-    .value=user.identifier;
+        .getElementById(
+            "profitReferral"
+        )
+        .textContent =
+            user.referralProfit.toFixed(2);
+
+
+    document
+        .getElementById(
+            "settingsIdentifier"
+        )
+        .value =
+            user.identifier;
+
 
     updateReferralLink();
 
@@ -1414,43 +2542,71 @@ function updateUI(){
 }
 
 
-/* ================================
+/* =========================================
    NAVIGATION
-================================ */
+========================================= */
 
-function showPage(pageId,button){
+function showPage(
+    pageId,
+    button
+){
 
     document
-    .querySelectorAll(".page")
-    .forEach(function(page){
+        .querySelectorAll(
+            ".page"
+        )
+        .forEach(
+            page =>
+                page.classList.remove(
+                    "active"
+                )
+        );
 
-        page.classList.remove("active");
 
-    });
+    const page =
+        document.getElementById(
+            pageId
+        );
 
-    const page=document.getElementById(pageId);
 
     if(page){
-        page.classList.add("active");
+
+        page.classList.add(
+            "active"
+        );
+
     }
+
 
     document
-    .querySelectorAll(".nav-item")
-    .forEach(function(item){
+        .querySelectorAll(
+            ".nav-item"
+        )
+        .forEach(
+            item =>
+                item.classList.remove(
+                    "active"
+                )
+        );
 
-        item.classList.remove("active");
-
-    });
 
     if(button){
-        button.classList.add("active");
+
+        button.classList.add(
+            "active"
+        );
+
     }
 
-    const sidebar=document.getElementById("sidebar");
 
-    if(sidebar){
-        sidebar.classList.remove("open");
-    }
+    document
+        .getElementById(
+            "sidebar"
+        )
+        .classList.remove(
+            "open"
+        );
+
 
     window.scrollTo({
         top:0,
@@ -1460,48 +2616,74 @@ function showPage(pageId,button){
 }
 
 
-function mobilePage(pageId,button){
+function mobilePage(
+    pageId,
+    button
+){
 
-    showPage(pageId,null);
+    showPage(
+        pageId,
+        null
+    );
+
 
     document
-    .querySelectorAll(".bottom-item")
-    .forEach(function(item){
+        .querySelectorAll(
+            ".bottom-item"
+        )
+        .forEach(
+            item =>
+                item.classList.remove(
+                    "active"
+                )
+        );
 
-        item.classList.remove("active");
-
-    });
 
     if(button){
-        button.classList.add("active");
+
+        button.classList.add(
+            "active"
+        );
+
     }
 
 }
 
 
-/* ================================
+/* =========================================
    SIDEBAR
-================================ */
+========================================= */
 
 function toggleSidebar(){
 
     document
-    .getElementById("sidebar")
-    .classList.toggle("open");
+        .getElementById(
+            "sidebar"
+        )
+        .classList.toggle(
+            "open"
+        );
 
 }
 
 
-/* ================================
-   MODALS
-================================ */
+/* =========================================
+   MODAL
+========================================= */
 
 function openModal(id){
 
-    const modal=document.getElementById(id);
+    const modal =
+        document.getElementById(
+            id
+        );
 
     if(modal){
-        modal.classList.add("show");
+
+        modal.classList.add(
+            "show"
+        );
+
     }
 
 }
@@ -1509,422 +2691,677 @@ function openModal(id){
 
 function closeModal(id){
 
-    const modal=document.getElementById(id);
+    const modal =
+        document.getElementById(
+            id
+        );
 
     if(modal){
-        modal.classList.remove("show");
+
+        modal.classList.remove(
+            "show"
+        );
+
     }
 
 }
 
 
-/* ================================
+/* =========================================
    DEPOSIT
-================================ */
+========================================= */
 
 function deposit(){
 
-    const amount=Number(
-        document
-        .getElementById("depositAmount")
-        .value
-    );
+    const amount =
+        Number(
+            document
+                .getElementById(
+                    "depositAmount"
+                )
+                .value
+        );
 
-    const user=getCurrentUser();
+
+    const user =
+        getCurrentUser();
+
 
     if(!user){
         return;
     }
 
-    if(!amount || amount<=0){
 
-        toast("أدخل مبلغاً صحيحاً");
+    if(
+        !amount
+        ||
+        amount <= 0
+    ){
+
+        toast(
+            "أدخل مبلغاً صحيحاً"
+        );
+
         return;
 
     }
 
-    user.balance+=amount;
 
-    user.transactions=user.transactions||[];
+    user.balance +=
+        amount;
+
 
     user.transactions.unshift({
 
-        type:"إيداع",
+        type:
+            "إيداع",
 
-        amount:amount,
+        amount:
+            amount,
 
-        date:new Date().toLocaleString("ar-SA")
+        date:
+            new Date()
+                .toLocaleString(
+                    "ar-SA"
+                )
 
     });
+
 
     saveData();
 
     updateUI();
 
+    closeModal(
+        "depositModal"
+    );
+
+
     document
-    .getElementById("depositAmount")
-    .value="";
+        .getElementById(
+            "depositAmount"
+        )
+        .value = "";
 
-    closeModal("depositModal");
 
-    toast("تم تسجيل الإيداع التجريبي");
+    toast(
+        "تم تسجيل الإيداع التجريبي"
+    );
 
 }
 
 
-/* ================================
+/* =========================================
    WITHDRAW
-================================ */
+========================================= */
 
 function withdraw(){
 
-    const amount=Number(
+    const amount =
+        Number(
+            document
+                .getElementById(
+                    "withdrawAmount"
+                )
+                .value
+        );
+
+
+    const address =
         document
-        .getElementById("withdrawAmount")
-        .value
-    );
+            .getElementById(
+                "withdrawTron"
+            )
+            .value
+            .trim();
 
-    const address=document
-    .getElementById("withdrawTron")
-    .value
-    .trim();
 
-    const user=getCurrentUser();
+    const user =
+        getCurrentUser();
+
 
     if(!user){
         return;
     }
 
-    if(!amount || amount<=0){
 
-        toast("أدخل مبلغ السحب");
+    if(
+        !amount
+        ||
+        amount <= 0
+    ){
+
+        toast(
+            "أدخل مبلغ السحب"
+        );
+
         return;
 
     }
+
 
     if(!address){
 
-        toast("أدخل عنوان TRON");
+        toast(
+            "أدخل عنوان TRON"
+        );
+
         return;
 
     }
 
-    user.withdrawHistory=user.withdrawHistory||[];
 
-    if(amount>user.balance){
+    if(
+        amount > user.balance
+    ){
 
         user.withdrawHistory.unshift({
 
-            amount:amount,
+            amount:
+                amount,
 
-            status:"فشل",
+            status:
+                "فشل",
 
-            date:new Date().toLocaleString("ar-SA")
+            date:
+                new Date()
+                    .toLocaleString(
+                        "ar-SA"
+                    )
 
         });
 
+
         saveData();
 
-        renderWithdrawHistory();
+        updateUI();
 
-        closeModal("withdrawModal");
+        closeModal(
+            "withdrawModal"
+        );
 
-        toast("فشل السحب بسبب عدم كفاية الرصيد");
+
+        toast(
+            "فشل السحب بسبب عدم كفاية الرصيد"
+        );
 
         return;
 
     }
 
-    user.balance-=amount;
+
+    user.balance -=
+        amount;
+
 
     user.withdrawHistory.unshift({
 
-        amount:amount,
+        amount:
+            amount,
 
-        status:"مكتمل",
+        status:
+            "مكتمل",
 
-        date:new Date().toLocaleString("ar-SA")
+        date:
+            new Date()
+                .toLocaleString(
+                    "ar-SA"
+                )
 
     });
 
-    user.transactions=user.transactions||[];
 
     user.transactions.unshift({
 
-        type:"سحب",
+        type:
+            "سحب",
 
-        amount:amount,
+        amount:
+            amount,
 
-        date:new Date().toLocaleString("ar-SA")
+        date:
+            new Date()
+                .toLocaleString(
+                    "ar-SA"
+                )
 
     });
+
 
     saveData();
 
     updateUI();
 
-    document
-    .getElementById("withdrawAmount")
-    .value="";
+    closeModal(
+        "withdrawModal"
+    );
 
-    document
-    .getElementById("withdrawTron")
-    .value="";
 
-    closeModal("withdrawModal");
-
-    toast("تم تسجيل طلب السحب");
+    toast(
+        "تم تسجيل طلب السحب"
+    );
 
 }
 
 
-/* ================================
+/* =========================================
    WITHDRAW HISTORY
-================================ */
+========================================= */
 
 function renderWithdrawHistory(){
 
-    const container=document
-    .getElementById("withdrawHistory");
+    const container =
+        document.getElementById(
+            "withdrawHistory"
+        );
 
-    const user=getCurrentUser();
 
-    if(!container || !user){
+    if(!container){
         return;
     }
 
-    const history=user.withdrawHistory||[];
 
-    if(!history.length){
+    const user =
+        getCurrentUser();
 
-        container.innerHTML=
-        '<div class="withdraw-empty">لا توجد عمليات سحب حتى الآن</div>';
-
-        return;
-
-    }
-
-    container.innerHTML=history.map(function(record){
-
-        const complete=record.status==="مكتمل";
-
-        return`
-
-        <div class="withdraw-record">
-
-            <div>
-                <strong>سحب</strong>
-                <div class="withdraw-record-date">
-                    ${record.date}
-                </div>
-            </div>
-
-            <div class="withdraw-record-amount">
-                $${Number(record.amount).toFixed(2)}
-            </div>
-
-            <div class="withdraw-status ${complete?"withdraw-complete":"withdraw-failed"}">
-                ${complete?"مكتمل":"فشل"}
-            </div>
-
-        </div>
-
-        `;
-
-    }).join("");
-
-}
-
-
-/* ================================
-   TASKS
-================================ */
-
-function completeTask(amount){
-
-    const user=getCurrentUser();
 
     if(!user){
         return;
     }
 
-    user.balance+=amount;
 
-    user.taskProfit=
-    Number(user.taskProfit||0)+amount;
+    const history =
+        user.withdrawHistory || [];
 
-    user.transactions=user.transactions||[];
+
+    if(
+        history.length === 0
+    ){
+
+        container.innerHTML = `
+        <div class="withdraw-empty">
+        لا توجد عمليات سحب حتى الآن
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        history
+            .map(
+                record => {
+
+                    const status =
+                        record.status ===
+                        "مكتمل"
+                        ? "مكتمل"
+                        : "فشل";
+
+
+                    const className =
+                        status === "مكتمل"
+                        ? "withdraw-complete"
+                        : "withdraw-failed";
+
+
+                    return `
+
+                    <div class="withdraw-record">
+
+                    <div>
+
+                    <strong>
+                    سحب
+                    </strong>
+
+                    <div class="withdraw-record-date">
+                    ${record.date}
+                    </div>
+
+                    </div>
+
+                    <div class="withdraw-record-amount">
+                    $${Number(record.amount).toFixed(2)}
+                    </div>
+
+                    <div class="withdraw-status ${className}">
+                    ${status}
+                    </div>
+
+                    </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =========================================
+   TASKS
+========================================= */
+
+function completeTask(
+    amount
+){
+
+    const user =
+        getCurrentUser();
+
+
+    if(!user){
+        return;
+    }
+
+
+    user.balance +=
+        amount;
+
+
+    user.taskProfit =
+        Number(
+            user.taskProfit || 0
+        )
+        +
+        amount;
+
 
     user.transactions.unshift({
 
-        type:"مكافأة مهمة",
+        type:
+            "مكافأة مهمة",
 
-        amount:amount,
+        amount:
+            amount,
 
-        date:new Date().toLocaleString("ar-SA")
+        date:
+            new Date()
+                .toLocaleString(
+                    "ar-SA"
+                )
 
     });
+
 
     saveData();
 
     updateUI();
 
+
     toast(
-        "تمت إضافة $"+
-        Number(amount).toFixed(2)+
+        "تمت إضافة $" +
+        amount.toFixed(2) +
         " إلى رصيدك"
     );
 
 }
 
 
-/* ================================
+/* =========================================
    TEAM
-================================ */
+========================================= */
 
 function updateTeam(){
 
-    const user=getCurrentUser();
+    const user =
+        getCurrentUser();
+
 
     if(!user){
         return;
     }
 
-    const count=Number(user.referralCount||0);
 
-    let level=0;
+    const count =
+        Number(
+            user.referralCount || 0
+        );
 
-    if(count>=5)level=1;
-    if(count>=10)level=2;
-    if(count>=20)level=3;
-    if(count>=50)level=4;
-    if(count>=100)level=5;
 
-    const percentages=[
-        0,
-        10,
-        12,
-        15,
-        18,
-        20
-    ];
+    let level = 0;
+
+
+    if(count >= 5) level = 1;
+    if(count >= 10) level = 2;
+    if(count >= 20) level = 3;
+    if(count >= 50) level = 4;
+    if(count >= 100) level = 5;
+
+
+    const percentages =
+        [
+            0,
+            10,
+            12,
+            15,
+            18,
+            20
+        ];
+
 
     document
-    .getElementById("teamCount")
-    .textContent=count;
+        .getElementById(
+            "teamCount"
+        )
+        .textContent =
+            count;
+
 
     document
-    .getElementById("vipTitle")
-    .textContent="VIP "+level;
+        .getElementById(
+            "vipTitle"
+        )
+        .textContent =
+            "VIP " +
+            level;
+
 
     document
-    .getElementById("vipPercent")
-    .textContent=percentages[level]+"%";
+        .getElementById(
+            "vipPercent"
+        )
+        .textContent =
+            percentages[level] +
+            "%";
 
-    let progress=0;
 
-    if(level===0){
+    let progress = 0;
 
-        progress=(count/5)*100;
 
-    }else if(level===5){
+    if(level === 0){
 
-        progress=100;
+        progress =
+            (
+                count /
+                5
+            )
+            *
+            100;
+
+    }else if(level === 5){
+
+        progress =
+            100;
 
     }else{
 
-        const targets=[
-            5,
-            10,
-            20,
-            50,
-            100
-        ];
+        const targets =
+            [
+                5,
+                10,
+                20,
+                50,
+                100
+            ];
 
-        const previous=targets[level-1];
 
-        const next=targets[level];
+        const previous =
+            targets[
+                level - 1
+            ];
 
-        progress=
-        ((count-previous)/
-        (next-previous))*100;
+
+        const next =
+            targets[
+                level
+            ];
+
+
+        progress =
+            (
+                (
+                    count -
+                    previous
+                )
+                /
+                (
+                    next -
+                    previous
+                )
+            )
+            *
+            100;
 
     }
 
-    document
-    .getElementById("teamProgress")
-    .style.width=
-    Math.min(100,Math.max(0,progress))+"%";
 
     document
-    .querySelectorAll(".vip-item")
-    .forEach(function(item,index){
+        .getElementById(
+            "teamProgress"
+        )
+        .style.width =
+            Math.min(
+                100,
+                Math.max(
+                    0,
+                    progress
+                )
+            )
+            +
+            "%";
 
-        item.classList.toggle(
-            "active",
-            index+1<=level
+
+    document
+        .querySelectorAll(
+            ".vip-item"
+        )
+        .forEach(
+            (
+                item,
+                index
+            ) => {
+
+                item.classList.toggle(
+                    "active",
+                    index + 1 <= level
+                );
+
+            }
         );
-
-    });
 
 }
 
 
-/* ================================
+/* =========================================
    REFERRAL
-================================ */
+========================================= */
 
 function updateReferralLink(){
 
-    const user=getCurrentUser();
+    const user =
+        getCurrentUser();
 
-    const input=document
-    .getElementById("referralLink");
 
-    if(!user || !input){
+    if(!user){
         return;
     }
 
-    input.value=
-    window.location.href.split("?")[0]+
-    "?ref="+
-    user.referralCode;
+
+    const input =
+        document.getElementById(
+            "referralLink"
+        );
+
+
+    if(!input){
+        return;
+    }
+
+
+    input.value =
+        window.location.href
+            .split("?")[0]
+        +
+        "?ref="
+        +
+        user.referralCode;
 
 }
 
 
 function copyReferralLink(){
 
-    const input=document
-    .getElementById("referralLink");
+    const input =
+        document.getElementById(
+            "referralLink"
+        );
+
 
     if(!input){
         return;
     }
 
-    input.select();
-    input.setSelectionRange(0,99999);
 
-    if(navigator.clipboard){
+    input.select();
+
+    input.setSelectionRange(
+        0,
+        99999
+    );
+
+
+    if(
+        navigator.clipboard
+    ){
 
         navigator.clipboard
-        .writeText(input.value)
-        .then(function(){
+            .writeText(
+                input.value
+            )
+            .then(
+                () =>
+                    toast(
+                        "تم نسخ رابط الدعوة"
+                    )
+            )
+            .catch(
+                () => {
 
-            toast("تم نسخ رابط الدعوة");
+                    document.execCommand(
+                        "copy"
+                    );
 
-        })
-        .catch(function(){
+                    toast(
+                        "تم نسخ رابط الدعوة"
+                    );
 
-            document.execCommand("copy");
-            toast("تم نسخ رابط الدعوة");
-
-        });
+                }
+            );
 
     }else{
 
-        document.execCommand("copy");
-        toast("تم نسخ رابط الدعوة");
+        document.execCommand(
+            "copy"
+        );
+
+        toast(
+            "تم نسخ رابط الدعوة"
+        );
 
     }
 
@@ -1933,35 +3370,50 @@ function copyReferralLink(){
 
 function shareReferral(){
 
-    const user=getCurrentUser();
+    const user =
+        getCurrentUser();
+
 
     if(!user){
         return;
     }
 
-    const link=
-    window.location.href.split("?")[0]+
-    "?ref="+
-    user.referralCode;
 
-    if(navigator.share){
+    const link =
+        window.location.href
+            .split("?")[0]
+        +
+        "?ref="
+        +
+        user.referralCode;
+
+
+    if(
+        navigator.share
+    ){
 
         navigator.share({
 
-            title:"XL22",
+            title:
+                "XL22",
 
-            text:"انضم إلى منصة XL22",
+            text:
+                "انضم إلى منصة XL22",
 
-            url:link
+            url:
+                link
 
-        }).catch(function(){});
+        })
+        .catch(
+            () => {}
+        );
 
     }else{
 
         window.open(
-            "https://wa.me/?text="+
+            "https://wa.me/?text="
+            +
             encodeURIComponent(
-                "انضم إلى منصة XL22\n"+
                 link
             ),
             "_blank"
@@ -1972,175 +3424,271 @@ function shareReferral(){
 }
 
 
-/* ================================
+/* =========================================
    TRANSACTIONS
-================================ */
+========================================= */
 
 function renderTransactions(){
 
-    const container=document
-    .getElementById("transactionsList");
+    const container =
+        document.getElementById(
+            "transactionsList"
+        );
 
-    const user=getCurrentUser();
 
-    if(!container || !user){
+    if(!container){
         return;
     }
 
-    const list=user.transactions||[];
 
-    if(!list.length){
+    const user =
+        getCurrentUser();
 
-        container.innerHTML=
-        '<div class="withdraw-empty">لا توجد معاملات حتى الآن</div>';
-
-        return;
-
-    }
-
-    container.innerHTML=list.map(function(item){
-
-        return`
-
-        <div class="withdraw-record">
-
-            <div>
-                <strong>${item.type}</strong>
-
-                <div class="withdraw-record-date">
-                    ${item.date}
-                </div>
-            </div>
-
-            <div class="withdraw-record-amount">
-                $${Number(item.amount).toFixed(2)}
-            </div>
-
-        </div>
-
-        `;
-
-    }).join("");
-
-}
-
-
-/* ================================
-   SETTINGS
-================================ */
-
-function updateProfile(){
-
-    const user=getCurrentUser();
 
     if(!user){
         return;
     }
 
-    const value=document
-    .getElementById("settingsIdentifier")
-    .value
-    .trim();
+
+    const list =
+        user.transactions || [];
+
+
+    if(
+        !list.length
+    ){
+
+        container.innerHTML = `
+        <div class="withdraw-empty">
+        لا توجد معاملات حتى الآن
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list
+            .map(
+                item => `
+
+                <div class="withdraw-record">
+
+                <div>
+
+                <strong>
+                ${item.type}
+                </strong>
+
+                <div class="withdraw-record-date">
+                ${item.date}
+                </div>
+
+                </div>
+
+                <div class="withdraw-record-amount">
+                $${Number(item.amount).toFixed(2)}
+                </div>
+
+                </div>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* =========================================
+   SETTINGS
+========================================= */
+
+function updateProfile(){
+
+    const user =
+        getCurrentUser();
+
+
+    if(!user){
+        return;
+    }
+
+
+    const value =
+        document
+            .getElementById(
+                "settingsIdentifier"
+            )
+            .value
+            .trim();
+
 
     if(!value){
 
-        toast("أدخل البيانات");
-        return;
-
-    }
-
-    const duplicate=users.some(function(item,index){
-
-        return(
-            index!==currentUserIndex &&
-            item.identifier===value
+        toast(
+            "أدخل البيانات"
         );
 
-    });
-
-    if(duplicate){
-
-        toast("هذه البيانات مستخدمة من حساب آخر");
         return;
 
     }
 
-    user.identifier=value;
+
+    const exists =
+        users.some(
+            (
+                item,
+                index
+            ) =>
+
+                index !==
+                currentUserIndex
+
+                &&
+
+                String(
+                    item.identifier || ""
+                )
+                .toLowerCase()
+
+                ===
+
+                value.toLowerCase()
+        );
+
+
+    if(exists){
+
+        toast(
+            "هذا البريد أو الرقم مستخدم مسبقاً"
+        );
+
+        return;
+
+    }
+
+
+    user.identifier =
+        value;
+
 
     saveData();
 
     updateUI();
 
-    toast("تم حفظ البيانات");
+
+    toast(
+        "تم حفظ البيانات"
+    );
 
 }
 
 
 function changePassword(){
 
-    const user=getCurrentUser();
+    const user =
+        getCurrentUser();
+
 
     if(!user){
         return;
     }
 
-    const password=document
-    .getElementById("newPassword")
-    .value;
 
-    if(password.length<6){
+    const password =
+        document
+            .getElementById(
+                "newPassword"
+            )
+            .value;
 
-        toast("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+
+    if(
+        password.length < 6
+    ){
+
+        toast(
+            "كلمة المرور يجب أن تكون 6 أحرف على الأقل"
+        );
+
         return;
 
     }
 
-    user.password=password;
+
+    user.password =
+        password;
+
 
     saveData();
 
-    document
-    .getElementById("newPassword")
-    .value="";
 
-    toast("تم تغيير كلمة المرور");
+    document
+        .getElementById(
+            "newPassword"
+        )
+        .value = "";
+
+
+    toast(
+        "تم تغيير كلمة المرور"
+    );
 
 }
 
 
 function sendAgentMessage(){
 
-    const message=document
-    .getElementById("agentMessage")
-    .value
-    .trim();
+    const message =
+        document
+            .getElementById(
+                "agentMessage"
+            )
+            .value
+            .trim();
+
 
     if(!message){
 
-        toast("اكتب رسالتك أولاً");
+        toast(
+            "اكتب رسالتك أولاً"
+        );
+
         return;
 
     }
 
-    document
-    .getElementById("agentMessage")
-    .value="";
 
-    toast("تم إرسال الرسالة");
+    document
+        .getElementById(
+            "agentMessage"
+        )
+        .value = "";
+
+
+    toast(
+        "تم إرسال الرسالة"
+    );
 
 }
 
 
-/* ================================
+/* =========================================
    AUTO LOGIN
-================================ */
+========================================= */
 
-window.addEventListener("load",function(){
+window.addEventListener(
+    "load",
+    function(){
 
-    try{
+        loadData();
+
 
         if(
-            currentUserIndex!==null &&
+            currentUserIndex !== null
+            &&
             users[currentUserIndex]
         ){
 
@@ -2148,67 +3696,129 @@ window.addEventListener("load",function(){
 
         }
 
-    }catch(error){
+    }
+);
 
-        console.error(
-            "Auto login error:",
-            error
-        );
 
-        currentUserIndex=null;
+/* =========================================
+   ENTER KEY LOGIN
+========================================= */
 
-        try{
-            localStorage.removeItem(
-                "xl22_currentUser"
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key !== "Enter"
+        ){
+            return;
+        }
+
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
             );
-        }catch(e){}
+
+
+        const registerForm =
+            document.getElementById(
+                "registerForm"
+            );
+
+
+        if(
+            !loginForm.classList.contains(
+                "hidden"
+            )
+        ){
+
+            login();
+
+        }else if(
+            !registerForm.classList.contains(
+                "hidden"
+            )
+        ){
+
+            register();
+
+        }
 
     }
+);
 
-});
 
-
-/* ================================
+/* =========================================
    CLOSE SIDEBAR
-================================ */
+========================================= */
 
-document.addEventListener("click",function(event){
+document.addEventListener(
+    "click",
+    function(event){
 
-    const sidebar=document
-    .getElementById("sidebar");
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
 
-    const menu=document
-    .querySelector(".mobile-menu");
 
-    if(
-        window.innerWidth<=900 &&
-        sidebar &&
-        sidebar.classList.contains("open") &&
-        !sidebar.contains(event.target) &&
-        menu &&
-        !menu.contains(event.target)
-    ){
+        const menu =
+            document.querySelector(
+                ".mobile-menu"
+            );
 
-        sidebar.classList.remove("open");
+
+        if(
+            window.innerWidth <= 900
+            &&
+            sidebar.classList.contains(
+                "open"
+            )
+            &&
+            !sidebar.contains(
+                event.target
+            )
+            &&
+            !menu.contains(
+                event.target
+            )
+        ){
+
+            sidebar.classList.remove(
+                "open"
+            );
+
+        }
 
     }
+);
 
-});
 
+/* =========================================
+   CLOSE MODAL BY CLICK OUTSIDE
+========================================= */
 
-/* ================================
-   CLOSE MODAL BY OUTSIDE CLICK
-================================ */
+document.addEventListener(
+    "click",
+    function(event){
 
-document.addEventListener("click",function(event){
+        if(
+            event.target.classList.contains(
+                "modal"
+            )
+        ){
 
-    if(event.target.classList.contains("modal")){
+            event.target.classList.remove(
+                "show"
+            );
 
-        event.target.classList.remove("show");
+        }
 
     }
+);
 
-});
+</script>
 
-</script></body>
-</html>
+</body>
+    </html>
