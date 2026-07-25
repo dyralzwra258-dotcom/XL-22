@@ -16,19 +16,20 @@ padding:0;
 
 :root{
 --gold:#d4af37;
---gold2:#b88a16;
---black:#080808;
---dark:#151515;
---white:#fff;
+--gold-dark:#9c7614;
+--black:#090909;
+--box:#151515;
+--text:#fff;
 --gray:#888;
 --green:#19b96b;
 --red:#e34b4b;
 }
 
 body{
-font-family:Arial,Tahoma,sans-serif;
-background:#080808;
-color:#fff;
+font-family:Tahoma,Arial,sans-serif;
+background:
+radial-gradient(circle at top,#211a08,#090909 50%);
+color:white;
 min-height:100vh;
 }
 
@@ -48,76 +49,57 @@ display:none!important;
 /* LOGIN */
 
 .auth-screen{
-height:100vh;
+min-height:100vh;
 display:flex;
-align-items:center;
 justify-content:center;
-background:
-linear-gradient(135deg,#050505,#1b1b1b);
+align-items:center;
 padding:20px;
 }
 
 
 .auth-box{
-
 width:100%;
 max-width:430px;
 background:#111;
-border:1px solid rgba(212,175,55,.4);
-border-radius:22px;
+border:1px solid rgba(212,175,55,.3);
+border-radius:20px;
 padding:30px;
 box-shadow:0 20px 60px #000;
-
 }
 
 
 .logo{
-
-font-size:34px;
+text-align:center;
+font-size:38px;
 font-weight:900;
 color:var(--gold);
 letter-spacing:3px;
-
 }
 
 
-.auth-logo{
-
+.subtitle{
 text-align:center;
-margin-bottom:25px;
-
+color:#777;
+margin:10px 0 25px;
 }
 
 
-.auth-logo p{
-
-color:#888;
-margin-top:8px;
-
-}
-
-
-.form-title{
-
+h2{
 text-align:center;
 margin-bottom:20px;
-
 }
 
 
 .input-group{
-
 margin-bottom:15px;
-
 }
 
 
-.input-group label{
-
+label{
 display:block;
-margin-bottom:7px;
 color:#ccc;
-
+font-size:14px;
+margin-bottom:7px;
 }
 
 
@@ -126,46 +108,16 @@ input,textarea{
 width:100%;
 background:#1b1b1b;
 border:1px solid #333;
-border-radius:10px;
+color:white;
 padding:13px;
-color:#fff;
+border-radius:10px;
 outline:none;
 
 }
 
 
-input:focus{
-
+input:focus,textarea:focus{
 border-color:var(--gold);
-
-}
-
-
-.password-box{
-
-position:relative;
-
-}
-
-
-.password-box input{
-
-padding-left:50px;
-
-}
-
-
-.eye-btn{
-
-position:absolute;
-left:8px;
-top:50%;
-transform:translateY(-50%);
-background:none;
-border:0;
-color:var(--gold);
-font-size:20px;
-
 }
 
 
@@ -175,22 +127,9 @@ width:100%;
 padding:14px;
 border:0;
 border-radius:10px;
-background:linear-gradient(135deg,var(--gold),var(--gold2));
-color:#111;
+background:linear-gradient(135deg,var(--gold),var(--gold-dark));
 font-weight:bold;
-font-size:16px;
-
-}
-
-
-.error{
-
-background:#351515;
-border:1px solid #803333;
-color:#ff7777;
-padding:10px;
-border-radius:8px;
-margin-bottom:15px;
+color:#111;
 
 }
 
@@ -198,8 +137,8 @@ margin-bottom:15px;
 .switch-text{
 
 text-align:center;
-color:#888;
 margin-top:20px;
+color:#777;
 
 }
 
@@ -207,13 +146,26 @@ margin-top:20px;
 .switch-text span{
 
 color:var(--gold);
+cursor:pointer;
 font-weight:bold;
 
 }
 
 
+.error{
 
-/* HEADER */
+background:rgba(220,50,50,.15);
+border:1px solid rgba(220,50,50,.3);
+color:#ff7777;
+padding:10px;
+border-radius:8px;
+font-size:14px;
+margin-bottom:15px;
+
+}
+
+
+/* APP */
 
 .header{
 
@@ -222,30 +174,29 @@ top:0;
 right:0;
 left:0;
 height:70px;
-background:#101010;
-border-bottom:1px solid rgba(212,175,55,.25);
+background:#111;
+border-bottom:1px solid #333;
 display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 20px;
-z-index:100;
+z-index:10;
 
 }
 
 
-.header-user{
+.header .logo{
 
-display:flex;
-align-items:center;
-gap:10px;
+font-size:26px;
+margin:0;
 
 }
 
 
 .avatar{
 
-width:40px;
-height:40px;
+width:42px;
+height:42px;
 border-radius:50%;
 background:var(--gold);
 color:#111;
@@ -257,20 +208,6 @@ font-weight:bold;
 }
 
 
-.user-code{
-
-background:#1b1b1b;
-border:1px solid rgba(212,175,55,.4);
-padding:8px 12px;
-border-radius:8px;
-color:var(--gold);
-
-}
-
-
-
-/* SIDEBAR */
-
 
 .sidebar{
 
@@ -280,8 +217,8 @@ right:0;
 bottom:0;
 width:230px;
 background:#101010;
-padding:20px 12px;
-border-left:1px solid rgba(212,175,55,.2);
+padding:20px;
+border-left:1px solid #333;
 
 }
 
@@ -289,13 +226,13 @@ border-left:1px solid rgba(212,175,55,.2);
 .nav-item{
 
 width:100%;
-padding:13px;
 background:none;
 border:0;
 color:#aaa;
+padding:13px;
 text-align:right;
 border-radius:10px;
-margin-bottom:5px;
+margin-bottom:7px;
 
 }
 
@@ -303,20 +240,16 @@ margin-bottom:5px;
 .nav-item:hover,
 .nav-item.active{
 
-background:rgba(212,175,55,.15);
+background:#241d08;
 color:var(--gold);
 
 }
 
 
-
-/* CONTENT */
-
-
 .content{
 
 margin-right:230px;
-padding:100px 30px 40px;
+padding:100px 30px;
 
 }
 
@@ -335,621 +268,47 @@ display:block;
 }
 
 
-.page-title h1{
-
-color:var(--gold);
-margin-bottom:8px;
-
-}
-
-
-.page-title p{
-
-color:#888;
-
-}
-
-
 .card{
 
 background:#111;
-border:1px solid rgba(212,175,55,.25);
-border-radius:18px;
-padding:22px;
-margin-top:20px;
-
-}/* MARKET */
-
-.market-box{
-
-background:#111;
-border:1px solid rgba(212,175,55,.25);
-border-radius:20px;
-padding:20px;
-}
-
-
-.market-title{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-
-}
-
-
-.market-title h2{
-
-color:var(--gold);
-
-}
-
-
-.status{
-
-color:#55d995;
-font-size:13px;
-
-}
-
-
-.crypto-list{
-
-display:flex;
-flex-direction:column;
-gap:10px;
-
-}
-
-
-.crypto-card{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#181818;
-border:1px solid #292929;
-padding:13px;
-border-radius:12px;
-
-}
-
-
-.crypto-info{
-
-display:flex;
-align-items:center;
-gap:12px;
-
-}
-
-
-.crypto-icon{
-
-width:42px;
-height:42px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-
-}
-
-
-.crypto-name{
-
-font-weight:bold;
-
-}
-
-
-.crypto-symbol{
-
-font-size:12px;
-color:#777;
-
-}
-
-
-.crypto-price{
-
-text-align:left;
-
-}
-
-
-.up{
-
-color:var(--green);
-font-size:12px;
-
-}
-
-
-.down{
-
-color:var(--red);
-font-size:12px;
-
-}
-
-
-.btc{
-
-background:#f7931a;
-
-}
-
-
-.eth{
-
-background:#627eea;
-
-}
-
-
-.usdt{
-
-background:#26a17b;
-
-}
-
-
-.bnb{
-
-background:#d9a923;
-color:#111;
-
-}
-
-
-/* BALANCE */
-
-.balance-number{
-
-font-size:35px;
-font-weight:900;
-color:var(--gold);
-margin-top:10px;
-
-}
-
-
-.actions{
-
-display:flex;
-gap:10px;
-margin-top:20px;
-
-}
-
-
-.action-btn{
-
-flex:1;
-padding:12px;
-border-radius:10px;
-border:0;
-font-weight:bold;
-
-}
-
-
-.deposit{
-
-background:var(--gold);
-color:#111;
-
-}
-
-
-.withdraw{
-
-background:#222;
-color:var(--gold);
-border:1px solid var(--gold);
-
-}
-
-
-
-/* TASKS */
-
-
-.tasks{
-
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-
-}
-
-
-.task{
-
-background:#111;
-border:1px solid rgba(212,175,55,.25);
+border:1px solid #333;
 border-radius:15px;
 padding:20px;
+margin-bottom:15px;
 
 }
 
-
-.task h3{
-
-margin:10px 0;
-
-}
-
-
-.task p{
-
-color:#888;
-font-size:14px;
-
-}
-
-
-.reward{
-
-color:var(--green);
-font-weight:bold;
-margin:15px 0;
-
-}
-
-
-.task button{
-
-background:var(--gold);
-border:0;
-padding:10px 15px;
-border-radius:8px;
-
-}
-
-
-
-/* TEAM */
-
-
-.vip-box{
-
-background:#111;
-border:1px solid rgba(212,175,55,.25);
-border-radius:18px;
-padding:20px;
-
-}
-
-
-.vip-title{
-
-display:flex;
-justify-content:space-between;
-
-}
-
-
-.vip{
-
-color:var(--gold);
-font-size:22px;
-font-weight:bold;
-
-}
-
-
-.progress{
-
-height:10px;
-background:#222;
-border-radius:20px;
-margin-top:20px;
-overflow:hidden;
-
-}
-
-
-.progress span{
-
-display:block;
-height:100%;
-width:0;
-background:var(--gold);
-
-}
-
-
-.vip-grid{
-
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:12px;
-margin-top:20px;
-
-}
-
-
-.vip-card{
-
-background:#111;
-border:1px solid #333;
-padding:15px;
-border-radius:12px;
-text-align:center;
-
-}
-
-
-.vip-card h4{
-
-color:var(--gold);
-
-}
-
-
-.vip-card p{
-
-color:#888;
-font-size:13px;
-
-}
-
-
-
-/* SETTINGS */
-
-
-.settings-grid{
-
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-
-}
-
-
-.settings-box{
-
-background:#111;
-border:1px solid rgba(212,175,55,.25);
-border-radius:18px;
-padding:20px;
-
-}
-
-
-
-/* MODAL */
-
-
-.modal{
-
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.75);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:500;
-
-}
-
-
-.modal.show{
-
-display:flex;
-
-}
-
-
-.modal-box{
-
-background:#111;
-width:90%;
-max-width:420px;
-padding:25px;
-border-radius:18px;
-border:1px solid var(--gold);
-
-}
-
-
-.close{
-
-float:left;
-background:none;
-border:0;
-color:#aaa;
-font-size:25px;
-
-}
-
-
-
-/* MOBILE */
-
-
-.mobile-menu{
-
-display:none;
-background:none;
-border:0;
-color:var(--gold);
-font-size:25px;
-
-}
-
-
-.mobile-bottom{
-
-display:none;
-
-}
-
-
-@media(max-width:900px){
-
-
-.mobile-menu{
-
-display:block;
-
-}
-
-
-.sidebar{
-
-right:-240px;
-transition:.3s;
-
-}
-
-
-.sidebar.open{
-
-right:0;
-
-}
-
-
-.content{
-
-margin-right:0;
-padding:90px 15px;
-
-}
-
-
-.tasks{
-
-grid-template-columns:1fr;
-
-}
-
-
-.vip-grid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-
-.settings-grid{
-
-grid-template-columns:1fr;
-
-}
-
-
-.mobile-bottom{
-
-display:flex;
-position:fixed;
-bottom:0;
-right:0;
-left:0;
-height:65px;
-background:#111;
-border-top:1px solid rgba(212,175,55,.3);
-justify-content:space-around;
-z-index:200;
-
-}
-
-}
-
-
-.toast{
-
-position:fixed;
-bottom:25px;
-left:20px;
-background:var(--gold);
-color:#111;
-padding:12px 18px;
-border-radius:10px;
-font-weight:bold;
-display:none;
-
-}
-
-
-.toast.show{
-
-display:block;
-
-}
 
 </style>
-
 </head>
 
-<body>
-
-
-<!-- شاشة الدخول -->
+<body><!-- AUTH -->
 
 <div id="authScreen" class="auth-screen">
 
 <div class="auth-box">
 
-
-<div class="auth-logo">
-
 <div class="logo">XL22</div>
-
-<p>منصتك الرقمية الذكية</p>
-
-</div>
-
+<div class="subtitle">منصتك الرقمية الذكية</div>
 
 
 <div id="loginForm">
 
-
-<h2 class="form-title">
-تسجيل الدخول
-</h2>
-
+<h2>تسجيل الدخول</h2>
 
 <div id="loginError" class="error hidden"></div>
 
 
 <div class="input-group">
-
-<label>
-البريد أو رقم الهاتف
-</label>
-
-<input id="loginIdentifier" type="text">
-
+<label>البريد أو رقم الهاتف</label>
+<input id="loginIdentifier" type="text" placeholder="أدخل البيانات">
 </div>
-
 
 
 <div class="input-group">
-
-<label>
-كلمة المرور
-</label>
-
-
-<div class="password-box">
-
-<input id="loginPassword" type="password">
-
-<button class="eye-btn" onclick="togglePassword('loginPassword',this)">
-👁
-</button>
-
+<label>كلمة المرور</label>
+<input id="loginPassword" type="password" placeholder="كلمة المرور">
 </div>
-
-</div>
-
 
 
 <button class="main-btn" onclick="login()">
@@ -959,9 +318,7 @@ display:block;
 
 <div class="switch-text">
 ليس لديك حساب؟
-<span onclick="showRegister()">
-إنشاء حساب
-</span>
+<span onclick="showRegister()">إنشاء حساب</span>
 </div>
 
 
@@ -971,59 +328,32 @@ display:block;
 
 <div id="registerForm" class="hidden">
 
-
-<h2 class="form-title">
-إنشاء حساب
-</h2>
-
+<h2>إنشاء حساب</h2>
 
 <div id="registerError" class="error hidden"></div>
 
 
 <div class="input-group">
-
-<label>
-البريد أو رقم الهاتف
-</label>
-
-<input id="registerIdentifier">
-
+<label>البريد أو رقم الهاتف</label>
+<input id="registerIdentifier" type="text">
 </div>
 
 
-
 <div class="input-group">
-
-<label>
-كلمة المرور
-</label>
-
+<label>كلمة المرور</label>
 <input id="registerPassword" type="password">
-
 </div>
 
 
-
 <div class="input-group">
-
-<label>
-تأكيد كلمة المرور
-</label>
-
+<label>تأكيد كلمة المرور</label>
 <input id="registerConfirm" type="password">
-
 </div>
 
 
-
 <div class="input-group">
-
-<label>
-كود الدعوة
-</label>
-
-<input id="registerReferral">
-
+<label>كود الدعوة</label>
+<input id="registerReferral" type="text">
 </div>
 
 
@@ -1034,9 +364,7 @@ display:block;
 
 <div class="switch-text">
 لديك حساب؟
-<span onclick="showLogin()">
-تسجيل الدخول
-</span>
+<span onclick="showLogin()">تسجيل الدخول</span>
 </div>
 
 
@@ -1044,37 +372,27 @@ display:block;
 
 
 </div>
-
 </div>
 
 
-<!-- التطبيق -->
+
+
+
+<!-- APP -->
 
 <div id="app" class="hidden">
 
 
 <header class="header">
 
-
-<div>
-
-<button class="mobile-menu" onclick="toggleSidebar()">
-☰
-</button>
-
-<span class="logo">XL22</span>
-
+<div class="logo">
+XL22
 </div>
 
 
-<div class="user-code" id="headerUserCode">
-XL000000
-</div>
+<div style="display:flex;align-items:center;gap:10px">
 
-
-<div class="header-user">
-
-<div class="avatar" id="avatar">
+<div id="avatar" class="avatar">
 X
 </div>
 
@@ -1082,143 +400,115 @@ X
 مستخدم
 </span>
 
-
 </div>
 
 
-</header><!-- SIDEBAR -->
+</header>
 
-<aside id="sidebar" class="sidebar">
 
-<button class="nav-item active" onclick="showPage('home',this)">
+
+
+
+<aside class="sidebar" id="sidebar">
+
+
+<button class="nav-item active"
+onclick="showPage('home',this)">
 🏠 الرئيسية
 </button>
 
-<button class="nav-item" onclick="showPage('tasksPage',this)">
+
+<button class="nav-item"
+onclick="showPage('tasksPage',this)">
 📋 المهام
 </button>
 
-<button class="nav-item" onclick="showPage('balancePage',this)">
+
+<button class="nav-item"
+onclick="showPage('balancePage',this)">
 💰 الرصيد
 </button>
 
-<button class="nav-item" onclick="showPage('teamPage',this)">
+
+<button class="nav-item"
+onclick="showPage('teamPage',this)">
 👑 الفريق
 </button>
 
-<button class="nav-item" onclick="showPage('settingsPage',this)">
+
+<button class="nav-item"
+onclick="showPage('settingsPage',this)">
 ⚙️ الإعدادات
 </button>
 
-<button class="nav-item" onclick="logout()">
+
+<button class="nav-item"
+onclick="logout()">
 🚪 خروج
 </button>
 
+
 </aside>
+
+
 
 
 
 <main class="content">
 
 
+
 <section id="home" class="page active">
 
-<div class="page-title">
 
-<h1>الرئيسية</h1>
-
-<p>سوق العملات الرقمية</p>
-
-</div>
+<h1 style="color:#d4af37;margin-bottom:20px">
+الرئيسية
+</h1>
 
 
-<div class="market-box">
+<div class="card">
+
+<h2>
+📊 سوق العملات الرقمية
+</h2>
 
 
-<div class="market-title">
-
-<h2>📊 العملات</h2>
-
-<div class="status">
-● السوق نشط
-</div>
-
-</div>
+<p style="color:#888">
+متابعة الأسعار
+</p>
 
 
-<div class="crypto-list">
+<br>
 
-
-<div class="crypto-card">
-
-<div class="crypto-info">
-
-<div class="crypto-icon btc">₿</div>
 
 <div>
-<div class="crypto-name">Bitcoin</div>
-<div class="crypto-symbol">BTC</div>
-</div>
-
-</div>
-
-<div class="crypto-price">
+₿ Bitcoin :
 <b>$68,420</b>
-<div class="up">▲ 2.48%</div>
 </div>
 
-</div>
-
-
-
-<div class="crypto-card">
-
-<div class="crypto-info">
-
-<div class="crypto-icon eth">Ξ</div>
+<br>
 
 <div>
-<div class="crypto-name">Ethereum</div>
-<div class="crypto-symbol">ETH</div>
-</div>
-
-</div>
-
-<div class="crypto-price">
-<b>$3520</b>
-<div class="up">▲ 1.72%</div>
-</div>
-
+Ξ Ethereum :
+<b>$3,520</b>
 </div>
 
 
-
-<div class="crypto-card">
-
-<div class="crypto-info">
-
-<div class="crypto-icon usdt">₮</div>
+<br>
 
 <div>
-<div class="crypto-name">USDT</div>
-<div class="crypto-symbol">USDT</div>
-</div>
-
-</div>
-
-<div class="crypto-price">
-<b>$1</b>
-<div class="down">▼ 0.03%</div>
-</div>
-
+₮ USDT :
+<b>$1.00</b>
 </div>
 
 
 </div>
 
-</div>
 
 </section>
+
+
+
 
 
 
@@ -1226,269 +516,83 @@ X
 <section id="tasksPage" class="page">
 
 
-<div class="page-title">
-<h1>المهام</h1>
-<p>احصل على مكافآت</p>
-</div>
-
-
-<div class="tasks">
-
-
-<div class="task">
-
-<h3>📱 مهمة يومية</h3>
-
-<p>تنفيذ المهمة اليومية</p>
-
-<div class="reward">
-+ $1
-</div>
-
-<button onclick="completeTask(1)">
-تنفيذ
-</button>
-
-</div>
-
-
-
-<div class="task">
-
-<h3>⭐ مهمة خاصة</h3>
-
-<p>مهمة إضافية</p>
-
-<div class="reward">
-+ $5
-</div>
-
-<button onclick="completeTask(5)">
-تنفيذ
-</button>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-
-<section id="balancePage" class="page">
-
-
-<div class="page-title">
-<h1>الرصيد</h1>
-</div>
+<h1 style="color:#d4af37">
+المهام
+</h1>
 
 
 <div class="card">
 
-الرصيد الحالي
 
-<div class="balance-number">
-$ <span id="balance">0</span>
-</div>
+<h3>
+مهمة يومية
+</h3>
 
-</div>
-
-
-
-<div class="actions">
-
-<button class="action-btn deposit"
-onclick="deposit()">
-إضافة 10$
-</button>
-
-
-<button class="action-btn withdraw"
-onclick="withdraw()">
-سحب تجريبي
-</button>
-
-</div>
-
-
-</section>
-
-
-
-
-<section id="teamPage" class="page">
-
-
-<div class="page-title">
-<h1>الفريق</h1>
-</div>
-
-
-<div class="vip-box">
-
-<div class="vip-title">
-
-<div>
-المستوى
-<div class="vip" id="vip">
-VIP 0
-</div>
-</div>
-
-
-<div>
-الأعضاء:
-<span id="teamCount">
-0
-</span>
-</div>
-
-</div>
-
-
-<div class="progress">
-
-<span id="progressBar"></span>
-
-</div>
-
-
-</div>
-
-
-<div class="vip-grid">
-
-<div class="vip-card">
-<h4>VIP1</h4>
-<p>5 أعضاء</p>
-</div>
-
-
-<div class="vip-card">
-<h4>VIP2</h4>
-<p>10 أعضاء</p>
-</div>
-
-
-<div class="vip-card">
-<h4>VIP3</h4>
-<p>20 عضو</p>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<section id="settingsPage" class="page">
-
-<div class="card">
-
-<h2>
-الإعدادات
-</h2>
 
 <p>
-الحساب: 
-<span id="settingsUser"></span>
-</p>
+احصل على مكافأة تج<script>
 
+const USERS_KEY = "xl22_users";
+const CURRENT_KEY = "xl22_current";
 
-<button class="main-btn" onclick="logout()">
-تسجيل خروج
-</button>
-
-</div>
-
-</section>
-
-
-</main>
+let users = [];
+let currentUser = null;
 
 
 
-<nav class="mobile-bottom">
+function loadData(){
 
-<button onclick="showPage('home',this)">
-🏠
-</button>
+try{
 
-<button onclick="showPage('tasksPage',this)">
-📋
-</button>
-
-<button onclick="showPage('balancePage',this)">
-💰
-</button>
-
-</nav>
+users =
+JSON.parse(localStorage.getItem(USERS_KEY)) || [];
 
 
-</div>
+let saved =
+localStorage.getItem(CURRENT_KEY);
 
 
+if(saved !== null){
 
-<div id="toast" class="toast"></div>
-
-
-
-
-<script>
-
-
-const KEY="XL22_USER";
-
-let user =
-JSON.parse(localStorage.getItem(KEY))
-||
-null;
-
-
-
-function toast(t){
-
-let e=document.getElementById("toast");
-
-e.innerText=t;
-
-e.classList.add("show");
-
-setTimeout(()=>{
-
-e.classList.remove("show");
-
-},2000);
+currentUser = Number(saved);
 
 }
 
 
+}catch(e){
 
-
-function togglePassword(id,b){
-
-let x=document.getElementById(id);
-
-if(x.type==="password"){
-
-x.type="text";
-
-b.innerText="🙈";
-
-}else{
-
-x.type="password";
-
-b.innerText="👁";
+users=[];
+currentUser=null;
 
 }
 
 }
+
+
+
+function saveData(){
+
+localStorage.setItem(
+USERS_KEY,
+JSON.stringify(users)
+);
+
+
+if(currentUser !== null){
+
+localStorage.setItem(
+CURRENT_KEY,
+currentUser
+);
+
+}
+
+}
+
+
+
+
+loadData();
 
 
 
@@ -1496,20 +600,34 @@ b.innerText="👁";
 
 function showRegister(){
 
-loginForm.classList.add("hidden");
+document
+.getElementById("loginForm")
+.classList.add("hidden");
 
-registerForm.classList.remove("hidden");
+
+document
+.getElementById("registerForm")
+.classList.remove("hidden");
 
 }
+
+
 
 
 function showLogin(){
 
-registerForm.classList.add("hidden");
+document
+.getElementById("registerForm")
+.classList.add("hidden");
 
-loginForm.classList.remove("hidden");
+
+document
+.getElementById("loginForm")
+.classList.remove("hidden");
 
 }
+
+
 
 
 
@@ -1518,31 +636,36 @@ loginForm.classList.remove("hidden");
 function register(){
 
 
-let name=
-registerIdentifier.value.trim();
+let name =
+document.getElementById("registerIdentifier").value.trim();
 
 
-let pass=
-registerPassword.value;
+let pass =
+document.getElementById("registerPassword").value;
 
 
-let confirm=
-registerConfirm.value;
+let confirm =
+document.getElementById("registerConfirm").value;
+
+
+let ref =
+document.getElementById("registerReferral").value.trim();
+
+
+
+let error =
+document.getElementById("registerError");
+
+
+error.classList.add("hidden");
 
 
 
 if(!name || !pass){
 
-toast("أكمل البيانات");
+error.textContent="أكمل البيانات";
 
-return;
-
-}
-
-
-if(pass!==confirm){
-
-toast("كلمة المرور غير متطابقة");
+error.classList.remove("hidden");
 
 return;
 
@@ -1550,27 +673,94 @@ return;
 
 
 
-user={
+if(pass.length < 6){
+
+error.textContent=
+"كلمة المرور أقل شيء 6 أحرف";
+
+error.classList.remove("hidden");
+
+return;
+
+}
+
+
+
+if(pass !== confirm){
+
+error.textContent=
+"كلمة المرور غير متطابقة";
+
+error.classList.remove("hidden");
+
+return;
+
+}
+
+
+
+
+let exists =
+users.find(
+u=>u.name.toLowerCase()
+===
+name.toLowerCase()
+);
+
+
+
+if(exists){
+
+error.textContent=
+"الحساب موجود مسبقاً";
+
+error.classList.remove("hidden");
+
+return;
+
+}
+
+
+
+
+let code =
+"XL"+Math.floor(100000+Math.random()*900000);
+
+
+
+let user={
 
 name:name,
 
 password:pass,
 
+code:code,
+
 balance:0,
 
 tasks:0,
 
-team:0
+team:0,
+
+ref:ref
 
 };
 
 
-localStorage.setItem(KEY,JSON.stringify(user));
+
+users.push(user);
+
+
+currentUser =
+users.length-1;
+
+
+saveData();
 
 
 openApp();
 
-toast("تم إنشاء الحساب");
+
 
 }
 
@@ -1580,124 +770,73 @@ toast("تم إنشاء الحساب");
 function login(){
 
 
-let name=
-loginIdentifier.value.trim();
 
-
-let pass=
-loginPassword.value;
+let name =
+document.getElementById("loginIdentifier").value.trim();
 
 
 
-if(!user){
+let pass =
+document.getElementById("loginPassword").value;
 
-toast("لا يوجد حساب");
+
+
+let error =
+document.getElementById("loginError");
+
+
+
+error.classList.add("hidden");
+
+
+
+
+let index =
+users.findIndex(
+u=>
+u.name.toLowerCase()
+===
+name.toLowerCase()
+&&
+u.password===pass
+);
+
+
+
+
+if(index===-1){
+
+error.textContent=
+"بيانات الدخول غير صحيحة";
+
+error.classList.remove("hidden");
 
 return;
 
 }
 
 
-if(
-name===user.name &&
-pass===user.password
-){
+
+currentUser=index;
+
+
+saveData();
+
 
 openApp();
 
-}else{
-
-toast("بيانات خاطئة");
-
-}
 
 
 }
+
+
+
 
 
 
 
 function openApp(){
 
-authScreen.classList.add("hidden");
 
-app.classList.remove("hidden");
-
-update();
-
-}
-
-
-
-
-function logout(){
-
-localStorage.removeItem(KEY);
-
-location.reload();
-
-}
-
-
-
-
-function update(){
-
-
-if(!user)return;
-
-
-headerUser.innerText=user.name;
-
-avatar.innerText=user.name[0];
-
-balance.innerText=
-user.balance.toFixed(2);
-
-
-settingsUser.innerText=user.name;
-
-
-teamCount.innerText=user.team;
-
-
-}
-
-
-
-
-function completeTask(v){
-
-
-user.balance+=v;
-
-user.tasks+=v;
-
-
-save();
-
-toast("تمت إضافة المكافأة");
-
-
-}
-
-
-
-
-function deposit(){
-
-user.balance+=10;
-
-save();
-
-toast("تمت إضافة 10$");
-
-}
-
-
-
-function withdraw(){
-
-if(user.balance>=5){
-
-user.balance
+document
+.getElementById("
