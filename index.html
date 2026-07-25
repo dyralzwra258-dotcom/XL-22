@@ -840,3 +840,494 @@ function openApp(){
 
 document
 .getElementById("
+<!-- بداية الجزء الثالث -->
+
+<style>
+
+
+.inner-page{
+
+display:none;
+
+}
+
+
+.inner-page.active{
+
+display:block;
+
+}
+
+
+
+.section-title{
+
+color:#d4af37;
+margin-bottom:20px;
+
+}
+
+
+
+.info-box{
+
+background:#111;
+border:1px solid #333;
+border-radius:15px;
+padding:20px;
+margin-bottom:15px;
+
+}
+
+
+
+.info-box h3{
+
+color:#d4af37;
+margin-bottom:10px;
+
+}
+
+
+
+.task-item{
+
+background:#181818;
+border-radius:12px;
+padding:15px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+
+
+.task-btn{
+
+background:#d4af37;
+border:0;
+padding:8px 15px;
+border-radius:8px;
+font-weight:bold;
+color:#111;
+
+}
+
+
+
+.team-code{
+
+background:#1a1a1a;
+padding:15px;
+border-radius:12px;
+text-align:center;
+color:#d4af37;
+font-size:22px;
+margin-top:10px;
+
+}
+
+
+
+.wallet-row{
+
+display:flex;
+justify-content:space-between;
+padding:15px;
+background:#181818;
+border-radius:10px;
+margin-bottom:10px;
+
+}
+
+
+
+</style>
+
+
+
+
+
+<!-- صفحة المهام -->
+
+
+<section id="tasksPage" class="inner-page">
+
+
+<h2 class="section-title">
+
+📋 المهام
+
+</h2>
+
+
+
+<div class="info-box">
+
+
+<h3>
+المهام اليومية
+</h3>
+
+
+<div class="task-item">
+
+
+<span>
+مهمة متابعة الأسعار
+</span>
+
+
+<button class="task-btn">
+تنفيذ
+</button>
+
+
+</div>
+
+
+
+
+<div class="task-item">
+
+
+<span>
+مهمة تسجيل الدخول
+</span>
+
+
+<button class="task-btn">
+تنفيذ
+</button>
+
+
+</div>
+
+
+
+
+<div class="task-item">
+
+
+<span>
+مهمة إضافية
+</span>
+
+
+<button class="task-btn">
+تنفيذ
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- صفحة الفريق -->
+
+
+<section id="teamPage" class="inner-page">
+
+
+<h2 class="section-title">
+
+👥 الفريق
+
+</h2>
+
+
+
+
+<div class="info-box">
+
+
+<h3>
+كود الدعوة الخاص بك
+</h3>
+
+
+<div class="team-code">
+
+XL000000
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="info-box">
+
+
+<h3>
+إحصائيات الفريق
+</h3>
+
+
+<div class="wallet-row">
+
+<span>
+الأعضاء المباشرون
+</span>
+
+<b>
+0
+</b>
+
+</div>
+
+
+
+
+<div class="wallet-row">
+
+<span>
+إجمالي أعضاء الفريق
+</span>
+
+<b>
+0
+</b>
+
+</div>
+
+
+
+
+<div class="wallet-row">
+
+<span>
+أرباح الدعوات
+</span>
+
+<b>
+0 $
+</b>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- صفحة الرصيد -->
+
+
+<section id="balancePage" class="inner-page">
+
+
+<h2 class="section-title">
+
+💰 الرصيد
+
+</h2>
+
+
+
+
+<div class="info-box">
+
+
+<div class="wallet-row">
+
+<span>
+رصيد المهام
+</span>
+
+<b>
+0 $
+</b>
+
+</div>
+
+
+
+<div class="wallet-row">
+
+<span>
+رصيد الدعوات
+</span>
+
+<b>
+0 $
+</b>
+
+</div>
+
+
+
+
+<div class="wallet-row">
+
+<span>
+الرصيد الإجمالي
+</span>
+
+<b>
+0 $
+</b>
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="info-box">
+
+
+<h3>
+سجل العمليات
+</h3>
+
+
+<p style="color:#888;">
+لا توجد عمليات حالياً
+</p>
+
+
+</div>
+
+
+
+</section>
+  <!-- بداية الجزء الرابع -->
+
+<script>
+
+
+let users =
+JSON.parse(localStorage.getItem("XL22_USERS")) || [];
+
+
+let currentUser =
+localStorage.getItem("XL22_CURRENT");
+
+
+
+
+
+function saveUsers(){
+
+localStorage.setItem(
+"XL22_USERS",
+JSON.stringify(users)
+);
+
+}
+
+
+
+
+
+// إنشاء حساب
+
+
+function register(){
+
+
+let user =
+document.getElementById("registerUser").value.trim();
+
+
+let pass =
+document.getElementById("registerPass").value;
+
+
+let confirm =
+document.getElementById("registerConfirm").value;
+
+
+let code =
+document.getElementById("registerCode").value.trim();
+
+
+
+let error =
+document.getElementById("registerError");
+
+
+
+error.classList.add("hidden");
+
+
+
+if(!user || !pass){
+
+error.innerHTML="أكمل جميع البيانات";
+
+error.classList.remove("hidden");
+
+return;
+
+}
+
+
+
+if(pass !== confirm){
+
+error.innerHTML="كلمة المرور غير متطابقة";
+
+error.classList.remove("hidden");
+
+return;
+
+}
+
+
+
+
+let exists =
+users.find(
+x=>x.user===user
+);
+
+
+
+if(exists){
+
+error.innerHTML="الحساب موجود مسبقاً";
+
+error.classList.remove("hidden");
+
+return;
+
+}
+
+
+
+
+let referral =
+"XL"+Math.floor(
