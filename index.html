@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,260 +14,226 @@
 box-sizing:border-box;
 margin:0;
 padding:0;
-}
-
-:root{
---gold:#d4af37;
---gold-dark:#9c7614;
---black:#090909;
---box:#151515;
---text:#fff;
---gray:#888;
---green:#19b96b;
---red:#e34b4b;
+font-family:Tahoma,Arial,sans-serif;
 }
 
 body{
-font-family:Tahoma,Arial,sans-serif;
+
 background:
-radial-gradient(circle at top,#211a08,#090909 50%);
+radial-gradient(circle at top,#2b2108,#050505 60%);
+
 color:white;
 min-height:100vh;
-}
 
-button,input,textarea{
-font-family:inherit;
-}
-
-button{
-cursor:pointer;
-}
-
-.hidden{
-display:none!important;
 }
 
 
-/* LOGIN */
+:root{
 
-.auth-screen{
-min-height:100vh;
+--gold:#d4af37;
+--gold2:#8f6b10;
+--black:#080808;
+--box:#141414;
+
+}
+
+
+
+/* شاشة الدخول */
+
+.auth{
+
+height:100vh;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 padding:20px;
+
 }
 
 
-.auth-box{
+
+.box{
+
 width:100%;
-max-width:430px;
+max-width:420px;
 background:#111;
-border:1px solid rgba(212,175,55,.3);
+border:1px solid #4d3b0c;
 border-radius:20px;
 padding:30px;
-box-shadow:0 20px 60px #000;
+box-shadow:0 0 40px #000;
+
 }
+
 
 
 .logo{
+
 text-align:center;
-font-size:38px;
-font-weight:900;
+font-size:45px;
+font-weight:bold;
 color:var(--gold);
-letter-spacing:3px;
+letter-spacing:4px;
+
 }
 
 
 .subtitle{
+
 text-align:center;
-color:#777;
+color:#888;
 margin:10px 0 25px;
+
 }
+
 
 
 h2{
+
 text-align:center;
 margin-bottom:20px;
+
 }
 
 
-.input-group{
+
+.group{
+
 margin-bottom:15px;
+
 }
 
 
 label{
+
 display:block;
-color:#ccc;
-font-size:14px;
+color:#bbb;
 margin-bottom:7px;
+
 }
 
 
-input,textarea{
+input{
 
 width:100%;
-background:#1b1b1b;
-border:1px solid #333;
-color:white;
-padding:13px;
+padding:14px;
 border-radius:10px;
+border:1px solid #333;
+background:#1b1b1b;
+color:white;
 outline:none;
 
 }
 
 
-input:focus,textarea:focus{
+input:focus{
+
 border-color:var(--gold);
+
 }
 
 
-.main-btn{
+
+button{
 
 width:100%;
 padding:14px;
 border:0;
 border-radius:10px;
-background:linear-gradient(135deg,var(--gold),var(--gold-dark));
-font-weight:bold;
-color:#111;
-
-}
-
-
-.switch-text{
-
-text-align:center;
-margin-top:20px;
-color:#777;
-
-}
-
-
-.switch-text span{
-
-color:var(--gold);
 cursor:pointer;
 font-weight:bold;
 
 }
 
 
+
+.gold-btn{
+
+background:linear-gradient(135deg,var(--gold),var(--gold2));
+color:#111;
+
+}
+
+
+
+.switch{
+
+text-align:center;
+margin-top:20px;
+color:#888;
+
+}
+
+
+
+.switch span{
+
+color:var(--gold);
+cursor:pointer;
+
+}
+
+
+
 .error{
 
-background:rgba(220,50,50,.15);
-border:1px solid rgba(220,50,50,.3);
+background:#331111;
 color:#ff7777;
 padding:10px;
 border-radius:8px;
-font-size:14px;
 margin-bottom:15px;
 
 }
 
 
-/* APP */
 
-.header{
+.hidden{
 
-position:fixed;
-top:0;
-right:0;
-left:0;
-height:70px;
-background:#111;
-border-bottom:1px solid #333;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 20px;
-z-index:10;
-
-}
-
-
-.header .logo{
-
-font-size:26px;
-margin:0;
-
-}
-
-
-.avatar{
-
-width:42px;
-height:42px;
-border-radius:50%;
-background:var(--gold);
-color:#111;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
+display:none!important;
 
 }
 
 
 
-.sidebar{
+/* التطبيق */
 
-position:fixed;
-top:70px;
-right:0;
-bottom:0;
-width:230px;
-background:#101010;
-padding:20px;
-border-left:1px solid #333;
-
-}
-
-
-.nav-item{
-
-width:100%;
-background:none;
-border:0;
-color:#aaa;
-padding:13px;
-text-align:right;
-border-radius:10px;
-margin-bottom:7px;
-
-}
-
-
-.nav-item:hover,
-.nav-item.active{
-
-background:#241d08;
-color:var(--gold);
-
-}
-
-
-.content{
-
-margin-right:230px;
-padding:100px 30px;
-
-}
-
-
-.page{
+#app{
 
 display:none;
 
 }
 
 
-.page.active{
 
-display:block;
+.header{
+
+height:70px;
+background:#111;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 20px;
+border-bottom:1px solid #333;
 
 }
+
+
+.header-logo{
+
+color:var(--gold);
+font-size:28px;
+font-weight:bold;
+
+}
+
+
+
+.content{
+
+padding:90px 15px;
+
+}
+
 
 
 .card{
@@ -279,651 +247,31 @@ margin-bottom:15px;
 }
 
 
-</style>
-</head>
 
-<body><!-- AUTH -->
+.balance{
 
-<div id="authScreen" class="auth-screen">
-
-<div class="auth-box">
-
-<div class="logo">XL22</div>
-<div class="subtitle">منصتك الرقمية الذكية</div>
-
-
-<div id="loginForm">
-
-<h2>تسجيل الدخول</h2>
-
-<div id="loginError" class="error hidden"></div>
-
-
-<div class="input-group">
-<label>البريد أو رقم الهاتف</label>
-<input id="loginIdentifier" type="text" placeholder="أدخل البيانات">
-</div>
-
-
-<div class="input-group">
-<label>كلمة المرور</label>
-<input id="loginPassword" type="password" placeholder="كلمة المرور">
-</div>
-
-
-<button class="main-btn" onclick="login()">
-دخول
-</button>
-
-
-<div class="switch-text">
-ليس لديك حساب؟
-<span onclick="showRegister()">إنشاء حساب</span>
-</div>
-
-
-</div>
-
-
-
-<div id="registerForm" class="hidden">
-
-<h2>إنشاء حساب</h2>
-
-<div id="registerError" class="error hidden"></div>
-
-
-<div class="input-group">
-<label>البريد أو رقم الهاتف</label>
-<input id="registerIdentifier" type="text">
-</div>
-
-
-<div class="input-group">
-<label>كلمة المرور</label>
-<input id="registerPassword" type="password">
-</div>
-
-
-<div class="input-group">
-<label>تأكيد كلمة المرور</label>
-<input id="registerConfirm" type="password">
-</div>
-
-
-<div class="input-group">
-<label>كود الدعوة</label>
-<input id="registerReferral" type="text">
-</div>
-
-
-<button class="main-btn" onclick="register()">
-إنشاء الحساب
-</button>
-
-
-<div class="switch-text">
-لديك حساب؟
-<span onclick="showLogin()">تسجيل الدخول</span>
-</div>
-
-
-</div>
-
-
-</div>
-</div>
-
-
-
-
-
-<!-- APP -->
-
-<div id="app" class="hidden">
-
-
-<header class="header">
-
-<div class="logo">
-XL22
-</div>
-
-
-<div style="display:flex;align-items:center;gap:10px">
-
-<div id="avatar" class="avatar">
-X
-</div>
-
-<span id="headerUser">
-مستخدم
-</span>
-
-</div>
-
-
-</header>
-
-
-
-
-
-<aside class="sidebar" id="sidebar">
-
-
-<button class="nav-item active"
-onclick="showPage('home',this)">
-🏠 الرئيسية
-</button>
-
-
-<button class="nav-item"
-onclick="showPage('tasksPage',this)">
-📋 المهام
-</button>
-
-
-<button class="nav-item"
-onclick="showPage('balancePage',this)">
-💰 الرصيد
-</button>
-
-
-<button class="nav-item"
-onclick="showPage('teamPage',this)">
-👑 الفريق
-</button>
-
-
-<button class="nav-item"
-onclick="showPage('settingsPage',this)">
-⚙️ الإعدادات
-</button>
-
-
-<button class="nav-item"
-onclick="logout()">
-🚪 خروج
-</button>
-
-
-</aside>
-
-
-
-
-
-<main class="content">
-
-
-
-<section id="home" class="page active">
-
-
-<h1 style="color:#d4af37;margin-bottom:20px">
-الرئيسية
-</h1>
-
-
-<div class="card">
-
-<h2>
-📊 سوق العملات الرقمية
-</h2>
-
-
-<p style="color:#888">
-متابعة الأسعار
-</p>
-
-
-<br>
-
-
-<div>
-₿ Bitcoin :
-<b>$68,420</b>
-</div>
-
-<br>
-
-<div>
-Ξ Ethereum :
-<b>$3,520</b>
-</div>
-
-
-<br>
-
-<div>
-₮ USDT :
-<b>$1.00</b>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section id="tasksPage" class="page">
-
-
-<h1 style="color:#d4af37">
-المهام
-</h1>
-
-
-<div class="card">
-
-
-<h3>
-مهمة يومية
-</h3>
-
-
-<p>
-احصل على مكافأة تج<script>
-
-const USERS_KEY = "xl22_users";
-const CURRENT_KEY = "xl22_current";
-
-let users = [];
-let currentUser = null;
-
-
-
-function loadData(){
-
-try{
-
-users =
-JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-
-
-let saved =
-localStorage.getItem(CURRENT_KEY);
-
-
-if(saved !== null){
-
-currentUser = Number(saved);
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
 
 }
 
 
-}catch(e){
-
-users=[];
-currentUser=null;
-
-}
-
-}
-
-
-
-function saveData(){
-
-localStorage.setItem(
-USERS_KEY,
-JSON.stringify(users)
-);
-
-
-if(currentUser !== null){
-
-localStorage.setItem(
-CURRENT_KEY,
-currentUser
-);
-
-}
-
-}
-
-
-
-
-loadData();
-
-
-
-
-
-function showRegister(){
-
-document
-.getElementById("loginForm")
-.classList.add("hidden");
-
-
-document
-.getElementById("registerForm")
-.classList.remove("hidden");
-
-}
-
-
-
-
-function showLogin(){
-
-document
-.getElementById("registerForm")
-.classList.add("hidden");
-
-
-document
-.getElementById("loginForm")
-.classList.remove("hidden");
-
-}
-
-
-
-
-
-
-
-function register(){
-
-
-let name =
-document.getElementById("registerIdentifier").value.trim();
-
-
-let pass =
-document.getElementById("registerPassword").value;
-
-
-let confirm =
-document.getElementById("registerConfirm").value;
-
-
-let ref =
-document.getElementById("registerReferral").value.trim();
-
-
-
-let error =
-document.getElementById("registerError");
-
-
-error.classList.add("hidden");
-
-
-
-if(!name || !pass){
-
-error.textContent="أكمل البيانات";
-
-error.classList.remove("hidden");
-
-return;
-
-}
-
-
-
-if(pass.length < 6){
-
-error.textContent=
-"كلمة المرور أقل شيء 6 أحرف";
-
-error.classList.remove("hidden");
-
-return;
-
-}
-
-
-
-if(pass !== confirm){
-
-error.textContent=
-"كلمة المرور غير متطابقة";
-
-error.classList.remove("hidden");
-
-return;
-
-}
-
-
-
-
-let exists =
-users.find(
-u=>u.name.toLowerCase()
-===
-name.toLowerCase()
-);
-
-
-
-if(exists){
-
-error.textContent=
-"الحساب موجود مسبقاً";
-
-error.classList.remove("hidden");
-
-return;
-
-}
-
-
-
-
-let code =
-"XL"+Math.floor(100000+Math.random()*900000);
-
-
-
-let user={
-
-name:name,
-
-password:pass,
-
-code:code,
-
-balance:0,
-
-tasks:0,
-
-team:0,
-
-ref:ref
-
-};
-
-
-
-users.push(user);
-
-
-currentUser =
-users.length-1;
-
-
-saveData();
-
-
-openApp();
-
-
-
-}
-
-
-
-
-function login(){
-
-
-
-let name =
-document.getElementById("loginIdentifier").value.trim();
-
-
-
-let pass =
-document.getElementById("loginPassword").value;
-
-
-
-let error =
-document.getElementById("loginError");
-
-
-
-error.classList.add("hidden");
-
-
-
-
-let index =
-users.findIndex(
-u=>
-u.name.toLowerCase()
-===
-name.toLowerCase()
-&&
-u.password===pass
-);
-
-
-
-
-if(index===-1){
-
-error.textContent=
-"بيانات الدخول غير صحيحة";
-
-error.classList.remove("hidden");
-
-return;
-
-}
-
-
-
-currentUser=index;
-
-
-saveData();
-
-
-openApp();
-
-
-
-}
-
-
-
-
-
-
-
-function openApp(){
-
-
-document
-.getElementById("
-<!-- بداية الجزء الثالث -->
-
-<style>
-
-
-.inner-page{
-
-display:none;
-
-}
-
-
-.inner-page.active{
-
-display:block;
-
-}
-
-
-
-.section-title{
-
-color:#d4af37;
-margin-bottom:20px;
-
-}
-
-
-
-.info-box{
-
-background:#111;
-border:1px solid #333;
-border-radius:15px;
-padding:20px;
-margin-bottom:15px;
-
-}
-
-
-
-.info-box h3{
-
-color:#d4af37;
-margin-bottom:10px;
-
-}
-
-
-
-.task-item{
+.balance div{
 
 background:#181818;
-border-radius:12px;
-padding:15px;
-margin-bottom:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-}
-
-
-
-.task-btn{
-
-background:#d4af37;
-border:0;
-padding:8px 15px;
-border-radius:8px;
-font-weight:bold;
-color:#111;
-
-}
-
-
-
-.team-code{
-
-background:#1a1a1a;
 padding:15px;
 border-radius:12px;
 text-align:center;
-color:#d4af37;
+
+}
+
+
+
+.balance b{
+
+display:block;
+color:var(--gold);
 font-size:22px;
 margin-top:10px;
 
@@ -931,237 +279,204 @@ margin-top:10px;
 
 
 
-.wallet-row{
-
-display:flex;
-justify-content:space-between;
-padding:15px;
-background:#181818;
-border-radius:10px;
-margin-bottom:10px;
-
-}
-
-
-
 </style>
 
+</head>
+
+
+<body>
+
+
+<div id="loginPage" class="auth">
+
+
+<div class="box">
+
+
+<div class="logo">
+XL22
+</div>
+
+
+<div class="subtitle">
+منصتك الرقمية الذكية
+</div>
+
+
+
+<div id="loginBox">
+
+
+<h2>
+تسجيل الدخول
+</h2>
+
+
+<div id="loginError" class="error hidden"></div>
+
+
+<div class="group">
+
+<label>
+البريد الإلكتروني أو رقم الهاتف
+</label>
+
+<input id="loginUser">
+
+</div>
+
+
+
+<div class="group">
+
+<label>
+كلمة المرور
+</label>
+
+<input id="loginPass" type="password">
+
+</div>
+
+
+
+<button class="gold-btn" onclick="login()">
+
+دخول
+
+</button>
+
+
+
+<div class="switch">
+
+ليس لديك حساب؟
+<span onclick="registerPage()">
+إنشاء حساب
+</span>
+
+</div>
+
+
+</div>
 
 
 
 
-<!-- صفحة المهام -->
+
+<div id="registerBox" class="hidden">
 
 
-<section id="tasksPage" class="inner-page">
+<h2>
+إنشاء حساب
+</h2>
 
 
-<h2 class="section-title">
+<div id="registerError" class="error hidden"></div>
 
-📋 المهام
 
+<div class="group">
+
+<label>
+البريد الإلكتروني أو رقم الهاتف
+</label>
+
+<input id="regUser">
+
+</div>
+
+
+
+<div class="group">
+
+<label>
+كلمة المرور
+</label>
+
+<input id="regPass" type="password">
+
+</div>
+
+
+
+
+<div class="group">
+
+<label>
+تأكيد كلمة المرور
+</label>
+
+<input id="regConfirm" type="password">
+
+</div>
+
+
+
+
+<div class="group">
+
+<label>
+كود الدعوة
+</label>
+
+<input id="regCode">
+
+</div>
+
+
+
+
+<button class="gold-btn" onclick="register()">
+
+إنشاء الحساب
+
+</button>
+
+
+
+<div class="switch">
+
+لديك حساب؟
+<span onclick="loginPage()">
+تسجيل الدخول
+</span>
+
+</div>
+<!-- الجزء الثاني -->
+
+
+<div id="app">
+
+
+<div class="header">
+
+<div class="header-logo">
+XL22
+</div>
+
+<div>
+👤 مستخدم
+</div>
+
+</div>
+
+
+
+
+<div class="content">
+
+
+<h2 style="color:#d4af37">
+الرئيسية
 </h2>
 
 
 
-<div class="info-box">
+<div class="balance">
 
 
-<h3>
-المهام اليومية
-</h3>
+<div>
 
-
-<div class="task-item">
-
-
-<span>
-مهمة متابعة الأسعار
-</span>
-
-
-<button class="task-btn">
-تنفيذ
-</button>
-
-
-</div>
-
-
-
-
-<div class="task-item">
-
-
-<span>
-مهمة تسجيل الدخول
-</span>
-
-
-<button class="task-btn">
-تنفيذ
-</button>
-
-
-</div>
-
-
-
-
-<div class="task-item">
-
-
-<span>
-مهمة إضافية
-</span>
-
-
-<button class="task-btn">
-تنفيذ
-</button>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- صفحة الفريق -->
-
-
-<section id="teamPage" class="inner-page">
-
-
-<h2 class="section-title">
-
-👥 الفريق
-
-</h2>
-
-
-
-
-<div class="info-box">
-
-
-<h3>
-كود الدعوة الخاص بك
-</h3>
-
-
-<div class="team-code">
-
-XL000000
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="info-box">
-
-
-<h3>
-إحصائيات الفريق
-</h3>
-
-
-<div class="wallet-row">
-
-<span>
-الأعضاء المباشرون
-</span>
-
-<b>
-0
-</b>
-
-</div>
-
-
-
-
-<div class="wallet-row">
-
-<span>
-إجمالي أعضاء الفريق
-</span>
-
-<b>
-0
-</b>
-
-</div>
-
-
-
-
-<div class="wallet-row">
-
-<span>
-أرباح الدعوات
-</span>
-
-<b>
-0 $
-</b>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- صفحة الرصيد -->
-
-
-<section id="balancePage" class="inner-page">
-
-
-<h2 class="section-title">
-
-💰 الرصيد
-
-</h2>
-
-
-
-
-<div class="info-box">
-
-
-<div class="wallet-row">
-
-<span>
 رصيد المهام
-</span>
 
 <b>
 0 $
@@ -1171,11 +486,9 @@ XL000000
 
 
 
-<div class="wallet-row">
+<div>
 
-<span>
 رصيد الدعوات
-</span>
 
 <b>
 0 $
@@ -1185,36 +498,218 @@ XL000000
 
 
 
+<div>
 
-<div class="wallet-row">
+الرصيد الإجمالي
+
+<b>
+0 $
+</b>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h3 style="color:#d4af37">
+أسعار العملات الرقمية
+</h3>
+
+<br>
+
+
+
+
+<div class="coin">
+
+₿ Bitcoin
 
 <span>
-الرصيد الإجمالي
+$68420 
+<span style="color:#19b96b">
+▲ 2.4%
+</span>
 </span>
 
-<b>
-0 $
+</div>
+
+
+
+<div class="coin">
+
+Ξ Ethereum
+
+<span>
+$3520
+
+<span style="color:#e34b4b">
+▼ 1.1%
+</span>
+
+</span>
+
+</div>
+
+
+
+
+
+<div class="coin">
+
+₮ USDT
+
+<span>
+$1.00
+
+<span style="color:#19b96b">
+▲ 0.1%
+</span>
+
+</span>
+
+</div>
+
+
+
+
+
+<div class="coin">
+
+BNB
+
+<span>
+$610
+
+<span style="color:#19b96b">
+▲ 1.5%
+</span>
+
+</span>
+
+</div>
+
+
+
+
+
+<div class="coin">
+
+SOL Solana
+
+<span>
+$175
+
+<span style="color:#e34b4b">
+▼ 0.8%
+</span>
+
+</span>
+
+</div>
+
+
+
+
+
+<div class="coin">
+
+XRP
+
+<span>
+$0.52
+
+<span style="color:#19b96b">
+▲ 1.2%
+</span>
+
+</span>
+
+</div>
+
+
+
+
+
+<div class="coin">
+
+TRX Tron
+
+<span>
+$0.13
+
+<span style="color:#19b96b">
+▲ 0.5%
+</span>
+
+</span>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+<h3 style="color:#d4af37">
+📋 المهام
+</h3>
+
+<p>
+المهام اليومية ستضاف لاحقاً
+</p>
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+<h3 style="color:#d4af37">
+👥 الفريق
+</h3>
+
+<p>
+كود الدعوة:
+</p>
+
+<b style="color:#d4af37">
+XL000000
 </b>
 
 </div>
 
 
 
-</div>
 
 
 
+<div class="card">
 
-<div class="info-box">
-
-
-<h3>
-سجل العمليات
+<h3 style="color:#d4af37">
+💰 الرصيد
 </h3>
 
 
-<p style="color:#888;">
-لا توجد عمليات حالياً
+<p>
+سجل العمليات سيظهر هنا
 </p>
 
 
@@ -1222,8 +717,38 @@ XL000000
 
 
 
-</section>
-  <!-- بداية الجزء الرابع -->
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+<style>
+
+.coin{
+
+display:flex;
+justify-content:space-between;
+background:#181818;
+padding:14px;
+border-radius:10px;
+margin-top:10px;
+
+}
+
+
+</style>
+
+
+
+
 
 <script>
 
@@ -1232,19 +757,18 @@ let users =
 JSON.parse(localStorage.getItem("XL22_USERS")) || [];
 
 
-let currentUser =
-localStorage.getItem("XL22_CURRENT");
 
 
+function registerPage(){
 
 
+document.getElementById("loginBox")
+.classList.add("hidden");
 
-function saveUsers(){
 
-localStorage.setItem(
-"XL22_USERS",
-JSON.stringify(users)
-);
+document.getElementById("registerBox")
+.classList.remove("hidden");
+
 
 }
 
@@ -1252,26 +776,37 @@ JSON.stringify(users)
 
 
 
-// إنشاء حساب
+function loginPage(){
+
+
+document.getElementById("registerBox")
+.classList.add("hidden");
+
+
+document.getElementById("loginBox")
+.classList.remove("hidden");
+
+
+}
+
+
+
+
 
 
 function register(){
 
 
 let user =
-document.getElementById("registerUser").value.trim();
+document.getElementById("regUser").value.trim();
 
 
 let pass =
-document.getElementById("registerPass").value;
+document.getElementById("regPass").value;
 
 
 let confirm =
-document.getElementById("registerConfirm").value;
-
-
-let code =
-document.getElementById("registerCode").value.trim();
+document.getElementById("regConfirm").value;
 
 
 
@@ -1286,7 +821,7 @@ error.classList.add("hidden");
 
 if(!user || !pass){
 
-error.innerHTML="أكمل جميع البيانات";
+error.innerHTML="أكمل البيانات";
 
 error.classList.remove("hidden");
 
@@ -1309,16 +844,16 @@ return;
 
 
 
-let exists =
+let check =
 users.find(
 x=>x.user===user
 );
 
 
 
-if(exists){
+if(check){
 
-error.innerHTML="الحساب موجود مسبقاً";
+error.innerHTML="الحساب موجود";
 
 error.classList.remove("hidden");
 
@@ -1329,5 +864,111 @@ return;
 
 
 
-let referral =
-"XL"+Math.floor(
+
+users.push({
+
+user:user,
+
+pass:pass
+
+});
+
+
+
+localStorage.setItem(
+"XL22_USERS",
+JSON.stringify(users)
+);
+
+
+
+openApp();
+
+
+
+}
+
+
+
+
+
+
+
+function login(){
+
+
+let user =
+document.getElementById("loginUser").value.trim();
+
+
+
+let pass =
+document.getElementById("loginPass").value;
+
+
+
+
+let account =
+users.find(
+x=>x.user===user && x.pass===pass
+);
+
+
+
+if(!account){
+
+let e =
+document.getElementById("loginError");
+
+e.innerHTML="بيانات الدخول غير صحيحة";
+
+e.classList.remove("hidden");
+
+return;
+
+}
+
+
+
+openApp();
+
+
+}
+
+
+
+
+
+
+
+function openApp(){
+
+
+document.getElementById("loginPage")
+.style.display="none";
+
+
+document.getElementById("app")
+.style.display="block";
+
+
+}
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
+
+
+</div>
+
+
+</div>
+
+
+</div>
