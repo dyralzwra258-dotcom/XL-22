@@ -2950,5 +2950,561 @@ function withdraw(){
 
         status:"مكتمل",
 
+        date:
+            new Date()
+            .toLocaleString("ar-SA")
 
-      
+    });
+
+
+    user.transactions =
+        user.transactions || [];
+
+
+    user.transactions.unshift({
+
+        type:"سحب",
+
+        amount:amount,
+
+        date:
+            new Date()
+            .toLocaleString("ar-SA")
+
+    });
+
+
+    saveData();
+
+    updateUI();
+
+    closeModal("withdrawModal");
+
+    toast("تم تسجيل طلب السحب");
+
+}
+
+
+/* =========================
+WITHDRAW HISTORY
+========================= */
+
+function renderWithdrawHistory(){
+
+    const container =
+        document.getElementById(
+            "withdrawHistory"
+        );
+
+    const user =
+        getCurrentUser();
+
+    if(
+        !container ||
+        !user
+    ) return;
+
+
+    const history =
+        user.withdrawHistory || [];
+
+
+    if(!history.length){
+
+        container.innerHTML =
+            '<div class="withdraw-empty">لا توجد عمليات سحب حتى الآن</div>';
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        history
+        .map(
+            record => {
+
+                const complete =
+                    record.status === "مكتمل";
+
+
+                return `
+
+                <div class="withdraw-record">
+
+                    <div>
+
+                        <strong>سحب</strong>
+
+                        <div class="withdraw-record-date">
+                            ${record.date}
+                        </div>
+
+                    </div>
+
+                    <div class="withdraw-record-amount">
+                        $${Number(record.amount).toFixed(2)}
+                    </div>
+
+                    <div class="withdraw-status ${
+                        complete
+                        ? "withdraw-complete"
+                        : "withdraw-failed"
+                    }">
+
+                        ${record.status}
+
+                    </div>
+
+                </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =========================
+TASKS
+========================= */
+
+function completeTask(amount){
+
+    const user =
+        getCurrentUser();
+
+    if(!user) return;
+
+
+    user.balance =
+        Number(user.balance || 0)
+        +
+        Number(amount);
+
+
+    user.taskProfit =
+        Number(user.taskProfit || 0)
+        +
+        Number(amount);
+
+
+    user.transactions =
+        user.transactions || [];
+
+
+    user.transactions.unshift({
+
+        type:"مكافأة مهمة",
+
+        amount:Number(amount),
+
+        date:
+            new Date()
+            .toLocaleString("ar-SA")
+
+    });
+
+
+    saveData();
+
+    updateUI();
+
+    toast(
+        "تمت إضافة $" +
+        Number(amount).toFixed(2)
+    );
+
+}
+
+
+/* =========================
+TEAM
+========================= */
+
+function updateTeam(){
+
+    const user =
+        getCurrentUser();
+
+    if(!user) return;
+
+
+    const count =
+        Number(
+            user.referralCount || 0
+        );
+
+
+    let level = 0;
+
+
+    if(count >= 5) level = 1;
+
+    if(count >= 10) level = 2;
+
+    if(count >= 20) level = 3;
+
+    if(count >= 50) level = 4;
+
+    if(count >= 100) level = 5;
+
+
+    const percentages = [
+        0,
+        3,
+        8,
+        12,
+        15,
+        20
+    ];
+
+
+    document
+        .getElementById("teamCount")
+        .textContent =
+            count;
+
+
+    document
+        .getElementById("vipTitle")
+        .textContent =
+            "VIP " + level;
+
+
+    document
+        .getElementById("vipPercent")
+        .textContent =
+            percentages[level] + "%";
+
+
+    let progress = 0;
+
+
+    const targets = [
+        5,
+        10,
+        20,
+        50,
+        100
+    ];
+
+
+    if(level === 0){
+
+        progress =
+            (count / 5) * 100;
+
+    }else if(level === 5){
+
+        progress = 100;
+
+    }else{
+
+        const previous =
+            targets[level - 1];
+
+        const next =
+            targets[level];
+
+        progress =
+            (
+                (count - previous) /
+                (next - previous)
+            ) * 100;
+
+    }
+
+
+    document
+        .getElementById("teamProgress")
+        .style.width =
+            Math.min(
+                100,
+                Math.max(0,progress)
+            ) + "%";
+
+
+    document
+        .querySelectorAll(".vip-item")
+        .forEach(
+            (item,index) => {
+
+                item.classList.toggle(
+                    "active",
+                    index + 1 <= level
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================
+TRANSACTIONS
+========================= */
+
+function renderTransactions(){
+
+    const container =
+        document.getElementById(
+            "transactionsList"
+        );
+
+    const user =
+        getCurrentUser();
+
+    if(
+        !container ||
+        !user
+    ) return;
+
+
+    const list =
+        user.transactions || [];
+
+
+    if(!list.length){
+
+        container.innerHTML =
+            '<div class="withdraw-empty">لا توجد معاملات حتى الآن</div>';
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list
+        .map(
+            item => `
+
+            <div class="withdraw-record">
+
+                <div>
+
+                    <strong>
+                        ${item.type}
+                    </strong>
+
+                    <div class="withdraw-record-date">
+                        ${item.date}
+                    </div>
+
+                </div>
+
+                <div class="withdraw-record-amount">
+                    $${Number(item.amount).toFixed(2)}
+                </div>
+
+            </div>
+
+            `
+        )
+        .join("");
+
+}
+
+
+/* =========================
+SETTINGS
+========================= */
+
+function updateProfile(){
+
+    const user =
+        getCurrentUser();
+
+    if(!user) return;
+
+
+    const value =
+        document
+        .getElementById("settingsIdentifier")
+        .value
+        .trim();
+
+
+    if(!value){
+
+        toast("أدخل البريد أو رقم الهاتف");
+
+        return;
+
+    }
+
+
+    const exists =
+        users.some(
+            (u,index) =>
+                index !== currentUserIndex &&
+                u.identifier.toLowerCase() ===
+                value.toLowerCase()
+        );
+
+
+    if(exists){
+
+        toast("البيانات مستخدمة من حساب آخر");
+
+        return;
+
+    }
+
+
+    user.identifier = value;
+
+    saveData();
+
+    updateUI();
+
+    toast("تم حفظ البيانات");
+
+}
+
+
+function changePassword(){
+
+    const user =
+        getCurrentUser();
+
+    if(!user) return;
+
+
+    const password =
+        document
+        .getElementById("newPassword")
+        .value;
+
+
+    if(password.length < 6){
+
+        toast(
+            "كلمة المرور يجب أن تكون 6 أحرف على الأقل"
+        );
+
+        return;
+
+    }
+
+
+    user.password = password;
+
+    saveData();
+
+
+    document
+        .getElementById("newPassword")
+        .value = "";
+
+
+    toast("تم تغيير كلمة المرور");
+
+}
+
+
+function sendAgentMessage(){
+
+    const message =
+        document
+        .getElementById("agentMessage")
+        .value
+        .trim();
+
+
+    if(!message){
+
+        toast("اكتب رسالتك أولاً");
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("agentMessage")
+        .value = "";
+
+
+    toast("تم إرسال الرسالة");
+
+}
+
+
+/* =========================
+AUTO LOGIN
+========================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        try{
+
+            if(
+                currentUserIndex !== null &&
+                users[currentUserIndex]
+            ){
+
+                openApp();
+
+            }
+
+        }catch(error){
+
+            console.error(error);
+
+            currentUserIndex = null;
+
+            localStorage.removeItem(
+                CURRENT_KEY
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+CLOSE SIDEBAR
+========================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+        const menu =
+            document.querySelector(
+                ".mobile-menu"
+            );
+
+
+        if(
+            window.innerWidth <= 900 &&
+            sidebar &&
+            sidebar.classList.contains("open") &&
+            !sidebar.contains(event.target) &&
+            menu &&
+            !menu.contains(event.target)
+        ){
+
+            sidebar.classList.remove("open");
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+    </html>
